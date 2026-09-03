@@ -23,5 +23,4 @@ npm-debug.log*
 next-env.d.ts
 *.tsbuildinfo
 
-# Claude Code project instructions — local coordination doc, not shared via git
 CLAUDE.md
