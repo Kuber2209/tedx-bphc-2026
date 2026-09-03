@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+:root {
+  /* TODO: replace with the 2026 theme's real palette once decided */
+  --color-tedx-red: #eb0028;
+  --color-background: #0a0a0a;
+  --color-foreground: #ededed;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
