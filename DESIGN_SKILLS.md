@@ -1,6 +1,6 @@
 # Design skill references (for Claude Code / AI agents working on this site)
 
-Not part of the codebase — reference list only, not committed to git. If you're using
+Not part of the codebase — reference list only. If you're using
 Claude Code (or another AI coding agent) to help build a page, point it at these repos
 for design/frontend-craft skills and patterns to draw on.
 
