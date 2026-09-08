@@ -11,7 +11,8 @@ for design/frontend-craft skills and patterns to draw on.
 - Jakub Krehel: https://github.com/jakubkrehel/skills
 - Tastemaker: https://github.com/codeswithroh/tastemaker
 - Designer Skills: https://github.com/Owl-Listener/designer-skills
-
+- https://github.com/ibelick/motion-primitives
+- 
 Landing page work should lean on these hardest (motion, typography, layout craft).
 Inner-section pages should mainly reuse whatever design system the landing page
 establishes, but these are fair game for polish there too.
