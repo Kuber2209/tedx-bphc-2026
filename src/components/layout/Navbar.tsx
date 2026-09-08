@@ -1,4 +1,5 @@
 import Link from "next/link";
+import TedxLogo from "@/components/layout/TedxLogo";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -14,9 +15,7 @@ const NAV_LINKS = [
 export default function Navbar() {
   return (
     <nav className="flex items-center justify-between px-6 py-4">
-      <Link href="/" className="text-xl font-bold">
-        TEDx BPHC 2026
-      </Link>
+      <TedxLogo href="/" className="h-7 w-auto" priority />
       <ul className="flex gap-6">
         {NAV_LINKS.map((link) => (
           <li key={link.href}>

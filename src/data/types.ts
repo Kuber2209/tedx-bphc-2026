@@ -4,16 +4,35 @@
 export interface Speaker {
   id: string;
   name: string;
-  title: string;
-  bio: string;
+  company: string;
+  role: string;
+  category: string;
   imageUrl: string;
+  talkTitle?: string;
+  socials?: {
+    instagram?: string;
+    linkedin?: string;
+  };
 }
 
 export interface TeamMember {
   id: string;
   name: string;
   role: string;
-  imageUrl: string;
+  handle?: string;
+  bio?: string;
+  imageUrl?: string;
+  phone?: string;
+  email?: string;
+  instagram?: string;
+  linkedin?: string;
+}
+
+export interface TeamSection {
+  id: string;
+  title: string;
+  description?: string;
+  members: TeamMember[];
 }
 
 export interface Sponsor {
@@ -25,7 +44,12 @@ export interface Sponsor {
 }
 
 export interface FaqItem {
-  id: string;
+  id?: string;
   question: string;
   answer: string;
+}
+
+export interface FaqCategory {
+  categoryName: string;
+  items: FaqItem[];
 }

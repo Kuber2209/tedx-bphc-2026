@@ -1,0 +1,616 @@
+/**
+ * ============================================================================
+ * TEDx BPHC — Expandable Speaker Profile Card Styles
+ * ============================================================================
+ * Designed for easy maintenance and extensive customization.
+ * Modify the CSS Custom Properties below to tweak colors, dimensions, and spacing.
+ */
+
+:root {
+  /* Brand & Accent Colors */
+  --speaker-accent: #E62B1E;
+  --speaker-accent-hover: #cf2418;
+  --speaker-accent-glow: rgba(230, 43, 30, 0.25);
+  --speaker-accent-subtle: rgba(230, 43, 30, 0.12);
+  --speaker-accent-border: rgba(230, 43, 30, 0.35);
+
+  /* Card Dimensions & Geometry (Keeps existing vertical aspect ratio) */
+  --speaker-card-aspect: 4 / 5;
+  --speaker-card-radius: 1rem;
+  --speaker-card-bg: #121212;
+  --speaker-card-border: rgba(39, 39, 42, 0.8);
+  --speaker-card-border-hover: rgba(230, 43, 30, 0.45);
+  --speaker-card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  --speaker-card-shadow-hover: 0 20px 40px -15px rgba(230, 43, 30, 0.2);
+
+  /* Modal Dimensions & Geometry */
+  --speaker-modal-bg: #111111;
+  --speaker-modal-border: rgba(63, 63, 70, 0.5);
+  --speaker-modal-radius: 1.25rem;
+  --speaker-modal-max-width: 54rem;
+  --speaker-modal-max-height: 84vh;
+  --speaker-modal-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 50px rgba(230, 43, 30, 0.12);
+
+  /* Typography Colors */
+  --speaker-text-primary: #ffffff;
+  --speaker-text-secondary: #a1a1aa;
+  --speaker-text-muted: #71717a;
+}
+
+/* ============================================================================
+ * 1. COLLAPSED CARD CONTAINER (Vertical Aspect Ratio)
+ * ============================================================================ */
+.speaker-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: var(--speaker-card-aspect);
+  border-radius: var(--speaker-card-radius);
+  background-color: var(--speaker-card-bg);
+  border: 1px solid var(--speaker-card-border);
+  padding: 1.5rem;
+  overflow: hidden;
+  box-shadow: var(--speaker-card-shadow);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.speaker-card:hover {
+  border-color: var(--speaker-card-border-hover);
+  box-shadow: var(--speaker-card-shadow-hover);
+  transform: translateY(-4px);
+}
+
+.speaker-card:focus-visible {
+  outline: 2px solid var(--speaker-accent);
+  outline-offset: 3px;
+}
+
+/* Background Media & Fallback */
+.speaker-media-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: #171717;
+  overflow: hidden;
+}
+
+.speaker-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(100%);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.speaker-card:hover .speaker-image {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+.speaker-placeholder {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  color: #52525b;
+  transition: color 0.3s ease;
+}
+
+.speaker-card:hover .speaker-placeholder {
+  color: #a1a1aa;
+}
+
+/* Cinematic Gradient Vignette */
+.speaker-overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 45%, rgba(0, 0, 0, 0.15) 80%, rgba(0, 0, 0, 0.4) 100%);
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.speaker-card:hover .speaker-overlay {
+  opacity: 0.95;
+}
+
+/* Card Header (Category badge & Expand prompt) */
+.speaker-card-header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.speaker-category-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(82, 82, 91, 0.6);
+  background-color: rgba(0, 0, 0, 0.65);
+  padding: 0.25rem 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #d4d4d8;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.speaker-card:hover .speaker-category-badge {
+  border-color: rgba(230, 43, 30, 0.5);
+  color: #ffffff;
+}
+
+.speaker-expand-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 0.25rem 0.6rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--speaker-text-muted);
+  border: 1px solid rgba(63, 63, 70, 0.5);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.speaker-card:hover .speaker-expand-indicator {
+  opacity: 1;
+  border-color: var(--speaker-accent-border);
+  color: var(--speaker-accent);
+}
+
+/* Card Body Content */
+.speaker-card-body {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.speaker-talk-badge {
+  align-self: flex-start;
+  margin-bottom: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--speaker-accent-border);
+  background-color: var(--speaker-accent-subtle);
+  padding: 0.125rem 0.625rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--speaker-accent);
+  transition: all 0.3s ease;
+}
+
+.speaker-card:hover .speaker-talk-badge {
+  background-color: rgba(230, 43, 30, 0.2);
+  border-color: rgba(230, 43, 30, 0.6);
+}
+
+.speaker-name {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+}
+
+@media (min-width: 640px) {
+  .speaker-name {
+    font-size: 1.75rem;
+  }
+}
+
+.speaker-role {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--speaker-text-secondary);
+}
+
+.speaker-company {
+  color: var(--speaker-text-muted);
+}
+
+/* Social Buttons on Collapsed Card */
+.speaker-socials {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.speaker-social-btn {
+  display: flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(63, 63, 70, 0.8);
+  background-color: rgba(24, 24, 27, 0.85);
+  color: #d4d4d8;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+}
+
+.speaker-social-btn:hover {
+  border-color: var(--speaker-accent-border);
+  background-color: var(--speaker-accent-subtle);
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* ============================================================================
+ * 2. EXPANDED MODAL DIALOG (Responsive & Mobile Viable)
+ * ============================================================================ */
+.speaker-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@media (min-width: 640px) {
+  .speaker-modal-backdrop {
+    padding: 2rem;
+  }
+}
+
+.speaker-modal-container {
+  position: relative;
+  z-index: 60;
+  width: 100%;
+  max-width: var(--speaker-modal-max-width);
+  max-height: var(--speaker-modal-max-height);
+  background-color: var(--speaker-modal-bg);
+  border: 1px solid var(--speaker-modal-border);
+  border-radius: var(--speaker-modal-radius);
+  box-shadow: var(--speaker-modal-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Floating Accessible Close Button */
+.speaker-modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 30;
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: rgba(18, 18, 18, 0.75);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.speaker-modal-close-btn:hover {
+  background-color: var(--speaker-accent);
+  border-color: var(--speaker-accent);
+  transform: rotate(90deg) scale(1.05);
+}
+
+.speaker-modal-close-btn:focus-visible {
+  outline: 2px solid var(--speaker-accent);
+  outline-offset: 2px;
+}
+
+/* Modal Inner Responsive Layout */
+.speaker-modal-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: var(--speaker-modal-max-height);
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .speaker-modal-layout {
+    flex-direction: row;
+  }
+}
+
+/* Modal Media Side (Desktop: Left 42%, Mobile: Top Banner) */
+.speaker-modal-media-wrap {
+  position: relative;
+  width: 100%;
+  height: 13rem;
+  shrink: 0;
+  overflow: hidden;
+  background-color: #171717;
+}
+
+@media (min-width: 640px) {
+  .speaker-modal-media-wrap {
+    height: 17rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .speaker-modal-media-wrap {
+    width: 42%;
+    height: 100%;
+    min-height: 28rem;
+  }
+}
+
+.speaker-modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.speaker-modal-media-overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(17, 17, 17, 0.95) 0%, rgba(17, 17, 17, 0.3) 50%, transparent 100%);
+}
+
+@media (min-width: 768px) {
+  .speaker-modal-media-overlay {
+    background: linear-gradient(to right, transparent 60%, rgba(17, 17, 17, 0.8) 95%, rgba(17, 17, 17, 1) 100%);
+  }
+}
+
+/* Modal Content Side */
+.speaker-modal-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1.5rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 640px) {
+  .speaker-modal-content {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .speaker-modal-content {
+    width: 58%;
+    padding: 2.25rem;
+  }
+}
+
+/* Custom Scrollbar for Modal Content */
+.speaker-modal-content {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(230, 43, 30, 0.4) rgba(24, 24, 27, 0.5);
+}
+
+.speaker-modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.speaker-modal-content::-webkit-scrollbar-track {
+  background: rgba(24, 24, 27, 0.5);
+  border-radius: 9999px;
+}
+
+.speaker-modal-content::-webkit-scrollbar-thumb {
+  background-color: rgba(230, 43, 30, 0.4);
+  border-radius: 9999px;
+}
+
+.speaker-modal-content::-webkit-scrollbar-thumb:hover {
+  background-color: var(--speaker-accent);
+}
+
+/* Modal Subtitle & Title */
+.speaker-modal-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.speaker-modal-category {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  border: 1px solid var(--speaker-accent-border);
+  background-color: var(--speaker-accent-subtle);
+  padding: 0.25rem 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--speaker-accent);
+}
+
+.speaker-modal-edition {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.6875rem;
+  color: var(--speaker-text-muted);
+  text-transform: uppercase;
+}
+
+.speaker-modal-name {
+  font-size: 1.75rem;
+  line-height: 1.15;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+}
+
+@media (min-width: 640px) {
+  .speaker-modal-name {
+    font-size: 2.25rem;
+  }
+}
+
+.speaker-modal-role {
+  margin-top: 0.35rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #d4d4d8;
+}
+
+.speaker-modal-company {
+  color: var(--speaker-text-secondary);
+}
+
+/* Talk Banner inside Modal */
+.speaker-modal-talk-card {
+  margin-top: 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(230, 43, 30, 0.25);
+  background: linear-gradient(135deg, rgba(230, 43, 30, 0.08) 0%, rgba(20, 20, 20, 0.8) 100%);
+  padding: 1rem;
+}
+
+.speaker-modal-talk-label {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--speaker-accent);
+}
+
+.speaker-modal-talk-title {
+  margin-top: 0.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.speaker-modal-talk-desc {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #d4d4d8;
+}
+
+/* Bio Section */
+.speaker-modal-bio-section {
+  margin-top: 1.25rem;
+}
+
+.speaker-modal-bio-heading {
+  font-size: 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #71717a;
+  margin-bottom: 0.5rem;
+}
+
+.speaker-modal-bio-text {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #a1a1aa;
+}
+
+/* Topics Tags */
+.speaker-modal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1.25rem;
+}
+
+.speaker-modal-tag {
+  border-radius: 0.375rem;
+  border: 1px solid rgba(63, 63, 70, 0.6);
+  background-color: #18181b;
+  padding: 0.2rem 0.5rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.6875rem;
+  color: #a1a1aa;
+}
+
+/* Social Action Buttons in Modal */
+.speaker-modal-actions {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(63, 63, 70, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.speaker-modal-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.625rem;
+  padding: 0.625rem 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.speaker-modal-action-btn--primary {
+  background-color: var(--speaker-accent);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(230, 43, 30, 0.3);
+}
+
+.speaker-modal-action-btn--primary:hover {
+  background-color: var(--speaker-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(230, 43, 30, 0.4);
+}
+
+.speaker-modal-action-btn--secondary {
+  border: 1px solid rgba(82, 82, 91, 0.8);
+  background-color: #18181b;
+  color: #e4e4e7;
+}
+
+.speaker-modal-action-btn--secondary:hover {
+  border-color: #a1a1aa;
+  background-color: #27272a;
+  color: #ffffff;
+  transform: translateY(-2px);
+}

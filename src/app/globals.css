@@ -1,7 +1,22 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #eb0028;
+  --color-primary-foreground: #ffffff;
+  --color-muted: #18181b;
+  --color-muted-foreground: #a1a1aa;
+  --color-border: #27272a;
+  --color-background: #0a0a0a;
+  --color-foreground: #ededed;
+  --color-tedx-red: #eb0028;
+}
+
 :root {
-  /* TODO: replace with the 2026 theme's real palette once decided */
+  --primary: #eb0028;
+  --primary-foreground: #ffffff;
+  --muted: #18181b;
+  --muted-foreground: #a1a1aa;
+  --border: #27272a;
   --color-tedx-red: #eb0028;
   --color-background: #0a0a0a;
   --color-foreground: #ededed;
@@ -10,4 +25,20 @@
 body {
   background: var(--color-background);
   color: var(--color-foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
+
+/* Subtle tile / grid pattern — easily customizable for the team & event pages */
+.bg-tiles {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+/* Timeline custom styling helpers for easy extensive CSS editing */
+.schedule-track-line {
+  background: linear-gradient(to bottom, #eb0028 0%, rgba(235, 0, 40, 0.2) 60%, transparent 100%);
+}
+
+

@@ -1,0 +1,112 @@
+/**
+ * ============================================================================
+ * TEDx BPHC 2026 — SCHEDULE PAGE STYLESHEET
+ * ============================================================================
+ * Restrained, non-AI aesthetic inspired by Emil Kowalski & modern conference craft.
+ * Clean typography, crisp tabular numbers, and zero clutter.
+ * ============================================================================
+ */
+
+:root {
+  --tedx-red: #eb0028;
+  --tedx-red-dark: #b8001f;
+  --tedx-red-subtle: rgba(235, 0, 40, 0.12);
+  --tedx-red-border: rgba(235, 0, 40, 0.35);
+  --tedx-bg-card: #111111;
+  --tedx-bg-card-hover: #151515;
+  --tedx-border: rgba(255, 255, 255, 0.08);
+  --tedx-border-hover: rgba(255, 255, 255, 0.18);
+}
+
+/* ============================================================================
+ * 1. TIME BADGES (High contrast, tabular monospace)
+ * ============================================================================ */
+
+.tedx-time-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eb0028;
+  color: #ffffff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.025em;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(235, 0, 40, 0.28);
+  white-space: nowrap;
+}
+
+.tedx-time-badge-subtle {
+  background-color: #1a1a1a;
+  color: #d4d4d8;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+}
+
+/* ============================================================================
+ * 2. TIMELINE EVENT CARDS
+ * ============================================================================ */
+
+.tedx-event-card {
+  position: relative;
+  border-radius: 1rem;
+  background-color: var(--tedx-bg-card);
+  border: 1px solid var(--tedx-border);
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 640px) {
+  .tedx-event-card {
+    padding: 1.5rem 1.75rem;
+  }
+}
+
+.tedx-event-card:hover {
+  border-color: var(--tedx-border-hover);
+  background-color: var(--tedx-bg-card-hover);
+  transform: translateY(-2px);
+}
+
+/* Flagship Keynote Speaker Talk Highlight */
+.tedx-event-card-speaker {
+  border-left: 3px solid #eb0028;
+  background: linear-gradient(135deg, rgba(235, 0, 40, 0.04) 0%, #111111 100%);
+}
+
+.tedx-event-card-speaker:hover {
+  border-color: rgba(235, 0, 40, 0.4);
+  border-left-color: #eb0028;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px -5px rgba(235, 0, 40, 0.15);
+}
+
+/* Break / Social Card */
+.tedx-event-card-break {
+  border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(18, 18, 18, 0.6);
+}
+
+/* ============================================================================
+ * 3. WELLINGTON BOTTOM BANNER STRIP
+ * ============================================================================ */
+
+.tedx-wellington-banner {
+  border-top: 2px dotted rgba(255, 255, 255, 0.2);
+  border-bottom: 2px dotted rgba(255, 255, 255, 0.2);
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .tedx-wellington-banner {
+    flex-direction: row;
+    padding: 1.75rem 1.5rem;
+  }
+}
