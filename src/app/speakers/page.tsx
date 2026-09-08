@@ -4,20 +4,22 @@ import { useState, useMemo } from "react";
 import { currentSpeakers, pastSpeakers } from "@/data/speakers";
 import SpeakerCard from "@/components/speakers/SpeakerCard";
 import PastSpeakerItem from "@/components/speakers/PastSpeakerItem";
-import FilterDisclosure, {
-  DEFAULT_YEAR_ITEMS,
-} from "@/components/speakers/FilterDisclosure";
+
+const editionOptions = [
+  { value: "2026", label: "AY 26-27", current: true },
+  ...Array.from(new Set(pastSpeakers.map((speaker) => speaker.year).filter(Boolean))).map((year) => ({
+    value: year as string,
+    label: `AY ${String(year).slice(-2)}-${String(Number(year) + 1).slice(-2)}`,
+    current: false,
+  })),
+];
 
 export default function SpeakersPage() {
-  const [activeTab, setActiveTab] = useState<"current" | "past">("current");
   const [expandedSpeakerId, setExpandedSpeakerId] = useState<string | null>(null);
-  const [selectedYear, setSelectedYear] = useState<string>("all");
+  const [selectedYear, setSelectedYear] = useState<string>("2026");
 
   // Filter past speakers by selected edition year
   const filteredPastSpeakers = useMemo(() => {
-    if (selectedYear === "all") {
-      return pastSpeakers;
-    }
     return pastSpeakers.filter((speaker) => speaker.year === selectedYear);
   }, [selectedYear]);
 
@@ -50,47 +52,19 @@ export default function SpeakersPage() {
             </p>
           </div>
 
-          {/* Tab Navigation */}
-          <div className="speakers-tabs mt-10 flex items-center gap-8 border-b border-zinc-800 text-xs sm:text-sm font-semibold tracking-wider uppercase">
-            <button
-              type="button"
-              onClick={() => setActiveTab("current")}
-              className={`speakers-tab-button relative pb-3 transition-colors ${
-                activeTab === "current"
-                  ? "text-white font-bold"
-                  : "text-zinc-500 hover:text-zinc-300"
-              }`}
-            >
-              <span className="flex items-center gap-2">
-                2026-27{" "}
-                <span className="rounded bg-[#E62B1E]/15 px-1.5 py-0.5 font-mono text-[10px] text-[#E62B1E]">
-                  CURRENT
-                </span>
-              </span>
-              {activeTab === "current" && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#E62B1E]" />
-              )}
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveTab("past")}
-              className={`speakers-tab-button relative pb-3 transition-colors ${
-                activeTab === "past"
-                  ? "text-white font-bold"
-                  : "text-zinc-500 hover:text-zinc-300"
-              }`}
-            >
-              <span>PAST SPEAKERS</span>
-              {activeTab === "past" && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#E62B1E]" />
-              )}
-            </button>
+          <div className="edition-filter-row mt-10 flex flex-wrap items-center justify-between gap-4 border-b border-zinc-800 pb-4">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-zinc-500">Explore TEDx BITS Hyderabad editions</p>
+            <label className="edition-filter">
+              <span>Academic year</span>
+              <select value={selectedYear} onChange={(event) => { setSelectedYear(event.target.value); setExpandedSpeakerId(null); }}>
+                {editionOptions.map((option) => <option key={option.value} value={option.value}>{option.label}{option.current ? " · Current" : ""}</option>)}
+              </select>
+            </label>
           </div>
         </header>
 
         {/* Current Speakers View (3x3 Grid) */}
-        {activeTab === "current" && (
+        {selectedYear === "2026" && (
           <section aria-label="Current Speakers" className="current-speakers-section">
             <div className="speakers-theme-banner mb-8 flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-zinc-400">
@@ -105,24 +79,26 @@ export default function SpeakersPage() {
             </div>
 
             <div className="speakers-grid grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {currentSpeakers.map((speaker) => (
-                <SpeakerCard key={speaker.id} speaker={speaker} />
+              {currentSpeakers.map((speaker, index) => (
+                <div key={speaker.id} className="speaker-entrance" style={{ "--speaker-delay": `${index * 90}ms` } as React.CSSProperties}>
+                  <SpeakerCard speaker={speaker} />
+                </div>
               ))}
             </div>
           </section>
         )}
 
         {/* Past Speakers View (List Only with Expandable Photo & Details) */}
-        {activeTab === "past" && (
+        {selectedYear !== "2026" && (
           <section aria-label="Past Speakers" className="past-speakers-section">
             <div className="past-speakers-header mb-8 flex flex-col gap-4 border-b border-zinc-800/80 pb-6 md:flex-row md:items-center md:justify-between">
               <div className="flex flex-col gap-1.5">
                 <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-zinc-400">
                   <span className="h-2 w-2 rounded-full bg-[#E62B1E]" />
                   <span>
-                    Past Speakers: Voices That Shaped Us (
+                    Voices that shaped us (
                     {filteredPastSpeakers.length}
-                    {selectedYear !== "all" ? ` • ${selectedYear} Edition` : ""}
+                    {` • AY ${String(selectedYear).slice(-2)}-${String(Number(selectedYear) + 1).slice(-2)}`}
                     )
                   </span>
                 </div>
@@ -131,17 +107,6 @@ export default function SpeakersPage() {
                 </p>
               </div>
 
-              {/* Year Filter Component - FilterDisclosure */}
-              <div className="flex items-center justify-start md:justify-end">
-                <FilterDisclosure
-                  items={DEFAULT_YEAR_ITEMS}
-                  defaultActiveId={selectedYear}
-                  onChange={(yearId) => {
-                    setSelectedYear(yearId);
-                    setExpandedSpeakerId(null);
-                  }}
-                />
-              </div>
             </div>
 
             {/* Past Speakers List or Clean Empty State */}
@@ -168,10 +133,10 @@ export default function SpeakersPage() {
                 </p>
                 <button
                   type="button"
-                  onClick={() => setSelectedYear("all")}
+                  onClick={() => setSelectedYear("2026")}
                   className="mt-3 font-mono text-xs text-[#E62B1E] hover:underline"
                 >
-                  Reset filter to show all editions
+                  Return to the current edition
                 </button>
               </div>
             )}

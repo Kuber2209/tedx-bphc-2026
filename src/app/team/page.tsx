@@ -1,14 +1,19 @@
-import { Metadata } from "next";
+"use client";
+
+import { useMemo, useState } from "react";
 import { TEAM_SECTIONS } from "@/data/team";
 import TeamCard from "@/components/team/TeamCard";
 
-export const metadata: Metadata = {
-  title: "Our Team — TEDx BPHC 2026",
-  description:
-    "Meet the team behind TEDx BPHC 2026: fueled by passion and united by purpose, making a difference.",
-};
-
 export default function TeamPage() {
+  const [selectedYear, setSelectedYear] = useState("2026");
+  const visibleSections = useMemo(
+    () => TEAM_SECTIONS.map((section) => ({
+      ...section,
+      members: selectedYear === "2026" ? section.members : [],
+    })),
+    [selectedYear]
+  );
+
   return (
     <div className="relative min-h-screen bg-[#0a0a0a] text-zinc-100">
       {/* Background Tiles & Ambient Accent Glow (Easy to restyle or toggle) */}
@@ -37,9 +42,21 @@ export default function TeamPage() {
           </div>
         </header>
 
+        <div className="edition-filter-row mt-8 flex flex-wrap items-center justify-between gap-4 border-b border-zinc-800 pb-4">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-zinc-500">Browse the team by academic year</p>
+          <label className="edition-filter">
+            <span>Academic year</span>
+            <select value={selectedYear} onChange={(event) => setSelectedYear(event.target.value)}>
+              <option value="2026">AY 26-27 · Current</option>
+              <option value="2025">AY 25-26 · Archive</option>
+              <option value="2024">AY 24-25 · Archive</option>
+            </select>
+          </label>
+        </div>
+
         {/* 2. Team Sections (Supports multiple categories e.g. Executives, Curators, Tech, etc.) */}
         <div className="mt-14 space-y-16">
-          {TEAM_SECTIONS.map((section) => (
+          {visibleSections.map((section) => (
             <section key={section.id} aria-labelledby={`heading-${section.id}`}>
               {/* Section Subheading (Clean dot accent matching speaker page) */}
               <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-zinc-800/80 pb-4">
@@ -61,11 +78,13 @@ export default function TeamPage() {
 
               {/* Showcase Frame / Card Grid Container */}
               <div className="rounded-3xl border border-zinc-800/80 bg-zinc-950/70 p-5 backdrop-blur-md shadow-2xl sm:p-7 md:p-8">
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                  {section.members.map((member) => (
-                    <TeamCard key={member.id} member={member} />
-                  ))}
-                </div>
+                {section.members.length > 0 ? (
+                  <div className="team-grid grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {section.members.map((member) => <TeamCard key={member.id} member={member} />)}
+                  </div>
+                ) : (
+                  <p className="py-16 text-center font-mono text-xs uppercase tracking-[0.18em] text-zinc-500">Archived team profiles will be announced soon.</p>
+                )}
               </div>
             </section>
           ))}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import IntroGate from "@/components/layout/IntroGate";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,9 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body>
+        <div className="global-ferrofluid" aria-hidden="true"><i /><i /><i /><i /></div>
         <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <IntroGate><main>{children}</main><Footer /></IntroGate>
       </body>
     </html>
   );
