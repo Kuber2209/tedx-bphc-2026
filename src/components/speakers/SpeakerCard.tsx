@@ -23,27 +23,7 @@ export default function SpeakerCard({ speaker, className = "" }: SpeakerCardProp
   const [isFlipped, setIsFlipped] = useState(false);
   const [imageError, setImageError] = useState(false);
 
-  const isTouchDevice =
-    typeof window !== "undefined" &&
-    ("ontouchstart" in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0));
-
-  const handleClick = () => {
-    if (isTouchDevice) {
-      setIsFlipped((prev) => !prev);
-    }
-  };
-
-  const handleMouseEnter = () => {
-    if (!isTouchDevice) {
-      setIsFlipped(true);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (!isTouchDevice) {
-      setIsFlipped(false);
-    }
-  };
+  const handleClick = () => setIsOpen(true);
 
   const handleCloseModal = useCallback(() => {
     setIsOpen(false);
@@ -93,8 +73,6 @@ export default function SpeakerCard({ speaker, className = "" }: SpeakerCardProp
       <div
         className={`speaker-card-flipper-perspective ${className}`}
         onClick={handleClick}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
         <div className="speaker-card-flipper">
           {/* -------------------------------------------------------------- */}
@@ -153,7 +131,7 @@ export default function SpeakerCard({ speaker, className = "" }: SpeakerCardProp
 
               <span className="speaker-flip-hint">
                 <RotateCcw className="h-2.5 w-2.5 text-[#E62B1E]" />
-                <span>Flip Card</span>
+                <span>Open Profile</span>
               </span>
             </div>
 
@@ -175,7 +153,7 @@ export default function SpeakerCard({ speaker, className = "" }: SpeakerCardProp
               {/* Bottom Interactive Bar */}
               <div className="speaker-bottom-action-bar">
                 <div className="flex items-center gap-1.5 font-mono text-[10px] text-zinc-400">
-                  <span>{isTouchDevice ? "Tap to flip" : "Hover to flip"}</span>
+                  <span>View profile</span>
                   <ArrowRight className="h-3 w-3 text-[#E62B1E]" />
                 </div>
 

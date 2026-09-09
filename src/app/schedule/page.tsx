@@ -93,7 +93,7 @@ export default function SchedulePage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#0a0a0a] text-zinc-100">
+    <div className="editorial-page relative min-h-screen bg-[#0a0a0a] text-zinc-100">
       {/* Subtle Background Tiles */}
       <div
         className="pointer-events-none absolute inset-0 bg-tiles opacity-30"

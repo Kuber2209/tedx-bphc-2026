@@ -13,7 +13,7 @@ export default function SponsorsPage() {
   const emailMailto = `mailto:${contactEmail}?subject=Partnership%20Inquiry%20-%20TEDx%20BITS%20Hyderabad%202026`;
 
   return (
-    <div className="relative min-h-screen bg-[#0a0a0a] text-zinc-100">
+    <div className="editorial-page relative min-h-screen bg-[#0a0a0a] text-zinc-100">
       {/* Background Subtle Tiles */}
       <div
         className="pointer-events-none absolute inset-0 bg-tiles opacity-40"

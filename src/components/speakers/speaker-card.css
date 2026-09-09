@@ -636,3 +636,14 @@
   color: #ffffff;
   transform: translateY(-2px);
 }
+
+/* Light card treatment keeps the flip interaction while matching the new page shell. */
+.speaker-card-face{--speaker-card-bg:#fff;--speaker-card-border:rgba(17,17,17,.14);--speaker-card-shadow:0 18px 40px -18px rgba(17,17,17,.3);border-color:var(--speaker-card-border);background:#fff;color:#111}
+.speaker-card-back{background:linear-gradient(145deg,#fff 0%,#f4f4f0 100%);border-color:#d8d8d2}
+.speaker-media-container{background:#ecece7}.speaker-placeholder{color:#777}.speaker-card-flipper-perspective:hover .speaker-placeholder{color:#333}
+.speaker-overlay{background:linear-gradient(to top,rgba(0,0,0,.86) 0%,rgba(0,0,0,.48) 43%,rgba(0,0,0,.08) 78%,rgba(0,0,0,.18) 100%)}
+.speaker-category-badge,.speaker-flip-hint{border-color:rgba(255,255,255,.55);background:rgba(17,17,17,.7);color:#fff}
+.speaker-role{color:#e7e7e7}.speaker-company{color:#c9c9c9}.speaker-name{color:#fff}.speaker-bottom-action-bar{border-top-color:rgba(255,255,255,.26)}
+.speaker-social-btn{border-color:rgba(255,255,255,.35);background:rgba(17,17,17,.6);color:#fff}
+.speaker-card-back .border-zinc-800\/80{border-color:#d8d8d2!important}.speaker-card-back .text-white{color:#111!important}.speaker-card-back .text-zinc-400{color:#555!important}.speaker-card-back .text-zinc-300{color:#333!important}.speaker-card-back .text-zinc-700{border-color:#bbb!important;color:#333!important}.speaker-card-back .bg-zinc-800\/90{background:#fff!important}
+.speaker-card-back .speaker-modal-talk-card{background:linear-gradient(135deg,rgba(230,43,30,.08),#fff);border-color:rgba(230,43,30,.28)}.speaker-card-back .speaker-modal-talk-title{color:#111}.speaker-card-back .speaker-modal-talk-desc,.speaker-card-back .speaker-modal-bio-text{color:#555}.speaker-card-back .speaker-modal-tag{background:#f1f1ed;border-color:#d1d1cb;color:#555}

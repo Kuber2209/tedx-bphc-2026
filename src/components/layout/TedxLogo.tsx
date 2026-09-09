@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 interface TedxLogoProps {
@@ -17,16 +16,10 @@ export default function TedxLogo({
   height = 28,
   priority = false,
 }: TedxLogoProps) {
-  const logoImage = (
-    <Image
-      src="/tedx-logo.png"
-      alt="TEDx BITSHyderabad"
-      width={width}
-      height={height}
-      priority={priority}
-      className={`object-contain ${className}`}
-    />
-  );
+  void width;
+  void height;
+  void priority;
+  const logoImage = <span className={`tedx-wordmark ${className}`} aria-label="TEDx BITS Hyderabad"><strong>TEDx</strong><span>BITS Hyderabad</span></span>;
 
   if (href) {
     return (

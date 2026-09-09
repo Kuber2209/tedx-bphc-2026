@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import DomeGallery from "@/components/gallery/DomeGallery";
 
 // 20 gallery images as in /public/gallery/
@@ -29,8 +30,13 @@ const images = [
 
 export default function GalleryPage() {
   return (
-    <div style={{ width: "100%", height: "100dvh", background: "#000", position: "relative", overflow: "hidden" }}>
-      <DomeGallery images={images} grayscale={false} />
+    <div className="gallery-page">
+      <section className="gallery-dome-hero" aria-labelledby="gallery-title">
+        <div className="gallery-dome-copy"><span>TEDx BPHC / 2026</span><h1 id="gallery-title">The archive<br /><em>in motion.</em></h1><p>Moments, people, and ideas from the rooms we have built together.</p></div>
+        <DomeGallery images={images} grayscale={false} />
+        <a className="gallery-archive-cta" href="#gallery-archive">View all images <span>↓</span></a>
+      </section>
+      <section id="gallery-archive" className="gallery-archive"><div className="gallery-archive-head"><div><span>01 / EVENT ARCHIVE</span><h2>Gallery</h2></div><p>2026 moments from TEDx BITS Hyderabad.</p></div><div className="gallery-archive-grid">{images.map((image, index) => <a href={image.src} target="_blank" rel="noreferrer" className="gallery-archive-item" key={image.src}><Image src={image.src} alt={image.alt} width={900} height={1100} loading="lazy" /><span>{String(index + 1).padStart(2, "0")} / 2026</span></a>)}</div></section>
     </div>
   );
 }

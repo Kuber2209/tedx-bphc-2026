@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { TEAM_SECTIONS } from "@/data/team";
 import TeamCard from "@/components/team/TeamCard";
 import AcademicYearDropdown from "@/components/speakers/AcademicYearDropdown";
@@ -16,7 +17,7 @@ export default function TeamPage() {
   );
 
   return (
-    <div className="relative min-h-screen bg-[#0a0a0a] text-zinc-100 overflow-x-clip">
+    <div className="team-page relative min-h-screen bg-white text-black overflow-x-clip">
       {/* Background Tiles & Ambient Accent Glow (Easy to restyle or toggle) */}
       <div
         className="pointer-events-none absolute inset-0 bg-tiles opacity-60"
@@ -79,10 +80,18 @@ export default function TeamPage() {
           </div>
         </div>
 
+        <nav className="team-category-nav" aria-label="Team categories">
+          {visibleSections.map((section) => (
+            <Link key={section.id} href={`#team-${section.id}`} className="team-category-link">
+              <span>{section.title.replace("TEDx ", "")}</span><b>↗</b>
+            </Link>
+          ))}
+        </nav>
+
         {/* 2. Team Sections (Supports multiple categories e.g. Executives, Curators, Tech, etc.) */}
         <div className="mt-14 space-y-16">
           {visibleSections.map((section) => (
-            <section key={section.id} aria-labelledby={`heading-${section.id}`}>
+            <section id={`team-${section.id}`} key={section.id} aria-labelledby={`heading-${section.id}`}>
               {/* Section Subheading (Clean dot accent matching speaker page) */}
               <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-zinc-800/80 pb-4">
                 <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-zinc-400">

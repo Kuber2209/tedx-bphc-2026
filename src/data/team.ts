@@ -87,6 +87,33 @@ export const TEAM_SECTIONS: TeamSection[] = [
       },
     ],
   },
+  {
+    id: "design",
+    title: "Design",
+    description: "Visual identity, art direction, and the language of the event.",
+    members: [
+      { id: "design-1", name: "Design Lead", handle: "@design-lead", role: "Design", bio: "Building a visual system that makes every idea feel unmistakably TEDx BPHC.", imageUrl: "", email: "design@tedxbphc.in", linkedin: "https://linkedin.com" },
+      { id: "design-2", name: "Visual Designer", handle: "@visual-designer", role: "Design", bio: "Shaping posters, spaces, screens, and the small details that make the event memorable.", imageUrl: "", email: "design@tedxbphc.in", linkedin: "https://linkedin.com" },
+    ],
+  },
+  {
+    id: "technology",
+    title: "Technology",
+    description: "Digital systems, web experiences, and event technology.",
+    members: [
+      { id: "tech-1", name: "Technology Lead", handle: "@technology-lead", role: "Technology", bio: "Creating reliable digital experiences that connect the audience to the ideas on stage.", imageUrl: "", email: "tech@tedxbphc.in", linkedin: "https://linkedin.com" },
+      { id: "tech-2", name: "Web Experience Lead", handle: "@web-experience", role: "Technology", bio: "Turning the event programme into a clear, welcoming, and useful online experience.", imageUrl: "", email: "tech@tedxbphc.in", linkedin: "https://linkedin.com" },
+    ],
+  },
+  {
+    id: "curation",
+    title: "Curation",
+    description: "Finding the questions, stories, and speakers that move us forward.",
+    members: [
+      { id: "curation-1", name: "Curation Lead", handle: "@curation-lead", role: "Curation", bio: "Listening for the ideas that can change how a room sees the world.", imageUrl: "", email: "curation@tedxbphc.in", linkedin: "https://linkedin.com" },
+      { id: "curation-2", name: "Speaker Relations", handle: "@speaker-relations", role: "Curation", bio: "Supporting speakers from the first conversation to the final walk onto the stage.", imageUrl: "", email: "curation@tedxbphc.in", linkedin: "https://linkedin.com" },
+    ],
+  },
 ];
 
 // Flat list helper if needed elsewhere
