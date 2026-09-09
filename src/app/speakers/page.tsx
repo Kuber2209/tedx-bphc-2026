@@ -4,12 +4,21 @@ import { useState, useMemo } from "react";
 import { currentSpeakers, pastSpeakers } from "@/data/speakers";
 import SpeakerCard from "@/components/speakers/SpeakerCard";
 import PastSpeakerItem from "@/components/speakers/PastSpeakerItem";
+import AcademicYearDropdown, { EditionOption } from "@/components/speakers/AcademicYearDropdown";
 
-const editionOptions = [
-  { value: "2026", label: "AY 26-27", current: true },
+const editionOptions: EditionOption[] = [
+  {
+    value: "2026",
+    label: "AY 26-27",
+    editionName: "12th Edition",
+    description: "Current flagship edition · Ideas worth spreading, live keynote sessions & 9 visionary speakers.",
+    current: true,
+  },
   ...Array.from(new Set(pastSpeakers.map((speaker) => speaker.year).filter(Boolean))).map((year) => ({
     value: year as string,
     label: `AY ${String(year).slice(-2)}-${String(Number(year) + 1).slice(-2)}`,
+    editionName: `Edition ${year}`,
+    description: `Archive edition · Preserved alumni talks, deep-dives & breakthrough moments from ${year}.`,
     current: false,
   })),
 ];
@@ -52,38 +61,95 @@ export default function SpeakersPage() {
             </p>
           </div>
 
-          <div className="edition-filter-row mt-10 flex flex-wrap items-center justify-between gap-4 border-b border-zinc-800 pb-4">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-zinc-500">Explore TEDx BITS Hyderabad editions</p>
-            <label className="edition-filter">
-              <span>Academic year</span>
-              <select value={selectedYear} onChange={(event) => { setSelectedYear(event.target.value); setExpandedSpeakerId(null); }}>
-                {editionOptions.map((option) => <option key={option.value} value={option.value}>{option.label}{option.current ? " · Current" : ""}</option>)}
-              </select>
-            </label>
+          {/* Academic Year Selector Row with ToDesktop-Style Dropdown */}
+          <div className="edition-filter-row mt-10 flex flex-wrap items-center justify-between gap-4 border-b border-zinc-800 pb-5">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-zinc-400">
+                Explore TEDx BITS Hyderabad editions
+              </p>
+              <p className="font-mono text-[11px] text-zinc-500 mt-0.5">
+                Browse current lineup or explore archived speaker keynotes
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500 hidden sm:inline">
+                Academic Year
+              </span>
+              <AcademicYearDropdown
+                options={editionOptions}
+                selectedYear={selectedYear}
+                onSelectYear={(year) => {
+                  setSelectedYear(year);
+                  setExpandedSpeakerId(null);
+                }}
+              />
+            </div>
           </div>
         </header>
 
-        {/* Current Speakers View (3x3 Grid) */}
+        {/* Current Speakers View (Figma Staggered 2-Column Design) */}
         {selectedYear === "2026" && (
           <section aria-label="Current Speakers" className="current-speakers-section">
             <div className="speakers-theme-banner mb-8 flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-zinc-400">
                 <span className="h-2 w-2 rounded-full bg-[#E62B1E] animate-pulse" />
-                <span>Theme 2026-27: Ideas worth spreading — coming 2026</span>
+                <span>Theme 2026-27: Ideas worth spreading — Click any card to view talk & bio</span>
               </div>
               <div className="flex items-center gap-6 text-xs font-mono uppercase text-zinc-500">
                 <span>
-                  Edition <strong className="text-zinc-300">12th</strong>
+                  Edition <strong className="text-zinc-300">12th</strong> · {currentSpeakers.length} Keynotes
                 </span>
               </div>
             </div>
 
-            <div className="speakers-grid grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {currentSpeakers.map((speaker, index) => (
-                <div key={speaker.id} className="speaker-entrance" style={{ "--speaker-delay": `${index * 90}ms` } as React.CSSProperties}>
-                  <SpeakerCard speaker={speaker} />
+            {/* Staggered 2-Column Layout Matching Figma Design */}
+            <div className="speakers-staggered-container mx-auto max-w-5xl">
+              {/* Desktop/Tablet 2-Column Staggered View */}
+              <div className="hidden md:grid md:grid-cols-2 gap-8 items-start">
+                {/* Column 1 (Left Column, Starts at Top) */}
+                <div className="flex flex-col gap-8">
+                  {currentSpeakers
+                    .filter((_, idx) => idx % 2 === 0)
+                    .map((speaker, colIdx) => (
+                      <div
+                        key={speaker.id}
+                        className="speaker-entrance"
+                        style={{ "--speaker-delay": `${colIdx * 100}ms` } as React.CSSProperties}
+                      >
+                        <SpeakerCard speaker={speaker} />
+                      </div>
+                    ))}
                 </div>
-              ))}
+
+                {/* Column 2 (Right Column, Staggered Offset Downwards matching Figma) */}
+                <div className="flex flex-col gap-8 pt-16 lg:pt-24">
+                  {currentSpeakers
+                    .filter((_, idx) => idx % 2 === 1)
+                    .map((speaker, colIdx) => (
+                      <div
+                        key={speaker.id}
+                        className="speaker-entrance"
+                        style={{ "--speaker-delay": `${(colIdx + 0.5) * 100}ms` } as React.CSSProperties}
+                      >
+                        <SpeakerCard speaker={speaker} />
+                      </div>
+                    ))}
+                </div>
+              </div>
+
+              {/* Mobile Single Column View */}
+              <div className="grid grid-cols-1 gap-6 md:hidden">
+                {currentSpeakers.map((speaker, index) => (
+                  <div
+                    key={speaker.id}
+                    className="speaker-entrance"
+                    style={{ "--speaker-delay": `${index * 80}ms` } as React.CSSProperties}
+                  >
+                    <SpeakerCard speaker={speaker} />
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
         )}
@@ -103,10 +169,9 @@ export default function SpeakersPage() {
                   </span>
                 </div>
                 <p className="text-xs font-mono text-zinc-500">
-                  Filter by edition year on the right • Click any speaker to view photo & talk
+                  Filter by edition year above • Click any speaker to view photo & talk
                 </p>
               </div>
-
             </div>
 
             {/* Past Speakers List or Clean Empty State */}

@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { TEAM_SECTIONS } from "@/data/team";
 import TeamCard from "@/components/team/TeamCard";
+import AcademicYearDropdown from "@/components/speakers/AcademicYearDropdown";
 
 export default function TeamPage() {
   const [selectedYear, setSelectedYear] = useState("2026");
@@ -15,7 +16,7 @@ export default function TeamPage() {
   );
 
   return (
-    <div className="relative min-h-screen bg-[#0a0a0a] text-zinc-100">
+    <div className="relative min-h-screen bg-[#0a0a0a] text-zinc-100 overflow-x-clip">
       {/* Background Tiles & Ambient Accent Glow (Easy to restyle or toggle) */}
       <div
         className="pointer-events-none absolute inset-0 bg-tiles opacity-60"
@@ -42,16 +43,40 @@ export default function TeamPage() {
           </div>
         </header>
 
-        <div className="edition-filter-row mt-8 flex flex-wrap items-center justify-between gap-4 border-b border-zinc-800 pb-4">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-zinc-500">Browse the team by academic year</p>
-          <label className="edition-filter">
-            <span>Academic year</span>
-            <select value={selectedYear} onChange={(event) => setSelectedYear(event.target.value)}>
-              <option value="2026">AY 26-27 · Current</option>
-              <option value="2025">AY 25-26 · Archive</option>
-              <option value="2024">AY 24-25 · Archive</option>
-            </select>
-          </label>
+        <div className="edition-filter-row mt-8 flex flex-wrap items-center justify-between gap-4 border-b border-zinc-800 pb-5">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-zinc-400">Browse the team by academic year</p>
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500 hidden sm:inline">
+              Academic Year
+            </span>
+            <AcademicYearDropdown
+              options={[
+                {
+                  value: "2026",
+                  label: "AY 26-27",
+                  editionName: "12th Edition",
+                  description: "Current active organizing body · Executives, Curators, Logistics & Technical leads.",
+                  current: true,
+                },
+                {
+                  value: "2025",
+                  label: "AY 25-26",
+                  editionName: "11th Edition",
+                  description: "Archive team directory · 11th edition alumni leads and committee chairs.",
+                  current: false,
+                },
+                {
+                  value: "2024",
+                  label: "AY 24-25",
+                  editionName: "10th Edition",
+                  description: "Archive team directory · 10th edition milestone organizing committee.",
+                  current: false,
+                },
+              ]}
+              selectedYear={selectedYear}
+              onSelectYear={(year) => setSelectedYear(year)}
+            />
+          </div>
         </div>
 
         {/* 2. Team Sections (Supports multiple categories e.g. Executives, Curators, Tech, etc.) */}

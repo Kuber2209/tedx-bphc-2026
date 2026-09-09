@@ -1,0 +1,98 @@
+/* Team Card 1 - stupid-mole-90 Ambient Liquid Glow Effect */
+
+.stupid-mole-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem; /* matches rounded-2xl of standard cards */
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+  isolation: isolate;
+}
+
+.stupid-mole-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(230, 43, 30, 0.5);
+  box-shadow: 
+    0 20px 40px -10px rgba(0, 0, 0, 0.85),
+    0 0 25px -5px rgba(230, 43, 30, 0.25);
+}
+
+/* Primary TEDx Crimson Bouncing Blob (stupid-mole-90) */
+.stupid-mole-blob {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(230, 43, 30, 0.4) 0%, rgba(230, 43, 30, 0.15) 50%, transparent 75%);
+  filter: blur(35px);
+  animation: stupid-mole-bounce 7s infinite ease-in-out;
+  pointer-events: none;
+}
+
+/* Secondary Warm Ruby Accent Blob for Organic Depth */
+.stupid-mole-blob-secondary {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 69, 58, 0.3) 0%, rgba(255, 69, 58, 0.1) 45%, transparent 70%);
+  filter: blur(30px);
+  animation: stupid-mole-bounce 8.5s infinite ease-in-out reverse;
+  animation-delay: -3.5s;
+  pointer-events: none;
+}
+
+/* Bouncing Orbit Trajectory Keyframes from stupid-mole-90 */
+@keyframes stupid-mole-bounce {
+  0% {
+    transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
+  25% {
+    transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+  }
+  50% {
+    transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+  }
+  75% {
+    transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+  }
+  100% {
+    transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
+}
+
+/* Subtle Cursor-Tracking Spotlight Sheen */
+.stupid-mole-spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(230, 43, 30, 0.08),
+    transparent 65%
+  );
+}
+
+.stupid-mole-card:hover .stupid-mole-spotlight {
+  opacity: 1;
+}
+
+/* Card Content Layer - Clean & Perfectly Aligned */
+.stupid-mole-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

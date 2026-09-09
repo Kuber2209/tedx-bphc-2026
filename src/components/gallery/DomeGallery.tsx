@@ -1,33 +1,48 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useCallback, useState } from "react";
+import React, { useEffect, useMemo, useRef, useCallback } from "react";
 import { useGesture } from "@use-gesture/react";
 import "./DomeGallery.css";
 
-export interface DomeGalleryImage {
+interface ImageItem {
   src: string;
   alt?: string;
 }
 
-interface DomeGalleryProps {
-  images?: DomeGalleryImage[];
-  fit?: number;
-  fitBasis?: "auto" | "min" | "max" | "width" | "height";
-  minRadius?: number;
-  maxRadius?: number;
-  padFactor?: number;
-  overlayBlurColor?: string;
-  maxVerticalRotationDeg?: number;
-  dragSensitivity?: number;
-  enlargeTransitionMs?: number;
-  segments?: number;
-  dragDampening?: number;
-  openedImageWidth?: string | null;
-  openedImageHeight?: string | null;
-  imageBorderRadius?: string;
-  openedImageBorderRadius?: string;
-  grayscale?: boolean;
+interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+  src: string;
+  alt?: string;
 }
+
+const LazyImage: React.FC<LazyImageProps> = ({ src, alt, ...props }) => {
+  return (
+    <div style={{ width: "100%", height: "100%", background: "transparent" }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt={alt || "Gallery Image"}
+        {...props}
+        decoding="async"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
+      />
+    </div>
+  );
+};
+
+const DEFAULT_IMAGES: ImageItem[] = [
+  { src: "/gallery/image1.jpg", alt: "TEDx Gallery Image" },
+];
+
+const DEFAULTS = {
+  maxVerticalRotationDeg: 5,
+  dragSensitivity: 20,
+  enlargeTransitionMs: 300,
+  segments: 35,
+};
 
 const clamp = (v: number, min: number, max: number) => Math.min(Math.max(v, min), max);
 const normalizeAngle = (d: number) => ((d % 360) + 360) % 360;
@@ -35,14 +50,22 @@ const wrapAngleSigned = (deg: number) => {
   const a = (((deg + 180) % 360) + 360) % 360;
   return a - 180;
 };
-
-const getDataNumber = (el: HTMLElement, name: string, fallback: number): number => {
+const getDataNumber = (el: HTMLElement, name: string, fallback: number) => {
   const attr = el.dataset[name] ?? el.getAttribute(`data-${name}`);
   const n = attr == null ? NaN : parseFloat(attr);
   return Number.isFinite(n) ? n : fallback;
 };
 
-function buildItems(pool: DomeGalleryImage[], seg: number) {
+interface GridCoord {
+  x: number;
+  y: number;
+  sizeX: number;
+  sizeY: number;
+  src?: string;
+  alt?: string;
+}
+
+function buildItems(pool: (ImageItem | string)[], seg: number): GridCoord[] {
   const xCols = Array.from({ length: seg }, (_, i) => -37 + i * 2);
   const evenYs = [-4, -2, 0, 2, 4];
   const oddYs = [-3, -1, 1, 3, 5];
@@ -57,10 +80,12 @@ function buildItems(pool: DomeGalleryImage[], seg: number) {
     return coords.map((c) => ({ ...c, src: "", alt: "" }));
   }
 
-  const normalizedImages = pool.map((image) => ({
-    src: image.src || "",
-    alt: image.alt || "",
-  }));
+  const normalizedImages: ImageItem[] = pool.map((image) => {
+    if (typeof image === "string") {
+      return { src: image, alt: "" };
+    }
+    return { src: image.src || "", alt: image.alt || "" };
+  });
 
   const usedImages = Array.from(
     { length: totalSlots },
@@ -100,106 +125,47 @@ function computeItemBaseRotation(
   return { rotateX, rotateY };
 }
 
-function LazyTileImage({
-  src,
-  alt,
-}: {
-  src: string;
-  alt?: string;
-}) {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
-  const imgRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "150px" }
-    );
-    if (imgRef.current) {
-      observer.observe(imgRef.current);
-    }
-    return () => observer.disconnect();
-  }, []);
-
-  const filename = src.split("/").pop() || "photo";
-
-  return (
-    <div ref={imgRef} className="relative flex h-full w-full items-center justify-center bg-[#171717] overflow-hidden">
-      {isVisible && !hasError && (
-        /* eslint-disable-next-line @next/next/no-img-element */
-        <img
-          src={src}
-          alt={alt || "TEDx Gallery Moment"}
-          decoding="async"
-          loading="lazy"
-          onLoad={() => setIsLoaded(true)}
-          onError={() => setHasError(true)}
-          style={{
-            opacity: isLoaded ? 1 : 0,
-            transition: "opacity 0.4s ease-in-out",
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-          }}
-        />
-      )}
-
-      {(!isLoaded || hasError) && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center p-3 text-zinc-600 select-none">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900 shadow-inner">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-5 w-5 text-zinc-500"
-              aria-hidden="true"
-            >
-              <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
-              <circle cx="9" cy="9" r="2" />
-              <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
-            </svg>
-          </div>
-          <span className="mt-2 font-mono text-[9px] uppercase tracking-wider text-zinc-500">
-            {filename}
-          </span>
-        </div>
-      )}
-    </div>
-  );
+export interface DomeGalleryProps {
+  images?: (ImageItem | string)[];
+  fit?: number;
+  fitBasis?: "auto" | "min" | "max" | "width" | "height";
+  minRadius?: number;
+  maxRadius?: number;
+  padFactor?: number;
+  overlayBlurColor?: string;
+  maxVerticalRotationDeg?: number;
+  dragSensitivity?: number;
+  enlargeTransitionMs?: number;
+  segments?: number;
+  dragDampening?: number;
+  openedImageWidth?: string;
+  openedImageHeight?: string;
+  imageBorderRadius?: string;
+  openedImageBorderRadius?: string;
+  grayscale?: boolean;
 }
 
 export default function DomeGallery({
-  images = [],
+  images = DEFAULT_IMAGES,
   fit = 0.5,
   fitBasis = "auto",
   minRadius = 600,
   maxRadius = Infinity,
   padFactor = 0.25,
-  overlayBlurColor = "#0a0a0a",
-  maxVerticalRotationDeg = 8,
-  dragSensitivity = 22,
-  enlargeTransitionMs = 350,
-  segments = 35,
+  overlayBlurColor = "#060010",
+  maxVerticalRotationDeg = DEFAULTS.maxVerticalRotationDeg,
+  dragSensitivity = DEFAULTS.dragSensitivity,
+  enlargeTransitionMs = DEFAULTS.enlargeTransitionMs,
+  segments = DEFAULTS.segments,
   dragDampening = 2,
-  openedImageWidth = null,
-  openedImageHeight = null,
-  imageBorderRadius = "20px",
-  openedImageBorderRadius = "24px",
-  grayscale = false,
+  openedImageWidth = "250px",
+  openedImageHeight = "350px",
+  imageBorderRadius = "30px",
+  openedImageBorderRadius = "30px",
+  grayscale = true,
 }: DomeGalleryProps) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const mainRef = useRef<HTMLElement>(null);
+  const mainRef = useRef<HTMLDivElement>(null);
   const sphereRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<HTMLDivElement>(null);
@@ -228,7 +194,6 @@ export default function DomeGallery({
     scrollLockedRef.current = true;
     document.body.classList.add("dg-scroll-lock");
   }, []);
-
   const unlockScroll = useCallback(() => {
     if (!scrollLockedRef.current) return;
     if (rootRef.current?.getAttribute("data-enlarging") === "true") return;
@@ -238,12 +203,12 @@ export default function DomeGallery({
 
   const items = useMemo(() => buildItems(images, segments), [images, segments]);
 
-  const applyTransform = useCallback((xDeg: number, yDeg: number) => {
+  const applyTransform = (xDeg: number, yDeg: number) => {
     const el = sphereRef.current;
     if (el) {
       el.style.transform = `translate3d(0, 0, calc(var(--radius) * -1)) rotateX(${xDeg}deg) rotateY(${yDeg}deg)`;
     }
-  }, []);
+  };
 
   const lockedRadiusRef = useRef<number | null>(null);
 
@@ -252,12 +217,12 @@ export default function DomeGallery({
     if (!root) return;
     const ro = new ResizeObserver((entries) => {
       const cr = entries[0].contentRect;
-      const w = Math.max(1, cr.width);
-      const h = Math.max(1, cr.height);
-      const minDim = Math.min(w, h);
-      const maxDim = Math.max(w, h);
-      const aspect = w / h;
-      let basis: number;
+      const w = Math.max(1, cr.width),
+        h = Math.max(1, cr.height);
+      const minDim = Math.min(w, h),
+        maxDim = Math.max(w, h),
+        aspect = w / h;
+      let basis;
       switch (fitBasis) {
         case "min":
           basis = minDim;
@@ -288,8 +253,33 @@ export default function DomeGallery({
       root.style.setProperty("--enlarge-radius", openedImageBorderRadius);
       root.style.setProperty("--image-filter", grayscale ? "grayscale(1)" : "none");
       applyTransform(rotationRef.current.x, rotationRef.current.y);
-    });
 
+      const enlargedOverlay = viewerRef.current?.querySelector(".enlarge") as HTMLElement | null;
+      if (enlargedOverlay && frameRef.current && mainRef.current) {
+        const frameR = frameRef.current.getBoundingClientRect();
+        const mainR = mainRef.current.getBoundingClientRect();
+
+        const hasCustomSize = openedImageWidth && openedImageHeight;
+        if (hasCustomSize) {
+          const tempDiv = document.createElement("div");
+          tempDiv.style.cssText = `position: absolute; width: ${openedImageWidth}; height: ${openedImageHeight}; visibility: hidden;`;
+          document.body.appendChild(tempDiv);
+          const tempRect = tempDiv.getBoundingClientRect();
+          document.body.removeChild(tempDiv);
+
+          const centeredLeft = frameR.left - mainR.left + (frameR.width - tempRect.width) / 2;
+          const centeredTop = frameR.top - mainR.top + (frameR.height - tempRect.height) / 2;
+
+          enlargedOverlay.style.left = `${centeredLeft}px`;
+          enlargedOverlay.style.top = `${centeredTop}px`;
+        } else {
+          enlargedOverlay.style.left = `${frameR.left - mainR.left}px`;
+          enlargedOverlay.style.top = `${frameR.top - mainR.top}px`;
+          enlargedOverlay.style.width = `${frameR.width}px`;
+          enlargedOverlay.style.height = `${frameR.height}px`;
+        }
+      }
+    });
     ro.observe(root);
     return () => ro.disconnect();
   }, [
@@ -302,12 +292,13 @@ export default function DomeGallery({
     grayscale,
     imageBorderRadius,
     openedImageBorderRadius,
-    applyTransform,
+    openedImageWidth,
+    openedImageHeight,
   ]);
 
   useEffect(() => {
     applyTransform(rotationRef.current.x, rotationRef.current.y);
-  }, [applyTransform]);
+  }, []);
 
   const stopInertia = useCallback(() => {
     if (inertiaRAF.current) {
@@ -350,7 +341,7 @@ export default function DomeGallery({
       stopInertia();
       inertiaRAF.current = requestAnimationFrame(step);
     },
-    [dragDampening, maxVerticalRotationDeg, stopInertia, applyTransform]
+    [dragDampening, maxVerticalRotationDeg, stopInertia]
   );
 
   useGesture(
@@ -362,27 +353,15 @@ export default function DomeGallery({
         draggingRef.current = true;
         movedRef.current = false;
         startRotRef.current = { ...rotationRef.current };
-        const clientX =
-          "clientX" in evt
-            ? evt.clientX
-            : (evt as TouchEvent).touches?.[0]?.clientX || 0;
-        const clientY =
-          "clientY" in evt
-            ? evt.clientY
-            : (evt as TouchEvent).touches?.[0]?.clientY || 0;
+        const clientX = "clientX" in evt ? evt.clientX : (evt as TouchEvent).touches[0].clientX;
+        const clientY = "clientY" in evt ? evt.clientY : (evt as TouchEvent).touches[0].clientY;
         startPosRef.current = { x: clientX, y: clientY };
       },
       onDrag: ({ event, last, velocity = [0, 0], direction = [0, 0], movement }) => {
         if (focusedElRef.current || !draggingRef.current || !startPosRef.current) return;
         const evt = event as MouseEvent | TouchEvent;
-        const clientX =
-          "clientX" in evt
-            ? evt.clientX
-            : (evt as TouchEvent).touches?.[0]?.clientX || 0;
-        const clientY =
-          "clientY" in evt
-            ? evt.clientY
-            : (evt as TouchEvent).touches?.[0]?.clientY || 0;
+        const clientX = "clientX" in evt ? evt.clientX : (evt as TouchEvent).touches[0].clientX;
+        const clientY = "clientY" in evt ? evt.clientY : (evt as TouchEvent).touches[0].clientY;
         const dxTotal = clientX - startPosRef.current.x;
         const dyTotal = clientY - startPosRef.current.y;
         if (!movedRef.current) {
@@ -419,20 +398,6 @@ export default function DomeGallery({
     { target: mainRef, eventOptions: { passive: true } }
   );
 
-  // Subtle interactive parallax on hover
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (draggingRef.current || focusedElRef.current) return;
-    const rect = mainRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    const xPct = (e.clientX - rect.left) / rect.width - 0.5;
-    const yPct = (e.clientY - rect.top) / rect.height - 0.5;
-    const tiltX = clamp(-yPct * 6, -maxVerticalRotationDeg, maxVerticalRotationDeg);
-    const tiltY = rotationRef.current.y + xPct * 0.25;
-    rotationRef.current.x = tiltX;
-    rotationRef.current.y = tiltY;
-    applyTransform(tiltX, tiltY);
-  };
-
   useEffect(() => {
     const scrim = scrimRef.current;
     if (!scrim) return;
@@ -441,8 +406,9 @@ export default function DomeGallery({
       const el = focusedElRef.current;
       if (!el) return;
       const parent = el.parentElement;
-      const overlay = viewerRef.current?.querySelector<HTMLElement>(".enlarge");
-      if (!overlay || !parent) return;
+      if (!parent) return;
+      const overlay = viewerRef.current?.querySelector(".enlarge") as HTMLElement | null;
+      if (!overlay) return;
       const refDiv = parent.querySelector(".item__image--reference");
       const originalPos = originalTilePositionRef.current;
       if (!originalPos) {
@@ -459,7 +425,9 @@ export default function DomeGallery({
         return;
       }
       const currentRect = overlay.getBoundingClientRect();
-      const rootRect = rootRef.current?.getBoundingClientRect() || { left: 0, top: 0 };
+      const rootRect = rootRef.current?.getBoundingClientRect();
+      if (!rootRect) return;
+
       const originalPosRelativeToRoot = {
         left: originalPos.left - rootRect.left,
         top: originalPos.top - rootRect.top,
@@ -474,10 +442,10 @@ export default function DomeGallery({
       };
       const animatingOverlay = document.createElement("div");
       animatingOverlay.className = "enlarge-closing";
-      animatingOverlay.style.cssText = `position:absolute;left:${overlayRelativeToRoot.left}px;top:${overlayRelativeToRoot.top}px;width:${overlayRelativeToRoot.width}px;height:${overlayRelativeToRoot.height}px;z-index:9999;border-radius:var(--enlarge-radius, 28px);overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:all ${enlargeTransitionMs}ms ease-out;pointer-events:none;margin:0;transform:none;`;
+      animatingOverlay.style.cssText = `position:absolute;left:${overlayRelativeToRoot.left}px;top:${overlayRelativeToRoot.top}px;width:${overlayRelativeToRoot.width}px;height:${overlayRelativeToRoot.height}px;z-index:9999;border-radius: var(--enlarge-radius, 32px);overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:all ${enlargeTransitionMs}ms ease-out;pointer-events:none;margin:0;transform:none;`;
       const originalImg = overlay.querySelector("img");
       if (originalImg) {
-        const img = originalImg.cloneNode() as HTMLImageElement;
+        const img = originalImg.cloneNode() as HTMLElement;
         img.style.cssText = "width:100%;height:100%;object-fit:contain;";
         animatingOverlay.appendChild(img);
       }
@@ -703,7 +671,7 @@ export default function DomeGallery({
         } as React.CSSProperties
       }
     >
-      <main ref={mainRef} className="sphere-main" onMouseMove={handleMouseMove}>
+      <div ref={mainRef} className="sphere-main">
         <div className="stage">
           <div ref={sphereRef} className="sphere">
             {items.map((it, i) => (
@@ -732,7 +700,7 @@ export default function DomeGallery({
                   onClick={onTileClick}
                   onPointerUp={onTilePointerUp}
                 >
-                  <LazyTileImage src={it.src} alt={it.alt} />
+                  <LazyImage src={it.src || ""} draggable={false} alt={it.alt} />
                 </div>
               </div>
             ))}
@@ -748,7 +716,7 @@ export default function DomeGallery({
           <div ref={scrimRef} className="scrim" />
           <div ref={frameRef} className="frame" />
         </div>
-      </main>
+      </div>
     </div>
   );
 }

@@ -22,11 +22,59 @@
   --color-foreground: #ededed;
 }
 
+html {
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--color-background);
   color: var(--color-foreground);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: clip;
 }
+
+/* Global Dark Sleek Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e62b1e;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #27272a #0a0a0a;
+}
+
+/* Custom Modal / Container Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(14, 14, 18, 0.5);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #e62b1e;
+}
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #3f3f46 rgba(14, 14, 18, 0.5);
+}
+
 
 /* Subtle tile / grid pattern — easily customizable for the team & event pages */
 .bg-tiles {
