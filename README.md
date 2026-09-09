@@ -2,7 +2,7 @@
 
 Public website for TEDx BPHC 2026, built with Next.js (App Router), TypeScript, and Tailwind CSS.
 
-## Getting started
+## Getting started ..
 
 ```bash
 npm install
