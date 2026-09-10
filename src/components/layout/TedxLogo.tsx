@@ -7,6 +7,7 @@ interface TedxLogoProps {
   width?: number;
   height?: number;
   priority?: boolean;
+  light?: boolean;
 }
 
 export default function TedxLogo({
@@ -15,11 +16,19 @@ export default function TedxLogo({
   width = 220,
   height = 28,
   priority = false,
+  light = false,
 }: TedxLogoProps) {
   void width;
   void height;
   void priority;
-  const logoImage = <span className={`tedx-wordmark ${className}`} aria-label="TEDx BITS Hyderabad"><strong>TEDx</strong><span>BITS Hyderabad</span></span>;
+  
+  const textColorClass = light ? "text-white" : "text-black";
+  
+  const logoImage = (
+    <span className={`tedx-wordmark ${className} ${textColorClass}`} aria-label="TEDx BITS Hyderabad" style={{ color: light ? 'white' : 'inherit' }}>
+      <strong>TEDx</strong><span>BITS Hyderabad</span>
+    </span>
+  );
 
   if (href) {
     return (

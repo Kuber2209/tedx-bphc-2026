@@ -15,7 +15,7 @@ const TEDX_PHONE_TEL = "+919876543210";
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-zinc-800/80 bg-[#080808] text-zinc-300">
+    <footer className="relative border-t border-white/5 bg-[#050505] text-zinc-300">
       {/* Background Grid Accent */}
       <div
         className="pointer-events-none absolute inset-0 bg-tiles opacity-20"

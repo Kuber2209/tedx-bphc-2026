@@ -40,19 +40,19 @@ export default function FAQ3({
         {badge && (
           <Badge
             variant="outline"
-            className="mb-4 inline-flex items-center gap-2 rounded-full border-zinc-800 bg-[#121212]/80 px-3.5 py-1 text-xs font-mono font-medium tracking-wide text-zinc-300 backdrop-blur-sm"
+            className="mb-4 inline-flex items-center gap-2 rounded-full border-zinc-200 bg-white/80 px-3.5 py-1 text-xs font-mono font-medium tracking-wide text-zinc-600 backdrop-blur-sm"
           >
             <span className="inline-block h-2 w-2 rounded-full bg-[#EB0028] shadow-[0_0_8px_#EB0028]" />
             {badge}
           </Badge>
         )}
 
-        <h2 className="text-3xl font-black uppercase tracking-tight text-white sm:text-5xl md:text-6xl">
+        <h2 className="text-3xl font-black uppercase tracking-tight text-black sm:text-5xl md:text-6xl">
           {heading}
         </h2>
 
         {subheading && (
-          <p className="mt-3 max-w-lg text-sm leading-relaxed text-zinc-400 sm:text-base">
+          <p className="mt-3 max-w-lg text-sm leading-relaxed text-zinc-600 sm:text-base">
             {subheading}
           </p>
         )}
@@ -67,7 +67,7 @@ export default function FAQ3({
               <AccordionItem
                 key={i}
                 value={`item-${i}`}
-                className="group relative overflow-hidden rounded-2xl border border-zinc-850 bg-[#121212]/90 transition-all duration-300 hover:border-zinc-700 hover:bg-[#161616] data-[state=open]:border-[#EB0028]/60 data-[state=open]:bg-gradient-to-r data-[state=open]:from-[#EB0028]/15 data-[state=open]:via-[#141414] data-[state=open]:to-[#121212] data-[state=open]:shadow-xl data-[state=open]:shadow-[#EB0028]/10"
+                className="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 transition-all duration-300 hover:border-zinc-300 hover:bg-zinc-100 data-[state=open]:border-[#EB0028]/60 data-[state=open]:bg-gradient-to-r data-[state=open]:from-[#EB0028]/5 data-[state=open]:via-zinc-50 data-[state=open]:to-white data-[state=open]:shadow-xl data-[state=open]:shadow-[#EB0028]/5"
               >
                 {/* Left TEDx Red indicator bar on active item */}
                 <div
@@ -76,7 +76,7 @@ export default function FAQ3({
                 />
 
                 <AccordionTrigger className="flex w-full items-center gap-4 px-5 py-4 text-left hover:no-underline sm:px-6 sm:py-5 [&_[data-slot=accordion-trigger-icon]]:!hidden">
-                  <span className="w-8 shrink-0 text-center font-mono text-xs font-semibold tabular-nums tracking-widest text-zinc-500 transition-colors duration-200 group-hover:text-zinc-300 group-data-[state=open]:text-[#EB0028]">
+                  <span className="w-8 shrink-0 text-center font-mono text-xs font-semibold tabular-nums tracking-widest text-zinc-400 transition-colors duration-200 group-hover:text-zinc-600 group-data-[state=open]:text-[#EB0028]">
                     {num}
                   </span>
 
@@ -86,19 +86,19 @@ export default function FAQ3({
                         {item.category}
                       </span>
                     )}
-                    <span className="text-sm font-medium leading-snug text-zinc-200 transition-colors duration-200 group-hover:text-white group-data-[state=open]:font-semibold group-data-[state=open]:text-white sm:text-base">
+                    <span className="text-sm font-medium leading-snug text-zinc-800 transition-colors duration-200 group-hover:text-black group-data-[state=open]:font-semibold group-data-[state=open]:text-black sm:text-base">
                       {item.question}
                     </span>
                   </div>
 
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900/80 text-zinc-400 transition-all duration-300 group-hover:border-zinc-600 group-hover:text-white group-data-[state=open]:border-[#EB0028]/40 group-data-[state=open]:bg-[#EB0028]/20 group-data-[state=open]:text-[#EB0028]">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-500 transition-all duration-300 group-hover:border-zinc-300 group-hover:text-black group-data-[state=open]:border-[#EB0028]/40 group-data-[state=open]:bg-[#EB0028]/10 group-data-[state=open]:text-[#EB0028]">
                     <FaPlus className="block h-3 w-3 group-data-[state=open]:hidden" />
                     <FaMinus className="hidden h-3 w-3 group-data-[state=open]:block" />
                   </span>
                 </AccordionTrigger>
 
                 <AccordionContent className="px-5 pb-5 pl-14 pt-0 sm:px-6 sm:pb-6 sm:pl-16">
-                  <p className="text-sm leading-relaxed text-zinc-300 sm:text-base">
+                  <p className="text-sm leading-relaxed text-zinc-600 sm:text-base">
                     {item.answer}
                   </p>
                 </AccordionContent>

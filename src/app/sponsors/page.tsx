@@ -1,193 +1,170 @@
 "use client";
 
 import React from "react";
-import PartnerCard from "@/components/sponsors/PartnerCard";
-import TierCard from "@/components/sponsors/TierCard";
 import { currentPartners, partnershipTiers, pastSponsors } from "@/data/sponsors";
-import { ArrowRight, Mail } from "lucide-react";
-import { FaInstagram } from "react-icons/fa6";
+import { motion } from "motion/react";
+import Image from "next/image";
 
 export default function SponsorsPage() {
   const contactEmail = "tedx@hyderabad.bits-pilani.ac.in";
-  const instagramUrl = "https://www.instagram.com/tedxbitshyderabad/";
   const emailMailto = `mailto:${contactEmail}?subject=Partnership%20Inquiry%20-%20TEDx%20BITS%20Hyderabad%202026`;
 
   return (
-    <div className="editorial-page relative min-h-screen bg-[#0a0a0a] text-zinc-100">
-      {/* Background Subtle Tiles */}
-      <div
-        className="pointer-events-none absolute inset-0 bg-tiles opacity-40"
-        aria-hidden="true"
-      />
-
-      <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-20 lg:px-8">
-        {/* ================= HERO HEADER ================= */}
-        <section className="mb-20">
-          <div className="flex flex-col justify-between gap-6 border-b border-zinc-800/80 pb-12 md:flex-row md:items-end">
-            <div>
-              <div className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#E62B1E]">
-                <span className="h-2 w-2 rounded-full bg-[#E62B1E]" />
-                <span>PARTNERS & COLLABORATORS</span>
-              </div>
-              <h1 className="text-5xl font-black tracking-tight text-white sm:text-7xl md:text-8xl">
-                Our Sponsors
-              </h1>
-            </div>
-
-            <div className="max-w-md text-zinc-400">
-              <p className="text-base font-light sm:text-lg">
-                Sharing our vision, supporting our mission.
-              </p>
-              <p className="mt-2 text-xs font-mono tracking-wide text-zinc-500">
-                TEDx BPHC 2026-27 • 12th Edition
-              </p>
-            </div>
+    <div className="min-h-screen bg-white text-[#050505] selection:bg-[#eb0028] selection:text-white pb-32">
+      {/* Exhibition Header */}
+      <header className="pt-40 pb-32 px-6 md:px-12 border-b border-black/10 max-w-[1600px] mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div className="flex items-center gap-4 mb-8">
+            <div className="h-[1px] w-8 bg-[#eb0028]"></div>
+            <span className="text-zinc-500 font-sans text-[10px] md:text-xs uppercase tracking-[0.2em]">
+              The Collaborators
+            </span>
           </div>
-        </section>
+          <h1 className="text-7xl md:text-[140px] font-bold tracking-tighter leading-[0.85] mb-12">
+            Built by<br />
+            <span className="italic font-serif pr-4 text-zinc-400 font-light">visionaries.</span>
+          </h1>
+          <p className="max-w-2xl text-zinc-600 text-xl md:text-2xl leading-relaxed font-light">
+            We partner with organizations that believe in the power of ideas. Together, we engineer an environment where innovation thrives.
+          </p>
+        </motion.div>
+      </header>
 
-        {/* ================= SECTION 1: THIS YEAR'S PARTNERS ================= */}
-        <section className="mb-24 sm:mb-28">
-          <div className="mb-10">
-            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#E62B1E]">
-              <span className="h-2 w-2 rounded-full bg-[#E62B1E] animate-pulse" />
-              <span>OFFICIAL PARTNERS 2026 EDITION</span>
-            </div>
-            <h2 className="mt-2 text-3xl font-black uppercase tracking-tight text-white sm:text-5xl md:text-6xl">
-              THIS YEAR&apos;S PARTNERS
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm font-light text-zinc-400">
-              Visionary organizations powering student innovation, culture, and disruptive discourse at BITS Pilani Hyderabad Campus.
-            </p>
+      <main className="max-w-[1600px] mx-auto mt-32 px-6 md:px-12">
+        {/* Current Partners */}
+        <section className="mb-48">
+          <div className="border-b border-black/10 pb-8 mb-24">
+            <h2 className="text-3xl md:text-4xl font-serif italic text-zinc-400">2026 Partners</h2>
           </div>
-
-          {/* Partners Grid */}
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {currentPartners.map((partner) => (
-              <PartnerCard key={partner.id} partner={partner} />
-            ))}
-          </div>
-        </section>
-
-        {/* ================= SECTION 2: PARTNERSHIP TIERS ================= */}
-        <section className="mb-24 sm:mb-28">
-          <div className="mb-10">
-            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#E62B1E]">
-              <span className="h-2 w-2 rounded-full bg-[#E62B1E]" />
-              <span>PARTNERSHIP TIERS</span>
-            </div>
-            <h2 className="mt-2 text-3xl font-black uppercase tracking-tight text-white sm:text-5xl md:text-6xl">
-              BECOME A PARTNER
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm font-light text-zinc-400">
-              Align your brand with India&apos;s most vibrant student TED event. Explore customized avenues to connect with tomorrow&apos;s innovators.
-            </p>
-          </div>
-
-          {/* Tiers Grid */}
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {partnershipTiers.map((tier) => (
-              <TierCard key={tier.id} tier={tier} />
-            ))}
-          </div>
-        </section>
-
-        {/* ================= SECTION 3: PAST SPONSORS ================= */}
-        <section className="mb-24 sm:mb-28">
-          <div className="mb-10">
-            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-zinc-400">
-              <span className="h-2 w-2 rounded-full bg-zinc-600" />
-              <span>EDITIONS ARCHIVE</span>
-            </div>
-            <h2 className="mt-2 text-2xl font-black uppercase tracking-tight text-white sm:text-4xl md:text-5xl">
-              PAST SPONSORS
-            </h2>
-            <p className="mt-2 max-w-2xl text-xs font-light text-zinc-400 sm:text-sm">
-              Honoring organizations that have sparked curiosity and supported change across previous TEDx editions.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-            {pastSponsors.map((sponsor) => (
-              <div
-                key={sponsor.id}
-                className="group relative flex flex-col items-center justify-center rounded-2xl border border-zinc-850 bg-zinc-900/60 p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700 hover:bg-zinc-900"
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-32 gap-x-16">
+            {currentPartners.map((partner, idx) => (
+              <motion.div 
+                key={partner.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col items-center group cursor-pointer"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-zinc-800 bg-black text-xs font-black text-zinc-300 group-hover:border-[#E62B1E]/40 group-hover:text-white">
-                  {sponsor.name.charAt(0)}
+                <div className="w-full aspect-[3/2] flex items-center justify-center mb-8 px-12 py-12 transition-all duration-700 hover:scale-105 relative">
+                  {partner.logoUrl ? (
+                    <Image 
+                      src={partner.logoUrl} 
+                      alt={partner.name} 
+                      fill
+                      className="object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 p-8" 
+                    />
+                  ) : (
+                    <span className="font-serif italic text-5xl font-light text-zinc-300 group-hover:text-black transition-colors duration-700">{partner.name}</span>
+                  )}
                 </div>
-                <h4 className="mt-3 text-xs font-bold text-zinc-200 group-hover:text-white">
-                  {sponsor.name}
-                </h4>
-                <span className="mt-1 font-mono text-[10px] text-zinc-400">
-                  {sponsor.category}
-                </span>
-                {sponsor.year && (
-                  <span className="mt-1 font-mono text-[9px] text-zinc-400">
-                    {sponsor.year}
-                  </span>
-                )}
-              </div>
+                <div className="text-center">
+                  <h3 className="text-xl font-bold tracking-tight mb-2">{partner.name}</h3>
+                  <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-[#eb0028] font-bold">{partner.category}</span>
+                </div>
+              </motion.div>
             ))}
           </div>
         </section>
 
-        {/* ================= SECTION 4: LET'S BUILD SOMETHING TOGETHER ================= */}
-        <section className="relative overflow-hidden rounded-3xl border border-zinc-800/80 bg-gradient-to-b from-[#121212] via-[#0d0d0d] to-black px-6 py-16 text-center shadow-2xl sm:px-12 md:py-24">
-          {/* Subtle Radial Glow */}
-          <div
-            className="pointer-events-none absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-[#E62B1E]/10 blur-3xl"
-            aria-hidden="true"
-          />
-
-          <div className="relative z-10 mx-auto max-w-3xl">
-            <div className="mb-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#E62B1E]">
-              <span className="h-2 w-2 rounded-full bg-[#E62B1E]" />
-              <span>GET IN TOUCH</span>
+        {/* Partnership Tiers - Editorial redesign */}
+        <section className="mb-48 bg-zinc-50 text-black -mx-6 md:-mx-12 px-6 md:px-12 py-32 md:py-48">
+          <div className="max-w-[1600px] mx-auto">
+            <div className="flex flex-col md:flex-row gap-16 md:gap-24 mb-32">
+              <div className="md:w-1/3">
+                <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-6">
+                  Join the <span className="font-serif italic font-light text-zinc-500">movement.</span>
+                </h2>
+                <p className="text-zinc-600 leading-relaxed font-light text-lg">
+                  Position your brand alongside the most forward-thinking minds in the region. Our partnership tiers are designed to create meaningful engagement.
+                </p>
+              </div>
+              <div className="md:w-2/3 border-t border-black/10 pt-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 gap-x-12">
+                  {partnershipTiers.map((tier, idx) => (
+                    <motion.div 
+                      key={tier.id}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                      className="group"
+                    >
+                      <div className="flex items-baseline gap-4 mb-4">
+                        <h3 className="text-3xl font-bold tracking-tight">{tier.name}</h3>
+                        <span className={`font-sans text-[10px] uppercase tracking-[0.2em] ${tier.highlighted ? 'text-[#eb0028] font-bold' : 'text-zinc-500'}`}>
+                          {tier.badge || 'Tier'}
+                        </span>
+                      </div>
+                      <p className="text-zinc-600 mb-8 font-light italic font-serif text-lg">{tier.tagline}</p>
+                      <ul className="flex flex-col gap-4">
+                        {tier.benefits.map((benefit, i) => (
+                          <li key={i} className="flex gap-4 text-sm text-zinc-700 font-light">
+                            <span className="text-[#eb0028] font-sans">/</span>
+                            <span>{benefit}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
             </div>
-
-            <h2 className="text-4xl font-black uppercase tracking-tight text-white sm:text-6xl md:text-7xl">
-              LET&apos;S BUILD SOMETHING{" "}
-              <span className="block text-[#E62B1E]">TOGETHER</span>
-            </h2>
-
-            <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-zinc-400 sm:text-base">
-              Partner with TEDx BITS Hyderabad to reach thousands of students, faculty, and professionals at one of India&apos;s premier student conferences.
-            </p>
-
-            {/* CTAs */}
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <a
-                href={emailMailto}
-                className="group flex w-full items-center justify-center gap-2 rounded-2xl bg-[#E62B1E] px-8 py-4 font-mono text-xs font-bold uppercase tracking-wider text-white shadow-xl shadow-[#E62B1E]/20 transition-all hover:bg-[#cf2418] hover:shadow-2xl hover:shadow-[#E62B1E]/30 sm:w-auto"
-              >
-                <Mail className="h-4 w-4" />
-                <span>Email Us</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
-
-              <a
-                href={instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex w-full items-center justify-center gap-2 rounded-2xl border border-zinc-700 bg-zinc-900/90 px-8 py-4 font-mono text-xs font-bold uppercase tracking-wider text-zinc-200 transition-all hover:border-zinc-500 hover:bg-zinc-800 hover:text-white sm:w-auto"
-              >
-                <FaInstagram className="h-4 w-4" />
-                <span>Instagram DM</span>
-              </a>
-            </div>
-
-            {/* Subtitle email */}
-            <p className="mt-6 font-mono text-xs text-zinc-400">
-              <a
-                href={emailMailto}
-                className="transition-colors hover:text-zinc-200"
-              >
-                {contactEmail}
-              </a>
-            </p>
           </div>
         </section>
-      </div>
+
+        {/* Archive Sponsors */}
+        <section className="mb-48">
+          <div className="border-b border-black/10 pb-6 mb-20 flex items-center justify-between">
+            <h2 className="text-2xl font-serif italic text-zinc-400">Past Collaborators</h2>
+            <span className="text-[10px] font-sans uppercase tracking-[0.2em] text-zinc-400">The Archive</span>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-y-16 gap-x-12">
+            {pastSponsors.map((sponsor, idx) => (
+              <motion.div 
+                key={sponsor.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: (idx % 10) * 0.05 }}
+                className="flex flex-col group cursor-pointer border-l border-black/5 pl-6 hover:border-black transition-colors duration-500"
+              >
+                <h4 className="text-base font-bold text-zinc-800 group-hover:text-black transition-colors mb-2">{sponsor.name}</h4>
+                <span className="font-sans text-[9px] uppercase tracking-[0.15em] text-[#eb0028] mb-1">{sponsor.category}</span>
+                {sponsor.year && <span className="font-serif italic text-xs text-zinc-400">{sponsor.year}</span>}
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Let's Build Together CTA */}
+        <section className="py-32 text-center border-t border-black/10">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-zinc-500 mb-8">Start a conversation</p>
+            <h2 className="text-6xl md:text-8xl font-bold tracking-tighter mb-16">
+              Let&apos;s build something <br/>
+              <span className="italic text-zinc-400 font-serif font-light">meaningful.</span>
+            </h2>
+            <a
+              href={emailMailto}
+              className="inline-flex items-center justify-center bg-[#050505] text-white px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#eb0028] transition-colors duration-500"
+            >
+              Contact Partnerships
+            </a>
+          </motion.div>
+        </section>
+      </main>
     </div>
   );
 }

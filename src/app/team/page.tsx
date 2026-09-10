@@ -1,129 +1,148 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import Link from "next/link";
+
 import { TEAM_SECTIONS } from "@/data/team";
-import TeamCard from "@/components/team/TeamCard";
-import AcademicYearDropdown from "@/components/speakers/AcademicYearDropdown";
+import { motion } from "motion/react";
+import Image from "next/image";
 
 export default function TeamPage() {
-  const [selectedYear, setSelectedYear] = useState("2026");
-  const visibleSections = useMemo(
-    () => TEAM_SECTIONS.map((section) => ({
-      ...section,
-      members: selectedYear === "2026" ? section.members : [],
-    })),
-    [selectedYear]
-  );
 
   return (
-    <div className="team-page relative min-h-screen bg-white text-black overflow-x-clip">
-      {/* Background Tiles & Ambient Accent Glow (Easy to restyle or toggle) */}
-      <div
-        className="pointer-events-none absolute inset-0 bg-tiles opacity-60"
-        aria-hidden="true"
-      />
-      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
-        {/* 1. Page Header (Reference: Left bold 'Our Team', Right quote) */}
-        <header className="flex flex-col justify-between gap-6 border-b border-zinc-800/60 pb-12 md:flex-row md:items-end">
-          <div>
-            <span className="mb-2 inline-block text-xs font-mono font-semibold uppercase tracking-widest text-[#E62B1E]">
-              TEDx BPHC 2026
+    <div className="min-h-screen bg-white text-black selection:bg-[#eb0028] selection:text-white pb-32">
+      {/* Cinematic Header */}
+      <header className="relative pt-48 pb-32 px-6 md:px-12 border-b border-black/5 max-w-[1600px] mx-auto overflow-hidden">
+        {/* Subtle background element */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#eb0028]/5 rounded-full blur-[120px] pointer-events-none mix-blend-multiply"></div>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10"
+        >
+          <div className="flex items-center gap-4 mb-8">
+            <div className="h-[1px] w-8 bg-[#eb0028]"></div>
+            <span className="text-zinc-500 font-sans text-[10px] md:text-xs uppercase tracking-[0.2em]">
+              Behind the curtain
             </span>
-            <h1 className="text-6xl font-black uppercase tracking-tighter text-white sm:text-7xl md:text-8xl lg:text-9xl leading-[0.88]">
-              Our <br />
-              Team
-            </h1>
           </div>
+          
+          <h1 className="text-7xl md:text-[160px] font-bold tracking-tighter leading-[0.8] mb-12">
+            The<br />
+            <span className="italic text-zinc-500 font-serif font-light md:pl-24">makers.</span>
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+            <div className="md:col-span-5 md:col-start-8">
+              <p className="text-zinc-600 text-xl font-light leading-relaxed">
+                TEDx BITS Hyderabad is engineered by a student-led collective of designers, curators, producers, and technologists. 
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </header>
 
-          <div className="max-w-md md:pb-2">
-            <p className="text-base font-light leading-relaxed text-zinc-400 sm:text-lg">
-              Fueled by passion and united by purpose, we&apos;re here to make
-              a difference.
-            </p>
-          </div>
-        </header>
-
-        <div className="edition-filter-row mt-8 flex flex-wrap items-center justify-between gap-4 border-b border-zinc-800 pb-5">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-zinc-400">Browse the team by academic year</p>
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500 hidden sm:inline">
-              Academic Year
-            </span>
-            <AcademicYearDropdown
-              options={[
-                {
-                  value: "2026",
-                  label: "AY 26-27",
-                  editionName: "12th Edition",
-                  description: "Current active organizing body · Executives, Curators, Logistics & Technical leads.",
-                  current: true,
-                },
-                {
-                  value: "2025",
-                  label: "AY 25-26",
-                  editionName: "11th Edition",
-                  description: "Archive team directory · 11th edition alumni leads and committee chairs.",
-                  current: false,
-                },
-                {
-                  value: "2024",
-                  label: "AY 24-25",
-                  editionName: "10th Edition",
-                  description: "Archive team directory · 10th edition milestone organizing committee.",
-                  current: false,
-                },
-              ]}
-              selectedYear={selectedYear}
-              onSelectYear={(year) => setSelectedYear(year)}
-            />
-          </div>
+      {/* Behind the scenes collage / vibe */}
+      <section className="py-24 px-6 md:px-12 max-w-[1600px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div 
+            className="aspect-square relative overflow-hidden bg-zinc-100 md:mt-24"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Image src="/gallery/image1.jpg" alt="Team behind the scenes" fill className="object-cover filter grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-1000" />
+          </motion.div>
+          <motion.div 
+            className="aspect-[3/4] relative overflow-hidden bg-zinc-100"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Image src="/gallery/image8.jpg" alt="Team behind the scenes" fill className="object-cover filter grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-1000" />
+          </motion.div>
+          <motion.div 
+            className="aspect-square relative overflow-hidden bg-zinc-100 md:mt-48"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Image src="/gallery/image14.jpg" alt="Team behind the scenes" fill className="object-cover filter grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-1000" />
+          </motion.div>
         </div>
+      </section>
 
-        <nav className="team-category-nav" aria-label="Team categories">
-          {visibleSections.map((section) => (
-            <Link key={section.id} href={`#team-${section.id}`} className="team-category-link">
-              <span>{section.title.replace("TEDx ", "")}</span><b>↗</b>
-            </Link>
-          ))}
-        </nav>
+      {/* Cinematic Credits Roll */}
+      <main className="max-w-[1600px] mx-auto mt-20 relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 px-6 md:px-12">
+          
+          {/* Left Column: Quick Navigation / Index */}
+          <div className="lg:col-span-3 hidden lg:block">
+            <div className="sticky top-40">
+              <span className="text-zinc-600 font-sans text-[10px] uppercase tracking-[0.3em] mb-8 block font-bold">
+                Departments
+              </span>
+              <ul className="flex flex-col gap-6 border-l border-black/5 pl-6">
+                {TEAM_SECTIONS.map(section => (
+                  <li key={section.id}>
+                    <a href={`#${section.id}`} className="text-zinc-500 hover:text-black hover:pl-2 transition-all duration-300 text-xs uppercase tracking-[0.2em]">
+                      {section.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
 
-        {/* 2. Team Sections (Supports multiple categories e.g. Executives, Curators, Tech, etc.) */}
-        <div className="mt-14 space-y-16">
-          {visibleSections.map((section) => (
-            <section id={`team-${section.id}`} key={section.id} aria-labelledby={`heading-${section.id}`}>
-              {/* Section Subheading (Clean dot accent matching speaker page) */}
-              <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-zinc-800/80 pb-4">
-                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-zinc-400">
-                  <span className="h-2 w-2 rounded-full bg-[#E62B1E]" />
-                  <h2
-                    id={`heading-${section.id}`}
-                    className="text-lg font-bold tracking-tight text-white uppercase sm:text-xl"
-                  >
+          {/* Right Column: The Credits */}
+          <div className="lg:col-span-9">
+            {TEAM_SECTIONS.map((section) => (
+              <section key={section.id} id={section.id} className="mb-48 scroll-mt-40">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8 }}
+                  className="mb-16 border-b border-black/10 pb-8 flex flex-col md:flex-row md:items-end justify-between gap-6"
+                >
+                  <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">
                     {section.title}
                   </h2>
-                </div>
-                {section.description && (
-                  <span className="text-xs font-mono text-zinc-500">
+                  <p className="text-zinc-500 font-serif italic text-xl">
                     {section.description}
-                  </span>
-                )}
-              </div>
+                  </p>
+                </motion.div>
 
-              {/* Showcase Frame / Card Grid Container */}
-              <div className="rounded-3xl border border-zinc-800/80 bg-zinc-950/70 p-5 backdrop-blur-md shadow-2xl sm:p-7 md:p-8">
-                {section.members.length > 0 ? (
-                  <div className="team-grid grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {section.members.map((member) => <TeamCard key={member.id} member={member} />)}
-                  </div>
-                ) : (
-                  <p className="py-16 text-center font-mono text-xs uppercase tracking-[0.18em] text-zinc-500">Archived team profiles will be announced soon.</p>
-                )}
-              </div>
-            </section>
-          ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+                  {section.members.map((member, idx) => (
+                    <motion.div 
+                      key={member.id}
+                      className="group relative flex flex-col"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: (idx % 10) * 0.05 }}
+                    >
+                      {/* Sub-department grouping feeling via typography */}
+                      <span className="text-[#eb0028] font-sans text-[9px] uppercase tracking-[0.2em] mb-3">
+                        {member.role}
+                      </span>
+                      <h3 className="text-3xl font-bold tracking-tight text-black group-hover:text-zinc-600 transition-colors duration-300 mb-2">
+                        {member.name}
+                      </h3>
+                      
+                      {/* Subtle hover line */}
+                      <div className="w-0 group-hover:w-full h-[1px] bg-black/20 transition-all duration-500 mt-4"></div>
+                    </motion.div>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
