@@ -1,35 +1,23 @@
 /**
  * ============================================================================
  * TEDx BPHC 2026 — SINGLE-DAY SCHEDULE CONFIGURATION
- * ============================================================================
- * 
- * QUICK EDIT GUIDE FOR ORGANIZERS:
- * ----------------------------------------------------------------------------
- * 1. EVENT DATE & VENUE:
- *    Update `scheduleMeta` below (e.g. date: "1X November 2026", venue, etc.).
- * 
- * 2. TIMINGS & TALKS:
- *    Edit `scheduleItems` below.
- *    - To change a time, edit `time: "10:20 AM"` and `endTime: "10:40 AM"`.
- *    - To assign a speaker, edit `speakerName`, `speakerRole`, and `talkTitle`.
- *    - Flagship talks (5–6 speakers) have `isSpeakerTalk: true`.
- *    - To add or remove an item, simply copy/paste or delete a block.
+ * Theme: "Invisible Threads"
  * ============================================================================
  */
 
 export interface ScheduleMeta {
   eventName: string;
   edition: string;
-  date: string;              // e.g. "1X November 2026"
-  dateStatus: string;        // e.g. "Exact date TBA • 1-Day Flagship Conference"
+  date: string;
+  dateStatus: string;
   dayScheduleType: string;
   venueName: string;
   venueLocation: string;
   city: string;
   theme: string;
   subtitle: string;
-  speakerCountNote: string;  // e.g. "5–6 Keynote Speakers"
-  calendarDateISO?: string;  // Approximate date for calendar links (e.g. "2026-11-15")
+  speakerCountNote: string;
+  calendarDateISO?: string;
 }
 
 export type ScheduleItemType =
@@ -43,91 +31,141 @@ export type ScheduleItemType =
 
 export interface ScheduleItem {
   id: string;
-  time: string;               // Display start time (e.g. "09:00 AM")
-  endTime?: string;           // Display end time (e.g. "10:00 AM")
+  time: string;
+  endTime?: string;
   sessionBlock: "morning" | "intermission" | "afternoon" | "evening";
-  sessionLabel: string;       // e.g. "Session 1: Morning Keynotes"
-  title: string;              // Event title or talk title
-  speakerNumber?: number;     // 1 to 6 (for the 5-6 keynote speakers)
-  speakerName?: string;       // Speaker full name (or "Speaker 1 TBA")
-  speakerRole?: string;       // e.g. "Innovator & DeepTech Researcher"
-  talkTitle?: string;         // Dedicated talk title
-  description?: string;       // Talk synopsis or activity description
-  location?: string;          // e.g. "Main Auditorium Bowl", "Foyer & Lawn"
+  sessionLabel: string;
+  title: string;
+  speakerNumber?: number;
+  speakerName?: string;
+  speakerRole?: string;
+  talkTitle?: string;
+  description?: string;
+  location?: string;
   type: ScheduleItemType;
-  duration?: string;          // e.g. "18 min", "45 min"
-  isSpeakerTalk?: boolean;    // true for the 5-6 main speaker talks
-  topicTag?: string;          // e.g. "Technology", "Design", "Science"
+  duration?: string;
+  isSpeakerTalk?: boolean;
+  topicTag?: string;
 }
 
-// ---------------------------------------------------------------------------
-// 1. EVENT METADATA (Edit your event details here)
-// ---------------------------------------------------------------------------
-export const scheduleMeta: ScheduleMeta = {
-  eventName: "TEDx BPHC",
-  edition: "2026 Edition",
-  date: "1X November 2026",
-  dateStatus: "Official date to be finalized soon • 1-Day Flagship Conference",
-  dayScheduleType: "Single-Day Conference Program",
-  venueName: "Main University Auditorium",
-  venueLocation: "BITS Pilani Hyderabad Campus",
-  city: "Hyderabad, India",
-  theme: "Take The Leap",
-  subtitle: "A curated single-day gathering bringing together 5–6 visionary speakers, multidisciplinary dialogues, and interactive campus showcases.",
-  speakerCountNote: "5–6 Visionary Speakers",
-  calendarDateISO: "2026-11-14",
-};
-
-// ---------------------------------------------------------------------------
-// 2. SESSION BLOCKS OVERVIEW (For the Middlebury-style Program Sheet)
-// ---------------------------------------------------------------------------
 export interface SessionBlockOverview {
   id: "morning" | "intermission" | "afternoon" | "evening";
   name: string;
+  threadChapter: string;
   timeRange: string;
   tagline: string;
 }
 
+// ---------------------------------------------------------------------------
+// 1. THEME MANIFESTO & PILLARS
+// ---------------------------------------------------------------------------
+export const themeStory = {
+  title: "Invisible Threads",
+  concept: "The unseen connections that quietly shape our lives.",
+  narrative:
+    "The theme of this year’s event is “Invisible Threads.” It explores the unseen connections that quietly shape our lives, from the people and experiences that influence who we become to the systems, ideas, choices, and circumstances that connect us in ways we rarely notice. Some threads are personal, like a mentor’s advice that stays with us for years; others are societal, linking technology, culture, communities, and even seemingly unrelated ideas. These connections may be invisible, but their effects are not. Invisible Threads invites us to look beyond what is immediately visible, uncover the relationships that hold our world together, and recognize how one idea, person, or moment can create ripples far beyond where it started.",
+  pillars: [
+    {
+      id: "personal",
+      number: "01",
+      title: "Personal Threads",
+      tagline: "The quiet catalysts of who we become",
+      description:
+        "A mentor’s advice that echoes across decades, a chance conversation in a hallway, or an unheralded personal inflection point that redirected an entire destiny.",
+    },
+    {
+      id: "societal",
+      number: "02",
+      title: "Societal Webs",
+      tagline: "The fabric of communities & shared memory",
+      description:
+        "The cultural tapestries, civic trust, and collective traditions that silently weave disparate people into unified communities.",
+    },
+    {
+      id: "technological",
+      number: "03",
+      title: "Technological Synapses",
+      tagline: "Ambient architecture & systemic intelligence",
+      description:
+        "The invisible lines of code, networks, and ecological feedback loops connecting humanity in ways earlier generations could never fathom.",
+    },
+    {
+      id: "ripples",
+      number: "04",
+      title: "The Ripple Effect",
+      tagline: "How one spark reshapes the whole",
+      description:
+        "Recognizing that no idea exists in a silo. One bold thesis, one compassionate gesture, or one artistic leap creates reverberations far beyond where it began.",
+    },
+  ],
+};
+
+// ---------------------------------------------------------------------------
+// 2. EVENT METADATA
+// ---------------------------------------------------------------------------
+export const scheduleMeta: ScheduleMeta = {
+  eventName: "TEDx BPHC",
+  edition: "12th Edition",
+  date: "14 November 2026",
+  dateStatus: "12th Edition • 1-Day Flagship Conference",
+  dayScheduleType: "Full Single-Day Conference Program",
+  venueName: "Auditorium",
+  venueLocation: "BITS Pilani Hyderabad Campus",
+  city: "Hyderabad, India",
+  theme: "Invisible Threads",
+  subtitle:
+    "A single-day curated convergence uncovering the hidden connections that quietly shape our lives, our technology, and our collective tomorrow.",
+  speakerCountNote: "6 Visionary Speakers",
+  calendarDateISO: "2026-11-14",
+};
+
+// ---------------------------------------------------------------------------
+// 3. SESSION BLOCKS OVERVIEW
+// ---------------------------------------------------------------------------
 export const sessionBlocks: SessionBlockOverview[] = [
   {
     id: "morning",
-    name: "Session 1: Awakening & Foundations",
+    name: "Session 1: The Spark & Foundations",
+    threadChapter: "Thread I · Personal Catalysts",
     timeRange: "09:00 AM – 12:15 PM",
-    tagline: "Registration, inaugural addresses, and the first block of keynote talks.",
+    tagline: "Arrival, ceremonial welcome, and the first wave of talks on the quiet forces that shape human potential.",
   },
   {
     id: "intermission",
-    name: "Midday Intermission & Social",
+    name: "Midday Confluence & Social",
+    threadChapter: "Thread II · Communal Exchange",
     timeRange: "12:15 PM – 01:45 PM",
-    tagline: "Curated networking lunch, interactive student exhibits, and outdoor dialogue.",
+    tagline: "Curated networking lunch, interactive idea installations, and dialogue across disciplines.",
   },
   {
     id: "afternoon",
-    name: "Session 2: Horizons & Human Potential",
+    name: "Session 2: Resonance & Expanding Ripples",
+    threadChapter: "Thread III · Societal & Technological Webs",
     timeRange: "01:45 PM – 03:45 PM",
-    tagline: "Live performance, second block of keynote talks, and forward-looking ideas.",
+    tagline: "Artistic interlude, second wave of talks investigating ambient systems, cultural memory, and cosmic scales.",
   },
   {
     id: "evening",
     name: "Concluding Ceremony & High Tea",
+    threadChapter: "Thread IV · The Tapestry",
     timeRange: "03:45 PM – 05:30 PM",
-    tagline: "Valedictory address, speaker felicitation, and post-conference mixer.",
+    tagline: "Valedictory reflections, speaker felicitations, and an open sundowner mixer on the campus lawns.",
   },
 ];
 
 // ---------------------------------------------------------------------------
-// 3. SINGLE-DAY SCHEDULE TIMELINE (Edit your timings & talks here)
+// 4. TIMELINE SCHEDULE ITEMS
 // ---------------------------------------------------------------------------
 export const scheduleTimeline: ScheduleItem[] = [
-  // --- MORNING: REGISTRATION & OPENING ---
+  // --- MORNING ---
   {
     id: "item-01",
     time: "09:00 AM",
     endTime: "10:00 AM",
     sessionBlock: "morning",
     sessionLabel: "Arrival & Check-in",
-    title: "Registration Opens & Morning Brew",
-    description: "Badge pick-up, attendee kit collection, and freshly brewed South Indian filter coffee with ambient soundscapes in the foyer.",
+    title: "Registration Opens & Filter Coffee Morning",
+    description: "Badge collection, attendee kit distribution, and freshly brewed South Indian filter coffee accompanied by ambient acoustic soundscapes in the auditorium foyer.",
     location: "Auditorium Main Concourse",
     type: "registration",
     duration: "60 min",
@@ -140,13 +178,13 @@ export const scheduleTimeline: ScheduleItem[] = [
     endTime: "10:20 AM",
     sessionBlock: "morning",
     sessionLabel: "Inauguration",
-    title: "Curatorial Welcome & Theme Reveal",
-    description: "Lighting of the lamp, curatorial prologue introducing the 2026 theme, and opening remarks by the organizing team.",
+    title: "Curatorial Prologue: Weaving Invisible Threads",
+    description: "Lighting of the lamp, ceremonial opening remarks, and an evocative prologue introducing the 2026 theme — exploring how unseen relationships hold our world together.",
     location: "Main Auditorium Stage",
     type: "ceremony",
     duration: "20 min",
     isSpeakerTalk: false,
-    topicTag: "Inaugural",
+    topicTag: "Theme Reveal",
   },
 
   // --- SPEAKER TALK 1 ---
@@ -156,12 +194,12 @@ export const scheduleTimeline: ScheduleItem[] = [
     endTime: "10:40 AM",
     sessionBlock: "morning",
     sessionLabel: "Session 1: Morning Talks",
-    title: "Speaker Talk 01",
+    title: "Keynote Talk 01",
     speakerNumber: 1,
-    speakerName: "Speaker 1 (To Be Announced)",
+    speakerName: "Speaker 1",
     speakerRole: "DeepTech Pioneer & Systems Architect",
-    talkTitle: "The Architecture of Invisible Intelligence",
-    description: "An inquiry into how ambient computation and decentralized systems are quietly rewiring the foundations of human cities.",
+    talkTitle: "The Invisible Architecture of Ambient Intelligence",
+    description: "An inquiry into how decentralized networks, ambient computation, and subtle data streams are quietly rewriting the fabric of human cities without our conscious realization.",
     location: "Main Auditorium Stage",
     type: "talk",
     duration: "18 min",
@@ -176,12 +214,12 @@ export const scheduleTimeline: ScheduleItem[] = [
     endTime: "11:05 AM",
     sessionBlock: "morning",
     sessionLabel: "Session 1: Morning Talks",
-    title: "Speaker Talk 02",
+    title: "Keynote Talk 02",
     speakerNumber: 2,
-    speakerName: "Speaker 2 (To Be Announced)",
-    speakerRole: "Environmental Biologist & Climate Strategist",
-    talkTitle: "Regenerating What We Took For Granted",
-    description: "Translating biological feedback loops into scalable solutions for ecological resilience and modern biodiversity crises.",
+    speakerName: "Speaker 2",
+    speakerRole: "Ecological Biologist & Climate Strategist",
+    talkTitle: "Nature's Original Web: The Mycelial Lesson",
+    description: "How ancient fungal networks beneath forest floors mirror human sociological networks — and why understanding symbiotic resource-sharing can resolve modern climate paralysis.",
     location: "Main Auditorium Stage",
     type: "talk",
     duration: "18 min",
@@ -196,12 +234,12 @@ export const scheduleTimeline: ScheduleItem[] = [
     endTime: "11:30 AM",
     sessionBlock: "morning",
     sessionLabel: "Session 1: Morning Talks",
-    title: "Speaker Talk 03",
+    title: "Keynote Talk 03",
     speakerNumber: 3,
-    speakerName: "Speaker 3 (To Be Announced)",
-    speakerRole: "Cultural Anthropologist & Author",
-    talkTitle: "Oral Histories in an Age of Instant Oblivion",
-    description: "Why forgotten folk wisdom and indigenous storytelling might hold the key to navigating contemporary mental fractures.",
+    speakerName: "Speaker 3",
+    speakerRole: "Cultural Anthropologist & Storyteller",
+    talkTitle: "Oral Threads: Preserving Wisdom in an Age of Oblivion",
+    description: "Why the fleeting words of our elders and centuries-old oral narratives provide the psychological ballast modern civilization desperately needs amidst algorithmic noise.",
     location: "Main Auditorium Stage",
     type: "talk",
     duration: "18 min",
@@ -209,49 +247,50 @@ export const scheduleTimeline: ScheduleItem[] = [
     topicTag: "Culture & Humanity",
   },
 
-  // --- MORNING REFRESHMENT INTERMISSION ---
+  // --- MORNING INTERMISSION ---
   {
     id: "item-06",
     time: "11:30 AM",
     endTime: "12:15 PM",
     sessionBlock: "morning",
     sessionLabel: "Intermission",
-    title: "Interactive Pavilion & Tea Intermission",
-    description: "Explore student robotics showcases, experiential art installations, and artisanal teas in the shaded outdoor courtyard.",
-    location: "Exhibition Foyer & Courtyard",
+    title: "Interactive Pavilion & Artisanal Tea Break",
+    description: "Explore student robotics prototypes, kinetic thread art installations, and artisanal teas in the sunlit open-air courtyard.",
+    location: "Exhibition Courtyard & Lawn",
     type: "break",
     duration: "45 min",
     isSpeakerTalk: false,
     topicTag: "Exhibition",
   },
 
-  // --- COMMUNITY NETWORKING LUNCH ---
+  // --- LUNCH ---
   {
     id: "item-07",
     time: "12:15 PM",
     endTime: "01:45 PM",
     sessionBlock: "intermission",
-    sessionLabel: "Midday Break",
-    title: "Curated Networking Lunch & Marketplace",
-    description: "Buffet lunch served in the shaded dining lawn. Engage in informal discussions with speakers, faculty, and fellow attendees.",
-    location: "Dining Pavilion & Lawns",
+    sessionLabel: "Midday Confluence",
+    title: "Curated Networking Lunch & Lawn Exchange",
+    description: "A farm-to-table lunch served on the shaded university lawns. Unscripted conversations, meeting fellow attendees, and connecting directly with morning speakers.",
+    location: "Dining Pavilion & Gardens",
     type: "lunch",
     duration: "90 min",
     isSpeakerTalk: false,
     topicTag: "Lunch & Social",
   },
 
-  // --- PERFORMANCE INTERLUDE ---
+  // --- PERFORMANCE ---
   {
     id: "item-08",
     time: "01:45 PM",
     endTime: "02:05 PM",
     sessionBlock: "afternoon",
     sessionLabel: "Session 2: Afternoon Talks",
-    title: "Live Artistic & Musical Interlude",
-    speakerName: "Student Arts Collective",
-    speakerRole: "Classical-Contemporary Fusion Ensemble",
-    description: "A rhythmic performance blending traditional percussion with contemporary electronic modular soundscapes.",
+    title: "Artistic Interlude: Resonance in Fret & Wire",
+    speakerName: "Contemporary Fusion Collective",
+    speakerRole: "Experimental Instrumentalist Duo",
+    talkTitle: "Acoustic Convergence",
+    description: "A captivating musical piece embodying the 'Invisible Threads' theme through live sitar, cello, and responsive modular synthesizer tones.",
     location: "Main Auditorium Stage",
     type: "performance",
     duration: "20 min",
@@ -266,12 +305,12 @@ export const scheduleTimeline: ScheduleItem[] = [
     endTime: "02:25 PM",
     sessionBlock: "afternoon",
     sessionLabel: "Session 2: Afternoon Talks",
-    title: "Speaker Talk 04",
+    title: "Keynote Talk 04",
     speakerNumber: 4,
-    speakerName: "Speaker 4 (To Be Announced)",
+    speakerName: "Speaker 4",
     speakerRole: "Aerospace Engineer & Satellite Designer",
-    talkTitle: "The Democratization of Orbital Space",
-    description: "How ultra-compact satellites and low-cost launch vehicles are transforming climate telemetry and telecommunications.",
+    talkTitle: "Constellations Above: Connecting Earth from Orbit",
+    description: "How ultra-compact orbital satellites form an unseen protective mesh around Earth, monitoring micro-climate shifts and connecting remote communities.",
     location: "Main Auditorium Stage",
     type: "talk",
     duration: "18 min",
@@ -286,12 +325,12 @@ export const scheduleTimeline: ScheduleItem[] = [
     endTime: "02:50 PM",
     sessionBlock: "afternoon",
     sessionLabel: "Session 2: Afternoon Talks",
-    title: "Speaker Talk 05",
+    title: "Keynote Talk 05",
     speakerNumber: 5,
-    speakerName: "Speaker 5 (To Be Announced)",
-    speakerRole: "Behavioral Economist & Policy Adviser",
-    talkTitle: "The Currencies We Don't Measure",
-    description: "Rethinking GDP, community trust, and subjective well-being through economic experiments in emerging economies.",
+    speakerName: "Speaker 5",
+    speakerRole: "Behavioral Economist & Social Theorist",
+    talkTitle: "The Currency of Unspoken Trust",
+    description: "An empirical look at why informal social networks, handshake agreements, and communal reciprocity power economies far more robustly than fiat contracts.",
     location: "Main Auditorium Stage",
     type: "talk",
     duration: "18 min",
@@ -306,49 +345,49 @@ export const scheduleTimeline: ScheduleItem[] = [
     endTime: "03:15 PM",
     sessionBlock: "afternoon",
     sessionLabel: "Session 2: Afternoon Talks",
-    title: "Speaker Talk 06",
+    title: "Keynote Talk 06",
     speakerNumber: 6,
-    speakerName: "Speaker 6 (To Be Announced)",
-    speakerRole: "Industrial Designer & Accessibility Advocate",
-    talkTitle: "Designing for the Extremes",
-    description: "When you build for people on the cognitive and physical margins, you inadvertently invent the future for everyone.",
+    speakerName: "Speaker 6",
+    speakerRole: "Universal Designer & Accessibility Pioneer",
+    talkTitle: "Designing at the Margins to Weave the Center",
+    description: "Why designing for extreme human constraints always leads to breakthroughs that benefit the entire human species — from the curb-cut effect to modern voice interfaces.",
     location: "Main Auditorium Stage",
     type: "talk",
     duration: "18 min",
     isSpeakerTalk: true,
-    topicTag: "Design & Inclusion",
+    topicTag: "Design",
   },
 
-  // --- AFTERNOON COFFEE & WRAP-UP ---
+  // --- AFTERNOON TEA ---
   {
     id: "item-12",
     time: "03:15 PM",
     endTime: "03:45 PM",
     sessionBlock: "afternoon",
     sessionLabel: "Intermission",
-    title: "Afternoon Coffee & Idea Wall",
-    description: "Snacks, pour-over coffee, and interactive prompt walls where attendees contribute their personal takeaways.",
+    title: "Afternoon Chai & Collaborative Thread Wall",
+    description: "Warm chai, snacks, and a large physical tapestry where every attendee ties a colored thread representing an idea, person, or moment that changed their life.",
     location: "Auditorium Concourse",
     type: "break",
     duration: "30 min",
     isSpeakerTalk: false,
-    topicTag: "Coffee Break",
+    topicTag: "Interactive Wall",
   },
 
-  // --- VALEDICTORY & WRAP UP ---
+  // --- CLOSING CEREMONY ---
   {
     id: "item-13",
     time: "03:45 PM",
     endTime: "04:30 PM",
     sessionBlock: "evening",
-    sessionLabel: "Closing",
-    title: "Valedictory Address, Felicitation & Group Photo",
-    description: "Honoring our speakers and partners, volunteer recognition, final curatorial reflections, and the official 2026 delegation photograph.",
+    sessionLabel: "Finale",
+    title: "Valedictory Reflections, Felicitations & Delegation Photo",
+    description: "Curatorial closing address, honoring speakers and team members, and the official 12th Edition delegation group photograph on the stage steps.",
     location: "Main Auditorium Stage",
     type: "ceremony",
     duration: "45 min",
     isSpeakerTalk: false,
-    topicTag: "Finale",
+    topicTag: "Ceremony",
   },
 
   // --- NETWORKING MIXER ---
@@ -357,21 +396,19 @@ export const scheduleTimeline: ScheduleItem[] = [
     time: "04:30 PM",
     endTime: "05:30 PM",
     sessionBlock: "evening",
-    sessionLabel: "Social Mixer",
-    title: "High Tea & Concluding Networking Mixer",
-    description: "Evening tea, light bites, music, and freeform conversation with organizers, attendees, and speakers.",
-    location: "Campus Guest House Lawn",
+    sessionLabel: "Sundowner",
+    title: "High Tea Sundowner & Post-Event Mixer",
+    description: "Evening refreshments, dessert tables, live ambient music, and open-ended networking under the campus twilight sky.",
+    location: "Guest House Lawns",
     type: "networking",
     duration: "60 min",
     isSpeakerTalk: false,
-    topicTag: "Networking",
+    topicTag: "Sundowner",
   },
 ];
 
-// Helper export: count of keynote speakers
 export const totalSpeakerCount = scheduleTimeline.filter((i) => i.isSpeakerTalk).length;
 
-// Backwards-compatibility alias in case another component references scheduleDays
 export const scheduleDays = [
   {
     id: "day-1",

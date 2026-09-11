@@ -59,7 +59,7 @@ export default function Navbar() {
               <li key={link.href} className="relative group py-2">
                 <Link 
                   href={link.href}
-                  className={`text-[11px] font-bold tracking-[0.2em] uppercase transition-colors duration-300 ${
+                  className={`text-[11px] font-bold tracking-[0.2em] uppercase transition-colors duration-300 outline-none focus:outline-none focus-visible:outline-none ring-0 select-none ${
                     isActive 
                       ? (isDarkHero ? "text-white" : "text-black") 
                       : `text-zinc-500 ${isDarkHero ? "hover:text-white" : "hover:text-black"}`
@@ -70,12 +70,12 @@ export default function Navbar() {
                 {isActive && (
                   <motion.div 
                     layoutId="navbar-indicator"
-                    className="absolute bottom-0 left-0 w-full h-[2px] bg-[#eb0028]"
+                    className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#eb0028]"
                     transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   />
                 )}
                 {!isActive && (
-                  <div className={`absolute bottom-0 left-0 w-0 h-[2px] ${isDarkHero ? "bg-white/30" : "bg-black/20"} group-hover:w-full transition-all duration-300`}></div>
+                  <div className={`absolute bottom-0 left-0 w-0 h-[1.5px] ${isDarkHero ? "bg-white/30" : "bg-black/20"} group-hover:w-full transition-all duration-300`}></div>
                 )}
               </li>
             );
