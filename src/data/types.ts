@@ -53,3 +53,17 @@ export interface FaqCategory {
   categoryName: string;
   items: FaqItem[];
 }
+
+export interface PassTier {
+  id: string;
+  name: string;
+  badge: string;
+  targetAudience: string;
+  description: string;
+  price: string;
+  eligibility: string;
+  benefits: string[];
+  available: boolean;
+  highlight?: boolean;
+  registrationUrl?: string;
+}

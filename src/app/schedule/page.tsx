@@ -10,6 +10,7 @@ import {
   themeStory,
   ScheduleItem,
 } from "@/data/schedule";
+import InvisibleThreadsCanvas from "@/components/schedule/InvisibleThreadsCanvas";
 import {
   Clock,
   Calendar,
@@ -142,11 +143,14 @@ export default function SchedulePage() {
             </span>
           </div>
 
-          {/* Headline */}
-          <h1 className="text-6xl sm:text-7xl md:text-[130px] font-bold tracking-tighter leading-[0.85] mb-8">
-            Invisible <br />
-            <span className="italic font-serif font-light text-zinc-400">threads.</span>
-          </h1>
+          {/* Headline with localized Invisible Threads animation flowing into the right space */}
+          <div className="relative mb-8 w-full min-h-[220px] sm:min-h-[260px] md:min-h-[320px] flex items-center">
+            <InvisibleThreadsCanvas />
+            <h1 className="relative z-10 text-6xl sm:text-7xl md:text-[130px] font-bold tracking-tighter leading-[0.85] pointer-events-auto select-none">
+              Invisible <br />
+              <span className="italic font-serif font-light text-zinc-400">threads.</span>
+            </h1>
+          </div>
 
           {/* Subtitle & Actions Bar */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 mt-12">

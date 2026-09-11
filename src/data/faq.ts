@@ -13,6 +13,11 @@ export const faqData: FaqCategory[] = [
     categoryName: "Ticketing & Registration",
     items: [
       {
+        question: "What are the different pass tiers available?",
+        answer:
+          "TEDx BITS Hyderabad 2026 offers three designated pass tiers: (1) School Student Pass (for high school students in Grades 9–12 with valid school ID), (2) BITSian Pass (exclusive to on-campus BPHC students, faculty, and staff), and (3) External Guest Pass (for university delegates from other institutions, working professionals, founders, and general attendees).",
+      },
+      {
         question: "How do I purchase tickets for TEDx BPHC 2026?",
         answer:
           "Tickets are available online through our official registration portal. Registrations open in phases with priority access for university students and faculty, followed by general public registration.",
