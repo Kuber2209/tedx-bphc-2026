@@ -31,6 +31,7 @@ interface FAQItem {
   highlight?: boolean;
 }
 
+// ... FAQ_DATA ...
 const FAQ_DATA: FAQItem[] = [
   // ── THEME & CONCEPT ──
   {
@@ -178,7 +179,9 @@ export default function FAQPage() {
   }, [activeCategory, searchQuery]);
 
   return (
-    <div className="min-h-screen bg-white text-black selection:bg-[#eb0028] selection:text-white pb-32 font-sans">
+    <div className="min-h-screen bg-transparent text-black selection:bg-[#E62B1E] selection:text-neutral-900 pb-32 font-sans relative overflow-hidden">
+
+      <div className="relative z-10">
       {/* =========================================================================
           1. EDITORIAL HERO
           ========================================================================= */}
@@ -199,7 +202,7 @@ export default function FAQPage() {
           {/* Headline */}
           <h1 className="text-6xl sm:text-7xl md:text-[130px] font-bold tracking-tighter leading-[0.85] mb-8">
             Unraveling the <br />
-            <span className="italic font-serif font-light text-zinc-400">threads.</span>
+            <span className="italic font-serif font-light text-zinc-500">threads.</span>
           </h1>
 
           {/* Subtitle & Search */}
@@ -210,7 +213,7 @@ export default function FAQPage() {
 
             {/* Quick Live Search Bar */}
             <div className="w-full lg:w-96 relative">
-              <Search className="h-4 w-4 text-zinc-400 absolute left-4 top-1/2 -translate-y-1/2" />
+              <Search className="h-4 w-4 text-zinc-500 absolute left-4 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={searchQuery}
@@ -222,7 +225,7 @@ export default function FAQPage() {
                 <button
                   type="button"
                   onClick={() => setSearchQuery("")}
-                  className="cursor-pointer text-xs font-mono text-zinc-400 hover:text-black absolute right-4 top-1/2 -translate-y-1/2"
+                  className="cursor-pointer text-xs font-mono text-zinc-500 hover:text-black absolute right-4 top-1/2 -translate-y-1/2"
                 >
                   Clear
                 </button>
@@ -248,11 +251,11 @@ export default function FAQPage() {
                 onClick={() => setActiveCategory(cat.id)}
                 className={`cursor-pointer inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-mono uppercase tracking-wider transition-all ${
                   isSelected
-                    ? "bg-black text-white font-bold shadow-xs"
+                    ? "bg-white text-neutral-900 font-bold shadow-xs"
                     : "border border-black/5 bg-zinc-50 text-zinc-600 hover:border-black/20 hover:bg-white hover:text-black"
                 }`}
               >
-                <Icon className={`h-3.5 w-3.5 ${isSelected ? "text-[#eb0028]" : "text-zinc-400"}`} />
+                <Icon className={`h-3.5 w-3.5 ${isSelected ? "text-[#eb0028]" : "text-zinc-500"}`} />
                 <span>{cat.label}</span>
               </button>
             );
@@ -266,7 +269,7 @@ export default function FAQPage() {
       <main className="max-w-[1200px] mx-auto px-6 md:px-12 pt-16">
         {filteredFAQs.length === 0 ? (
           <div className="py-24 text-center border border-dashed border-black/10 rounded-2xl p-12">
-            <HelpCircle className="h-10 w-10 text-zinc-300 mx-auto mb-4" />
+            <HelpCircle className="h-10 w-10 text-zinc-600 mx-auto mb-4" />
             <h3 className="text-xl font-bold tracking-tight text-black mb-2">No matching questions found</h3>
             <p className="text-sm font-light text-zinc-500 mb-6">
               We couldn’t find any questions matching &ldquo;{searchQuery}&rdquo;. Try another term or browse all categories.
@@ -277,7 +280,7 @@ export default function FAQPage() {
                 setSearchQuery("");
                 setActiveCategory("all");
               }}
-              className="cursor-pointer inline-flex items-center gap-2 rounded-full bg-black text-white px-5 py-2 text-xs font-bold uppercase tracking-wider hover:bg-[#eb0028] transition-colors"
+              className="cursor-pointer inline-flex items-center gap-2 rounded-full bg-white text-neutral-900 px-5 py-2 text-xs font-bold uppercase tracking-wider hover:bg-[#eb0028] transition-colors"
             >
               Reset Filters
             </button>
@@ -303,7 +306,7 @@ export default function FAQPage() {
                     <AccordionTrigger className="flex w-full items-start justify-between gap-4 p-6 sm:p-8 text-left hover:no-underline cursor-pointer select-none [&_[data-slot=accordion-trigger-icon]]:!hidden">
                       <div className="flex items-start gap-4 sm:gap-6 min-w-0 flex-1">
                         {/* Numeral */}
-                        <span className="w-7 shrink-0 font-mono text-xs font-bold tabular-nums tracking-widest text-zinc-400 group-hover:text-zinc-700 group-data-[state=open]:text-[#eb0028] transition-colors pt-0.5">
+                        <span className="w-7 shrink-0 font-mono text-xs font-bold tabular-nums tracking-widest text-zinc-500 group-hover:text-zinc-700 group-data-[state=open]:text-[#eb0028] transition-colors pt-0.5">
                           {num}
                         </span>
 
@@ -373,7 +376,7 @@ export default function FAQPage() {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0 w-full sm:w-auto">
             <a
               href="mailto:tedx@hyderabad.bits-pilani.ac.in?subject=TEDx%20BITS%20Hyderabad%202026%20Inquiry"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-black text-white px-6 py-3.5 text-xs font-bold uppercase tracking-[0.15em] transition-all hover:bg-[#eb0028]"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-neutral-900 px-6 py-3.5 text-xs font-bold uppercase tracking-[0.15em] transition-all hover:bg-[#eb0028]"
             >
               <Mail className="h-3.5 w-3.5" />
               <span>Email the Team</span>
@@ -388,6 +391,7 @@ export default function FAQPage() {
           </div>
         </div>
       </section>
+      </div>
     </div>
   );
 }

@@ -12,9 +12,9 @@ export function Badge({
 }: BadgeProps) {
   const variantClasses = {
     default: "border-transparent bg-primary text-primary-foreground hover:bg-primary/90",
-    secondary: "border-transparent bg-zinc-800 text-zinc-300 hover:bg-zinc-700",
-    outline: "border border-zinc-800 text-zinc-300",
-    destructive: "border-transparent bg-red-600 text-white",
+    secondary: "border-transparent bg-zinc-800 text-zinc-600 hover:bg-zinc-700",
+    outline: "border border-zinc-200 text-zinc-600",
+    destructive: "border-transparent bg-red-600 text-neutral-900",
   };
 
   return (

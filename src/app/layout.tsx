@@ -3,6 +3,7 @@ import { Inter, Outfit } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import IntroGate from "@/components/layout/IntroGate";
+import GlobalBackground from "@/components/backgrounds/GlobalBackground";
 
 import "./globals.css";
 
@@ -19,10 +20,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
-      <body className="font-sans antialiased bg-black text-white selection:bg-[#eb0028] selection:text-white">
-        <div className="global-ferrofluid" aria-hidden="true"><i /><i /><i /><i /></div>
+      <body className="font-sans antialiased bg-transparent text-[#050505] selection:bg-[#E62B1E] selection:text-neutral-900 min-h-screen">
+        <GlobalBackground />
         <Navbar />
-        <IntroGate><main className="pb-16">{children}</main><Footer /></IntroGate>
+        <IntroGate><main className="pb-16 relative z-0">{children}</main><Footer /></IntroGate>
       </body>
     </html>
   );

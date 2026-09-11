@@ -3,6 +3,7 @@ import Link from "next/link";
 import { passTiers, passGuidelines } from "@/data/passes";
 import BlurText from "@/components/reactbits/BlurText";
 import BorderGlow from "@/components/reactbits/BorderGlow";
+import FaultyTerminal from "@/components/reactbits/FaultyTerminal";
 import {
   GraduationCap,
   Building2,
@@ -35,35 +36,23 @@ const getPassIcon = (id: string) => {
 
 export default function PassesPage() {
   return (
-    <div className="bg-white text-black min-h-screen font-sans selection:bg-[#eb0028] selection:text-white pb-32">
+    <div className="bg-transparent text-black min-h-screen font-sans selection:bg-[#E62B1E] selection:text-neutral-900 pb-32 relative">
+      <div className="absolute inset-0 z-0 h-full w-full overflow-hidden pointer-events-none">
+         <FaultyTerminal
+           lightMode={true}
+           tint="#eb0028"
+           brightness={1.2}
+           mouseReact={false}
+         />
+      </div>
+
+      <div className="relative z-10">
       {/* 1. Header Section */}
-      <section className="relative pt-48 pb-24 px-6 md:px-12 border-b border-red-500/15 overflow-hidden bg-gradient-to-b from-[#fff5f5] via-[#fff9f9] to-white">
-        {/* Atmospheric TEDx Red Ambient Glow */}
-        <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[540px] bg-[radial-gradient(ellipse_at_center,_rgba(235,0,40,0.09)_0%,_transparent_70%)] pointer-events-none blur-3xl -z-10"
-          aria-hidden="true"
-        />
-
-        {/* Iconic TED Red Dot Stage Ring Accents */}
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] sm:w-[480px] sm:h-[480px] rounded-full border border-[#eb0028]/15 bg-[radial-gradient(circle,_rgba(235,0,40,0.05)_0%,_transparent_75%)] pointer-events-none -z-10"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[560px] sm:w-[720px] sm:h-[720px] rounded-full border border-[#eb0028]/5 pointer-events-none -z-10"
-          aria-hidden="true"
-        />
-
-        {/* Subtle TED Red Grid Micro-pattern */}
-        <div
-          className="absolute inset-0 bg-[radial-gradient(rgba(235,0,40,0.05)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-70 -z-10"
-          aria-hidden="true"
-        />
-
+      <section className="relative pt-48 pb-24 px-6 md:px-12 border-b border-black/5 overflow-hidden">
         <div className="max-w-[1200px] mx-auto text-center relative z-10 flex flex-col items-center">
           <div className="inline-flex items-center gap-2 mb-6 px-3.5 py-1 rounded-full bg-red-50 border border-red-200/60 shadow-xs">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#eb0028] animate-pulse"></span>
-            <p className="text-[#eb0028] font-sans text-[11px] tracking-[0.2em] uppercase font-bold text-center">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#E62B1E] animate-pulse"></span>
+            <p className="text-[#E62B1E] font-sans text-[11px] tracking-[0.2em] uppercase font-bold text-center">
               Conference Registration · 2026
             </p>
           </div>
@@ -77,8 +66,8 @@ export default function PassesPage() {
             direction="top"
             className="text-6xl sm:text-7xl md:text-8xl lg:text-[96px] font-bold tracking-tighter mb-8 text-black leading-[0.9] text-center"
             highlightWords={{
-              room: "font-serif italic font-light text-[#eb0028]",
-              "room.": "font-serif italic font-light text-[#eb0028]",
+              room: "font-serif italic font-light text-[#eb0028] drop-shadow-[0_0_20px_rgba(235,0,40,0.8)]",
+              "room.": "font-serif italic font-light text-[#eb0028] drop-shadow-[0_0_20px_rgba(235,0,40,0.8)]",
             }}
           />
 
@@ -124,8 +113,8 @@ export default function PassesPage() {
                 <div
                   className={`group relative overflow-hidden flex flex-col justify-between p-8 sm:p-10 rounded-2xl transition-all duration-500 w-full h-full ${
                     pass.highlight
-                      ? "bg-zinc-50/95 border border-black/15 shadow-xl"
-                      : "bg-white border border-black/10 hover:shadow-lg"
+                      ? "bg-black border border-white/15 shadow-xl"
+                      : "bg-black border border-white/10 hover:shadow-lg hover:shadow-white/5"
                   }`}
                 >
                   {/* Accent top line */}
@@ -141,13 +130,13 @@ export default function PassesPage() {
                   <div>
                     {/* Category Pill & Highlight Indicator */}
                     <div className="flex items-center justify-between gap-2 mb-6">
-                      <span className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-zinc-700">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-zinc-300">
                         {getPassIcon(pass.id)}
                         <span>{pass.badge}</span>
                       </span>
 
                       {pass.highlight && (
-                        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#eb0028] px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-white shadow-xs">
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#eb0028] px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-900 shadow-xs">
                           Campus Exclusive
                         </span>
                       )}
@@ -155,28 +144,28 @@ export default function PassesPage() {
 
                     {/* Pass Name & Target Audience (Clean Static) */}
                     <div className="mb-6">
-                      <h3 className="text-3xl sm:text-4xl font-bold tracking-tight text-black mb-2 group-hover:text-[#eb0028] transition-colors">
+                      <h3 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#eb0028] mb-2 transition-colors">
                         {pass.name}
                       </h3>
-                      <p className="font-serif italic text-base text-zinc-500">
+                      <p className="font-serif italic text-base text-zinc-400">
                         {pass.targetAudience}
                       </p>
                     </div>
 
                     {/* Description (Clean Static) */}
-                    <p className="text-sm font-light text-zinc-600 leading-relaxed mb-8">
+                    <p className="text-sm font-light text-zinc-300 leading-relaxed mb-8">
                       {pass.description}
                     </p>
 
                     {/* Eligibility Verification Callout */}
-                    <div className="rounded-xl bg-zinc-100/80 border border-black/5 p-4 mb-8">
+                    <div className="rounded-xl bg-zinc-900/80 border border-white/5 p-4 mb-8">
                       <div className="flex items-center gap-2 mb-1.5">
                         <ShieldCheck className="h-4 w-4 text-[#eb0028] shrink-0" />
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-black">
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-white">
                           Verification Required
                         </span>
                       </div>
-                      <p className="text-xs text-zinc-600 font-light leading-relaxed">
+                      <p className="text-xs text-zinc-400 font-light leading-relaxed">
                         {pass.eligibility}
                       </p>
                     </div>
@@ -186,7 +175,7 @@ export default function PassesPage() {
                       <p className="text-[#eb0028] font-mono text-[10px] tracking-[0.2em] uppercase font-bold">
                         Inclusions & Privileges
                       </p>
-                      <ul className="space-y-3.5 text-sm text-zinc-600 font-light">
+                      <ul className="space-y-3.5 text-sm text-zinc-300 font-light">
                         {pass.benefits.map((benefit, i) => (
                           <li key={i} className="flex items-start gap-3">
                             <span className="text-[#eb0028] font-bold mt-0.5 shrink-0">—</span>
@@ -198,17 +187,17 @@ export default function PassesPage() {
                   </div>
 
                   {/* Bottom Price & CTA Area */}
-                  <div className="pt-8 border-t border-black/10 mt-auto">
+                  <div className="pt-8 border-t border-white/10 mt-auto">
                     <div className="flex items-baseline justify-between gap-4 mb-6">
                       <div>
                         <p className="text-zinc-500 font-mono text-[10px] tracking-[0.2em] uppercase mb-1">
                           Delegate Fee
                         </p>
-                        <p className="text-3xl font-serif italic text-black font-light">
+                        <p className="text-3xl font-serif italic text-white font-light">
                           {pass.price}
                         </p>
                       </div>
-                      <span className="text-[11px] font-mono text-zinc-400">
+                      <span className="text-[11px] font-mono text-zinc-500">
                         Phase 1 Opening Soon
                       </span>
                     </div>
@@ -217,8 +206,8 @@ export default function PassesPage() {
                       href={pass.available ? pass.registrationUrl || "/schedule" : "#"}
                       className={`w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-bold tracking-[0.2em] uppercase rounded-full transition-all duration-300 ${
                         pass.available
-                          ? "bg-black text-white hover:bg-[#eb0028] hover:shadow-lg"
-                          : "bg-zinc-100 text-zinc-400 border border-zinc-200 cursor-not-allowed hover:bg-zinc-150"
+                          ? "bg-white text-neutral-900 hover:bg-[#eb0028] hover:text-white hover:shadow-lg"
+                          : "bg-zinc-800 text-zinc-500 border border-zinc-700 cursor-not-allowed hover:bg-zinc-800"
                       }`}
                     >
                       <span>{pass.available ? "Register Pass" : "Coming Soon"}</span>
@@ -245,14 +234,14 @@ export default function PassesPage() {
               {passGuidelines.map((item, idx) => (
                 <div
                   key={idx}
-                  className="p-8 rounded-2xl bg-zinc-50/80 border border-black/5 flex flex-col justify-between"
+                  className="p-8 rounded-2xl bg-black border border-white/10 flex flex-col justify-between"
                 >
                   <div>
                     <span className="font-mono text-xs text-[#eb0028] font-bold block mb-3">
                       0{idx + 1}
                     </span>
-                    <h4 className="text-lg font-bold text-black mb-2">{item.title}</h4>
-                    <p className="text-sm font-light text-zinc-600 leading-relaxed">
+                    <h4 className="text-lg font-bold text-[#eb0028] mb-2">{item.title}</h4>
+                    <p className="text-sm font-light text-zinc-300 leading-relaxed">
                       {item.description}
                     </p>
                   </div>
@@ -262,7 +251,7 @@ export default function PassesPage() {
           </div>
 
           {/* 4. Delegation & School Bookings Callout Banner (Clean Static) */}
-          <div className="mt-16 p-8 md:p-12 rounded-2xl border border-black/10 bg-zinc-50 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div className="mt-16 p-8 md:p-12 rounded-2xl border border-white/10 bg-black flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             <div className="max-w-2xl">
               <div className="flex items-center gap-2 text-[#eb0028] mb-3">
                 <Users className="h-4 w-4" />
@@ -270,10 +259,10 @@ export default function PassesPage() {
                   Delegation Desk
                 </span>
               </div>
-              <h4 className="text-2xl sm:text-3xl font-bold tracking-tight text-black mb-3">
+              <h4 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#eb0028] mb-3">
                 School Contingents & Institutional Delegations
               </h4>
-              <p className="text-sm md:text-base font-light text-zinc-600 leading-relaxed">
+              <p className="text-sm md:text-base font-light text-zinc-300 leading-relaxed">
                 If you represent a high school, junior college, or academic organization bringing
                 a group of 10 or more delegates, our team facilitates coordinated ticketing, seating,
                 and bus transit clearance.
@@ -283,7 +272,7 @@ export default function PassesPage() {
             <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0 w-full md:w-auto">
               <a
                 href="mailto:tedx@hyderabad.bits-pilani.ac.in?subject=School%20or%20Group%20Delegation%20Inquiry%20-%20TEDx%20BITS%20Hyderabad%202026"
-                className="w-full sm:w-auto text-center inline-flex items-center justify-center gap-2 rounded-full bg-black text-white px-8 py-4 text-xs font-bold uppercase tracking-[0.15em] hover:bg-[#eb0028] transition-colors duration-300"
+                className="w-full sm:w-auto text-center inline-flex items-center justify-center gap-2 rounded-full bg-[#eb0028] text-white px-8 py-4 text-xs font-bold uppercase tracking-[0.15em] hover:bg-white hover:text-black transition-colors duration-300"
               >
                 <span>Request Delegation Access</span>
                 <ArrowUpRight className="h-4 w-4" />
@@ -313,6 +302,7 @@ export default function PassesPage() {
           </div>
         </div>
       </section>
+      </div>
     </div>
   );
 }

@@ -42,14 +42,14 @@ export default function Navbar() {
 
   const navClasses = `fixed top-0 w-full z-[150] transition-all duration-500 ease-[0.16,1,0.3,1] px-6 md:px-12 flex items-center justify-between ${
     scrolled
-      ? "py-4 bg-white/90 backdrop-blur-xl border-b border-black/10"
-      : "py-8 bg-transparent border-b border-transparent"
+      ? "py-4 bg-black/90 backdrop-blur-xl border-b border-white/10"
+      : "py-8 bg-black border-b border-transparent"
   }`;
 
   return (
     <>
       <nav className={navClasses}>
-        <TedxLogo href="/" className="h-6 md:h-7 w-auto relative z-20" priority light={isDarkHero} />
+        <TedxLogo href="/" className="h-6 md:h-7 w-auto relative z-20" priority light={true} />
         
         {/* Desktop Nav */}
         <ul className="hidden md:flex items-center gap-10">
@@ -61,8 +61,8 @@ export default function Navbar() {
                   href={link.href}
                   className={`text-[11px] font-bold tracking-[0.2em] uppercase transition-colors duration-300 outline-none focus:outline-none focus-visible:outline-none ring-0 select-none ${
                     isActive 
-                      ? (isDarkHero ? "text-white" : "text-black") 
-                      : `text-zinc-500 ${isDarkHero ? "hover:text-white" : "hover:text-black"}`
+                      ? "text-white" 
+                      : "text-zinc-400 hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -75,7 +75,7 @@ export default function Navbar() {
                   />
                 )}
                 {!isActive && (
-                  <div className={`absolute bottom-0 left-0 w-0 h-[1.5px] ${isDarkHero ? "bg-white/30" : "bg-black/20"} group-hover:w-full transition-all duration-300`}></div>
+                  <div className={`absolute bottom-0 left-0 w-0 h-[1.5px] bg-white/30 group-hover:w-full transition-all duration-300`}></div>
                 )}
               </li>
             );
@@ -84,13 +84,13 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button 
-          className={`md:hidden relative z-20 p-2 -mr-2 ${isDarkHero ? "text-white" : "text-black"}`}
+          className={`md:hidden relative z-20 p-2 -mr-2 text-white`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           <div className="w-6 h-4 flex flex-col justify-between">
-            <span className={`block w-full h-[1.5px] ${isDarkHero ? "bg-white" : "bg-black"} transition-transform duration-300 ${mobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
-            <span className={`block w-full h-[1.5px] ${isDarkHero ? "bg-white" : "bg-black"} transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`block w-full h-[1.5px] ${isDarkHero ? "bg-white" : "bg-black"} transition-transform duration-300 ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
+            <span className={`block w-full h-[1.5px] bg-white transition-transform duration-300 ${mobileMenuOpen ? 'translate-y-[7px] rotate-45' : ''}`}></span>
+            <span className={`block w-full h-[1.5px] bg-white transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`block w-full h-[1.5px] bg-white transition-transform duration-300 ${mobileMenuOpen ? '-translate-y-[7px] -rotate-45' : ''}`}></span>
           </div>
         </button>
       </nav>
@@ -118,7 +118,7 @@ export default function Navbar() {
                     <Link 
                       href={link.href}
                       className={`text-4xl font-bold tracking-tighter flex items-center gap-4 ${
-                        isActive ? "text-black" : "text-zinc-400"
+                        isActive ? "text-black" : "text-zinc-500"
                       }`}
                     >
                       {isActive && <span className="w-2 h-2 rounded-full bg-[#eb0028]"></span>}

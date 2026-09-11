@@ -108,7 +108,7 @@ export const FilterDisclosure: FC<FilterDisclosureProps> = ({
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="font-mono text-[10px] text-zinc-400 hover:text-white transition-colors"
+                  className="font-mono text-[10px] text-zinc-500 hover:text-white transition-colors"
                 >
                   Close
                 </button>
@@ -157,7 +157,7 @@ export const FilterDisclosure: FC<FilterDisclosureProps> = ({
                           damping: 30,
                         }}
                       >
-                        <BsCheckLg className="h-[10px] w-[10px] text-white" />
+                        <BsCheckLg className="h-[10px] w-[10px] text-neutral-900" />
                       </motion.div>
                     </motion.div>
                   </motion.button>

@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
+import BlurText from "@/components/reactbits/BlurText";
+import Waves from "@/components/reactbits/Waves";
 
 const TRANSIT_TABS = [
   {
@@ -70,8 +72,25 @@ export default function VenueContent() {
   const currentTransit = TRANSIT_TABS.find((t) => t.id === activeTransit) || TRANSIT_TABS[0];
 
   return (
-    <main className="bg-white text-neutral-900 min-h-screen font-sans selection:bg-[#eb0028] selection:text-white pt-32 pb-36">
-      {/* 1. HERO SECTION (Balanced 2-Column Editorial Layout) */}
+    <main className="bg-transparent text-neutral-900 min-h-screen font-sans selection:bg-[#eb0028] selection:text-white pt-32 pb-36 relative">
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <Waves
+          lineColor="rgba(235, 0, 40, 0.25)"
+          backgroundColor="transparent"
+          waveSpeedX={0.02}
+          waveSpeedY={0.01}
+          waveAmpX={40}
+          waveAmpY={20}
+          friction={0.9}
+          tension={0.01}
+          maxCursorMove={120}
+          xGap={12}
+          yGap={36}
+        />
+      </div>
+
+      <div className="relative z-10">
+        {/* 1. HERO SECTION (Balanced 2-Column Editorial Layout) */}
       <section className="px-6 md:px-12 lg:px-16 max-w-7xl mx-auto mb-20 md:mb-28">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Eyebrow + Typographic Tension Headline + Subtext */}
@@ -79,10 +98,17 @@ export default function VenueContent() {
             <p className="font-mono text-[10px] md:text-[11px] tracking-[0.25em] text-[#eb0028] uppercase font-bold mb-6">
               THE LOCATION
             </p>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-neutral-900 leading-[0.95] mb-8">
-              The room where <br />
-              <span className="font-serif italic font-normal text-neutral-400">it happens.</span>
-            </h1>
+            <BlurText
+              text="The room where it happens."
+              delay={100}
+              animateBy="words"
+              direction="top"
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-neutral-900 leading-[0.95] mb-8"
+              highlightWords={{
+                "it": "font-serif italic font-normal text-[#eb0028] drop-shadow-[0_0_20px_rgba(235,0,40,0.8)]",
+                "happens.": "font-serif italic font-normal text-[#eb0028] drop-shadow-[0_0_20px_rgba(235,0,40,0.8)]"
+              }}
+            />
             <p className="text-base sm:text-lg md:text-xl font-light text-neutral-600 max-w-2xl leading-relaxed">
               Every great idea needs a place to land. Join us at the BITS Pilani Hyderabad Campus
               Auditorium, a space designed for focus, connection, and paradigm-shifting
@@ -249,9 +275,9 @@ export default function VenueContent() {
                 {/* Radar Concentric Rings */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   {/* Outer ring */}
-                  <div className="w-80 h-80 sm:w-96 sm:h-96 rounded-full border border-white/10" />
+                  <div className="w-80 h-80 sm:w-96 sm:h-96 rounded-full border border-black/10" />
                   {/* Mid ring */}
-                  <div className="w-48 h-48 sm:w-60 sm:h-60 rounded-full border border-white/15 absolute" />
+                  <div className="w-48 h-48 sm:w-60 sm:h-60 rounded-full border border-black/15 absolute" />
                   {/* Inner ring */}
                   <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border border-white/25 absolute" />
                   {/* Radar Scanning Line */}
@@ -264,7 +290,7 @@ export default function VenueContent() {
                     <span className="animate-ping absolute inline-flex h-12 w-12 rounded-full bg-[#eb0028] opacity-60" />
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-[#eb0028] shadow-[0_0_16px_#eb0028]" />
                   </div>
-                  <div className="mt-3 px-2 py-1 bg-black/90 backdrop-blur-sm border border-neutral-700 text-[10px] font-mono tracking-widest text-white uppercase text-center shadow-lg">
+                  <div className="mt-3 px-2 py-1 bg-white/90 backdrop-blur-sm border border-neutral-700 text-[10px] font-mono tracking-widest text-neutral-900 uppercase text-center shadow-lg">
                     TARGET: BPHC AUDITORIUM
                   </div>
                 </div>
@@ -277,7 +303,7 @@ export default function VenueContent() {
                     href="https://maps.google.com/?q=BITS+Pilani+Hyderabad+Campus+Auditorium"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="pointer-events-auto text-white hover:text-[#eb0028] transition-colors underline underline-offset-2 uppercase"
+                    className="pointer-events-auto text-neutral-900 hover:text-[#eb0028] transition-colors underline underline-offset-2 uppercase"
                   >
                     Direct Navigate ↗
                   </a>
@@ -406,6 +432,7 @@ export default function VenueContent() {
           </div>
         </div>
       </section>
+      </div>
     </main>
   );
 }

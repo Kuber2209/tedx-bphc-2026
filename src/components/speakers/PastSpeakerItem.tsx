@@ -71,7 +71,7 @@ export default function PastSpeakerItem({
 
           <div>
             <div className="flex items-center gap-3">
-              <h3 className="past-speaker-name text-xl font-black uppercase tracking-tight text-white transition-colors group-hover:text-[#E62B1E] sm:text-2xl">
+              <h3 className="past-speaker-name text-xl font-black uppercase tracking-tight text-neutral-900 transition-colors group-hover:text-[#E62B1E] sm:text-2xl">
                 {speaker.name}
               </h3>
               <span className="inline-flex sm:hidden font-mono text-[10px] text-zinc-500">
@@ -79,7 +79,7 @@ export default function PastSpeakerItem({
               </span>
             </div>
 
-            <p className="past-speaker-role mt-1 font-mono text-xs text-zinc-400">
+            <p className="past-speaker-role mt-1 font-mono text-xs text-zinc-500">
               {speaker.role}
               {speaker.company ? ` • ${speaker.company}` : ""}
             </p>
@@ -89,11 +89,11 @@ export default function PastSpeakerItem({
         {/* Right-Side Meta & Controls */}
         <div className="past-speaker-actions flex items-center justify-between gap-3 sm:justify-end">
           {speaker.year && (
-            <span className="rounded border border-zinc-800 bg-zinc-950/80 px-2.5 py-0.5 font-mono text-[10px] font-semibold tracking-wider text-zinc-300 transition-colors group-hover:border-zinc-700">
+            <span className="rounded border border-zinc-200 bg-zinc-950/80 px-2.5 py-0.5 font-mono text-[10px] font-semibold tracking-wider text-zinc-600 transition-colors group-hover:border-zinc-700">
               {speaker.year}
             </span>
           )}
-          <span className="past-speaker-category rounded border border-zinc-800 bg-zinc-900 px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest text-[#E62B1E]">
+          <span className="past-speaker-category rounded border border-zinc-200 bg-zinc-100 px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest text-[#E62B1E]">
             {speaker.category}
           </span>
 
@@ -108,7 +108,7 @@ export default function PastSpeakerItem({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${speaker.name} on LinkedIn`}
-                className="flex h-7 w-7 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 transition-all hover:border-zinc-600 hover:text-white"
+                className="flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 bg-zinc-100 text-zinc-500 transition-all hover:border-zinc-600 hover:text-white"
               >
                 <FaLinkedinIn className="h-3 w-3" />
               </a>
@@ -119,7 +119,7 @@ export default function PastSpeakerItem({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${speaker.name} on Instagram`}
-                className="flex h-7 w-7 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 transition-all hover:border-zinc-600 hover:text-white"
+                className="flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 bg-zinc-100 text-zinc-500 transition-all hover:border-zinc-600 hover:text-white"
               >
                 <FaInstagram className="h-3 w-3" />
               </a>
@@ -145,7 +145,7 @@ export default function PastSpeakerItem({
         <div className="past-speaker-expanded-panel rounded-b-xl border border-t-0 border-zinc-800/80 bg-gradient-to-b from-zinc-900/70 to-zinc-950 p-4 sm:p-6 transition-all">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
             {/* Small Photo Container */}
-            <div className="relative h-24 w-24 sm:h-28 sm:w-28 shrink-0 overflow-hidden rounded-xl border border-zinc-700/80 bg-zinc-900 shadow-md">
+            <div className="relative h-24 w-24 sm:h-28 sm:w-28 shrink-0 overflow-hidden rounded-xl border border-zinc-700/80 bg-zinc-100 shadow-md">
               {hasValidPhoto ? (
                 <Image
                   src={speaker.imageUrl}
@@ -156,9 +156,9 @@ export default function PastSpeakerItem({
                   onError={() => setImageError(true)}
                 />
               ) : (
-                <div className="flex h-full w-full flex-col items-center justify-center bg-zinc-900 text-zinc-500">
+                <div className="flex h-full w-full flex-col items-center justify-center bg-zinc-100 text-zinc-500">
                   <User className="h-7 w-7 text-zinc-600 mb-1" />
-                  <span className="font-mono text-xs font-bold text-zinc-400">
+                  <span className="font-mono text-xs font-bold text-zinc-500">
                     {getInitials(speaker.name) || "TEDx"}
                   </span>
                 </div>
@@ -173,14 +173,14 @@ export default function PastSpeakerItem({
                   <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#E62B1E]">
                     TEDx Talk Delivered
                   </span>
-                  <h4 className="text-base font-bold text-white sm:text-lg">
+                  <h4 className="text-base font-bold text-neutral-900 sm:text-lg">
                     &ldquo;{speaker.talkTitle}&rdquo;
                   </h4>
                 </div>
               )}
 
               {/* Bio / Talk Description */}
-              <p className="text-xs leading-relaxed text-zinc-300 sm:text-sm">
+              <p className="text-xs leading-relaxed text-zinc-600 sm:text-sm">
                 {speaker.talkDescription ||
                   speaker.bio ||
                   "Alumni speaker from past editions of TEDx BPHC. Shared groundbreaking insights and ideas worth spreading on our university stage."}
@@ -189,7 +189,7 @@ export default function PastSpeakerItem({
               {/* Topic Tags / Meta Row */}
               <div className="flex flex-wrap items-center gap-2 pt-1">
                 {speaker.year && (
-                  <span className="rounded border border-zinc-700 bg-zinc-900 px-2 py-0.5 font-mono text-[10px] font-bold text-white">
+                  <span className="rounded border border-zinc-300 bg-zinc-100 px-2 py-0.5 font-mono text-[10px] font-bold text-neutral-900">
                     Edition {speaker.year}
                   </span>
                 )}
@@ -197,7 +197,7 @@ export default function PastSpeakerItem({
                   speaker.topicTags.map((tag, tIdx) => (
                     <span
                       key={tIdx}
-                      className="rounded border border-zinc-800 bg-zinc-900 px-2 py-0.5 font-mono text-[10px] text-zinc-400"
+                      className="rounded border border-zinc-200 bg-zinc-100 px-2 py-0.5 font-mono text-[10px] text-zinc-500"
                     >
                       #{tag}
                     </span>
@@ -210,8 +210,8 @@ export default function PastSpeakerItem({
                 )}
 
                 {speaker.company && (
-                  <span className="font-mono text-[11px] text-zinc-400">
-                    Affiliation: <strong className="text-zinc-200">{speaker.company}</strong>
+                  <span className="font-mono text-[11px] text-zinc-500">
+                    Affiliation: <strong className="text-zinc-700">{speaker.company}</strong>
                   </span>
                 )}
               </div>

@@ -22,7 +22,7 @@ export default function TedxLogo({
   void height;
   void priority;
   
-  const textColorClass = light ? "text-white" : "text-black";
+  const textColorClass = light ? "text-neutral-900" : "text-black";
   
   const logoImage = (
     <span className={`tedx-wordmark ${className} ${textColorClass}`} aria-label="TEDx BITS Hyderabad" style={{ color: light ? 'white' : 'inherit' }}>

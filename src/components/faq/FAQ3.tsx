@@ -76,7 +76,7 @@ export default function FAQ3({
                 />
 
                 <AccordionTrigger className="flex w-full items-center gap-4 px-5 py-4 text-left hover:no-underline sm:px-6 sm:py-5 [&_[data-slot=accordion-trigger-icon]]:!hidden">
-                  <span className="w-8 shrink-0 text-center font-mono text-xs font-semibold tabular-nums tracking-widest text-zinc-400 transition-colors duration-200 group-hover:text-zinc-600 group-data-[state=open]:text-[#EB0028]">
+                  <span className="w-8 shrink-0 text-center font-mono text-xs font-semibold tabular-nums tracking-widest text-zinc-500 transition-colors duration-200 group-hover:text-zinc-600 group-data-[state=open]:text-[#EB0028]">
                     {num}
                   </span>
 

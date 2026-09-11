@@ -51,7 +51,7 @@ export default function BlurText({
   easing = (t: number) => t,
   onAnimationComplete,
   stepDuration = 0.35,
-  as: Component = "p",
+  as = "p",
   highlightWords,
 }: BlurTextProps) {
   const elements = useMemo(() => {
@@ -109,8 +109,11 @@ export default function BlurText({
     className.includes("text-center") || className.includes("justify-center");
   const justifyClass = isCentered ? "justify-center" : "";
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const Tag = as as any;
+
   return (
-    <Component
+    <Tag
       ref={ref}
       className={`blur-text ${className} flex flex-wrap ${justifyClass}`.trim()}
     >
@@ -151,6 +154,6 @@ export default function BlurText({
           </motion.span>
         );
       })}
-    </Component>
+    </Tag>
   );
 }

@@ -15,7 +15,7 @@ const TEDX_PHONE_TEL = "+919876543210";
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/5 bg-[#050505] text-zinc-300">
+    <footer className="relative border-t border-white/5 bg-black text-white">
       {/* Background Grid Accent */}
       <div
         className="pointer-events-none absolute inset-0 bg-tiles opacity-20"
@@ -27,7 +27,7 @@ export default function Footer() {
           {/* Column 1: TEDx Branding & Social Networks (lg:col-span-4) */}
           <div className="flex flex-col space-y-5 lg:col-span-4">
             <div>
-              <TedxLogo href="/" className="h-8 w-auto" />
+              <TedxLogo href="/" className="h-8 w-auto" light={true} />
               <p className="mt-2 text-xs font-mono tracking-wider text-zinc-400">
                 BITS Pilani Hyderabad Campus
               </p>
@@ -47,7 +47,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="TEDx BITS Hyderabad LinkedIn"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/90 text-zinc-300 shadow-sm transition-all hover:border-zinc-600 hover:bg-zinc-800 hover:text-[#0A66C2] hover:scale-105"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-700 bg-zinc-900/90 text-zinc-400 shadow-sm transition-all hover:border-zinc-500 hover:bg-zinc-800 hover:text-[#0A66C2] hover:scale-105"
                 >
                   <FaLinkedinIn className="h-4 w-4" />
                 </a>
@@ -57,7 +57,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="TEDx BITS Hyderabad Instagram"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/90 text-zinc-300 shadow-sm transition-all hover:border-zinc-600 hover:bg-zinc-800 hover:text-[#E4405F] hover:scale-105"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-700 bg-zinc-900/90 text-zinc-400 shadow-sm transition-all hover:border-zinc-500 hover:bg-zinc-800 hover:text-[#E4405F] hover:scale-105"
                 >
                   <FaInstagram className="h-4 w-4" />
                 </a>
@@ -67,7 +67,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="TEDx Twitter / X"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/90 text-zinc-300 shadow-sm transition-all hover:border-zinc-600 hover:bg-zinc-800 hover:text-white hover:scale-105"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-700 bg-zinc-900/90 text-zinc-400 shadow-sm transition-all hover:border-zinc-500 hover:bg-zinc-800 hover:text-white hover:scale-105"
                 >
                   <FaXTwitter className="h-4 w-4" />
                 </a>
@@ -77,7 +77,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="TEDx YouTube"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/90 text-zinc-300 shadow-sm transition-all hover:border-zinc-600 hover:bg-zinc-800 hover:text-[#FF0000] hover:scale-105"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-700 bg-zinc-900/90 text-zinc-400 shadow-sm transition-all hover:border-zinc-500 hover:bg-zinc-800 hover:text-[#FF0000] hover:scale-105"
                 >
                   <FaYoutube className="h-4 w-4" />
                 </a>
@@ -173,7 +173,7 @@ export default function Footer() {
                 <Mail className="h-4 w-4 shrink-0 text-[#E62B1E]" />
                 <a
                   href={`mailto:${TEDX_EMAIL}`}
-                  className="break-all text-zinc-300 underline-offset-4 transition-colors hover:text-[#E62B1E] hover:underline"
+                  className="break-all text-white underline-offset-4 transition-colors hover:text-[#E62B1E] hover:underline"
                   title="Send an email to TEDx BITS Hyderabad"
                 >
                   {TEDX_EMAIL}
@@ -189,7 +189,7 @@ export default function Footer() {
                   </span>
                   <a
                     href={`tel:${TEDX_PHONE_TEL}`}
-                    className="font-mono text-xs font-medium text-zinc-200 transition-colors hover:text-[#E62B1E] hover:underline"
+                    className="font-mono text-xs font-medium text-white transition-colors hover:text-[#E62B1E] hover:underline"
                     title="Call TEDx Executive"
                   >
                     {TEDX_PHONE}
@@ -199,7 +199,7 @@ export default function Footer() {
 
               {/* Community Link */}
               <div className="pt-2 border-t border-zinc-800/80">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 block mb-1">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 block mb-1">
                   JOIN OUR COMMUNITY
                 </span>
                 <a

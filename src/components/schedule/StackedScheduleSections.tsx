@@ -97,7 +97,7 @@ export default function StackedScheduleSections({
                     <span className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#eb0028] mr-2">
                       Act {romanNumeral}
                     </span>
-                    <span className="text-xs sm:text-sm font-black uppercase tracking-tight text-white group-hover:text-zinc-100">
+                    <span className="text-xs sm:text-sm font-black uppercase tracking-tight text-neutral-900 group-hover:text-zinc-100">
                       {block.name}
                     </span>
                   </div>
@@ -105,16 +105,16 @@ export default function StackedScheduleSections({
 
                 {/* Right: Time Pill & Stats */}
                 <div className="flex items-center gap-2 sm:gap-3 shrink-0 font-mono text-xs">
-                  <span className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-zinc-800/90 bg-zinc-900/80 px-2.5 py-1 text-[11px] font-bold text-zinc-200">
+                  <span className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-zinc-800/90 bg-zinc-900/80 px-2.5 py-1 text-[11px] font-bold text-zinc-700">
                     <Clock className="h-3 w-3 text-[#eb0028]" />
                     <span>{block.timeRange}</span>
                   </span>
 
-                  <span className="sm:hidden text-[11px] font-bold text-zinc-300">
+                  <span className="sm:hidden text-[11px] font-bold text-zinc-600">
                     {block.timeRange}
                   </span>
 
-                  <span className="hidden md:inline-block rounded-lg border border-zinc-800/60 bg-zinc-900/40 px-2 py-0.5 text-[10px] text-zinc-400">
+                  <span className="hidden md:inline-block rounded-lg border border-zinc-800/60 bg-zinc-900/40 px-2 py-0.5 text-[10px] text-zinc-500">
                     {blockItems.length} events{keynoteCount > 0 ? ` • ${keynoteCount} talks` : ""}
                   </span>
                 </div>
@@ -129,7 +129,7 @@ export default function StackedScheduleSections({
             <div className="mt-3.5 rounded-2xl border border-zinc-800/80 bg-[#121214]/85 p-4 sm:p-7 shadow-xl backdrop-blur-xl flex flex-col gap-4">
               {/* Block Tagline Subtitle */}
               {block.tagline && (
-                <div className="mb-2 font-mono text-xs text-zinc-400 border-l-2 border-[#eb0028]/40 pl-3">
+                <div className="mb-2 font-mono text-xs text-zinc-500 border-l-2 border-[#eb0028]/40 pl-3">
                   {block.tagline}
                 </div>
               )}
@@ -158,7 +158,7 @@ export default function StackedScheduleSections({
                         </div>
                       )}
                       {item.duration && (
-                        <div className="font-mono text-[10px] text-zinc-400">
+                        <div className="font-mono text-[10px] text-zinc-500">
                           {item.duration}
                         </div>
                       )}
@@ -180,7 +180,7 @@ export default function StackedScheduleSections({
                           {item.time} {item.endTime ? `— ${item.endTime}` : ""}
                         </span>
                         {item.duration && (
-                          <span className="font-mono text-[11px] text-zinc-400">
+                          <span className="font-mono text-[11px] text-zinc-500">
                             {item.duration}
                           </span>
                         )}
@@ -189,7 +189,7 @@ export default function StackedScheduleSections({
                       {/* Top Meta: Label / Location / Topic */}
                       <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
                         <div className="flex flex-wrap items-center gap-2 font-mono">
-                          <span className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-zinc-400">
+                          <span className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-zinc-500">
                             {getItemIcon(item.type)}
                             <span>{item.sessionLabel}</span>
                           </span>
@@ -202,7 +202,7 @@ export default function StackedScheduleSections({
                         </div>
 
                         {item.topicTag && (
-                          <span className="rounded border border-zinc-800 bg-zinc-900 px-2 py-0.5 font-mono text-[10px] text-zinc-400">
+                          <span className="rounded border border-zinc-200 bg-zinc-100 px-2 py-0.5 font-mono text-[10px] text-zinc-500">
                             #{item.topicTag}
                           </span>
                         )}
@@ -210,7 +210,7 @@ export default function StackedScheduleSections({
 
                       {/* Title & Talk Info */}
                       <div className="mt-2.5">
-                        <h3 className="text-base font-bold text-white sm:text-lg">
+                        <h3 className="text-base font-bold text-neutral-900 sm:text-lg">
                           {item.talkTitle || item.title}
                         </h3>
 
@@ -222,7 +222,7 @@ export default function StackedScheduleSections({
                                 <div className="font-bold text-[#eb0028]">
                                   {item.speakerName}
                                 </div>
-                                <div className="font-mono text-xs text-zinc-400">
+                                <div className="font-mono text-xs text-zinc-500">
                                   {item.speakerRole}
                                 </div>
                               </div>
@@ -230,7 +230,7 @@ export default function StackedScheduleSections({
                               {item.speakerName && (
                                 <Link
                                   href="/speakers"
-                                  className="mt-1 sm:mt-0 inline-flex items-center gap-1 font-mono text-xs text-zinc-400 hover:text-white transition-colors"
+                                  className="mt-1 sm:mt-0 inline-flex items-center gap-1 font-mono text-xs text-zinc-500 hover:text-white transition-colors"
                                 >
                                   <span>Speaker Bio</span>
                                   <ExternalLink className="h-3 w-3 text-[#eb0028]" />
@@ -247,7 +247,7 @@ export default function StackedScheduleSections({
                           <button
                             type="button"
                             onClick={() => onToggleExpand(item.id)}
-                            className="cursor-pointer inline-flex items-center gap-1 font-mono text-[11px] font-semibold text-zinc-400 transition-colors hover:text-white"
+                            className="cursor-pointer inline-flex items-center gap-1 font-mono text-[11px] font-semibold text-zinc-500 transition-colors hover:text-white"
                           >
                             <span>{isExpanded ? "Hide synopsis" : "View synopsis"}</span>
                             {isExpanded ? (
@@ -258,7 +258,7 @@ export default function StackedScheduleSections({
                           </button>
 
                           {isExpanded && (
-                            <div className="mt-2 text-xs leading-relaxed text-zinc-300 border-l border-zinc-800 pl-3">
+                            <div className="mt-2 text-xs leading-relaxed text-zinc-600 border-l border-zinc-200 pl-3">
                               {item.description}
                             </div>
                           )}

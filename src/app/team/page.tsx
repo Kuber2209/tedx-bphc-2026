@@ -3,80 +3,27 @@
 
 import { TEAM_SECTIONS } from "@/data/team";
 import { motion } from "motion/react";
+import { useRef } from "react";
 import Image from "next/image";
 import TeamMemberCard from "@/components/team/TeamMemberCard";
+import Radar from "@/components/reactbits/Radar";
 
 export default function TeamPage() {
+  const containerRef = useRef(null);
 
   return (
-    <div className="min-h-screen bg-white text-black selection:bg-[#eb0028] selection:text-white pb-32">
-      {/* Cinematic Header */}
-      <header className="relative pt-48 pb-32 px-6 md:px-12 border-b border-black/5 max-w-[1600px] mx-auto overflow-hidden">
-        {/* Subtle background element */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#eb0028]/5 rounded-full blur-[120px] pointer-events-none mix-blend-multiply"></div>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-10"
-        >
-          <div className="flex items-center gap-4 mb-8">
-            <div className="h-[1px] w-8 bg-[#eb0028]"></div>
-            <span className="text-zinc-500 font-sans text-[10px] md:text-xs uppercase tracking-[0.2em]">
-              Behind the curtain
-            </span>
-          </div>
-          
-          <h1 className="text-7xl md:text-[160px] font-bold tracking-tighter leading-[0.8] mb-12">
-            The<br />
-            <span className="italic text-zinc-500 font-serif font-light md:pl-24">makers.</span>
-          </h1>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
-            <div className="md:col-span-5 md:col-start-8">
-              <p className="text-zinc-600 text-xl font-light leading-relaxed">
-                TEDx BITS Hyderabad is engineered by a student-led collective of designers, curators, producers, and technologists. 
-              </p>
-            </div>
-          </div>
-        </motion.div>
-      </header>
-
-      {/* Behind the scenes collage / vibe */}
-      <section className="py-24 px-6 md:px-12 max-w-[1600px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <motion.div 
-            className="aspect-square relative overflow-hidden bg-zinc-100 md:mt-24"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <Image src="/gallery/image1.jpg" alt="Team behind the scenes" fill className="object-cover filter grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-1000" />
-          </motion.div>
-          <motion.div 
-            className="aspect-[3/4] relative overflow-hidden bg-zinc-100"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <Image src="/gallery/image8.jpg" alt="Team behind the scenes" fill className="object-cover filter grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-1000" />
-          </motion.div>
-          <motion.div 
-            className="aspect-square relative overflow-hidden bg-zinc-100 md:mt-48"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <Image src="/gallery/image14.jpg" alt="Team behind the scenes" fill className="object-cover filter grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-1000" />
-          </motion.div>
-        </div>
-      </section>
-
+    <div className="min-h-screen bg-transparent text-neutral-900 selection:bg-[#E62B1E] selection:text-neutral-900 pb-32 relative overflow-hidden" ref={containerRef}>
+      <div className="absolute inset-0 z-0 h-full w-full pointer-events-none">
+        <Radar
+          backgroundColor="#ffffff"
+          color="#000000"
+          speed={0.5}
+          scale={1}
+          lightMode={false}
+        />
+      </div>
       {/* Cinematic Credits Roll */}
-      <main className="max-w-[1600px] mx-auto mt-20 relative">
+      <main className="max-w-[1600px] mx-auto mt-32 md:mt-48 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 px-6 md:px-12">
           
           {/* Left Column: Quick Navigation / Index */}
@@ -101,11 +48,7 @@ export default function TeamPage() {
           <div className="lg:col-span-9">
             {TEAM_SECTIONS.map((section) => (
               <section key={section.id} id={section.id} className="mb-48 scroll-mt-40">
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8 }}
+                <div
                   className="mb-16 border-b border-black/10 pb-8 flex flex-col md:flex-row md:items-end justify-between gap-6"
                 >
                   <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">
@@ -114,19 +57,13 @@ export default function TeamPage() {
                   <p className="text-zinc-500 font-serif italic text-xl">
                     {section.description}
                   </p>
-                </motion.div>
+                </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
                   {section.members.map((member, idx) => (
-                    <motion.div 
-                      key={member.id}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{ duration: 0.6, delay: (idx % 4) * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                    >
+                    <div key={member.id}>
                       <TeamMemberCard member={member} />
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </section>

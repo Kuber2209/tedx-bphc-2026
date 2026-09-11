@@ -60,7 +60,7 @@ export default function MiniBar() {
             className="text-neutral-900 font-mono text-xs tracking-wider uppercase font-semibold hover:text-[#eb0028] transition-colors duration-200 flex items-center gap-2.5 group relative"
           >
             <span>Get Tickets</span>
-            <span className="w-6 h-6 rounded-full bg-[#eb0028] text-white flex items-center justify-center transform group-hover:scale-110 transition-transform duration-200">
+            <span className="w-6 h-6 rounded-full bg-[#eb0028] text-neutral-900 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-200">
               <span className="text-xs leading-none -mt-0.5 ml-0.5">↗</span>
             </span>
           </Link>

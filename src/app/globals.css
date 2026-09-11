@@ -108,3 +108,7 @@ div[data-next-badge] {
   pointer-events: none !important;
 }
 
+@keyframes grid-scroll {
+  0% { transform: rotateX(60deg) translateY(-100px); }
+  100% { transform: rotateX(60deg) translateY(100px); }
+}

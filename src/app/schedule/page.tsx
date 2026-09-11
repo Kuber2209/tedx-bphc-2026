@@ -125,7 +125,8 @@ export default function SchedulePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black selection:bg-[#eb0028] selection:text-white pb-32 font-sans">
+    <div className="min-h-screen bg-transparent text-black selection:bg-[#E62B1E] selection:text-neutral-900 pb-32 font-sans relative overflow-hidden">
+      <div className="relative z-10">
       {/* =========================================================================
           1. HERO — EDITORIAL THEME INAUGURATION
           ========================================================================= */}
@@ -148,7 +149,7 @@ export default function SchedulePage() {
             <InvisibleThreadsCanvas />
             <h1 className="relative z-10 text-6xl sm:text-7xl md:text-[130px] font-bold tracking-tighter leading-[0.85] pointer-events-auto select-none">
               Invisible <br />
-              <span className="italic font-serif font-light text-zinc-400">threads.</span>
+              <span className="italic font-serif font-light text-zinc-500">threads.</span>
             </h1>
           </div>
 
@@ -212,7 +213,7 @@ export default function SchedulePage() {
 
               <Link
                 href="/speakers"
-                className="inline-flex items-center gap-2 rounded-full bg-black text-white px-5 py-2.5 text-xs font-bold uppercase tracking-[0.15em] transition-all hover:bg-[#eb0028]"
+                className="inline-flex items-center gap-2 rounded-full bg-white text-neutral-900 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.15em] transition-all hover:bg-[#eb0028]"
               >
                 <span>View Speakers</span>
                 <span>→</span>
@@ -270,7 +271,7 @@ export default function SchedulePage() {
                   <h3 className="text-2xl font-bold tracking-tight text-black mb-2 group-hover:text-[#eb0028] transition-colors">
                     {pillar.title}
                   </h3>
-                  <p className="font-serif italic text-sm text-zinc-400 mb-4">
+                  <p className="font-serif italic text-sm text-zinc-500 mb-4">
                     {pillar.tagline}
                   </p>
                   <p className="text-sm font-light text-zinc-600 leading-relaxed">
@@ -315,7 +316,7 @@ export default function SchedulePage() {
                   <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#eb0028]">
                     Act 0{idx + 1}
                   </span>
-                  <span className="font-mono text-[10px] text-zinc-400">
+                  <span className="font-mono text-[10px] text-zinc-500">
                     {block.timeRange.split("–")[0].trim()}
                   </span>
                 </div>
@@ -376,7 +377,7 @@ export default function SchedulePage() {
                     <div className="flex items-center gap-3">
                       {getItemBadge(item)}
                       {item.topicTag && (
-                        <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-wider">
+                        <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider">
                           / {item.topicTag}
                         </span>
                       )}
@@ -388,7 +389,7 @@ export default function SchedulePage() {
                         <span>{item.time}{item.endTime ? ` – ${item.endTime}` : ""}</span>
                       </span>
                       {item.duration && (
-                        <span className="hidden sm:inline text-zinc-400 text-[11px]">
+                        <span className="hidden sm:inline text-zinc-500 text-[11px]">
                           {item.duration}
                         </span>
                       )}
@@ -421,7 +422,7 @@ export default function SchedulePage() {
                       </span>
                       {item.speakerRole && (
                         <>
-                          <span className="text-zinc-300">•</span>
+                          <span className="text-zinc-600">•</span>
                           <span className="font-serif italic text-zinc-500">
                             {item.speakerRole}
                           </span>
@@ -440,7 +441,7 @@ export default function SchedulePage() {
                   {/* Bottom Location & Expand Bar */}
                   <div className="mt-6 pt-4 border-t border-black/5 flex items-center justify-between text-xs text-zinc-500 font-mono">
                     <span className="flex items-center gap-1.5">
-                      <MapPin className="h-3 w-3 text-zinc-400" />
+                      <MapPin className="h-3 w-3 text-zinc-500" />
                       <span>{item.location || "Auditorium, BPHC"}</span>
                     </span>
 
@@ -495,7 +496,7 @@ export default function SchedulePage() {
           })}
 
           {/* Thread Terminal Node */}
-          <div className="pt-4 flex items-center gap-3 font-mono text-xs text-zinc-400">
+          <div className="pt-4 flex items-center gap-3 font-mono text-xs text-zinc-500">
             <span className="h-2 w-2 rounded-full bg-[#eb0028]" />
             <span>End of Official Programme · Sundowner continues on Guest House Lawn</span>
           </div>
@@ -522,7 +523,7 @@ export default function SchedulePage() {
           <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
             <Link
               href="/passes"
-              className="w-full sm:w-auto text-center inline-flex items-center justify-center gap-3 rounded-full bg-[#eb0028] text-white px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] transition-all hover:bg-black hover:shadow-lg"
+              className="w-full sm:w-auto text-center inline-flex items-center justify-center gap-3 rounded-full bg-[#eb0028] text-neutral-900 px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] transition-all hover:bg-black hover:shadow-lg"
             >
               <span>Explore Passes</span>
               <span>↗</span>
@@ -536,6 +537,7 @@ export default function SchedulePage() {
           </div>
         </div>
       </section>
+      </div>
     </div>
   );
 }

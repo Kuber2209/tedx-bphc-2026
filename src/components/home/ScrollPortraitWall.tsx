@@ -37,10 +37,15 @@ export default function ScrollPortraitWall() {
   const col2: Speaker[] = [];
   const col3: Speaker[] = [];
 
-  currentSpeakers.forEach((speaker, index) => {
-    if (index % 3 === 0) col1.push(speaker);
-    else if (index % 3 === 1) col2.push(speaker);
-    else col3.push(speaker);
+  // Duplicate speakers to create a longer, infinite-feeling wall
+  const repeatedSpeakers = [...currentSpeakers, ...currentSpeakers, ...currentSpeakers, ...currentSpeakers];
+
+  repeatedSpeakers.forEach((speaker, index) => {
+    // We add a unique suffix to the ID so React doesn't complain about duplicate keys
+    const speakerWithUniqueId = { ...speaker, id: `${speaker.id}-${index}` };
+    if (index % 3 === 0) col1.push(speakerWithUniqueId);
+    else if (index % 3 === 1) col2.push(speakerWithUniqueId);
+    else col3.push(speakerWithUniqueId);
   });
 
   useGSAP(
@@ -61,7 +66,7 @@ export default function ScrollPortraitWall() {
         tl.fromTo(
           col1Ref.current,
           { y: "20vh" },
-          { y: "-60vh", ease: "none" },
+          { y: "-150vh", ease: "none" },
           0
         );
       }
@@ -69,7 +74,7 @@ export default function ScrollPortraitWall() {
         tl.fromTo(
           col2Ref.current,
           { y: "40vh" },
-          { y: "-80vh", ease: "none" },
+          { y: "-180vh", ease: "none" },
           0
         );
       }
@@ -77,7 +82,7 @@ export default function ScrollPortraitWall() {
         tl.fromTo(
           col3Ref.current,
           { y: "10vh" },
-          { y: "-50vh", ease: "none" },
+          { y: "-120vh", ease: "none" },
           0
         );
       }
@@ -99,7 +104,7 @@ export default function ScrollPortraitWall() {
           />
         </div>
         <div className="mt-4">
-          <h3 className="text-xl md:text-2xl font-bold tracking-tight text-black group-hover:text-[#eb0028] transition-colors">
+          <h3 className="text-xl md:text-2xl font-bold tracking-tight text-neutral-900 group-hover:text-[#eb0028] transition-colors">
             {speaker.name}
           </h3>
           <p className="text-xs md:text-sm font-sans tracking-widest uppercase text-zinc-500 mt-1">
@@ -113,12 +118,12 @@ export default function ScrollPortraitWall() {
   return (
     <section 
       ref={containerRef} 
-      className="relative w-full bg-white text-black h-[250vh] md:h-[300vh]"
+      className="relative w-full bg-transparent text-neutral-900 h-[250vh] md:h-[300vh]"
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
         
         {/* The Wall */}
-        <div className="absolute inset-0 z-10 flex gap-4 md:gap-8 px-4 md:px-12 w-full h-[150vh] pt-[10vh] pointer-events-none">
+        <div className="absolute left-0 right-0 top-0 z-10 flex gap-4 md:gap-8 px-4 md:px-12 w-full pt-[10vh] pointer-events-none">
           {/* Column 1 */}
           <div ref={col1Ref} className="w-1/2 md:w-1/3 flex flex-col pointer-events-auto">
             {col1.map((speaker, idx) => (
@@ -148,15 +153,15 @@ export default function ScrollPortraitWall() {
         </div>
 
         {/* Title / Sticky overlay */}
-        <div className="relative z-20 flex flex-col items-center justify-center text-center pointer-events-none bg-white/80 backdrop-blur-sm p-8 md:p-16 rounded-sm border border-black/5 shadow-[0_0_40px_rgba(255,255,255,1)]">
+        <div className="relative z-20 flex flex-col items-center justify-center text-center pointer-events-none bg-white/80 backdrop-blur-md p-8 md:p-16 rounded-sm border border-black/10 shadow-[0_0_40px_rgba(0,0,0,0.1)]">
           <p className="text-[#eb0028] font-sans text-[10px] md:text-xs tracking-[0.2em] uppercase mb-4 font-bold">
             TEDxBITS Hyderabad
           </p>
-          <h2 className="text-5xl md:text-8xl lg:text-[100px] font-bold tracking-tighter leading-[0.9] text-black">
+          <h2 className="text-5xl md:text-8xl lg:text-[100px] font-bold tracking-tighter leading-[0.9] text-neutral-900">
             Ideas worth <br />
-            <span className="font-serif italic font-light text-zinc-500">spreading.</span>
+            <span className="font-serif italic font-light text-zinc-600">spreading.</span>
           </h2>
-          <div className="mt-6 md:mt-8 flex items-center gap-4 text-xs font-bold tracking-[0.15em] uppercase text-zinc-400">
+          <div className="mt-6 md:mt-8 flex items-center gap-4 text-xs font-bold tracking-[0.15em] uppercase text-zinc-500">
             <span>12th Edition</span>
             <span className="w-1 h-1 bg-[#eb0028] rounded-full"></span>
             <span>November 2026</span>
