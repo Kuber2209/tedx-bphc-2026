@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { currentSpeakers } from "@/data/speakers";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import LogoLoop from "@/components/layout/LogoLoop";
 import DomeGallery from "@/components/gallery/DomeGallery";
+import ScrollPortraitWall from "@/components/home/ScrollPortraitWall";
 
 const galleryImages = [
   { src: "/gallery/image1.jpg", alt: "TEDx Gallery Image 1" },
@@ -41,15 +41,14 @@ export default function HomeExperience() {
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
-  // Editorial fallback images
-  const speakerImages = ["/gallery/image4.jpg", "/gallery/image8.jpg", "/gallery/image14.jpg"];
+
 
   return (
     <div className="bg-white text-black min-h-screen font-sans selection:bg-[#eb0028] selection:text-white" ref={containerRef}>
-
+      
       {/* 1. HERO — Cinematic, minimal */}
       <section className="relative h-screen w-full overflow-hidden">
-        <motion.div
+        <motion.div 
           className="absolute inset-0 z-0 origin-top"
           style={{ y: heroY, opacity: heroOpacity }}
         >
@@ -79,7 +78,7 @@ export default function HomeExperience() {
                 BITS Pilani Hyderabad Campus
               </p>
             </div>
-
+            
             <h1 className="text-6xl md:text-8xl lg:text-[110px] font-bold tracking-tighter leading-[0.9] mb-8">
               Ideas that <br />
               <span className="font-serif italic font-light text-zinc-300">challenge</span> the <br />
@@ -92,7 +91,7 @@ export default function HomeExperience() {
       {/* 2. EDITORIAL STATEMENT — Quiet typography break */}
       <section className="relative z-20 bg-white py-32 md:py-48 px-6 md:px-12 border-t border-black/5">
         <div className="max-w-[1200px] mx-auto">
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -100,14 +99,14 @@ export default function HomeExperience() {
             className="flex flex-col md:flex-row gap-12 md:gap-24 items-start"
           >
             <h2 className="text-2xl md:text-4xl font-serif italic text-zinc-400 shrink-0 md:w-1/3 leading-tight">
-              A collision of <br /> disciplines, cultures, <br /> and perspectives.
+              A collision of <br/> disciplines, cultures, <br/> and perspectives.
             </h2>
             <div className="md:w-2/3">
               <p className="text-xl md:text-3xl font-light text-zinc-700 leading-relaxed tracking-wide mb-12">
                 TEDx BPHC is not just a conference. It is a curated space where the boldest minds gather to share ideas that have the power to shift paradigms. We bring together visionaries who are actively shaping the future.
               </p>
-              <Link
-                href="/about"
+              <Link 
+                href="/about" 
                 className="group inline-flex items-center gap-4 text-sm font-bold tracking-[0.15em] uppercase text-[#eb0028]"
               >
                 <span className="border-b border-[#eb0028]/30 pb-1 group-hover:border-[#eb0028] transition-colors">Our Philosophy</span>
@@ -134,7 +133,7 @@ export default function HomeExperience() {
             </h2>
           </motion.div>
         </div>
-
+        
         {/* The Earth/Dome Component */}
         <div className="w-full relative h-[600px] md:h-[800px]">
           <DomeGallery images={galleryImages} grayscale={true} />
@@ -146,7 +145,7 @@ export default function HomeExperience() {
         <div className="max-w-[1600px] mx-auto">
           <div className="columns-2 md:columns-3 lg:columns-4 gap-4 md:gap-6 space-y-4 md:space-y-6">
             {galleryImages.slice(0, 12).map((image, index) => (
-              <motion.div
+              <motion.div 
                 key={image.src}
                 className="relative overflow-hidden group rounded-sm break-inside-avoid"
                 initial={{ opacity: 0, y: 20 }}
@@ -155,12 +154,12 @@ export default function HomeExperience() {
                 transition={{ duration: 0.6, delay: (index % 4) * 0.1 }}
               >
                 <div className="relative w-full overflow-hidden">
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    width={800}
-                    height={1000}
-                    className="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                  <Image 
+                    src={image.src} 
+                    alt={image.alt} 
+                    width={800} 
+                    height={1000} 
+                    className="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" 
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
                     <span className="text-white font-mono text-[10px] tracking-widest uppercase">
@@ -171,31 +170,10 @@ export default function HomeExperience() {
               </motion.div>
             ))}
           </div>
-
+          
           <div className="mt-20 text-center">
-            <Link
-              href="/gallery"
-              className="group relative inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-zinc-600 transition-colors duration-300 hover:text-[#eb0028]"
-            >
-              {/* Glowing dot representing a node */}
-              <span className="h-1.5 w-1.5 rounded-full bg-zinc-400 transition-all duration-300 group-hover:scale-125 group-hover:bg-[#eb0028] group-hover:shadow-[0_0_8px_#eb0028]" />
-
-              <span>Explore Full Archive</span>
-
-              {/* Micro-animated arrow */}
-              <svg
-                className="h-3.5 w-3.5 transform transition-transform duration-300 group-hover:translate-x-1.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-
-              {/* Thematic animated "Thread" Underline */}
-              <span className="absolute -bottom-1 left-0 h-[1.5px] w-full bg-zinc-200 transition-all duration-300 group-hover:bg-[#eb0028]/30" />
-              <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-[#eb0028] transition-all duration-500 group-hover:w-full" />
+            <Link href="/gallery" className="inline-flex text-xs font-bold uppercase tracking-[0.2em] border-b border-zinc-300 pb-2 hover:text-[#eb0028] hover:border-[#eb0028] transition-all text-zinc-600">
+              Explore Full Archive
             </Link>
           </div>
         </div>
@@ -204,7 +182,7 @@ export default function HomeExperience() {
       {/* 3. EVENT ATMOSPHERE — Asymmetric Imagery */}
       <section className="relative z-20 bg-zinc-50 py-24 px-6 md:px-12">
         <div className="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12">
-          <motion.div
+          <motion.div 
             className="md:col-span-7 h-[50vh] md:h-[80vh] relative"
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -213,7 +191,7 @@ export default function HomeExperience() {
           >
             <Image src="/gallery/image8.jpg" alt="Audience" fill className="object-cover" />
           </motion.div>
-          <motion.div
+          <motion.div 
             className="md:col-span-5 flex flex-col justify-between"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -234,76 +212,8 @@ export default function HomeExperience() {
         </div>
       </section>
 
-      {/* 4. THE VOICES — Editorial Speaker Presentation */}
-      <section className="relative z-20 bg-white py-32 md:py-48 px-6 md:px-12 border-t border-black/5">
-        <div className="max-w-[1600px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <p className="text-[#eb0028] font-sans text-[10px] tracking-[0.2em] uppercase mb-6 font-bold">2026 Roster</p>
-              <h2 className="text-6xl md:text-8xl font-bold tracking-tighter">
-                Voices of <br />
-                <span className="font-serif italic font-light text-zinc-500">change.</span>
-              </h2>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="pb-4"
-            >
-              <Link href="/speakers" className="text-xs font-bold uppercase tracking-[0.2em] border-b border-black pb-2 hover:text-[#eb0028] hover:border-[#eb0028] transition-all">
-                Discover All Speakers
-              </Link>
-            </motion.div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-y-16 md:gap-x-12 lg:gap-x-24">
-            {currentSpeakers.slice(0, 3).map((speaker, index) => {
-              // Creating an asymmetric layout for the first 3 speakers
-              const colSpan = index === 0 ? "md:col-span-12 lg:col-span-7" : "md:col-span-6 lg:col-span-5";
-              const marginTop = index === 1 ? "lg:mt-32" : "";
-              const imgHeight = index === 0 ? "h-[60vh] md:h-[80vh]" : "h-[50vh]";
-
-              return (
-                <motion.div
-                  key={speaker.id}
-                  className={`group relative ${colSpan} ${marginTop}`}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 1, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <Link href="/speakers" className="block w-full overflow-hidden bg-zinc-100 mb-6">
-                    <div className={`relative w-full ${imgHeight}`}>
-                      <Image
-                        src={speaker.imageUrl || speakerImages[index]}
-                        alt={speaker.name}
-                        fill
-                        className="object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.5s] ease-out"
-                      />
-                    </div>
-                  </Link>
-                  <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4">
-                    <div>
-                      <h3 className="text-3xl md:text-5xl font-bold tracking-tight mb-2">{speaker.name}</h3>
-                      <p className="text-[#eb0028] font-sans text-xs tracking-widest uppercase">{speaker.role}</p>
-                    </div>
-                    <span className="text-zinc-300 font-serif italic text-xl hidden md:block group-hover:text-black transition-colors duration-500">
-                      0{index + 1}
-                    </span>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      {/* 4. THE VOICES — Scroll Portrait Wall */}
+      <ScrollPortraitWall />
 
       {/* LOGO LOOP INTERMISSION */}
       <div className="bg-zinc-50 py-12 md:py-20 border-y border-black/5 overflow-hidden">
@@ -311,7 +221,7 @@ export default function HomeExperience() {
       </div>
 
       {/* 5. FINAL CTA — Stark contrast */}
-      <section className="relative z-20 bg-[#eb0028] py-32 md:py-48 px-6 md:px-12 text-center text-white">
+      <section className="relative z-20 bg-[#000000] py-32 md:py-48 px-6 md:px-12 text-center text-white">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -321,11 +231,11 @@ export default function HomeExperience() {
         >
           <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-8 text-white/80">Be Part of the Conversation</p>
           <h2 className="text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-12">
-            Secure your <br />
+            Secure your <br/>
             <span className="font-serif italic font-light">seat.</span>
           </h2>
-          <Link
-            href="/schedule"
+          <Link 
+            href="/schedule" 
             className="inline-flex items-center justify-center bg-white text-[#eb0028] px-10 py-5 text-sm font-bold tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors duration-300"
           >
             Get Tickets

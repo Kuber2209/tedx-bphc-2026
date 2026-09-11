@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { currentPartners, partnershipTiers, pastSponsors } from "@/data/sponsors";
+import { currentPartners, pastSponsors } from "@/data/sponsors";
 import { motion } from "motion/react";
 import Image from "next/image";
 
@@ -69,52 +69,6 @@ export default function SponsorsPage() {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </section>
-
-        {/* Partnership Tiers - Editorial redesign */}
-        <section className="mb-48 bg-zinc-50 text-black -mx-6 md:-mx-12 px-6 md:px-12 py-32 md:py-48">
-          <div className="max-w-[1600px] mx-auto">
-            <div className="flex flex-col md:flex-row gap-16 md:gap-24 mb-32">
-              <div className="md:w-1/3">
-                <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-6">
-                  Join the <span className="font-serif italic font-light text-zinc-500">movement.</span>
-                </h2>
-                <p className="text-zinc-600 leading-relaxed font-light text-lg">
-                  Position your brand alongside the most forward-thinking minds in the region. Our partnership tiers are designed to create meaningful engagement.
-                </p>
-              </div>
-              <div className="md:w-2/3 border-t border-black/10 pt-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 gap-x-12">
-                  {partnershipTiers.map((tier, idx) => (
-                    <motion.div 
-                      key={tier.id}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                      className="group"
-                    >
-                      <div className="flex items-baseline gap-4 mb-4">
-                        <h3 className="text-3xl font-bold tracking-tight">{tier.name}</h3>
-                        <span className={`font-sans text-[10px] uppercase tracking-[0.2em] ${tier.highlighted ? 'text-[#eb0028] font-bold' : 'text-zinc-500'}`}>
-                          {tier.badge || 'Tier'}
-                        </span>
-                      </div>
-                      <p className="text-zinc-600 mb-8 font-light italic font-serif text-lg">{tier.tagline}</p>
-                      <ul className="flex flex-col gap-4">
-                        {tier.benefits.map((benefit, i) => (
-                          <li key={i} className="flex gap-4 text-sm text-zinc-700 font-light">
-                            <span className="text-[#eb0028] font-sans">/</span>
-                            <span>{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
