@@ -4,6 +4,7 @@
 import { TEAM_SECTIONS } from "@/data/team";
 import { motion } from "motion/react";
 import Image from "next/image";
+import TeamMemberCard from "@/components/team/TeamMemberCard";
 
 export default function TeamPage() {
 
@@ -119,22 +120,12 @@ export default function TeamPage() {
                   {section.members.map((member, idx) => (
                     <motion.div 
                       key={member.id}
-                      className="group relative flex flex-col"
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: (idx % 10) * 0.05 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.6, delay: (idx % 4) * 0.1, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      {/* Sub-department grouping feeling via typography */}
-                      <span className="text-[#eb0028] font-sans text-[9px] uppercase tracking-[0.2em] mb-3">
-                        {member.role}
-                      </span>
-                      <h3 className="text-3xl font-bold tracking-tight text-black group-hover:text-zinc-600 transition-colors duration-300 mb-2">
-                        {member.name}
-                      </h3>
-                      
-                      {/* Subtle hover line */}
-                      <div className="w-0 group-hover:w-full h-[1px] bg-black/20 transition-all duration-500 mt-4"></div>
+                      <TeamMemberCard member={member} />
                     </motion.div>
                   ))}
                 </div>

@@ -9,7 +9,7 @@
   --color-background: #ffffff;
   --color-foreground: #09090b;
   --color-tedx-red: #eb0028;
-  --font-serif: var(--font-playfair);
+  --font-serif: var(--font-outfit);
 }
 
 :root {
@@ -21,7 +21,7 @@
   --color-tedx-red: #eb0028;
   --color-background: #ffffff;
   --color-foreground: #09090b;
-  --font-serif: var(--font-playfair);
+  --font-serif: var(--font-outfit);
 }
 
 html {
