@@ -202,7 +202,7 @@ export default function FAQPage() {
           {/* Headline */}
           <h1 className="text-6xl sm:text-7xl md:text-[130px] font-bold tracking-tighter leading-[0.85] mb-8">
             Unraveling the <br />
-            <span className="italic font-serif font-light text-zinc-500">threads.</span>
+            <span className="font-bold text-[#eb0028]">threads.</span>
           </h1>
 
           {/* Subtitle & Search */}
@@ -287,7 +287,13 @@ export default function FAQPage() {
           </div>
         ) : (
           <div className="space-y-4">
-            <Accordion type="single" collapsible className="flex flex-col gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Accordion type="single" collapsible className="flex flex-col gap-4">
               {filteredFAQs.map((faq, index) => {
                 const num = String(index + 1).padStart(2, "0");
 
@@ -346,6 +352,7 @@ export default function FAQPage() {
                 );
               })}
             </Accordion>
+            </motion.div>
           </div>
         )}
       </main>

@@ -42,7 +42,7 @@ export default function SpeakersPage() {
             </div>
             <h1 className="text-7xl md:text-[130px] font-bold tracking-tighter leading-[0.85] mb-12">
               Ideas don&apos;t<br />
-              <span className="italic text-zinc-500 font-serif font-light pr-4">spread themselves.</span>
+            <span className="font-bold text-[#eb0028] pr-4">spread themselves.</span>
             </h1>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
               <p className="max-w-md text-zinc-600 text-lg md:text-xl font-light">
@@ -71,7 +71,7 @@ export default function SpeakersPage() {
                   <span className="text-zinc-600 font-light">THE SPEAKERS</span>
                 </h2>
               </div>
-              <strong className="font-serif italic text-xl text-zinc-500 mt-6 md:mt-0">
+              <strong className="text-xl font-bold tracking-tight text-zinc-800 mt-6 md:mt-0">
                 {currentSpeakers.length} Voices
               </strong>
             </motion.div>

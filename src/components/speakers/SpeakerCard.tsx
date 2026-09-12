@@ -53,9 +53,13 @@ export default function SpeakerCard({ speaker }: SpeakerCardProps) {
     <>
       {/* CARD */}
       <TiltedCard rotateAmplitude={8} scaleOnHover={1.03}>
-        <div 
+        <motion.div 
           className="group relative flex flex-col cursor-pointer h-full"
           onClick={handleOpen}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="relative w-full aspect-[3/4] mb-6 overflow-hidden bg-zinc-100 shadow-sm group-hover:shadow-xl transition-shadow duration-500">
           {speaker.imageUrl && !imageError ? (
@@ -84,7 +88,7 @@ export default function SpeakerCard({ speaker }: SpeakerCardProps) {
           <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-1 group-hover:text-zinc-600 transition-colors duration-300">
             {speaker.name}
           </h3>
-          <p className="text-sm md:text-base font-serif italic text-zinc-500 mb-3">
+          <p className="text-xs font-medium text-zinc-500 uppercase tracking-widest mb-3">
             {speaker.role} {speaker.company ? `· ${speaker.company}` : ""}
           </p>
           {speaker.talkTitle && (
@@ -96,7 +100,7 @@ export default function SpeakerCard({ speaker }: SpeakerCardProps) {
         
         {/* Subtle hover line */}
         <div className="w-0 group-hover:w-full h-[1px] bg-[#E62B1E] transition-all duration-500 mt-4 origin-left"></div>
-        </div>
+        </motion.div>
       </TiltedCard>
 
       {/* MODAL */}
@@ -173,7 +177,7 @@ export default function SpeakerCard({ speaker }: SpeakerCardProps) {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.4 }}
-                    className="text-lg md:text-xl font-serif italic text-zinc-500"
+                    className="text-sm md:text-base font-medium text-zinc-500 uppercase tracking-widest"
                   >
                     {speaker.role} {speaker.company ? `· ${speaker.company}` : ""}
                   </motion.p>

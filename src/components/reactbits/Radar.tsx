@@ -140,6 +140,7 @@ export default function Radar({
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
 
+    // eslint-disable-next-line prefer-const
     let program: Program;
     const currentMouse = [0.5, 0.5];
     let targetMouse = [0.5, 0.5];

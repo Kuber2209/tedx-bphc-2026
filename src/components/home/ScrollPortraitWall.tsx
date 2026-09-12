@@ -159,7 +159,7 @@ export default function ScrollPortraitWall() {
           </p>
           <h2 className="text-5xl md:text-8xl lg:text-[100px] font-bold tracking-tighter leading-[0.9] text-neutral-900">
             Ideas worth <br />
-            <span className="font-serif italic font-light text-zinc-600">spreading.</span>
+            <span className="font-medium text-[#eb0028]">spreading.</span>
           </h2>
           <div className="mt-6 md:mt-8 flex items-center gap-4 text-xs font-bold tracking-[0.15em] uppercase text-zinc-500">
             <span>12th Edition</span>

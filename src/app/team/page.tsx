@@ -6,20 +6,21 @@ import { motion } from "motion/react";
 import { useRef } from "react";
 import Image from "next/image";
 import TeamMemberCard from "@/components/team/TeamMemberCard";
-import Radar from "@/components/reactbits/Radar";
-
+import AeroShards from "@/components/reactbits/AeroShards";
 export default function TeamPage() {
   const containerRef = useRef(null);
 
   return (
     <div className="min-h-screen bg-transparent text-neutral-900 selection:bg-[#E62B1E] selection:text-neutral-900 pb-32 relative overflow-hidden" ref={containerRef}>
-      <div className="absolute inset-0 z-0 h-full w-full pointer-events-none">
-        <Radar
+      <div className="absolute inset-0 z-0 h-full w-full pointer-events-none opacity-25">
+        <AeroShards
           backgroundColor="#ffffff"
-          color="#000000"
-          speed={0.5}
-          scale={1}
-          lightMode={false}
+          shardColor="#eb0028"
+          accentColor="#ffffff"
+          density={0.05}
+          speed={0.03}
+          turbulence={0.01}
+          shardSize={1.0}
         />
       </div>
       {/* Cinematic Credits Roll */}
@@ -54,7 +55,7 @@ export default function TeamPage() {
                   <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">
                     {section.title}
                   </h2>
-                  <p className="text-zinc-500 font-serif italic text-xl">
+                  <p className="text-zinc-500 text-lg md:text-xl font-medium tracking-tight">
                     {section.description}
                   </p>
                 </div>

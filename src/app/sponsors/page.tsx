@@ -28,7 +28,7 @@ export default function SponsorsPage() {
           </div>
           <h1 className="text-7xl md:text-[140px] font-bold tracking-tighter leading-[0.85] mb-12">
             Built by<br />
-            <span className="italic font-serif pr-4 text-zinc-600 font-light">visionaries.</span>
+            <span className="font-bold text-[#eb0028] pr-4">visionaries.</span>
           </h1>
           <p className="max-w-2xl text-zinc-600 text-xl md:text-2xl leading-relaxed font-light">
             We partner with organizations that believe in the power of ideas. Together, we engineer an environment where innovation thrives.
@@ -40,7 +40,7 @@ export default function SponsorsPage() {
         {/* Current Partners */}
         <section className="mb-48">
           <div className="border-b border-black/10 pb-8 mb-24">
-            <h2 className="text-3xl md:text-4xl font-serif italic text-zinc-600">2026 Partners</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-800">2026 Partners</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-32 gap-x-16">
@@ -62,7 +62,7 @@ export default function SponsorsPage() {
                       className="object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 p-8" 
                     />
                   ) : (
-                    <span className="font-serif italic text-5xl font-light text-zinc-500 group-hover:text-white transition-colors duration-700">{partner.name}</span>
+                    <span className="font-bold tracking-tight text-5xl text-zinc-500 group-hover:text-zinc-900 transition-colors duration-700">{partner.name}</span>
                   )}
                 </div>
                 <div className="text-center">
@@ -77,7 +77,7 @@ export default function SponsorsPage() {
         {/* Archive Sponsors */}
         <section className="mb-48">
           <div className="border-b border-black/10 pb-6 mb-20 flex items-center justify-between">
-            <h2 className="text-2xl font-serif italic text-zinc-500">Past Collaborators</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-800">Past Collaborators</h2>
             <span className="text-[10px] font-sans uppercase tracking-[0.2em] text-zinc-500">The Archive</span>
           </div>
           
@@ -91,9 +91,9 @@ export default function SponsorsPage() {
                 transition={{ duration: 0.5, delay: (idx % 10) * 0.05 }}
                 className="flex flex-col group cursor-pointer border-l border-black/5 pl-6 hover:border-white transition-colors duration-500"
               >
-                <h4 className="text-base font-bold text-zinc-700 group-hover:text-white transition-colors mb-2">{sponsor.name}</h4>
+                <h4 className="text-base font-bold text-zinc-700 group-hover:text-zinc-900 transition-colors mb-2">{sponsor.name}</h4>
                 <span className="font-sans text-[9px] uppercase tracking-[0.15em] text-[#eb0028] mb-1">{sponsor.category}</span>
-                {sponsor.year && <span className="font-serif italic text-xs text-zinc-500">{sponsor.year}</span>}
+                {sponsor.year && <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">{sponsor.year}</span>}
               </motion.div>
             ))}
           </div>
@@ -110,7 +110,7 @@ export default function SponsorsPage() {
             <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-zinc-500 mb-8">Start a conversation</p>
             <h2 className="text-6xl md:text-8xl font-bold tracking-tighter mb-16">
               Let&apos;s build something <br/>
-              <span className="italic text-zinc-500 font-serif font-light">meaningful.</span>
+              <span className="font-bold text-[#eb0028]">meaningful.</span>
             </h2>
             <a
               href={emailMailto}

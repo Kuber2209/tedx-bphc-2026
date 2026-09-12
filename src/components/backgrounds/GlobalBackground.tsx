@@ -12,6 +12,7 @@ const Aurora = dynamic(() => import("./Aurora"), { ssr: false });
 const DotGrid = dynamic(() => import("./DotGrid"), { ssr: false });
 const Grid = dynamic(() => import("./Grid"), { ssr: false });
 const Radar = dynamic(() => import("../reactbits/Radar"), { ssr: false });
+const AeroShards = dynamic(() => import("../reactbits/AeroShards"), { ssr: false });
 const GridScan = dynamic(() => import("../reactbits/GridScan").then((mod) => mod.GridScan), { ssr: false });
 
 export default function GlobalBackground() {
@@ -39,11 +40,7 @@ export default function GlobalBackground() {
           </div>
         );
       case "/team":
-        return (
-          <div className="absolute inset-0 transition-opacity duration-1000">
-            <Radar color="#000000" backgroundColor="#fcfcfc" lightMode={true} />
-          </div>
-        );
+        return null;
       case "/sponsors":
         return (
           <div className="absolute inset-0 opacity-30 transition-opacity duration-1000">
@@ -51,11 +48,7 @@ export default function GlobalBackground() {
           </div>
         );
       case "/venue":
-        return (
-          <div className="absolute inset-0 opacity-80 transition-opacity duration-1000">
-            <Hyperspeed color="#eb0028" speed={1.5} />
-          </div>
-        );
+        return null;
       case "/faq":
         return (
           <div className="absolute inset-0 opacity-50 transition-opacity duration-1000">

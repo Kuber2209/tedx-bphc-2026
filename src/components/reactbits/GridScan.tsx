@@ -422,10 +422,13 @@ export const GridScan: React.FC<GridScanProps> = ({
       if (
         enableGyro &&
         typeof window !== 'undefined' &&
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (window as any).DeviceOrientationEvent &&
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (DeviceOrientationEvent as any).requestPermission
       ) {
         try {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           await (DeviceOrientationEvent as any).requestPermission();
         } catch {}
       }
@@ -649,7 +652,9 @@ export const GridScan: React.FC<GridScanProps> = ({
     }
     if (bloomRef.current) {
       bloomRef.current.blendMode.opacity.value = Math.max(0, bloomIntensity);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (bloomRef.current as any).luminanceMaterial.threshold = bloomThreshold;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (bloomRef.current as any).luminanceMaterial.smoothing = bloomSmoothing;
     }
     if (chromaRef.current) {
@@ -681,8 +686,11 @@ export const GridScan: React.FC<GridScanProps> = ({
     if (!enableGyro) return;
     const handler = (e: DeviceOrientationEvent) => {
       if (uiFaceActive) return;
-      const gamma = e.gamma ?? 0;
-      const beta = e.beta ?? 0;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const gamma = (e as any).webkitCompassHeading ? e.alpha : e.gamma;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const beta = (e as any).webkitCompassHeading ? e.beta : e.beta;
+      if (gamma === null || beta === null) return;
       const nx = THREE.MathUtils.clamp(gamma / 45, -1, 1);
       const ny = THREE.MathUtils.clamp(-beta / 30, -1, 1);
       lookTarget.current.set(nx, ny);
@@ -794,6 +802,7 @@ export const GridScan: React.FC<GridScanProps> = ({
         }
 
         if ('requestVideoFrameCallback' in HTMLVideoElement.prototype) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (video as any).requestVideoFrameCallback(() => detect(performance.now()));
         } else {
           requestAnimationFrame(detect);

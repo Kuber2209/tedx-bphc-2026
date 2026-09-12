@@ -90,7 +90,7 @@ export default function HomeExperience() {
             
             <h1 className="text-6xl md:text-8xl lg:text-[110px] font-bold tracking-tighter leading-[0.9] mb-8">
               Ideas that <br />
-              <span className="font-serif italic font-light text-zinc-600">challenge</span> the <br />
+              <span className="font-medium text-[#E62B1E]">challenge</span> the <br />
               ordinary.
             </h1>
           </motion.div>
@@ -110,7 +110,7 @@ export default function HomeExperience() {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col md:flex-row gap-12 md:gap-24 items-start"
             >
-              <h2 className="text-2xl md:text-4xl font-serif italic text-zinc-500 shrink-0 md:w-1/3 leading-tight">
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-neutral-900 shrink-0 md:w-1/3 leading-tight">
                 A collision of <br/> disciplines, cultures, <br/> and perspectives.
               </h2>
               <div className="md:w-2/3">
@@ -192,7 +192,7 @@ export default function HomeExperience() {
             </div>
             <div>
               <p className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase mb-4">The Experience</p>
-              <h3 className="text-3xl font-serif italic mb-6 text-neutral-900">More than just talks.</h3>
+              <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-6 text-neutral-900">More than just talks.</h3>
               <p className="text-zinc-600 leading-relaxed text-sm">
                 Immersive performances, interactive exhibits, and spaces designed for serendipitous encounters. We engineer an environment where conversations continue long after the speakers leave the stage.
               </p>
@@ -220,7 +220,7 @@ export default function HomeExperience() {
             <p className="font-mono text-[10px] tracking-[0.3em] uppercase mb-8 text-zinc-500">Be Part of the Conversation</p>
             <h2 className="text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-12">
               Secure your <br/>
-              <span className="font-serif italic font-light text-[#E62B1E]">seat.</span>
+              <span className="font-bold text-[#E62B1E]">seat.</span>
             </h2>
             <Link 
               href="/schedule" 

@@ -49,8 +49,11 @@ export default function TeamMemberCard({ member }: TeamMemberCardProps) {
       <motion.div 
         className="group relative flex flex-col cursor-pointer"
         onClick={handleOpen}
-        whileHover={{ y: -5 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        whileHover={{ y: -8 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="relative w-full aspect-square mb-6 overflow-hidden bg-zinc-100">
           {member.imageUrl && !imageError ? (
@@ -158,7 +161,7 @@ export default function TeamMemberCard({ member }: TeamMemberCardProps) {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3, duration: 0.4 }}
-                      className="text-lg font-serif italic text-zinc-500"
+                      className="text-sm font-medium text-zinc-500 uppercase tracking-widest mt-1"
                     >
                       {member.handle}
                     </motion.p>

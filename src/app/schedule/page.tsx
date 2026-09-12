@@ -149,7 +149,7 @@ export default function SchedulePage() {
             <InvisibleThreadsCanvas />
             <h1 className="relative z-10 text-6xl sm:text-7xl md:text-[130px] font-bold tracking-tighter leading-[0.85] pointer-events-auto select-none">
               Invisible <br />
-              <span className="italic font-serif font-light text-zinc-500">threads.</span>
+              <span className="font-bold text-[#eb0028]">threads.</span>
             </h1>
           </div>
 
@@ -237,7 +237,7 @@ export default function SchedulePage() {
                   The Curatorial Thesis
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-serif italic text-zinc-800 leading-tight mb-8">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-tight mb-8">
                 &ldquo;These connections may be invisible, but their effects are not.&rdquo;
               </h2>
               <p className="text-zinc-600 text-base md:text-lg leading-relaxed font-light mb-8">
@@ -271,7 +271,7 @@ export default function SchedulePage() {
                   <h3 className="text-2xl font-bold tracking-tight text-black mb-2 group-hover:text-[#eb0028] transition-colors">
                     {pillar.title}
                   </h3>
-                  <p className="font-serif italic text-sm text-zinc-500 mb-4">
+                  <p className="text-sm font-medium text-zinc-500 uppercase tracking-widest mb-4">
                     {pillar.tagline}
                   </p>
                   <p className="text-sm font-light text-zinc-600 leading-relaxed">
@@ -323,7 +323,7 @@ export default function SchedulePage() {
                 <h4 className="text-sm font-bold text-black line-clamp-1 mb-1">
                   {block.name.replace(/Session \d+: /, "")}
                 </h4>
-                <p className="font-serif italic text-xs text-zinc-500 line-clamp-1">
+                <p className="text-xs font-medium text-zinc-500 uppercase tracking-widest line-clamp-1">
                   {block.threadChapter}
                 </p>
               </button>
@@ -408,7 +408,7 @@ export default function SchedulePage() {
 
                     {/* Dedicated talk title / sub-headline if present */}
                     {item.talkTitle && item.talkTitle !== item.title && (
-                      <p className="font-serif italic text-lg sm:text-xl text-zinc-600 mt-1">
+                      <p className="text-sm sm:text-base font-medium text-zinc-500 uppercase tracking-widest mt-2">
                         &ldquo;{item.talkTitle}&rdquo;
                       </p>
                     )}
@@ -423,7 +423,7 @@ export default function SchedulePage() {
                       {item.speakerRole && (
                         <>
                           <span className="text-zinc-600">•</span>
-                          <span className="font-serif italic text-zinc-500">
+                          <span className="text-sm font-medium text-zinc-500 uppercase tracking-widest">
                             {item.speakerRole}
                           </span>
                         </>

@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { ChevronDown, Sparkles, History, Check, Calendar } from "lucide-react";
+import React from "react";
+import { motion } from "motion/react";
+import { History } from "lucide-react";
 
 export interface EditionOption {
   value: string;
@@ -26,200 +26,50 @@ export default function AcademicYearDropdown({
   onSelectYear,
   className = "",
 }: AcademicYearDropdownProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  // Close on outside click
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    }
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
-
-  // Close on Escape key
-  useEffect(() => {
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setIsOpen(false);
-      }
-    }
-    if (isOpen) {
-      document.addEventListener("keydown", handleKeyDown);
-    }
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isOpen]);
-
-  const activeOption = options.find((opt) => opt.value === selectedYear) || options[0];
-
   return (
-    <div ref={dropdownRef} className={`relative inline-block ${className}`}>
-      {/* Pill Trigger Button (ToDesktop Inspired) */}
-      <button
-        type="button"
-        onClick={() => setIsOpen((prev) => !prev)}
-        aria-haspopup="listbox"
-        aria-expanded={isOpen}
-        aria-label="Select academic year edition"
-        className={`group flex items-center gap-2.5 rounded-full border px-4 py-2 text-xs font-mono tracking-wide transition-all duration-200 cursor-pointer ${
-          isOpen
-            ? "border-[#E62B1E] bg-white text-black shadow-[0_0_20px_rgba(230,43,30,0.15)]"
-            : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-300 hover:bg-zinc-50 hover:text-black"
-        }`}
-      >
-        <span className="flex items-center gap-2">
-          {activeOption?.current ? (
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#E62B1E] opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#E62B1E]" />
-            </span>
-          ) : (
-            <span className="h-2 w-2 rounded-full bg-zinc-300" />
-          )}
-          <span className="font-semibold text-black">{activeOption?.label || selectedYear}</span>
-          {activeOption?.current && (
-            <span className="rounded bg-[#E62B1E]/15 px-1.5 py-0.2 font-mono text-[9px] font-bold text-[#E62B1E]">
-              CURRENT
-            </span>
-          )}
-        </span>
-
-        <ChevronDown
-          className={`h-3.5 w-3.5 text-zinc-500 transition-transform duration-300 group-hover:text-zinc-800 ${
-            isOpen ? "rotate-180 text-[#E62B1E]" : ""
-          }`}
-        />
-      </button>
-
-      {/* Floating Glassmorphism Popover Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 8, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 6, scale: 0.96 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
-            role="listbox"
-            className="absolute right-0 left-auto top-full mt-2.5 z-50 w-[320px] sm:w-[360px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-zinc-200 bg-white/95 p-2 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.1),0_0_35px_rgba(230,43,30,0.1)] backdrop-blur-2xl"
+    <div className={`flex flex-wrap items-center gap-3 ${className}`}>
+      {options.map((option) => {
+        const isSelected = option.value === selectedYear;
+        return (
+          <button
+            key={option.value}
+            type="button"
+            onClick={() => onSelectYear(option.value)}
+            className={`group relative flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-mono tracking-wide transition-all duration-300 cursor-pointer ${
+              isSelected
+                ? "text-white"
+                : "bg-white/80 text-neutral-600 border border-neutral-200/80 hover:bg-white hover:border-neutral-300 hover:text-black shadow-sm"
+            }`}
           >
-            {/* Ambient Red Glow in Menu Corner */}
-            <div
-              className="pointer-events-none absolute -top-12 -right-12 h-32 w-32 rounded-full bg-[#E62B1E]/15 blur-2xl"
-              aria-hidden="true"
-            />
-
-            {/* Menu Header */}
-            <div className="relative z-10 flex items-center justify-between px-3 py-2 border-b border-zinc-100 mb-1">
-              <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-zinc-500 font-semibold">
-                TEDx BPHC Academic Years
-              </span>
-              <span className="font-mono text-[10px] text-zinc-500">
-                {options.length} Editions
-              </span>
-            </div>
-
-            {/* Options List */}
-            <div className="relative z-10 max-h-[340px] space-y-1 overflow-y-auto pr-0.5 custom-scrollbar">
-              {options.map((option) => {
-                const isSelected = option.value === selectedYear;
-                return (
-                    <button
-                      key={option.value}
-                      type="button"
-                      role="option"
-                      aria-selected={isSelected}
-                      onClick={() => {
-                        onSelectYear(option.value);
-                        setIsOpen(false);
-                      }}
-                      className={`group/item flex w-full items-start gap-3 rounded-xl p-3 text-left transition-all duration-150 cursor-pointer ${
-                        isSelected
-                          ? "bg-zinc-50 border border-[#E62B1E]/40 shadow-sm"
-                          : "border border-transparent hover:bg-zinc-50 hover:border-zinc-200"
-                      }`}
-                    >
-                      {/* Left Icon Badge */}
-                      <div
-                        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-colors ${
-                          option.current
-                            ? isSelected
-                              ? "border-[#E62B1E] bg-[#E62B1E]/10 text-[#E62B1E]"
-                              : "border-[#E62B1E]/30 bg-[#E62B1E]/5 text-[#E62B1E] group-hover/item:border-[#E62B1E]/60"
-                            : isSelected
-                            ? "border-zinc-300 bg-zinc-100 text-black"
-                            : "border-zinc-200 bg-white text-zinc-500 group-hover/item:border-zinc-300 group-hover/item:text-zinc-700"
-                        }`}
-                      >
-                      {option.current ? (
-                        <Sparkles className="h-4 w-4" />
-                      ) : (
-                        <History className="h-4 w-4" />
-                      )}
-                    </div>
-
-                    {/* Content Column */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-1.5">
-                        <span
-                          className={`font-mono text-xs font-bold uppercase tracking-tight transition-colors ${
-                            isSelected ? "text-black" : "text-zinc-700 group-hover/item:text-black"
-                          }`}
-                        >
-                          {option.label}
-                        </span>
-
-                        <div className="flex items-center gap-1.5">
-                          {option.current ? (
-                            <span className="rounded-full bg-[#E62B1E]/10 border border-[#E62B1E]/20 px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider text-[#E62B1E]">
-                              Live Edition
-                            </span>
-                          ) : (
-                            <span className="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-[9px] text-zinc-500">
-                              Archive
-                            </span>
-                          )}
-
-                          {isSelected && (
-                            <Check className="h-3.5 w-3.5 text-[#E62B1E]" />
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Description / Subtitle */}
-                      <p className="mt-1 font-sans text-[11px] leading-relaxed text-zinc-500 line-clamp-2 group-hover/item:text-zinc-600">
-                        {option.description ||
-                          (option.current
-                            ? "Current flagship edition · Ideas worth spreading, live keynote sessions & 9 visionary speakers."
-                            : `Archive edition · Preserved alumni talks, deep-dives & breakthrough moments from ${option.value}.`)}
-                      </p>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Bottom Subtle Footer */}
-            <div className="relative z-10 mt-1 border-t border-zinc-100 px-3 pt-2 pb-1 flex items-center justify-between">
-              <span className="font-mono text-[10px] text-zinc-500 flex items-center gap-1.5">
-                <Calendar className="h-3 w-3 text-zinc-500" />
-                <span>Switch edition to explore talks</span>
-              </span>
-              <span className="font-mono text-[10px] text-[#E62B1E]">
-                TEDx BPHC
-              </span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {isSelected && (
+              <motion.div
+                layoutId="active-year-pill"
+                className="absolute inset-0 rounded-full bg-black shadow-lg"
+                transition={{ type: "spring", stiffness: 450, damping: 32 }}
+              />
+            )}
+            
+            <span className="relative z-10 flex items-center gap-2.5">
+              {option.current ? (
+                <span className="relative flex h-2 w-2 items-center justify-center">
+                  <span className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 ${isSelected ? "bg-white/60" : "bg-[#eb0028]"}`} />
+                  <span className={`relative inline-flex h-2 w-2 rounded-full ${isSelected ? "bg-white" : "bg-[#eb0028]"}`} />
+                </span>
+              ) : (
+                <History className={`h-3.5 w-3.5 ${isSelected ? "text-neutral-300" : "text-neutral-400 group-hover:text-neutral-600"}`} />
+              )}
+              
+              <span className="font-semibold uppercase">{option.label}</span>
+              
+              {option.current && !isSelected && (
+                <span className="rounded-full bg-[#eb0028]/10 px-2 py-0.5 text-[9px] font-bold text-[#eb0028]">
+                  LIVE
+                </span>
+              )}
+            </span>
+          </button>
+        );
+      })}
     </div>
   );
 }
