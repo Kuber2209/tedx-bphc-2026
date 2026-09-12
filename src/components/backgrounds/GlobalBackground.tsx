@@ -7,7 +7,6 @@ import { AnimatePresence, motion } from "motion/react";
 
 const Ballpit = dynamic(() => import("./Ballpit"), { ssr: false });
 const Hyperspeed = dynamic(() => import("./Hyperspeed"), { ssr: false });
-const Aurora = dynamic(() => import("./Aurora"), { ssr: false });
 const DarkVeil = dynamic(() => import("./DarkVeil"), { ssr: false });
 const DotGrid = dynamic(() => import("./DotGrid"), { ssr: false });
 
