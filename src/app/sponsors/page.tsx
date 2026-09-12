@@ -49,7 +49,7 @@ export default function SponsorsPage() {
             <div className="h-[1px] w-8 bg-[#eb0028]"></div>
           </div>
           <h1 className="text-6xl md:text-8xl lg:text-[110px] font-bold tracking-tighter leading-[0.9] mb-8">
-            Our <span className="text-[#eb0028]">Partners.</span>
+            Our <span className="italic font-serif font-light text-zinc-400">Partners.</span>
           </h1>
           <p className="max-w-3xl text-zinc-600 text-lg md:text-2xl leading-relaxed font-light">
             We partner with visionary organizations that believe in the power of ideas. Together, we engineer an environment where innovation thrives.

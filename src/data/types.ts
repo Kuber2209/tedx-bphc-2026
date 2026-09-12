@@ -54,6 +54,17 @@ export interface FaqCategory {
   items: FaqItem[];
 }
 
+export interface PassDetail {
+  overview: string;
+  whoShouldAttend: string[];
+  scheduleHighlights: { time: string; title: string; description: string }[];
+  checkInGuide?: string[];
+  verificationDocuments?: string[];
+  kitContents: string[];
+  faqs: { question: string; answer: string }[];
+  seatingZone: string;
+}
+
 export interface PassTier {
   id: string;
   name: string;
@@ -66,4 +77,5 @@ export interface PassTier {
   available: boolean;
   highlight?: boolean;
   registrationUrl?: string;
+  details?: PassDetail;
 }

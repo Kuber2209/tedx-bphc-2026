@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from "motion/react";
 const Ballpit = dynamic(() => import("./Ballpit"), { ssr: false });
 const Hyperspeed = dynamic(() => import("./Hyperspeed"), { ssr: false });
 const Aurora = dynamic(() => import("./Aurora"), { ssr: false });
+const DarkVeil = dynamic(() => import("./DarkVeil"), { ssr: false });
 const DotGrid = dynamic(() => import("./DotGrid"), { ssr: false });
 const Grid = dynamic(() => import("./Grid"), { ssr: false });
 
@@ -25,8 +26,15 @@ export default function GlobalBackground() {
     switch (pathname) {
       case "/":
         return (
-          <div className="absolute inset-0 opacity-80 transition-opacity duration-1000">
-            <Ballpit count={40} color="#E62B1E" opacity={0.6} />
+          <div className="absolute inset-0 opacity-50 transition-opacity duration-1000">
+            <DarkVeil
+              scanlineFrequency={0.6}
+              scanlineIntensity={0.35}
+              speed={0.45}
+              noiseIntensity={0.04}
+              warpAmount={0.06}
+              lightMode={true}
+            />
           </div>
         );
       case "/speakers":

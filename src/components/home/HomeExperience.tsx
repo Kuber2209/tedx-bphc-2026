@@ -92,13 +92,13 @@ export default function HomeExperience() {
             <h1 className="text-6xl md:text-8xl lg:text-[110px] font-bold tracking-tighter leading-[0.9] mb-8">
               Ideas that <br />
               <span className="font-medium text-[#E62B1E]">challenge</span> the <br />
-              ordinary.
+              <span className="italic font-serif font-light text-zinc-400">ordinary.</span>
             </h1>
           </motion.div>
         </div>
       </section>
 
-      {/* LOWER SECTIONS CONTAINER WITH BALLPIT BACKGROUND */}
+      {/* LOWER SECTIONS CONTAINER WITH AURORA BACKGROUND */}
       <div className="relative w-full bg-transparent text-[#050505]">
 
         {/* 2. EDITORIAL STATEMENT — Quiet typography break */}

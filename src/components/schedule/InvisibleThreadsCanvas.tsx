@@ -46,8 +46,12 @@ export default function InvisibleThreadsCanvas() {
     const resize = () => {
       if (!container || !canvas) return;
       const rect = container.getBoundingClientRect();
-      width = rect.width;
-      height = rect.height;
+      const zoom =
+        parseFloat(getComputedStyle(document.documentElement).zoom) ||
+        parseFloat(getComputedStyle(document.body).zoom) ||
+        1;
+      width = rect.width / zoom;
+      height = rect.height / zoom;
       dpr = Math.min(window.devicePixelRatio || 1, 2);
 
       canvas.width = width * dpr;
@@ -67,10 +71,14 @@ export default function InvisibleThreadsCanvas() {
     const handleMouseMove = (e: MouseEvent) => {
       if (!container) return;
       const rect = container.getBoundingClientRect();
-      const mx = e.clientX - rect.left;
-      const my = e.clientY - rect.top;
+      const zoom =
+        parseFloat(getComputedStyle(document.documentElement).zoom) ||
+        parseFloat(getComputedStyle(document.body).zoom) ||
+        1;
+      const mx = (e.clientX - rect.left) / zoom;
+      const my = (e.clientY - rect.top) / zoom;
 
-      if (mx >= -40 && mx <= rect.width + 40 && my >= -40 && my <= rect.height + 40) {
+      if (mx >= -40 && mx <= width + 40 && my >= -40 && my <= height + 40) {
         mouseRef.current = { x: mx, y: my, active: true };
       } else {
         mouseRef.current.active = false;

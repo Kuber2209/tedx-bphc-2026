@@ -3,8 +3,8 @@
 import React from "react";
 import Link from "next/link";
 import { passTiers, passGuidelines } from "@/data/passes";
-import { motion } from "motion/react";
 import BlurText from "@/components/reactbits/BlurText";
+import BorderGlow from "@/components/reactbits/BorderGlow";
 import FloatingLines from "@/components/reactbits/FloatingLines";
 import {
   GraduationCap,
@@ -58,8 +58,8 @@ export default function PassesPage() {
               direction="top"
               className="text-6xl sm:text-7xl md:text-8xl lg:text-[96px] font-bold tracking-tight mb-8 text-neutral-900 leading-[0.95] text-center"
               highlightWords={{
-                room: "font-medium text-[#eb0028]",
-                "room.": "font-medium text-[#eb0028]",
+                room: "italic font-serif font-light text-zinc-400",
+                "room.": "italic font-serif font-light text-zinc-400",
               }}
             />
 
@@ -78,119 +78,99 @@ export default function PassesPage() {
         <section className="relative pb-24 px-6 md:px-12">
           <div className="max-w-[1280px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-              {passTiers.map((pass, idx) => (
-                <motion.div
+              {passTiers.map((pass) => (
+                <BorderGlow
                   key={pass.id}
-                  initial={{ opacity: 0, x: idx % 2 === 0 ? -40 : 40, y: 20 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true, margin: "-20px" }}
-                  transition={{ duration: 1.0, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ y: -8 }}
-                  className={`group relative flex flex-col justify-between p-8 sm:p-10 rounded-2xl transition-all duration-500 w-full h-full ${
-                    pass.highlight
-                      ? "bg-white border-none shadow-[0_20px_40px_-15px_rgba(235,0,40,0.15)] ring-1 ring-neutral-200/60"
-                      : "bg-white/80 border border-neutral-200 shadow-sm hover:shadow-lg hover:bg-white"
-                  }`}
+                  glowColor="#eb0028"
+                  glowSize={360}
+                  borderWidth={1.5}
+                  borderRadius="1rem"
+                  showOuterGlow={true}
+                  intensity={0.5}
+                  highlight={pass.highlight}
+                  className="h-full w-full"
                 >
-                  {/* Accent top line */}
                   <div
-                    className={`absolute top-0 left-0 right-0 h-1.5 rounded-t-2xl transition-opacity duration-500 ${
+                    className={`group relative flex flex-col justify-between p-8 sm:p-10 rounded-2xl w-full h-full ${
                       pass.highlight
-                        ? "bg-gradient-to-r from-[#eb0028] via-[#eb0028]/80 to-transparent opacity-100"
-                        : "bg-gradient-to-r from-neutral-200 to-transparent opacity-0 group-hover:opacity-100"
+                        ? "bg-white border-none shadow-[0_20px_40px_-15px_rgba(235,0,40,0.15)] ring-1 ring-neutral-200/60"
+                        : "bg-white border border-neutral-200 shadow-sm"
                     }`}
-                  />
+                  >
+                    {/* Accent top line */}
+                    <div
+                      className={`absolute top-0 left-0 right-0 h-1.5 rounded-t-2xl transition-opacity duration-500 ${
+                        pass.highlight
+                          ? "bg-gradient-to-r from-[#eb0028] via-[#eb0028]/80 to-transparent opacity-100"
+                          : "bg-gradient-to-r from-neutral-200 to-transparent opacity-0 group-hover:opacity-100"
+                      }`}
+                    />
 
-                  {/* Top Section */}
-                  <div>
-                    {/* Category Pill & Highlight Indicator */}
-                    <div className="flex items-center justify-between gap-2 mb-8">
-                      <span className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-600">
-                        {getPassIcon(pass.id)}
-                        <span>{pass.badge}</span>
-                      </span>
-
-                      {pass.highlight && (
-                        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#eb0028]/10 px-3 py-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-[#eb0028]">
-                          Campus Exclusive
+                    {/* Top Section */}
+                    <div>
+                      {/* Category Pill & Highlight Indicator */}
+                      <div className="flex items-center justify-between gap-2 mb-8">
+                        <span className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-600">
+                          {getPassIcon(pass.id)}
+                          <span>{pass.badge}</span>
                         </span>
-                      )}
-                    </div>
 
-                    {/* Pass Name & Target Audience */}
-                    <div className="mb-6">
-                      <h3 className="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 mb-2">
-                        {pass.name}
-                      </h3>
-                      <p className="text-sm font-medium text-neutral-500 uppercase tracking-widest mt-1">
-                        {pass.targetAudience}
-                      </p>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-sm font-light text-neutral-600 leading-relaxed mb-8">
-                      {pass.description}
-                    </p>
-
-                    {/* Eligibility Verification Callout */}
-                    <div className="rounded-xl bg-neutral-50 border border-neutral-100 p-5 mb-8">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#eb0028]">
-                          Verification Required
-                        </span>
+                        {pass.highlight && (
+                          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#eb0028]/10 px-3 py-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-[#eb0028]">
+                            Campus Exclusive
+                          </span>
+                        )}
                       </div>
-                      <p className="text-xs text-neutral-500 font-light leading-relaxed">
-                        {pass.eligibility}
-                      </p>
-                    </div>
 
-                    {/* Inclusions List */}
-                    <div className="space-y-5 mb-10">
-                      <p className="text-neutral-400 font-mono text-[10px] tracking-[0.2em] uppercase font-bold border-b border-neutral-100 pb-2">
-                        Inclusions & Privileges
-                      </p>
-                      <ul className="space-y-4 text-sm text-neutral-700 font-light">
-                        {pass.benefits.map((benefit, i) => (
-                          <li key={i} className="flex items-start gap-3">
-                            <span className="text-[#eb0028] font-bold mt-0.5 shrink-0">✓</span>
-                            <span className="leading-relaxed">{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  {/* Bottom Price & CTA Area */}
-                  <div className="pt-8 border-t border-neutral-100 mt-auto">
-                    <div className="flex items-baseline justify-between gap-4 mb-6">
-                      <div>
-                        <p className="text-neutral-400 font-mono text-[10px] tracking-[0.2em] uppercase mb-1">
-                          Delegate Fee
-                        </p>
-                        <p className="text-3xl font-bold tracking-tight text-neutral-900">
-                          {pass.price}
+                      {/* Pass Name & Target Audience */}
+                      <div className="mb-6">
+                        <h3 className="text-3xl font-bold tracking-tight text-neutral-900 mb-2 group-hover:text-[#eb0028] transition-colors">
+                          <Link href={`/passes/${pass.id}`}>
+                            {pass.name}
+                          </Link>
+                        </h3>
+                        <p className="font-serif italic text-base text-zinc-500">
+                          {pass.targetAudience}
                         </p>
                       </div>
-                      <span className="text-[10px] font-mono text-[#eb0028] uppercase tracking-wider font-bold bg-[#eb0028]/5 px-2 py-1 rounded">
-                        Phase 1
-                      </span>
+
+                      {/* Description */}
+                      <p className="text-sm font-light text-neutral-600 leading-relaxed mb-8">
+                        {pass.description}
+                      </p>
+
                     </div>
 
-                    <Link
-                      href={pass.available ? pass.registrationUrl || "/schedule" : "#"}
-                      className={`w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-bold tracking-[0.15em] uppercase rounded-full transition-all duration-300 ${
-                        pass.available
-                          ? pass.highlight 
+                    {/* Bottom Price & CTA Area */}
+                    <div className="pt-8 border-t border-neutral-100 mt-auto relative z-20">
+                      <div className="flex items-baseline justify-between gap-4 mb-6">
+                        <div>
+                          <p className="text-zinc-500 font-mono text-[10px] tracking-[0.2em] uppercase mb-1">
+                            Delegate Fee
+                          </p>
+                          <p className="text-3xl font-serif italic text-black font-light">
+                            {pass.price}
+                          </p>
+                        </div>
+                        <span className="text-[10px] font-mono text-[#eb0028] uppercase tracking-wider font-bold bg-[#eb0028]/5 px-2 py-1 rounded">
+                          Phase 1
+                        </span>
+                      </div>
+
+                      <Link
+                        href={`/passes/${pass.id}`}
+                        className={`w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-bold tracking-[0.2em] uppercase rounded-full transition-all duration-300 ${
+                          pass.highlight 
                             ? "bg-[#eb0028] text-white hover:bg-[#c20021] hover:shadow-lg shadow-sm"
                             : "bg-black text-white hover:bg-neutral-800 hover:shadow-lg shadow-sm"
-                          : "bg-neutral-100 text-neutral-400 cursor-not-allowed"
-                      }`}
-                    >
-                      <span>{pass.available ? "Register Pass" : "Coming Soon"}</span>
-                      {pass.available && <ArrowUpRight className="h-4 w-4" />}
-                    </Link>
+                        }`}
+                      >
+                        <span>View Pass Details</span>
+                        <ArrowUpRight className="h-4 w-4" />
+                      </Link>
+                    </div>
                   </div>
-                </motion.div>
+                </BorderGlow>
               ))}
             </div>
 
@@ -263,7 +243,7 @@ export default function PassesPage() {
                 Questions about passes?
               </h4>
               <p className="text-base text-neutral-500 font-light mb-8 leading-relaxed">
-                Check out our FAQs regarding entry verification, ticket transfers, accessibility,
+                Check out our FAQs regarding pass access, group reservations, accessibility,
                 and event schedule logistics.
               </p>
               <Link

@@ -560,12 +560,12 @@ export default function SchedulePage() {
               </span>
             </div>
 
-            {/* Main Headline with localized Invisible Threads canvas behind text */}
-            <div className="relative mb-12">
+            {/* Headline with localized Invisible Threads animation flowing into the right space */}
+            <div className="relative mb-8 w-full min-h-[220px] sm:min-h-[260px] md:min-h-[320px] flex items-center">
               <InvisibleThreadsCanvas />
-              <h1 className="relative z-10 text-6xl sm:text-7xl md:text-[110px] lg:text-[130px] font-bold tracking-tighter leading-[0.85] pointer-events-auto select-none">
-                A Day Woven in Ideas:<br />
-                <span className="font-bold text-[#eb0028] pr-4">The Flow of Connection.</span>
+              <h1 className="relative z-10 text-6xl sm:text-7xl md:text-[130px] font-bold tracking-tighter leading-[0.85] pointer-events-auto select-none">
+                Invisible <br />
+                <span className="italic font-serif font-light text-zinc-400">threads.</span>
               </h1>
             </div>
 

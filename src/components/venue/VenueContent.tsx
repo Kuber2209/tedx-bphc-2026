@@ -93,7 +93,7 @@ export default function VenueContent() {
               TEDx BPHC / VENUE
             </p>
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-neutral-900 leading-[1.1] mb-8">
-              Where ideas meet.
+              Where ideas <span className="italic font-serif font-light text-zinc-400">meet.</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl font-light text-neutral-500 max-w-2xl mx-auto leading-relaxed">
               Every great idea needs a place to land. Join us at the BITS Pilani Hyderabad Campus Auditorium, a space designed for focus, connection, and paradigm-shifting conversations.

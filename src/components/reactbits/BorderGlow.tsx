@@ -32,9 +32,13 @@ export default function BorderGlow({
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
+    const zoom =
+      parseFloat(getComputedStyle(document.documentElement).zoom) ||
+      parseFloat(getComputedStyle(document.body).zoom) ||
+      1;
     setPosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
+      x: (e.clientX - rect.left) / zoom,
+      y: (e.clientY - rect.top) / zoom,
     });
   }, []);
 

@@ -42,7 +42,7 @@ export default function SpeakersPage() {
             </div>
             <h1 className="text-7xl md:text-[130px] font-bold tracking-tighter leading-[0.85] mb-12">
               Ideas don&apos;t<br />
-            <span className="font-bold text-[#eb0028] pr-4">spread themselves.</span>
+              <span className="italic font-serif font-light text-zinc-400 pr-4">spread themselves.</span>
             </h1>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
               <p className="max-w-md text-zinc-600 text-lg md:text-xl font-light">

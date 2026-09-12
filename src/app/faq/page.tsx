@@ -201,7 +201,7 @@ export default function FAQPage() {
           {/* Headline */}
           <h1 className="text-6xl sm:text-7xl md:text-[130px] font-bold tracking-tighter leading-[0.85] mb-8">
             Unraveling the <br />
-            <span className="font-bold text-[#eb0028]">threads.</span>
+            <span className="italic font-serif font-light text-zinc-400">threads.</span>
           </h1>
 
           {/* Subtitle & Search */}
