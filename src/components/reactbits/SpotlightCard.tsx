@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { motion, useSpring, useTransform, useMotionValue } from "motion/react";
+import { motion, useTransform, useMotionValue } from "motion/react";
 
 interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;

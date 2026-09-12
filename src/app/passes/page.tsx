@@ -80,12 +80,12 @@ export default function PassesPage() {
               {passTiers.map((pass, idx) => (
                 <motion.div
                   key={pass.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, x: idx % 2 === 0 ? -40 : 40, y: 20 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true, margin: "-20px" }}
+                  transition={{ duration: 1.0, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
                   whileHover={{ y: -8 }}
-                  className={`group relative flex flex-col justify-between p-8 sm:p-10 rounded-2xl transition-all w-full h-full ${
+                  className={`group relative flex flex-col justify-between p-8 sm:p-10 rounded-2xl transition-all duration-500 w-full h-full ${
                     pass.highlight
                       ? "bg-white border-none shadow-[0_20px_40px_-15px_rgba(235,0,40,0.15)] ring-1 ring-neutral-200/60"
                       : "bg-white/80 border border-neutral-200 shadow-sm hover:shadow-lg hover:bg-white"
@@ -93,7 +93,7 @@ export default function PassesPage() {
                 >
                   {/* Accent top line */}
                   <div
-                    className={`absolute top-0 left-0 right-0 h-1.5 rounded-t-2xl transition-opacity duration-300 ${
+                    className={`absolute top-0 left-0 right-0 h-1.5 rounded-t-2xl transition-opacity duration-500 ${
                       pass.highlight
                         ? "bg-gradient-to-r from-[#eb0028] via-[#eb0028]/80 to-transparent opacity-100"
                         : "bg-gradient-to-r from-neutral-200 to-transparent opacity-0 group-hover:opacity-100"

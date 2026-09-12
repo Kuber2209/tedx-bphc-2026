@@ -7,13 +7,9 @@ import { AnimatePresence, motion } from "motion/react";
 
 const Ballpit = dynamic(() => import("./Ballpit"), { ssr: false });
 const Hyperspeed = dynamic(() => import("./Hyperspeed"), { ssr: false });
-const Threads = dynamic(() => import("./Threads"), { ssr: false });
 const Aurora = dynamic(() => import("./Aurora"), { ssr: false });
 const DotGrid = dynamic(() => import("./DotGrid"), { ssr: false });
 const Grid = dynamic(() => import("./Grid"), { ssr: false });
-const Radar = dynamic(() => import("../reactbits/Radar"), { ssr: false });
-const AeroShards = dynamic(() => import("../reactbits/AeroShards"), { ssr: false });
-const GridScan = dynamic(() => import("../reactbits/GridScan").then((mod) => mod.GridScan), { ssr: false });
 
 export default function GlobalBackground() {
   const pathname = usePathname();

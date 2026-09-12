@@ -1,7 +1,5 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
 
 interface SectionBackgroundProps {
   children: React.ReactNode;

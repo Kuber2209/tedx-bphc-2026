@@ -10,9 +10,10 @@ import TiltedCard from "@/components/reactbits/TiltedCard";
 
 interface SpeakerCardProps {
   speaker: Speaker;
+  index?: number;
 }
 
-export default function SpeakerCard({ speaker }: SpeakerCardProps) {
+export default function SpeakerCard({ speaker, index = 0 }: SpeakerCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
 
@@ -54,12 +55,13 @@ export default function SpeakerCard({ speaker }: SpeakerCardProps) {
       {/* CARD */}
       <TiltedCard rotateAmplitude={8} scaleOnHover={1.03}>
         <motion.div 
-          className="group relative flex flex-col cursor-pointer h-full"
+          className="group relative flex flex-col cursor-pointer"
           onClick={handleOpen}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40, y: 20 }}
+          whileInView={{ opacity: 1, x: 0, y: 0 }}
+          viewport={{ once: true, margin: "-20px" }}
+          whileHover={{ y: -8 }}
+          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="relative w-full aspect-[3/4] mb-6 overflow-hidden bg-zinc-100 shadow-sm group-hover:shadow-xl transition-shadow duration-500">
           {speaker.imageUrl && !imageError ? (

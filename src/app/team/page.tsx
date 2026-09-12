@@ -2,9 +2,7 @@
 
 
 import { TEAM_SECTIONS } from "@/data/team";
-import { motion } from "motion/react";
 import { useRef } from "react";
-import Image from "next/image";
 import TeamMemberCard from "@/components/team/TeamMemberCard";
 import AeroShards from "@/components/reactbits/AeroShards";
 export default function TeamPage() {
@@ -63,7 +61,7 @@ export default function TeamPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
                   {section.members.map((member, idx) => (
                     <div key={member.id}>
-                      <TeamMemberCard member={member} />
+                      <TeamMemberCard member={member} index={idx} />
                     </div>
                   ))}
                 </div>

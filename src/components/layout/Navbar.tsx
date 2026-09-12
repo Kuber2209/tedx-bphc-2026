@@ -38,7 +38,6 @@ export default function Navbar() {
     setMobileMenuOpen(false);
   }, [pathname]);
 
-  const isDarkHero = pathname === '/' && !scrolled;
 
   const navClasses = `sticky top-0 w-full z-[150] transition-all duration-500 ease-[0.16,1,0.3,1] px-6 md:px-12 flex items-center justify-between ${
     scrolled

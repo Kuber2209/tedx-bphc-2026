@@ -616,6 +616,7 @@ export const GridScan: React.FC<GridScanProps> = ({
       renderer.forceContextLoss();
       container.removeChild(renderer.domElement);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     sensitivity,
     lineThickness,
@@ -816,6 +817,7 @@ export const GridScan: React.FC<GridScanProps> = ({
 
     return () => {
       stop = true;
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       const video = videoRef.current;
       if (video) {
         const stream = video.srcObject as MediaStream | null;

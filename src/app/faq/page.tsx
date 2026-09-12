@@ -287,25 +287,26 @@ export default function FAQPage() {
           </div>
         ) : (
           <div className="space-y-4">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            >
+
               <Accordion type="single" collapsible className="flex flex-col gap-4">
               {filteredFAQs.map((faq, index) => {
                 const num = String(index + 1).padStart(2, "0");
 
                 return (
-                  <AccordionItem
+                  <motion.div
                     key={faq.id}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40, y: 10 }}
+                    whileInView={{ opacity: 1, x: 0, y: 0 }}
+                    viewport={{ once: true, margin: "-20px" }}
+                    transition={{ duration: 0.8, delay: (index % 10) * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                  <AccordionItem
                     value={faq.id}
                     className="group relative overflow-hidden rounded-2xl border border-black/5 bg-zinc-50/70 transition-all duration-300 hover:border-black/15 hover:bg-white data-[state=open]:border-black/20 data-[state=open]:bg-white data-[state=open]:shadow-lg"
                   >
                     {/* Left TEDx Red vertical indicator bar on active item */}
                     <div
-                      className="absolute bottom-0 left-0 top-0 w-1 bg-[#eb0028] opacity-0 transition-opacity duration-300 group-data-[state=open]:opacity-100"
+                      className="absolute bottom-0 left-0 top-0 w-1 bg-[#eb0028] opacity-0 transition-opacity duration-500 group-data-[state=open]:opacity-100"
                       aria-hidden="true"
                     />
 
@@ -349,10 +350,10 @@ export default function FAQPage() {
                       </p>
                     </AccordionContent>
                   </AccordionItem>
+                  </motion.div>
                 );
               })}
             </Accordion>
-            </motion.div>
           </div>
         )}
       </main>

@@ -347,15 +347,15 @@ export default function SchedulePage() {
             return (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.8, delay: (index % 4) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40, y: 20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 1.0, delay: (index % 4) * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="relative group"
               >
                 {/* Node indicator along the thread */}
                 <div
-                  className={`absolute -left-[31px] sm:-left-[47px] md:-left-[55px] top-7 flex items-center justify-center h-5 w-5 rounded-full ring-4 ring-white transition-all duration-300 ${
+                  className={`absolute -left-[31px] sm:-left-[47px] md:-left-[55px] top-7 flex items-center justify-center h-5 w-5 rounded-full ring-4 ring-white transition-all duration-500 ${
                     isKeynote
                       ? "bg-[#eb0028] shadow-[0_0_10px_rgba(235,0,40,0.4)] group-hover:scale-125"
                       : "bg-zinc-400 group-hover:bg-black"
@@ -366,7 +366,7 @@ export default function SchedulePage() {
 
                 {/* Event Card Container */}
                 <div
-                  className={`rounded-2xl p-6 sm:p-8 transition-all duration-300 ${
+                  className={`rounded-2xl p-6 sm:p-8 transition-all duration-500 ${
                     isKeynote
                       ? "bg-white border-2 border-black/10 hover:border-black/30 hover:shadow-xl"
                       : "bg-zinc-50/70 border border-black/5 hover:bg-white hover:border-black/15 hover:shadow-md"

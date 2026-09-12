@@ -9,9 +9,10 @@ import { FaLinkedinIn, FaInstagram } from "react-icons/fa6";
 
 interface TeamMemberCardProps {
   member: TeamMember;
+  index?: number;
 }
 
-export default function TeamMemberCard({ member }: TeamMemberCardProps) {
+export default function TeamMemberCard({ member, index = 0 }: TeamMemberCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
 
@@ -49,11 +50,11 @@ export default function TeamMemberCard({ member }: TeamMemberCardProps) {
       <motion.div 
         className="group relative flex flex-col cursor-pointer"
         onClick={handleOpen}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
+        initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40, y: 20 }}
+        whileInView={{ opacity: 1, x: 0, y: 0 }}
+        viewport={{ once: true, margin: "-20px" }}
         whileHover={{ y: -8 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="relative w-full aspect-square mb-6 overflow-hidden bg-zinc-100">
           {member.imageUrl && !imageError ? (
