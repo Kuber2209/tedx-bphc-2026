@@ -555,7 +555,7 @@ export default function SchedulePage() {
             {/* Red Accent Line & Eyebrow Badge */}
             <div className="flex items-center gap-4 mb-8">
               <div className="h-[1px] w-8 bg-[#eb0028]" />
-              <span className="text-zinc-500 font-sans text-[10px] md:text-xs uppercase tracking-[0.2em]">
+              <span className="text-zinc-700 font-sans text-[10px] md:text-xs uppercase tracking-[0.2em] font-semibold">
                 TEDx BITS Hyderabad • Event Itinerary
               </span>
             </div>
@@ -565,16 +565,16 @@ export default function SchedulePage() {
               <InvisibleThreadsCanvas />
               <h1 className="relative z-10 text-6xl sm:text-7xl md:text-[130px] font-bold tracking-tighter leading-[0.85] pointer-events-auto select-none">
                 Invisible <br />
-                <span className="italic font-serif font-light text-zinc-400">threads.</span>
+                <span className="italic font-serif font-light text-zinc-600">threads.</span>
               </h1>
             </div>
 
             {/* Subtitle & Metadata matching Speaker Page layout */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
-              <p className="max-w-2xl text-zinc-600 text-lg md:text-xl font-light leading-relaxed">
+              <p className="max-w-2xl text-zinc-800 text-lg md:text-xl font-normal leading-relaxed">
                 From the first spark to the final ripple — follow the chronological sequence of conversations quietly shaping what comes next.
               </p>
-              <div className="flex items-center gap-4 font-mono text-xs text-zinc-500 shrink-0">
+              <div className="flex items-center gap-4 font-mono text-xs text-zinc-700 font-medium shrink-0">
                 <span>14 Nov 2026</span>
                 <span>•</span>
                 <span>Auditorium, BPHC</span>
@@ -590,7 +590,7 @@ export default function SchedulePage() {
             ========================================================================= */}
         <section className="max-w-[1600px] mx-auto px-6 md:px-12 pt-10 pb-4">
           <div className="flex items-center justify-between py-4 border-b border-black/10">
-            <div className="flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">
+            <div className="flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.2em] text-zinc-700 font-semibold">
               <Sparkles size={14} className="text-[#eb0028]" />
               <span>3 Curatorial Movements · 14 Milestones</span>
             </div>
@@ -650,11 +650,11 @@ export default function SchedulePage() {
                       variants={fadeIn}
                       className="max-w-2xl bg-white/70 backdrop-blur-md border border-black/10 rounded-2xl p-6 sm:p-8 border-l-2 border-l-[#eb0028] space-y-3"
                     >
-                      <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-zinc-500 pb-2 border-b border-black/5">
+                      <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-zinc-700 font-medium pb-2 border-b border-black/5">
                         <span className="font-bold text-neutral-900">{movement.title}</span>
                         <span>{movement.timeRange}</span>
                       </div>
-                      <p className="text-base text-zinc-600 font-light leading-relaxed">
+                      <p className="text-base text-zinc-800 font-normal leading-relaxed">
                         {movement.description}
                       </p>
                     </motion.div>
@@ -680,7 +680,7 @@ export default function SchedulePage() {
                         <span className="tracking-[0.2em] uppercase text-xs font-bold font-mono">
                           {isExpanded ? "Collapse Movement Timeline" : "Explore Movement Sessions"}
                         </span>
-                        <span className="text-xs font-mono text-zinc-400 font-normal">
+                        <span className="text-xs font-mono text-zinc-600 font-medium">
                           ({movement.sessions.length} milestones)
                         </span>
                       </button>
@@ -709,7 +709,7 @@ export default function SchedulePage() {
           </div>
 
           {/* Thread Terminal Node */}
-          <div className="mt-28 pt-8 border-t border-black/10 flex items-center gap-3 font-mono text-xs text-zinc-500">
+          <div className="mt-28 pt-8 border-t border-black/10 flex items-center gap-3 font-mono text-xs text-zinc-700 font-medium">
             <span className="w-2.5 h-2.5 rounded-full bg-[#eb0028]" />
             <span>End of Official Programme · Sundowner continues on Guest House Lawn</span>
           </div>
@@ -738,7 +738,7 @@ export default function SchedulePage() {
               <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-black mb-3">
                 Be there when the threads connect.
               </h3>
-              <p className="text-zinc-600 text-base md:text-lg font-light max-w-xl">
+              <p className="text-zinc-800 text-base md:text-lg font-normal max-w-xl">
                 Seating in the main auditorium is strictly limited to ensure an intimate, focused atmosphere for meaningful dialogue.
               </p>
             </div>

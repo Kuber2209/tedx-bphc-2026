@@ -180,7 +180,7 @@ export default function Timeline({ events, className = "", onEventClick }: Timel
 
                       {/* Thread Chapter Indicator */}
                       {event.threadChapter && (
-                        <span className="hidden sm:inline-block font-mono text-[10px] text-zinc-400 uppercase tracking-widest">
+                        <span className="hidden sm:inline-block font-mono text-[10px] text-zinc-600 font-medium uppercase tracking-widest">
                           • {event.threadChapter}
                         </span>
                       )}
@@ -188,7 +188,7 @@ export default function Timeline({ events, className = "", onEventClick }: Timel
 
                     {/* Location */}
                     {event.location && (
-                      <span className="flex items-center gap-1.5 font-mono text-xs text-zinc-500">
+                      <span className="flex items-center gap-1.5 font-mono text-xs text-zinc-700 font-medium">
                         <MapPin className="h-3 w-3 text-[#eb0028]" />
                         <span className="truncate max-w-[200px] sm:max-w-none">{event.location}</span>
                       </span>
@@ -202,7 +202,7 @@ export default function Timeline({ events, className = "", onEventClick }: Timel
 
                   {/* Dedicated talk subtitle if present */}
                   {event.talkTitle && event.talkTitle !== event.title && (
-                    <p className="text-sm font-medium text-zinc-500 uppercase tracking-widest mt-1">
+                    <p className="text-sm font-semibold text-zinc-700 uppercase tracking-widest mt-1">
                       &ldquo;{event.talkTitle}&rdquo;
                     </p>
                   )}
@@ -226,7 +226,7 @@ export default function Timeline({ events, className = "", onEventClick }: Timel
                       <div className="flex flex-wrap items-center gap-x-2 text-sm">
                         <span className="font-bold text-neutral-900">{event.speaker.name}</span>
                         {(event.speaker.role || event.speaker.company) && (
-                          <span className="text-zinc-500 text-xs sm:text-sm font-light">
+                          <span className="text-zinc-700 text-xs sm:text-sm font-normal">
                             {event.speaker.role}
                             {event.speaker.company ? ` · ${event.speaker.company}` : ""}
                           </span>
@@ -236,7 +236,7 @@ export default function Timeline({ events, className = "", onEventClick }: Timel
                   )}
 
                   {/* Description: 1-2 sentence overview explaining connection to theme */}
-                  <p className="text-sm font-light text-zinc-600 leading-relaxed mt-2.5 max-w-3xl">
+                  <p className="text-sm font-normal text-zinc-800 leading-relaxed mt-2.5 max-w-3xl">
                     {event.description}
                   </p>
 
@@ -275,7 +275,7 @@ export default function Timeline({ events, className = "", onEventClick }: Timel
                                   <span className="font-mono text-[10px] uppercase tracking-[0.2em] font-bold text-[#eb0028] block mb-1.5">
                                     Curatorial Deep Dive
                                   </span>
-                                  <p className="text-zinc-700 font-light leading-relaxed">
+                                  <p className="text-zinc-900 font-normal leading-relaxed">
                                     {event.abstract}
                                   </p>
                                 </div>
@@ -287,7 +287,7 @@ export default function Timeline({ events, className = "", onEventClick }: Timel
                                   <span className="font-mono text-[10px] uppercase tracking-[0.2em] font-bold text-[#eb0028] block mb-1.5">
                                     About {event.speaker.name}
                                   </span>
-                                  <p className="text-zinc-700 font-light leading-relaxed">
+                                  <p className="text-zinc-900 font-normal leading-relaxed">
                                     {event.speaker.bio}
                                   </p>
                                 </div>
@@ -295,7 +295,7 @@ export default function Timeline({ events, className = "", onEventClick }: Timel
 
                               {/* Action Footer */}
                               <div className="pt-3 border-t border-red-100 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-                                <span className="text-zinc-500">
+                                <span className="text-zinc-700 font-medium">
                                   Duration: {event.duration || "20 mins"} • 14 Nov 2026
                                 </span>
 
@@ -305,7 +305,7 @@ export default function Timeline({ events, className = "", onEventClick }: Timel
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={(e) => e.stopPropagation()}
-                                    className="inline-flex items-center gap-1.5 text-zinc-600 hover:text-[#eb0028] transition-colors"
+                                    className="inline-flex items-center gap-1.5 text-zinc-800 font-medium hover:text-[#eb0028] transition-colors"
                                   >
                                     <CalendarIcon className="h-3.5 w-3.5 text-[#eb0028]" />
                                     <span>Google Cal</span>
