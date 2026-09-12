@@ -484,9 +484,9 @@ export default function SchedulePage() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   // Keep track of which movements are expanded.
-  // Movement 01 is open by default, while 02 and 03 are collapsed to keep page compact.
+  // By default, all movements start collapsed so the page is clean, compact, and not overwhelming.
   const [expandedMovements, setExpandedMovements] = useState<Record<string, boolean>>({
-    "01": true,
+    "01": false,
     "02": false,
     "03": false,
   });
