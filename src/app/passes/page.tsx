@@ -15,6 +15,7 @@ import {
   HelpCircle,
   Users,
 } from "lucide-react";
+import { FlowButton } from "@/components/ui/flow-button";
 
 
 
@@ -243,13 +244,13 @@ export default function PassesPage() {
               </div>
 
               <div className="relative z-10 shrink-0 w-full lg:w-auto">
-                <a
+                <FlowButton
                   href="mailto:tedx@hyderabad.bits-pilani.ac.in?subject=School%20or%20Group%20Delegation%20Inquiry%20-%20TEDx%20BITS%20Hyderabad%202026"
-                  className="w-full lg:w-auto text-center inline-flex items-center justify-center gap-2 rounded-full bg-black text-white px-8 py-4 text-xs font-bold uppercase tracking-[0.15em] hover:bg-neutral-800 transition-all duration-300 shadow-sm"
-                >
-                  <span>Request Delegation Access</span>
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
+                  text="Request Delegation Access"
+                  variant="black"
+                  icon={ArrowUpRight}
+                  className="w-full lg:w-auto text-xs font-bold uppercase tracking-[0.15em] py-4 px-8"
+                />
               </div>
             </div>
 

@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useEffect } from "react";
 import LogoLoop from "@/components/layout/LogoLoop";
 import ScrollPortraitWall from "@/components/home/ScrollPortraitWall";
+import { ButtonWithIcon } from "@/components/ui/button-with-icon";
 
 const galleryImages = [
   { src: "/gallery/image1.jpg", alt: "TEDx Gallery Image 1" },
@@ -222,12 +223,13 @@ export default function HomeExperience() {
               Secure your <br/>
               <span className="font-bold text-[#E62B1E]">seat.</span>
             </h2>
-            <Link 
-              href="/schedule" 
-              className="inline-flex items-center justify-center bg-white text-neutral-900 px-10 py-5 text-sm font-bold tracking-[0.2em] uppercase hover:bg-[#E62B1E] transition-colors duration-300"
-            >
-              Get Tickets
-            </Link>
+            <div className="flex justify-center">
+              <ButtonWithIcon
+                href="/passes"
+                text="Get Tickets"
+                variant="red"
+              />
+            </div>
           </motion.div>
         </section>
       </div>

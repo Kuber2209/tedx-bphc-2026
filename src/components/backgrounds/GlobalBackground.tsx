@@ -78,6 +78,7 @@ export default function GlobalBackground() {
       case "/faq": return "bg-[#fcfcfc]";
       case "/passes": return "bg-[#fcfcfc]";
       case "/schedule": return "bg-[#fcfcfc]";
+      case "/gallery": return "bg-[#fcfcfc]";
       default: return "bg-[#fcfcfc]";
     }
   };

@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from 'react';
 import { draw, effect, frame, init, sampler, surface, target, uniforms } from 'vgpu';
 import type { Frame } from 'vgpu';
@@ -1944,35 +1945,35 @@ export default function AeroShards({
             settings.chromaticAberration > 0.000001;
 
           if (!postEnabled) {
-            currentFrame.pass({ target: output, clear: settings.background }, pass => {
+            currentFrame.pass({ target: output, clear: settings.background }, (pass: any) => {
               pass.draw(graph.shardDraw, { instances: activeCount });
             });
           } else {
-            currentFrame.pass({ target: graph.sceneTarget, clear: settings.background }, pass => {
+            currentFrame.pass({ target: graph.sceneTarget, clear: settings.background }, (pass: any) => {
               pass.draw(graph.shardDraw, { instances: activeCount });
             });
             if (settings.effect === EFFECTS.ascii) {
-              currentFrame.pass({ target: graph.asciiTarget, clear: [0, 0, 0, 0] }, pass => {
+              currentFrame.pass({ target: graph.asciiTarget, clear: [0, 0, 0, 0] }, (pass: any) => {
                 pass.draw(graph.asciiEffect);
               });
             }
             if (settings.effect !== EFFECTS.none) {
-              currentFrame.pass({ target: graph.styleTarget, clear: settings.background }, pass => {
+              currentFrame.pass({ target: graph.styleTarget, clear: settings.background }, (pass: any) => {
                 pass.draw(graph.styleEffect);
               });
             }
             if (settings.bloom > 0.0001) {
-              currentFrame.pass({ target: graph.bloomTarget, clear: [0, 0, 0, 1] }, pass => {
+              currentFrame.pass({ target: graph.bloomTarget, clear: [0, 0, 0, 1] }, (pass: any) => {
                 pass.draw(graph.bloomEffect);
               });
-              currentFrame.pass({ target: graph.bloomScratchTarget, clear: [0, 0, 0, 1] }, pass => {
+              currentFrame.pass({ target: graph.bloomScratchTarget, clear: [0, 0, 0, 1] }, (pass: any) => {
                 pass.draw(graph.bloomBlurX);
               });
-              currentFrame.pass({ target: graph.bloomTarget, clear: [0, 0, 0, 1] }, pass => {
+              currentFrame.pass({ target: graph.bloomTarget, clear: [0, 0, 0, 1] }, (pass: any) => {
                 pass.draw(graph.bloomBlurY);
               });
             }
-            currentFrame.pass({ target: output, clear: settings.background }, pass => {
+            currentFrame.pass({ target: output, clear: settings.background }, (pass: any) => {
               pass.draw(graph.finishEffect);
             });
           }

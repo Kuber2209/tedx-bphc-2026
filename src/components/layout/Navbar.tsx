@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/speakers", label: "Speakers" },
   { href: "/schedule", label: "Schedule" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/venue", label: "Venue" },
   { href: "/passes", label: "Passes" },
   { href: "/team", label: "Team" },
@@ -37,7 +38,6 @@ export default function Navbar() {
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
-
 
   const navClasses = `sticky top-0 w-full z-[150] transition-all duration-500 ease-[0.16,1,0.3,1] px-6 md:px-12 flex items-center justify-between ${
     scrolled
@@ -102,7 +102,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[140] bg-white flex flex-col justify-center px-6"
+            className="fixed inset-0 z-[140] bg-white flex flex-col justify-center px-6 text-black"
           >
             <ul className="flex flex-col gap-8">
               {NAV_LINKS.map((link, i) => {
@@ -117,7 +117,7 @@ export default function Navbar() {
                     <Link 
                       href={link.href}
                       className={`text-4xl font-bold tracking-tighter flex items-center gap-4 ${
-                        isActive ? "text-black" : "text-zinc-500"
+                        isActive ? "text-black" : "text-zinc-500 hover:text-zinc-800"
                       }`}
                     >
                       {isActive && <span className="w-2 h-2 rounded-full bg-[#eb0028]"></span>}

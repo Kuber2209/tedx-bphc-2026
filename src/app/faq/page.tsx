@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import Link from "next/link";
 import { motion } from "motion/react";
 import {
   Accordion,
@@ -16,12 +15,12 @@ import {
   MapPin,
   Mic,
   HelpCircle,
-  ArrowRight,
   Mail,
   Compass,
   Plus,
   Minus,
 } from "lucide-react";
+import { FlowButton } from "@/components/ui/flow-button";
 
 interface FAQItem {
   id: string;
@@ -382,20 +381,22 @@ export default function FAQPage() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0 w-full sm:w-auto">
-            <a
+            <FlowButton
               href="mailto:tedx@hyderabad.bits-pilani.ac.in?subject=TEDx%20BITS%20Hyderabad%202026%20Inquiry"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-neutral-900 px-6 py-3.5 text-xs font-bold uppercase tracking-[0.15em] transition-all hover:bg-[#eb0028]"
-            >
-              <Mail className="h-3.5 w-3.5" />
-              <span>Email the Team</span>
-            </a>
-            <Link
+              text="Email the Team"
+              variant="white"
+              hasArrow={false}
+              leftIcon={Mail}
+              circleColor="bg-[#eb0028]"
+              className="w-full sm:w-auto text-xs font-bold uppercase tracking-[0.15em] py-3.5 px-6"
+            />
+            <FlowButton
               href="/schedule"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-black/20 bg-white text-black px-6 py-3.5 text-xs font-bold uppercase tracking-[0.15em] transition-all hover:border-black"
-            >
-              <span>View Schedule</span>
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
+              text="View Schedule"
+              variant="white"
+              hasArrow={true}
+              className="w-full sm:w-auto text-xs font-bold uppercase tracking-[0.15em] py-3.5 px-7"
+            />
           </div>
         </div>
       </section>
