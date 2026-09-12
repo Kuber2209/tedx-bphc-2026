@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#EB0028"/>
+  <text x="32" y="33" 
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" 
+        font-size="22" 
+        font-weight="900" 
+        fill="#FFFFFF" 
+        text-anchor="middle" 
+        dominant-baseline="central"
+        letter-spacing="-0.5">TED<tspan font-weight="900" font-size="18" dy="-1">x</tspan></text>
+</svg>

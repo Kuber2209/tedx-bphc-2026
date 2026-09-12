@@ -162,7 +162,7 @@ export default function DomeGallery({
   openedImageHeight = "350px",
   imageBorderRadius = "30px",
   openedImageBorderRadius = "30px",
-  grayscale = true,
+  grayscale = false,
 }: DomeGalleryProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const mainRef = useRef<HTMLDivElement>(null);

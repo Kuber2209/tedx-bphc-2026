@@ -6,9 +6,11 @@ import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "motion/react";
 
 const Ballpit = dynamic(() => import("./Ballpit"), { ssr: false });
+const FloatingLines = dynamic(() => import("./FloatingLines"), { ssr: false });
 const Hyperspeed = dynamic(() => import("./Hyperspeed"), { ssr: false });
-const DarkVeil = dynamic(() => import("./DarkVeil"), { ssr: false });
+const Aurora = dynamic(() => import("./Aurora"), { ssr: false });
 const DotGrid = dynamic(() => import("./DotGrid"), { ssr: false });
+const Grid = dynamic(() => import("./Grid"), { ssr: false });
 
 export default function GlobalBackground() {
   const pathname = usePathname();
@@ -24,13 +26,16 @@ export default function GlobalBackground() {
     switch (pathname) {
       case "/":
         return (
-          <div className="absolute inset-0 opacity-50 transition-opacity duration-1000">
-            <DarkVeil
-              scanlineFrequency={0.6}
-              scanlineIntensity={0.35}
-              speed={0.45}
-              noiseIntensity={0.04}
-              warpAmount={0.06}
+          <div className="absolute inset-0 opacity-80 transition-opacity duration-1000">
+            <FloatingLines
+              linesGradient={["#E62B1E", "#000000", "#FFFFFF"]}
+              enabledWaves={["top", "bottom"]}
+              lineCount={[4, 4]}
+              lineDistance={[10, 10]}
+              animationSpeed={0.5}
+              interactive={true}
+              parallax={true}
+              backgroundColor="#fcfcfc"
               lightMode={true}
             />
           </div>
@@ -51,6 +56,12 @@ export default function GlobalBackground() {
         );
       case "/venue":
         return null;
+      case "/faq":
+        return (
+          <div className="absolute inset-0 opacity-50 transition-opacity duration-1000">
+            <Aurora color1="#eb0028" color2="#fcfcfc" color3="#eb0028" />
+          </div>
+        );
       case "/passes":
         return (
           <div className="absolute inset-0 opacity-30 transition-opacity duration-1000">
@@ -58,7 +69,11 @@ export default function GlobalBackground() {
           </div>
         );
       case "/schedule":
-        return null;
+        return (
+          <div className="absolute inset-0 opacity-60 transition-opacity duration-1000">
+            <Grid color="#eb0028" size={50} />
+          </div>
+        );
       default:
         return null;
     }
@@ -71,6 +86,7 @@ export default function GlobalBackground() {
       case "/team": return "bg-[#fcfcfc]";
       case "/sponsors": return "bg-[#fcfcfc]";
       case "/venue": return "bg-[#fcfcfc]";
+      case "/faq": return "bg-[#fcfcfc]";
       case "/passes": return "bg-[#fcfcfc]";
       case "/schedule": return "bg-[#fcfcfc]";
       case "/gallery": return "bg-[#fcfcfc]";

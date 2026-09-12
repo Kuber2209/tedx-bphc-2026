@@ -70,7 +70,7 @@ export default function SpeakerCard({ speaker, index = 0 }: SpeakerCardProps) {
               alt={speaker.name}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 ease-out scale-100 group-hover:scale-105"
+              className="object-cover transition-all duration-700 ease-out scale-100 group-hover:scale-105"
               onError={() => setImageError(true)}
             />
           ) : (
@@ -146,7 +146,7 @@ export default function SpeakerCard({ speaker, index = 0 }: SpeakerCardProps) {
                       src={speaker.imageUrl}
                       alt={speaker.name}
                       fill
-                      className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                      className="object-cover transition-all duration-500"
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center text-zinc-600 bg-zinc-100">

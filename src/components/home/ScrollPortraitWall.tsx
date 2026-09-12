@@ -100,7 +100,7 @@ export default function ScrollPortraitWall() {
             src={imageSrc}
             alt={speaker.name}
             fill
-            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-out group-hover:scale-105"
+            className="object-cover transition-all duration-700 ease-out group-hover:scale-105"
           />
         </div>
         <div className="mt-4">
@@ -152,21 +152,7 @@ export default function ScrollPortraitWall() {
           </div>
         </div>
 
-        {/* Title / Sticky overlay */}
-        <div className="relative z-20 flex flex-col items-center justify-center text-center pointer-events-none bg-white/80 backdrop-blur-md p-8 md:p-16 rounded-sm border border-black/10 shadow-[0_0_40px_rgba(0,0,0,0.1)]">
-          <p className="text-[#eb0028] font-sans text-[10px] md:text-xs tracking-[0.2em] uppercase mb-4 font-bold">
-            TEDxBITS Hyderabad
-          </p>
-          <h2 className="text-5xl md:text-8xl lg:text-[100px] font-bold tracking-tighter leading-[0.9] text-neutral-900">
-            Ideas worth <br />
-            <span className="font-medium text-[#eb0028]">spreading.</span>
-          </h2>
-          <div className="mt-6 md:mt-8 flex items-center gap-4 text-xs font-bold tracking-[0.15em] uppercase text-zinc-500">
-            <span>12th Edition</span>
-            <span className="w-1 h-1 bg-[#eb0028] rounded-full"></span>
-            <span>November 2026</span>
-          </div>
-        </div>
+        {/* Title / Sticky overlay Removed */}
 
       </div>
     </section>

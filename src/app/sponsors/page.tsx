@@ -88,7 +88,7 @@ export default function SponsorsPage() {
                               src={partner.logoUrl} 
                               alt={partner.name} 
                               fill
-                              className="object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" 
+                              className="object-contain opacity-85 group-hover:opacity-100 transition-all duration-700" 
                             />
                           </div>
                         ) : (

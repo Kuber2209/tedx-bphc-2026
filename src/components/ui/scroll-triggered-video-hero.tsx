@@ -137,7 +137,7 @@ const DynamicNav = ({
       transition={{ delay: 0.5 }}
     >
       <div className="flex flex-col">
-        <span className="text-[10px] uppercase tracking-widest text-white/50 font-mono">
+        <span className="text-[10px] uppercase tracking-widest text-white/50 font-sans">
           Chapter {activeChapter.id}
         </span>
         <AnimatePresence mode="wait">
@@ -227,7 +227,7 @@ export default function CinematicScrol({
               {/* Header Label */}
               <motion.div variants={fadeIn} className="flex items-center gap-4 mb-4">
                 <div className="h-px w-10 bg-[#eb0028]" />
-                <span className="text-xs font-semibold uppercase tracking-[0.35em] text-[#eb0028] font-mono">
+                <span className="text-xs font-semibold uppercase tracking-[0.35em] text-[#eb0028] font-sans">
                   Curatorial Chapter {chapter.id}
                 </span>
               </motion.div>
@@ -236,7 +236,7 @@ export default function CinematicScrol({
               <div className="overflow-hidden mb-4 py-2">
                 <motion.h2 
                   variants={textReveal}
-                  className="text-4xl md:text-7xl font-light tracking-tight text-white leading-tight font-serif"
+                  className="text-4xl md:text-7xl font-light tracking-tight text-white leading-tight font-sans"
                 >
                   {chapter.subtitle}
                 </motion.h2>

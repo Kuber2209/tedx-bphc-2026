@@ -82,7 +82,7 @@ export const ViewOnMap: React.FC<ViewOnMapProps> = ({
               >
                 <motion.div
                   layoutId={`${layoutIdPrefix}-bg`}
-                  className="absolute inset-0 opacity-20 brightness-110 grayscale transition-opacity group-hover:opacity-30 dark:opacity-15 dark:brightness-50"
+                  className="absolute inset-0 opacity-20 brightness-110 transition-opacity group-hover:opacity-30 dark:opacity-15 dark:brightness-50"
                   style={{
                     backgroundImage: `url(${mapImageUrl})`,
                     backgroundSize: "cover",
