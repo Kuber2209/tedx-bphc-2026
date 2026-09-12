@@ -8,7 +8,7 @@ building against — update it if scope changes so it stays accurate.
 - **Hero** — event name, 2026 theme/tagline, date & venue, countdown timer, primary CTA
   ("Register" / "Get Tickets"), secondary CTA ("Nominate a Speaker")
 - **Theme reveal** — the bold visual/typographic centerpiece for the 2026 theme
-- **Credibility strip** — past-edition stats (attendees, speakers, views, editions run)
+- **Credibility strip** — past-edition stats (attendees, speakers, views, editions run) ok ok 
 - **Teasers into inner sections** — small preview cards linking to `/speakers` and
   `/sponsors` (pulls from the same data Team #2 defines in `src/data/`)
 - **Community / newsletter signup**
