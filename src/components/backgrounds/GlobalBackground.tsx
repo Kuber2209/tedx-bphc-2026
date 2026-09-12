@@ -10,7 +10,6 @@ const Hyperspeed = dynamic(() => import("./Hyperspeed"), { ssr: false });
 const Aurora = dynamic(() => import("./Aurora"), { ssr: false });
 const DarkVeil = dynamic(() => import("./DarkVeil"), { ssr: false });
 const DotGrid = dynamic(() => import("./DotGrid"), { ssr: false });
-const Grid = dynamic(() => import("./Grid"), { ssr: false });
 
 export default function GlobalBackground() {
   const pathname = usePathname();
@@ -66,11 +65,7 @@ export default function GlobalBackground() {
           </div>
         );
       case "/schedule":
-        return (
-          <div className="absolute inset-0 opacity-60 transition-opacity duration-1000">
-            <Grid color="#eb0028" size={50} />
-          </div>
-        );
+        return null;
       default:
         return null;
     }

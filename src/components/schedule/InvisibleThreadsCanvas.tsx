@@ -155,31 +155,7 @@ export default function InvisibleThreadsCanvas() {
         return { x, y, radius: node.radius, isFocal: node.isFocal };
       });
 
-      // 1. TRIANGULAR MESH FILLS BETWEEN CLOSEST NODES (Subtle crimson depth)
-      const maxMeshDist = Math.min(width * 0.16, 170);
-      for (let i = 0; i < computedPositions.length; i++) {
-        for (let j = i + 1; j < computedPositions.length; j++) {
-          const d1 = Math.hypot(computedPositions[i].x - computedPositions[j].x, computedPositions[i].y - computedPositions[j].y);
-          if (d1 < maxMeshDist) {
-            for (let k = j + 1; k < computedPositions.length; k++) {
-              const d2 = Math.hypot(computedPositions[j].x - computedPositions[k].x, computedPositions[j].y - computedPositions[k].y);
-              const d3 = Math.hypot(computedPositions[i].x - computedPositions[k].x, computedPositions[i].y - computedPositions[k].y);
-
-              if (d2 < maxMeshDist && d3 < maxMeshDist) {
-                ctx.beginPath();
-                ctx.moveTo(computedPositions[i].x, computedPositions[i].y);
-                ctx.lineTo(computedPositions[j].x, computedPositions[j].y);
-                ctx.lineTo(computedPositions[k].x, computedPositions[k].y);
-                ctx.closePath();
-                ctx.fillStyle = "rgba(235, 0, 40, 0.035)";
-                ctx.fill();
-              }
-            }
-          }
-        }
-      }
-
-      // 2. CONNECTING THREAD FILAMENTS BETWEEN NODES
+      // 1. CONNECTING THREAD FILAMENTS BETWEEN NODES
       const maxLineDist = Math.min(width * 0.19, 190);
       for (let i = 0; i < computedPositions.length; i++) {
         for (let j = i + 1; j < computedPositions.length; j++) {
@@ -285,9 +261,9 @@ export default function InvisibleThreadsCanvas() {
       ctx.setLineDash([7, 6]);
       ctx.lineWidth = 1.3;
       const counterGrad = ctx.createLinearGradient(0, height * 0.7, width, height * 0.3);
-      counterGrad.addColorStop(0, "rgba(113, 113, 122, 0)");
-      counterGrad.addColorStop(0.25, "rgba(113, 113, 122, 0.3)");
-      counterGrad.addColorStop(0.65, "rgba(235, 0, 40, 0.6)");
+      counterGrad.addColorStop(0, "rgba(235, 0, 40, 0)");
+      counterGrad.addColorStop(0.25, "rgba(235, 0, 40, 0.15)");
+      counterGrad.addColorStop(0.65, "rgba(235, 0, 40, 0.5)");
       counterGrad.addColorStop(1, "rgba(235, 0, 40, 0)");
       ctx.strokeStyle = counterGrad;
       ctx.moveTo(0, height * 0.7);
@@ -295,27 +271,14 @@ export default function InvisibleThreadsCanvas() {
       ctx.stroke();
       ctx.setLineDash([]);
 
-      // 5. DRAW GLOWING NODES (Crisp, luminescent, with distinct TED Red & white core)
-      computedPositions.forEach((pos, idx) => {
-        const pulse = 1 + Math.sin(elapsed * 0.0025 + idx * 0.5) * 0.35;
-        const currentR = pos.radius * pulse;
-
-        // Outer atmospheric pulse ring
-        ctx.beginPath();
-        ctx.arc(pos.x, pos.y, currentR * 3.4, 0, Math.PI * 2);
-        ctx.fillStyle = pos.isFocal ? "rgba(235, 0, 40, 0.14)" : "rgba(235, 0, 40, 0.07)";
-        ctx.fill();
-
-        // Secondary luminous corona
-        ctx.beginPath();
-        ctx.arc(pos.x, pos.y, currentR * 1.9, 0, Math.PI * 2);
-        ctx.fillStyle = pos.isFocal ? "rgba(235, 0, 40, 0.32)" : "rgba(235, 0, 40, 0.2)";
-        ctx.fill();
+      // 4. DRAW CRISP NODES (Clean, sharp TED Red with white core pinpoint)
+      computedPositions.forEach((pos) => {
+        const currentR = pos.radius;
 
         // Focal nodes have a subtle rotating orbit ring in the right space
         if (pos.isFocal) {
           ctx.beginPath();
-          ctx.arc(pos.x, pos.y, currentR * 4.6, 0, Math.PI * 2);
+          ctx.arc(pos.x, pos.y, currentR * 3.5, 0, Math.PI * 2);
           ctx.strokeStyle = "rgba(235, 0, 40, 0.28)";
           ctx.lineWidth = 0.9;
           ctx.setLineDash([3, 4]);
