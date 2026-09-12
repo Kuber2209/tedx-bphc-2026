@@ -15,7 +15,6 @@ const NAV_LINKS = [
   { href: "/passes", label: "Passes" },
   { href: "/team", label: "Team" },
   { href: "/sponsors", label: "Sponsors" },
-  { href: "/faq", label: "FAQ" },
 ];
 
 export default function Navbar() {

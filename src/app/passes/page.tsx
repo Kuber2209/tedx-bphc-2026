@@ -234,7 +234,7 @@ export default function PassesPage() {
               </div>
             </div>
 
-            {/* 5. FAQs Link */}
+            {/* 5. Support / Questions Section */}
             <div className="mt-24 text-center max-w-xl mx-auto flex flex-col items-center">
               <div className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-neutral-100 mb-6 text-[#eb0028]">
                 <HelpCircle className="h-5 w-5" />
@@ -243,16 +243,16 @@ export default function PassesPage() {
                 Questions about passes?
               </h4>
               <p className="text-base text-neutral-500 font-light mb-8 leading-relaxed">
-                Check out our FAQs regarding pass access, group reservations, accessibility,
-                and event schedule logistics.
+                Reach out to our delegate relations team for assistance with pass access, group reservations,
+                accessibility, and event schedule logistics.
               </p>
-              <Link
-                href="/faq"
+              <a
+                href="mailto:tedx@hyderabad.bits-pilani.ac.in"
                 className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] border-b-2 border-neutral-300 pb-1.5 hover:text-[#eb0028] hover:border-[#eb0028] transition-colors"
               >
-                <span>Explore Ticketing FAQs</span>
+                <span>Contact Delegate Relations</span>
                 <span>→</span>
-              </Link>
+              </a>
             </div>
           </div>
         </section>

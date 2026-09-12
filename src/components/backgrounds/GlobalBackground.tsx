@@ -52,12 +52,6 @@ export default function GlobalBackground() {
         );
       case "/venue":
         return null;
-      case "/faq":
-        return (
-          <div className="absolute inset-0 opacity-50 transition-opacity duration-1000">
-            <Aurora color1="#eb0028" color2="#fcfcfc" color3="#eb0028" />
-          </div>
-        );
       case "/passes":
         return (
           <div className="absolute inset-0 opacity-30 transition-opacity duration-1000">
@@ -78,7 +72,6 @@ export default function GlobalBackground() {
       case "/team": return "bg-[#fcfcfc]";
       case "/sponsors": return "bg-[#fcfcfc]";
       case "/venue": return "bg-[#fcfcfc]";
-      case "/faq": return "bg-[#fcfcfc]";
       case "/passes": return "bg-[#fcfcfc]";
       case "/schedule": return "bg-[#fcfcfc]";
       case "/gallery": return "bg-[#fcfcfc]";
