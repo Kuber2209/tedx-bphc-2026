@@ -151,12 +151,9 @@ export default function Timeline({ events, className = "", onEventClick }: Timel
               className="relative group flex items-start"
               onClick={() => onEventClick?.(event)}
             >
-              {/* Glowing Circular Node sitting on the Invisible Thread */}
+              {/* Circular Node sitting on the Invisible Thread */}
               <div className="absolute left-3 sm:left-4 md:left-6 top-6 -translate-x-1/2 flex items-center justify-center pointer-events-none z-10">
-                {/* Subtle outer pulse glow */}
-                <span className="absolute w-4 h-4 rounded-full bg-red-500/20 group-hover:bg-red-500/40 group-hover:scale-150 transition-all duration-300" />
-                {/* Core node */}
-                <span className="relative w-3 h-3 rounded-full border-2 border-white bg-[#eb0028] shadow-[0_0_10px_rgba(235,0,40,0.6)] group-hover:scale-125 transition-transform duration-300" />
+                <span className="relative w-3 h-3 rounded-full border-2 border-white bg-[#eb0028] group-hover:scale-125 transition-transform duration-300" />
               </div>
 
               {/* Event Content Container */}

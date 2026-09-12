@@ -417,7 +417,7 @@ const DynamicNav = ({
 
   return (
     <motion.div
-      className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 rounded-full bg-white/95 backdrop-blur-xl border border-black/10 p-2 pl-6 pr-2 shadow-[0_10px_35px_rgba(0,0,0,0.12)] text-black"
+      className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 rounded-full bg-white/95 backdrop-blur-xl border border-black/15 p-2 pl-6 pr-2 text-black"
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.3 }}
@@ -648,7 +648,7 @@ export default function SchedulePage() {
                     {/* Curatorial Description Card (Frosted glassmorphism in light theme) */}
                     <motion.div
                       variants={fadeIn}
-                      className="max-w-2xl bg-white/70 backdrop-blur-md border border-black/10 rounded-2xl p-6 sm:p-8 border-l-2 border-l-[#eb0028] shadow-2xs space-y-3"
+                      className="max-w-2xl bg-white/70 backdrop-blur-md border border-black/10 rounded-2xl p-6 sm:p-8 border-l-2 border-l-[#eb0028] space-y-3"
                     >
                       <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-zinc-500 pb-2 border-b border-black/5">
                         <span className="font-bold text-neutral-900">{movement.title}</span>
@@ -666,7 +666,7 @@ export default function SchedulePage() {
                         onClick={() => toggleMovement(movement.id)}
                         className="group inline-flex items-center gap-4 text-neutral-900 hover:text-[#eb0028] transition-colors cursor-pointer"
                       >
-                        <div className="relative h-11 w-11 rounded-full border border-black/20 flex items-center justify-center overflow-hidden bg-white group-hover:border-[#eb0028] transition-colors shadow-2xs">
+                        <div className="relative h-11 w-11 rounded-full border border-black/20 flex items-center justify-center overflow-hidden bg-white group-hover:border-[#eb0028] transition-colors">
                           <motion.div
                             animate={{ rotate: isExpanded ? 90 : 0 }}
                             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -710,7 +710,7 @@ export default function SchedulePage() {
 
           {/* Thread Terminal Node */}
           <div className="mt-28 pt-8 border-t border-black/10 flex items-center gap-3 font-mono text-xs text-zinc-500">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#eb0028] shadow-[0_0_8px_rgba(235,0,40,0.6)]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#eb0028]" />
             <span>End of Official Programme · Sundowner continues on Guest House Lawn</span>
           </div>
         </main>
@@ -730,7 +730,7 @@ export default function SchedulePage() {
             5. BOTTOM CTA BANNER: JOIN THE RIPPLE
             ========================================================================= */}
         <section className="mt-32 max-w-[1600px] mx-auto px-6 md:px-12">
-          <div className="border border-black/10 bg-white/70 backdrop-blur-md p-8 md:p-14 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-8 shadow-xs">
+          <div className="border border-black/10 bg-white/70 backdrop-blur-md p-8 md:p-14 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             <div>
               <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#eb0028] font-bold block mb-2">
                 Join The Ripple

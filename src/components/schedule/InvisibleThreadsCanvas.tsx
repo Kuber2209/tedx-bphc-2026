@@ -348,9 +348,6 @@ export default function InvisibleThreadsCanvas() {
       className="pointer-events-none absolute inset-0 w-full h-full overflow-hidden z-0"
       aria-hidden="true"
     >
-      {/* Subtle atmospheric ambient glow in the right space */}
-      <div className="absolute top-1/2 left-[70%] -translate-x-1/2 -translate-y-1/2 w-[650px] h-[360px] bg-[radial-gradient(ellipse_at_center,_rgba(235,0,40,0.09)_0%,_transparent_72%)] blur-3xl pointer-events-none" />
-
       {/* The Interactive Threads Canvas */}
       <canvas ref={canvasRef} className="w-full h-full block" />
     </motion.div>

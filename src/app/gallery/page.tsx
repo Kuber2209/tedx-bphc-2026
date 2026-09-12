@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
-import InteractiveExpandingGallery from "@/components/ui/image-gallery";
 import { GalleryModal } from "@/components/ui/gallery-modal";
 import FluidParticlesBackground from "@/components/ui/fluid-particles-background";
 
@@ -96,8 +95,6 @@ export default function GalleryPage() {
         </section>
       </FluidParticlesBackground>
 
-      {/* 3. Section 2: 3-Tile Interactive Expanding Cards (Echoes in the Fabric) */}
-      <InteractiveExpandingGallery />
 
       {/* 4. Complete Photographic Chronicle / Event Archive Grid */}
       <section className="relative w-full py-20 px-6 md:px-12 max-w-7xl mx-auto border-t border-black/[0.06]">
@@ -105,18 +102,15 @@ export default function GalleryPage() {
           <div>
             <div className="inline-flex items-center gap-2 text-xs font-mono tracking-widest text-[#EB0028] uppercase mb-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#EB0028]" />
-              <span>01 / EVENT ARCHIVE</span>
+              <span>01 / THE COMPLETE CHRONICLE </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-semibold text-[#0F172A] tracking-tight">
-              The Complete Chronicle
+              Event Archive
             </h2>
             <p className="text-sm text-[#64748B] mt-1 font-light">
               20 curated moments captured in motion from TEDx BITS Hyderabad.
             </p>
           </div>
-          <p className="text-xs text-[#64748B] font-mono tracking-wider">
-            CLICK ANY FRAME TO EXPAND IN HIGH-RES
-          </p>
         </div>
 
         {/* Light theme Image Grid with hairline borders and soft shadow */}

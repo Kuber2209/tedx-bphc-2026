@@ -1,6 +1,5 @@
 "use client";
 
-
 interface GridProps {
   color?: string;
   size?: number;
@@ -18,11 +17,11 @@ export default function Grid({ color = "#eb0028", size = 40 }: GridProps) {
           `,
           backgroundSize: `${size}px ${size}px`,
           transform: "rotateX(60deg) translateY(-100px)",
-          animation: "grid-scroll 10s linear infinite"
+          animation: "grid-scroll 10s linear infinite",
+          maskImage: "radial-gradient(ellipse at center, black 30%, transparent 75%)",
+          WebkitMaskImage: "radial-gradient(ellipse at center, black 30%, transparent 75%)",
         }}
       />
-      {/* Radial mask to fade out edges */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#000000_80%)]" />
     </div>
   );
 }
