@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "motion/react";
 
-const Ballpit = dynamic(() => import("./Ballpit"), { ssr: false });
 const FloatingLines = dynamic(() => import("./FloatingLines"), { ssr: false });
 const Hyperspeed = dynamic(() => import("./Hyperspeed"), { ssr: false });
 const Aurora = dynamic(() => import("./Aurora"), { ssr: false });
@@ -25,27 +24,9 @@ export default function GlobalBackground() {
   const renderEffect = () => {
     switch (pathname) {
       case "/":
-        return (
-          <div className="absolute inset-0 opacity-80 transition-opacity duration-1000">
-            <FloatingLines
-              linesGradient={["#E62B1E", "#000000", "#FFFFFF"]}
-              enabledWaves={["top", "bottom"]}
-              lineCount={[4, 4]}
-              lineDistance={[10, 10]}
-              animationSpeed={0.5}
-              interactive={true}
-              parallax={true}
-              backgroundColor="#fcfcfc"
-              lightMode={true}
-            />
-          </div>
-        );
+        return null;
       case "/speakers":
-        return (
-          <div className="absolute inset-0 opacity-80 transition-opacity duration-1000">
-            <Ballpit count={40} color="#E62B1E" opacity={0.6} />
-          </div>
-        );
+        return null;
       case "/team":
         return null;
       case "/sponsors":

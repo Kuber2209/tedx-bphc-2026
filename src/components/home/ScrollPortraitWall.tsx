@@ -1,25 +1,13 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import { currentSpeakers, Speaker } from "@/data/speakers";
-
-// Register ScrollTrigger
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { motion } from "motion/react";
+import { currentSpeakers } from "@/data/speakers";
 
 export default function ScrollPortraitWall() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const col1Ref = useRef<HTMLDivElement>(null);
-  const col2Ref = useRef<HTMLDivElement>(null);
-  const col3Ref = useRef<HTMLDivElement>(null);
-
-  // Fallback images matching the old home page logic
+  // Fallback images matching the gallery photos
   const fallbackImages = [
     "/gallery/image4.jpg",
     "/gallery/image8.jpg",
@@ -32,129 +20,91 @@ export default function ScrollPortraitWall() {
     "/gallery/image7.jpg",
   ];
 
-  // Distribute speakers into 3 columns
-  const col1: Speaker[] = [];
-  const col2: Speaker[] = [];
-  const col3: Speaker[] = [];
-
-  // Duplicate speakers to create a longer, infinite-feeling wall
-  const repeatedSpeakers = [...currentSpeakers, ...currentSpeakers, ...currentSpeakers, ...currentSpeakers];
-
-  repeatedSpeakers.forEach((speaker, index) => {
-    // We add a unique suffix to the ID so React doesn't complain about duplicate keys
-    const speakerWithUniqueId = { ...speaker, id: `${speaker.id}-${index}` };
-    if (index % 3 === 0) col1.push(speakerWithUniqueId);
-    else if (index % 3 === 1) col2.push(speakerWithUniqueId);
-    else col3.push(speakerWithUniqueId);
-  });
-
-  useGSAP(
-    () => {
-      if (!containerRef.current) return;
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1, // Smooth scrubbing
-        },
-      });
-
-      // Move columns up at different speeds/offsets
-      if (col1Ref.current) {
-        tl.fromTo(
-          col1Ref.current,
-          { y: "20vh" },
-          { y: "-150vh", ease: "none" },
-          0
-        );
-      }
-      if (col2Ref.current) {
-        tl.fromTo(
-          col2Ref.current,
-          { y: "40vh" },
-          { y: "-180vh", ease: "none" },
-          0
-        );
-      }
-      if (col3Ref.current) {
-        tl.fromTo(
-          col3Ref.current,
-          { y: "10vh" },
-          { y: "-120vh", ease: "none" },
-          0
-        );
-      }
-    },
-    { scope: containerRef }
-  );
-
-  const SpeakerCard = ({ speaker, index }: { speaker: Speaker; index: number }) => {
-    const imageSrc = speaker.imageUrl || fallbackImages[index % fallbackImages.length];
-
-    return (
-      <Link href="/speakers" className="block w-full group overflow-hidden mb-6 md:mb-8">
-        <div className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden bg-zinc-100">
-          <Image
-            src={imageSrc}
-            alt={speaker.name}
-            fill
-            className="object-cover transition-all duration-700 ease-out group-hover:scale-105"
-          />
-        </div>
-        <div className="mt-4">
-          <h3 className="text-xl md:text-2xl font-bold tracking-tight text-neutral-900 group-hover:text-[#eb0028] transition-colors">
-            {speaker.name}
-          </h3>
-          <p className="text-xs md:text-sm font-sans tracking-widest uppercase text-zinc-500 mt-1">
-            {speaker.role}
-          </p>
-        </div>
-      </Link>
-    );
-  };
+  // 2 columns x 4 rows = 8 cards (2 cards simultaneously per row)
+  const speakers = currentSpeakers.slice(0, 8);
 
   return (
-    <section 
-      ref={containerRef} 
-      className="relative w-full bg-transparent text-neutral-900 h-[250vh] md:h-[300vh]"
-    >
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
-        
-        {/* The Wall */}
-        <div className="absolute left-0 right-0 top-0 z-10 flex gap-4 md:gap-8 px-4 md:px-12 w-full pt-[10vh] pointer-events-none">
-          {/* Column 1 */}
-          <div ref={col1Ref} className="w-1/2 md:w-1/3 flex flex-col pointer-events-auto">
-            {col1.map((speaker, idx) => (
-              <SpeakerCard key={speaker.id} speaker={speaker} index={idx} />
-            ))}
-          </div>
-          
-          {/* Column 2 */}
-          <div ref={col2Ref} className="hidden md:flex w-1/3 flex-col pointer-events-auto">
-            {col2.map((speaker, idx) => (
-              <SpeakerCard key={speaker.id} speaker={speaker} index={idx + col1.length} />
-            ))}
-          </div>
-          
-          {/* Column 3 (Acts as column 2 on mobile) */}
-          <div ref={col3Ref} className="w-1/2 md:w-1/3 flex flex-col pointer-events-auto mt-[10vh] md:mt-0">
-            {/* On mobile, merge col2 and col3 to ensure all speakers are shown */}
-            <div className="md:hidden flex flex-col">
-              {col2.map((speaker, idx) => (
-                <SpeakerCard key={speaker.id} speaker={speaker} index={idx + col1.length} />
-              ))}
-            </div>
-            {col3.map((speaker, idx) => (
-              <SpeakerCard key={speaker.id} speaker={speaker} index={idx + col1.length + col2.length} />
-            ))}
-          </div>
+    <section className="relative w-full bg-white text-neutral-900 py-20 md:py-32 px-6 md:px-12">
+      <div className="max-w-[80rem] mx-auto">
+        {/* Section Header matching TEDx MIT .rl_team8_heading-wrapper */}
+        <motion.div 
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-2xl mb-14 md:mb-20 text-left"
+        >
+          <span className="text-xs uppercase tracking-[0.25em] font-bold text-[#eb0028] block mb-2.5">
+            Meet Our Visionaries
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#181830] leading-[1.15]">
+            Our Speakers
+          </h2>
+          <p className="text-base sm:text-lg text-[#494949] mt-3 leading-relaxed">
+            Meet some of the thought leaders and innovators who share bold ideas and powerful stories at TEDx BPHC.
+          </p>
+        </motion.div>
+
+        {/* 2x4 Grid: 2 Cards Simultaneously Per Row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-14 md:gap-x-14 md:gap-y-20">
+          {speakers.map((speaker, index) => {
+            const imageSrc = speaker.imageUrl || fallbackImages[index % fallbackImages.length];
+
+            return (
+              <motion.div
+                key={speaker.id}
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full"
+              >
+                <Link
+                  href="/speakers"
+                  className="block w-full group text-left"
+                >
+                  {/* Speaker Portrait Card */}
+                  <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] overflow-hidden bg-zinc-100 rounded-lg sm:rounded-xl shadow-xs border border-zinc-200/80">
+                    <Image
+                      src={imageSrc}
+                      alt={speaker.name}
+                      fill
+                      priority={index < 2}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 600px"
+                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                    />
+                  </div>
+
+                  {/* Speaker Details */}
+                  <div className="mt-5 sm:mt-6">
+                    <span className="text-xs uppercase tracking-[0.25em] font-bold text-[#eb0028] block mb-1.5">
+                      {speaker.category || "Speaker"}
+                    </span>
+                    <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#181830] group-hover:text-[#eb0028] transition-colors duration-200">
+                      {speaker.name}
+                    </h3>
+                    <p className="text-base sm:text-lg font-normal text-[#494949] mt-1">
+                      {speaker.role} {speaker.company ? `· ${speaker.company}` : ""}
+                    </p>
+                  </div>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* Title / Sticky overlay Removed */}
-
+        {/* View All Speakers CTA Button matching TEDx MIT */}
+        <div className="mt-16 md:mt-24 flex justify-center">
+          <Link
+            href="/speakers"
+            className="inline-flex items-center justify-center px-8 py-3.5 rounded-[4px] bg-[#eb0028] hover:bg-[#c40022] text-white font-semibold text-base transition-colors duration-200 shadow-sm"
+          >
+            View All Speakers
+          </Link>
+        </div>
       </div>
     </section>
   );
 }
+
+

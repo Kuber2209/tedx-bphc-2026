@@ -46,24 +46,20 @@ export default function TeamMemberCard({ member, index = 0 }: TeamMemberCardProp
 
   return (
     <>
-      {/* CARD (Refined with TEDx Kyoto styling & micro-interactions) */}
-      <motion.div 
-        className="group relative flex flex-col bg-white rounded-2xl border border-zinc-200/80 shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(15,23,42,0.08)] hover:border-[#DD183B]/40 transition-all duration-300 overflow-hidden cursor-pointer text-left"
+      {/* CARD (Matching TEDx MIT .rl_team8_item) */}
+      <div 
+        className="group relative flex flex-col cursor-pointer text-left"
         onClick={handleOpen}
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-10px" }}
-        transition={{ duration: 0.5, delay: (index % 6) * 0.05 }}
       >
-        {/* Image wrapper: Square aspect-ratio with Kyoto hover arrow */}
-        <div className="relative w-full aspect-square overflow-hidden bg-zinc-100">
+        {/* Image wrapper: Square aspect-ratio (rl_team8_image-wrapper) */}
+        <div className="relative w-full aspect-square overflow-hidden bg-zinc-100 rounded-none">
           {member.imageUrl && !imageError ? (
             <Image
               src={member.imageUrl}
               alt={member.name}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
               onError={() => setImageError(true)}
             />
           ) : (
@@ -74,41 +70,21 @@ export default function TeamMemberCard({ member, index = 0 }: TeamMemberCardProp
               </svg>
             </div>
           )}
-
-          {/* Floating Kyoto-style Action Pill */}
-          <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#0F172A] shadow-sm opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-75 group-hover:text-[#DD183B] transition-all duration-300 pointer-events-none">
-            <ArrowUpRight className="w-4 h-4" />
-          </div>
         </div>
 
-        {/* Card Body */}
-        <div className="p-5 sm:p-6 flex flex-col flex-grow">
-          {/* Department / Role Badge */}
-          <div className="mb-2.5">
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase bg-[#DD183B]/10 text-[#DD183B]">
-              {member.role}
-            </span>
-          </div>
+        {/* Spacing block (rl_team8_spacing-block-4: 1.25rem / 20px) */}
+        <div className="h-4 sm:h-5 w-full" aria-hidden="true" />
 
-          {/* Name */}
-          <h3 className="text-lg sm:text-xl font-bold text-[#0F172A] leading-snug group-hover:text-[#DD183B] transition-colors duration-200">
-            {member.name}
-          </h3>
+        {/* Name (rl_team8_name-text: 1.25rem / 20px, font-semibold, #181830) */}
+        <h3 className="text-xl sm:text-[1.25rem] font-semibold text-[#181830] tracking-tight leading-snug group-hover:text-[#eb0028] transition-colors duration-200">
+          {member.name}
+        </h3>
 
-          {/* Handle or role subtitle */}
-          {member.handle && (
-            <div className="text-xs text-[#64748B] font-mono tracking-wide mt-1">
-              {member.handle}
-            </div>
-          )}
-
-          {/* Bottom subtle link cue */}
-          <div className="mt-4 pt-3 border-t border-zinc-100 flex items-center justify-between text-xs font-semibold text-zinc-400 group-hover:text-[#DD183B] transition-colors">
-            <span>View Bio</span>
-            <ArrowUpRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </div>
+        {/* Role (rl-text-style-medium: 1rem / 16px, font-normal, #505050) */}
+        <div className="text-base font-normal text-[#505050] leading-normal mt-1">
+          {member.role}
         </div>
-      </motion.div>
+      </div>
 
       {/* MODAL */}
       <AnimatePresence>

@@ -9,7 +9,7 @@ interface SpeakerGridProps {
 
 export default function SpeakerGrid({ speakers }: SpeakerGridProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 md:gap-x-12 md:gap-y-24">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20 lg:gap-x-16 lg:gap-y-24">
       {speakers.map((speaker, index) => (
         <SpeakerCard key={speaker.id} speaker={speaker} index={index} />
       ))}

@@ -6,7 +6,6 @@ import { Speaker } from "@/data/speakers";
 import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
 import { FaLinkedinIn, FaInstagram } from "react-icons/fa6";
-import TiltedCard from "@/components/reactbits/TiltedCard";
 
 interface SpeakerCardProps {
   speaker: Speaker;
@@ -52,30 +51,29 @@ export default function SpeakerCard({ speaker, index = 0 }: SpeakerCardProps) {
 
   return (
     <>
-      {/* CARD */}
-      <TiltedCard rotateAmplitude={8} scaleOnHover={1.03}>
-        <motion.div 
-          className="group relative flex flex-col cursor-pointer"
-          onClick={handleOpen}
-          initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40, y: 20 }}
-          whileInView={{ opacity: 1, x: 0, y: 0 }}
-          viewport={{ once: true, margin: "-20px" }}
-          whileHover={{ y: -8 }}
-          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div className="relative w-full aspect-[3/4] mb-6 overflow-hidden bg-zinc-100 shadow-sm group-hover:shadow-xl transition-shadow duration-500">
+      {/* CARD (Matching TEDx MIT rl_team8_item) */}
+      <motion.div 
+        className="group relative flex flex-col cursor-pointer text-left"
+        onClick={handleOpen}
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-10px" }}
+        transition={{ duration: 0.5, delay: (index % 6) * 0.05 }}
+      >
+        {/* Image wrapper: Enlarged portrait aspect-ratio */}
+        <div className="relative w-full aspect-[3/4] sm:aspect-[4/5] min-h-[360px] sm:min-h-[440px] md:min-h-[500px] overflow-hidden bg-zinc-100 rounded-lg shadow-xs">
           {speaker.imageUrl && !imageError ? (
             <Image
               src={speaker.imageUrl}
               alt={speaker.name}
               fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover transition-all duration-700 ease-out scale-100 group-hover:scale-105"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+              className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
               onError={() => setImageError(true)}
             />
           ) : (
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-100 text-zinc-600">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="w-12 h-12 mb-2">
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-100 text-zinc-400 group-hover:bg-zinc-200/80 transition-colors duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-20 h-20 text-zinc-300 group-hover:text-zinc-400 transition-colors">
                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
               </svg>
@@ -83,27 +81,31 @@ export default function SpeakerCard({ speaker, index = 0 }: SpeakerCardProps) {
           )}
         </div>
 
-        <div className="flex flex-col flex-grow">
-          <span className="text-[#eb0028] font-sans text-[9px] uppercase tracking-[0.2em] mb-3 group-hover:translate-x-1 transition-transform duration-300">
-            {speaker.category || "Speaker"}
-          </span>
-          <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-1 group-hover:text-zinc-600 transition-colors duration-300">
-            {speaker.name}
-          </h3>
-          <p className="text-xs font-medium text-zinc-500 uppercase tracking-widest mb-3">
-            {speaker.role} {speaker.company ? `· ${speaker.company}` : ""}
-          </p>
-          {speaker.talkTitle && (
-            <p className="text-sm text-zinc-800 font-medium leading-snug line-clamp-2 mt-auto">
-              {speaker.talkTitle}
-            </p>
-          )}
+        {/* Spacing block */}
+        <div className="h-6 sm:h-8 w-full" aria-hidden="true" />
+
+        {/* Category Pill */}
+        <span className="inline-block text-xs uppercase tracking-[0.25em] font-bold text-[#eb0028] mb-1">
+          {speaker.category || "Speaker"}
+        </span>
+
+        {/* Name: Enlarged font-bold 3xl-4xl #181830 */}
+        <h3 className="text-3xl sm:text-4xl md:text-[2.5rem] font-bold text-[#181830] tracking-tight leading-[1.15] group-hover:text-[#eb0028] transition-colors duration-200">
+          {speaker.name}
+        </h3>
+
+        {/* Role & Company: Enlarged font-normal lg-xl #494949 */}
+        <div className="text-lg sm:text-xl font-normal text-[#494949] leading-normal mt-2">
+          {speaker.role} {speaker.company ? `· ${speaker.company}` : ""}
         </div>
-        
-        {/* Subtle hover line */}
-        <div className="w-0 group-hover:w-full h-[1px] bg-[#E62B1E] transition-all duration-500 mt-4 origin-left"></div>
-        </motion.div>
-      </TiltedCard>
+
+        {/* Talk title: Enlarged text */}
+        {speaker.talkTitle && (
+          <div className="text-base sm:text-lg text-zinc-600 font-normal mt-2.5 leading-relaxed">
+            &ldquo;{speaker.talkTitle}&rdquo;
+          </div>
+        )}
+      </motion.div>
 
       {/* MODAL */}
       <AnimatePresence>
@@ -121,13 +123,13 @@ export default function SpeakerCard({ speaker, index = 0 }: SpeakerCardProps) {
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: 20, opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-5xl bg-white shadow-2xl flex flex-col md:flex-row border border-zinc-200"
+              className="relative w-full max-w-5xl bg-white shadow-2xl flex flex-col md:flex-row border border-zinc-200 rounded-2xl overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
               <button
                 onClick={handleClose}
-                className="absolute top-4 right-4 z-10 p-2 text-zinc-500 hover:text-[#eb0028] transition-colors bg-white/50 backdrop-blur-md rounded-full"
+                className="absolute top-4 right-4 z-10 p-2 text-zinc-500 hover:text-[#DD183B] transition-colors bg-white/60 backdrop-blur-md rounded-full"
                 aria-label="Close modal"
               >
                 <X className="w-6 h-6" />
@@ -163,7 +165,7 @@ export default function SpeakerCard({ speaker, index = 0 }: SpeakerCardProps) {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1, duration: 0.4 }}
-                    className="text-[#eb0028] font-sans text-[10px] uppercase tracking-[0.2em] font-bold block mb-4"
+                    className="text-[#DD183B] font-sans text-[10px] uppercase tracking-[0.2em] font-bold block mb-4"
                   >
                     {speaker.category || "Speaker"}
                   </motion.span>
@@ -233,12 +235,12 @@ export default function SpeakerCard({ speaker, index = 0 }: SpeakerCardProps) {
                   {(speaker.socials?.linkedin || speaker.socials?.instagram) && (
                     <div className="flex gap-4">
                       {speaker.socials?.linkedin && (
-                        <a href={speaker.socials.linkedin} target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-[#eb0028] transition-colors p-2 bg-zinc-50 rounded-full hover:bg-red-50">
+                        <a href={speaker.socials.linkedin} target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-[#DD183B] transition-colors p-2 bg-zinc-50 rounded-full hover:bg-red-50">
                           <FaLinkedinIn className="w-5 h-5" />
                         </a>
                       )}
                       {speaker.socials?.instagram && (
-                        <a href={speaker.socials.instagram} target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-[#eb0028] transition-colors p-2 bg-zinc-50 rounded-full hover:bg-red-50">
+                        <a href={speaker.socials.instagram} target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-[#DD183B] transition-colors p-2 bg-zinc-50 rounded-full hover:bg-red-50">
                           <FaInstagram className="w-5 h-5" />
                         </a>
                       )}

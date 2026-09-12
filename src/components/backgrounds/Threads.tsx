@@ -54,9 +54,9 @@ uniform vec2 uMouse;
 
 #define PI 3.1415926538
 
-const int u_line_count = 40;
-const float u_line_width = 7.0;
-const float u_line_blur = 10.0;
+const int u_line_count = 18;
+const float u_line_width = 6.0;
+const float u_line_blur = 8.0;
 
 float Perlin2D(vec2 P) {
     vec2 Pi = floor(P);
@@ -208,9 +208,7 @@ const Threads: React.FC<ThreadsProps> = ({
       if (!container) return;
       const { clientWidth, clientHeight } = container;
       if (clientWidth === 0 || clientHeight === 0) return;
-      const baseDpr = Math.min(window.devicePixelRatio || 1, 2);
-      const longestSide = Math.max(clientWidth, clientHeight) * baseDpr;
-      const dpr = longestSide > MAX_RENDER_DIM ? (baseDpr * MAX_RENDER_DIM) / longestSide : baseDpr;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
       renderer.dpr = dpr;
       renderer.setSize(clientWidth, clientHeight);
       program.uniforms.iResolution.value.r = gl.canvas.width;
