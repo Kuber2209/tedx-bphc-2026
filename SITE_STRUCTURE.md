@@ -14,7 +14,7 @@ building against — update it if scope changes so it stays accurate.
 - **Community / newsletter signup**
 - Also owns: global theme tokens in `globals.css`, `Navbar`/`Footer` styling 
 
-## `/speakers` — Speakers (Team #2) 
+## `/speakers` — Speakers (Team #2) ok ok 
 
 - Current lineup grid: photo, name, one-line bio, talk title (if known)
 - Past speakers / alumni section
