@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
+import TEDxWatermark from "@/components/layout/TEDxWatermark";
 
 const TRANSIT_TABS = [
   {
@@ -68,12 +69,13 @@ export default function VenueContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafafa] text-[#494949] selection:bg-[#eb0028] selection:text-white">
+    <div className="min-h-screen bg-[#fafafa] text-[#494949] selection:bg-[#eb0028] selection:text-white relative">
+      <TEDxWatermark />
       {/* 
         HERO SECTION (Matching TEDx MIT & Speakers Page Hero)
         Dark background (#0a0a0c) with zero background animations
       */}
-      <header className="relative w-full bg-[#0a0a0c] overflow-hidden">
+      <header className="relative z-10 w-full bg-[#0a0a0c] overflow-hidden">
         {/* Subtle radial depth overlay for TEDx contrast */}
         <div
           className="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(circle_at_top_right,rgba(235,0,40,0.25),transparent_60%)]"
@@ -124,7 +126,7 @@ export default function VenueContent() {
       </header>
 
       {/* LOWER VENUE CONTENT */}
-      <main className="bg-[#fafafa] text-[#494949] py-16 md:py-24">
+      <main className="bg-transparent text-[#494949] py-16 md:py-24 relative z-10">
         {/* 2. VISUAL CENTERPIECE & INFO */}
         <section className="px-6 md:px-12 lg:px-16 max-w-7xl mx-auto mb-24 md:mb-32">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">

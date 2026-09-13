@@ -6,6 +6,7 @@ import Image from "next/image";
 import { TEAM_SECTIONS, ALL_TEAM_MEMBERS } from "@/data/team";
 import TeamMemberCard from "@/components/team/TeamMemberCard";
 import SectionScrollNavigator from "@/components/ui/SectionScrollNavigator";
+import TEDxWatermark from "@/components/layout/TEDxWatermark";
 
 const TEAM_NAV_SECTIONS = TEAM_SECTIONS.map((section, idx) => ({
   id: section.id,
@@ -22,7 +23,8 @@ export default function TeamPage() {
       : TEAM_SECTIONS.filter((section) => section.id === activeTab);
 
   return (
-    <div className="min-h-screen bg-white text-[#181830] selection:bg-[#eb0028] selection:text-white relative">
+    <div className="min-h-screen bg-[#fafafa] text-[#181830] selection:bg-[#eb0028] selection:text-white relative">
+      <TEDxWatermark />
       {/* Fixed Left-Side Vertical Scroll Navigator */}
       {activeTab === "all" && (
         <SectionScrollNavigator
@@ -30,7 +32,6 @@ export default function TeamPage() {
           targetContainerId="team-sections-container"
         />
       )}
-
       {/* 
         HERO SECTION (Matching TEDx MIT .rl_section_hero.team)
         - Background banner with real team photo on stage
@@ -38,7 +39,7 @@ export default function TeamPage() {
         - Left-aligned content container (max-w-[35rem])
         - Rectangular buttons (rounded-[4px])
       */}
-      <header className="relative w-full overflow-hidden bg-black min-h-[60vh] md:min-h-[70vh] flex items-center">
+      <header className="relative z-10 w-full overflow-hidden bg-black min-h-[60vh] md:min-h-[70vh] flex items-center">
         {/* Background banner image matching user's uploaded stage team photo */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -97,7 +98,7 @@ export default function TeamPage() {
         - Responsive 3-column collection grid
         - Completely static without canvas/background animations
       */}
-      <section id="team-sections-container" className="bg-white py-16 md:py-24">
+      <section id="team-sections-container" className="bg-transparent py-16 md:py-24 relative z-10">
         <div className="max-w-[80rem] mx-auto px-6 md:px-12">
           {/* Department Filter Navigation ("with filters as usual") */}
           <div className="mb-14 pb-4 border-b border-zinc-200 flex flex-wrap items-center gap-2 md:gap-3">

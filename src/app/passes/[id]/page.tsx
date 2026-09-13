@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { passTiers } from "@/data/passes";
 import PassComparisonTable from "@/components/passes/PassComparisonTable";
+import TEDxWatermark from "@/components/layout/TEDxWatermark";
 import {
   ArrowLeft,
   ArrowUpRight,
@@ -74,10 +75,12 @@ export default async function PassDetailPage({ params }: PassDetailPageProps) {
   return (
     <div
       style={{ zoom: 0.8 }}
-      className="zoom-80 min-h-screen bg-white text-black font-sans pb-32"
+      className="zoom-80 min-h-screen bg-[#fafafa] text-black font-sans pb-32 relative"
     >
-      {/* Top Header / Breadcrumb Bar */}
-      <div className="pt-32 pb-8 px-6 md:px-12 border-b border-neutral-100 max-w-[1400px] mx-auto">
+      <TEDxWatermark />
+      <div className="relative z-10">
+        {/* Top Header / Breadcrumb Bar */}
+        <div className="pt-32 pb-8 px-6 md:px-12 border-b border-neutral-100 max-w-[1400px] mx-auto">
         <Link
           href="/passes"
           className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-neutral-500 hover:text-[#eb0028] transition-colors mb-8 group"
@@ -376,6 +379,7 @@ export default async function PassDetailPage({ params }: PassDetailPageProps) {
           </div>
         </div>
       </main>
+      </div>
     </div>
   );
 }

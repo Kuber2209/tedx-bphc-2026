@@ -6,6 +6,7 @@ import Image from "next/image";
 import { currentSpeakers, pastSpeakers } from "@/data/speakers";
 import AcademicYearDropdown, { EditionOption } from "@/components/speakers/AcademicYearDropdown";
 import SpeakerCard from "@/components/speakers/SpeakerCard";
+import TEDxWatermark from "@/components/layout/TEDxWatermark";
 
 // Generate options for past years
 const pastYears = Array.from(
@@ -33,14 +34,15 @@ export default function SpeakersPage() {
   const allSpeakersCount = currentSpeakers.length + pastSpeakers.length;
 
   return (
-    <div className="min-h-screen bg-[#fafafa] text-[#494949] selection:bg-[#eb0028] selection:text-white">
+    <div className="min-h-screen bg-[#fafafa] text-[#494949] selection:bg-[#eb0028] selection:text-white relative">
+      <TEDxWatermark />
       {/* 
         HERO SECTION (Matching TEDx MIT .rl_section_hero.speakers)
         Header: "Inspiring Innovators Unleashed"
         Subtitle & Action Buttons identical to https://tedx.mit.edu/allspeakers
         Background: Stage speaker photo with TEDx BITSHyderabad backdrop
       */}
-      <header className="relative w-full bg-[#0a0a0c] overflow-hidden min-h-[55vh] md:min-h-[65vh] flex items-center">
+      <header className="relative z-10 w-full bg-[#0a0a0c] overflow-hidden min-h-[55vh] md:min-h-[65vh] flex items-center">
         {/* Background banner image with authentic stage speaker */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -105,7 +107,7 @@ export default function SpeakersPage() {
         SPEAKERS GRID SECTION
         Off-white background (#fafafa), clear crisp #494949 typography, clean 3-column collection grid.
       */}
-      <section className="bg-[#fafafa] py-16 md:py-24">
+      <section className="bg-transparent py-16 md:py-24 relative z-10">
         <div className="max-w-[80rem] mx-auto px-6 md:px-12">
           {/* Filter Navigation */}
           <div className="mb-14 pb-4 border-b border-neutral-200 flex flex-wrap items-center justify-between gap-4">

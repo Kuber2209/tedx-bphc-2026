@@ -4,6 +4,7 @@ import React, { useState, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { GalleryModal } from "@/components/ui/gallery-modal";
 import Dropdown, { type DropdownItem } from "@/components/ui/dropdown";
+import TEDxWatermark from "@/components/layout/TEDxWatermark";
 import "./gallery.css";
 
 const DomeGallery = dynamic(() => import("@/components/gallery/DomeGallery"), {
@@ -93,9 +94,10 @@ export default function GalleryPage() {
   );
 
   return (
-    <main className="min-h-screen bg-white text-[#0F172A] pt-20 pb-32 overflow-hidden">
+    <main className="min-h-screen bg-[#fafafa] text-[#0F172A] pt-20 pb-32 overflow-hidden relative">
+      <TEDxWatermark />
       {/* 1. Dome Gallery Section with Pitch Black Background */}
-      <section className="relative w-full min-h-[640px] md:min-h-[760px] flex items-center overflow-hidden bg-black">
+      <section className="relative z-10 w-full min-h-[640px] md:min-h-[760px] flex items-center overflow-hidden bg-black">
         {/* 3D Dome Sphere with Smooth Blend - Shifted towards the right */}
         <div className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden pointer-events-auto [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_98%)] [-webkit-mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_98%)] opacity-90 hover:opacity-100 transition-all duration-700 translate-x-0 sm:translate-x-6 md:translate-x-[15%] lg:translate-x-[20%]">
           <DomeGallery
@@ -136,7 +138,7 @@ export default function GalleryPage() {
       </section>
 
       {/* 2. Complete Photographic Chronicle / Event Archive Grid */}
-      <section className="relative w-full py-20 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto border-t border-black/[0.06]">
+      <section className="relative z-10 w-full py-20 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto border-t border-black/[0.06]">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 text-left">
           <div>
             {/* Eyebrow Badge (matching reference: • 01 / 12TH EDITION (2026-27)) */}

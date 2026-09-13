@@ -243,10 +243,10 @@ export const passTiers: PassTier[] = [
   {
     id: "school-student",
     name: "Student Pass",
-    badge: "Standard & Premium",
+    badge: "Grades 9–12",
     targetAudience: "School & College Students",
     description:
-      "Curated for students and young thinkers exploring big ideas, available in Standard (₹429) and Premium (₹550) tiers.",
+      "Curated for students and young thinkers exploring big ideas.",
     price: "₹429 / ₹550",
     pricing: {
       standard: {
@@ -345,10 +345,10 @@ export const passTiers: PassTier[] = [
   {
     id: "bits-internal",
     name: "BITSian Pass",
-    badge: "Standard & Premium",
+    badge: "In-House Campus Tier",
     targetAudience: "BITS BPHC Students, Faculty & Staff",
     description:
-      "Exclusive access tier for the on-campus BITS Pilani Hyderabad community, available in Standard (₹650 Early Bird, cut from ₹999) and Premium (₹1,299) tiers.",
+      "Exclusive access tier for the on-campus BITS Pilani Hyderabad community to experience the flagship edition.",
     price: "₹650 / ₹1,299",
     pricing: {
       standard: {
@@ -446,10 +446,10 @@ export const passTiers: PassTier[] = [
   {
     id: "external-guest",
     name: "External Guest Pass",
-    badge: "Standard & Premium",
+    badge: "General Delegate",
     targetAudience: "Outside Guests & Professionals",
     description:
-      "Open to university students, working professionals, and guests from outside BITS, available in Standard (₹650) and Premium (₹850) tiers.",
+      "Open to university students, working professionals, founders, and delegates joining us from outside BITS.",
     price: "₹650 / ₹850",
     pricing: {
       standard: {

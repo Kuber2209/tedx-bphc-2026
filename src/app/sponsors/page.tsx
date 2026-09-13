@@ -4,6 +4,7 @@ import React, { useRef, useMemo } from "react";
 import { currentPartners, pastSponsors, partnershipTiers, Partner } from "@/data/sponsors";
 import { motion } from "motion/react";
 import Image from "next/image";
+import TEDxWatermark from "@/components/layout/TEDxWatermark";
 
 export default function SponsorsPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -32,6 +33,7 @@ export default function SponsorsPage() {
 
   return (
     <div className="min-h-screen bg-transparent text-neutral-900 selection:bg-[#E62B1E] selection:text-neutral-900 pb-32 relative overflow-hidden" ref={containerRef}>
+      <TEDxWatermark />
       
       {/* Hero Section */}
       <header className="relative z-10 pt-40 pb-20 px-6 md:px-12 max-w-[1600px] mx-auto">

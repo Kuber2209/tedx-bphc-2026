@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { passTiers, passGuidelines } from "@/data/passes";
+import { passTiers } from "@/data/passes";
 import PassComparisonTable from "@/components/passes/PassComparisonTable";
 import BlurText from "@/components/reactbits/BlurText";
 import BorderGlow from "@/components/reactbits/BorderGlow";
@@ -17,6 +17,7 @@ import {
   Users,
 } from "lucide-react";
 import { FlowButton } from "@/components/ui/flow-button";
+import TEDxWatermark from "@/components/layout/TEDxWatermark";
 
 
 
@@ -39,6 +40,7 @@ export default function PassesPage() {
       style={{ zoom: 0.8 }}
       className="zoom-80 bg-[#fcfcfc] text-neutral-900 min-h-screen font-sans selection:bg-[#E62B1E] selection:text-white pb-32 relative"
     >
+      <TEDxWatermark />
       <div className="absolute inset-0 z-0 h-full w-full overflow-hidden pointer-events-none opacity-20">
          <FloatingLines color="#eb0028" />
       </div>
@@ -147,43 +149,29 @@ export default function PassesPage() {
 
                     {/* Bottom Price & CTA Area */}
                     <div className="pt-8 border-t border-neutral-100 mt-auto relative z-20">
-                      <div className="flex items-start justify-between gap-4 mb-6">
+                      <div className="flex items-baseline justify-between gap-4 mb-6">
                         <div>
-                          <p className="text-zinc-500 font-mono text-[10px] tracking-[0.2em] uppercase mb-1.5">
-                            Delegate Tiers
+                          <p className="text-zinc-500 font-mono text-[10px] tracking-[0.2em] uppercase mb-1">
+                            Delegate Fee
                           </p>
-                          <div className="space-y-1">
-                            {/* Standard Tier */}
-                            <div className="flex items-center gap-2">
-                              <span className="text-[11px] font-mono font-bold uppercase text-neutral-500 w-10">
-                                Std:
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-3xl font-sans font-bold text-black tracking-tight">
+                              {pass.pricing?.standard.price || pass.price}
+                            </span>
+                            <span className="text-neutral-300 font-light text-2xl">/</span>
+                            <span className="text-3xl font-sans font-bold text-[#eb0028] tracking-tight">
+                              {pass.pricing?.premium.price}
+                            </span>
+                            {pass.pricing?.standard.originalPrice && (
+                              <span className="text-xs text-neutral-400 line-through ml-1">
+                                {pass.pricing.standard.originalPrice}
                               </span>
-                              <span className="text-lg font-sans font-bold text-black tracking-tight">
-                                {pass.pricing?.standard.price || pass.price}
+                            )}
+                            {pass.pricing?.standard.originalPrice && (
+                              <span className="text-[9px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200/60 font-bold px-1.5 py-0.5 rounded ml-1">
+                                Early Bird
                               </span>
-                              {pass.pricing?.standard.originalPrice && (
-                                <span className="text-xs text-neutral-400 line-through">
-                                  {pass.pricing.standard.originalPrice}
-                                </span>
-                              )}
-                              {pass.pricing?.standard.originalPrice && (
-                                <span className="text-[9px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200/60 font-bold px-1.5 py-0.5 rounded">
-                                  Early Bird
-                                </span>
-                              )}
-                            </div>
-                            {/* Premium Tier */}
-                            <div className="flex items-center gap-2">
-                              <span className="text-[11px] font-mono font-bold uppercase text-[#eb0028] w-10">
-                                Prem:
-                              </span>
-                              <span className="text-lg font-sans font-bold text-[#eb0028] tracking-tight">
-                                {pass.pricing?.premium.price || "TBA"}
-                              </span>
-                              <span className="text-[9px] font-mono text-[#eb0028] bg-[#eb0028]/10 font-bold px-1.5 py-0.5 rounded">
-                                All-In
-                              </span>
-                            </div>
+                            )}
                           </div>
                         </div>
                         <span className="text-[10px] font-mono text-[#eb0028] uppercase tracking-wider font-bold bg-[#eb0028]/5 px-2 py-1 rounded">
@@ -213,37 +201,8 @@ export default function PassesPage() {
               <PassComparisonTable showTabs={true} showHeader={true} />
             </div>
 
-            {/* 3. Pass Policies & Important Guidelines */}
-            <div className="mt-32 pt-20 border-t border-neutral-200">
-              <div className="max-w-3xl mb-12">
-                <span className="text-[#eb0028] font-mono text-[10px] uppercase tracking-[0.2em] font-bold block mb-3">
-                  Registration Standards
-                </span>
-                <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900">
-                  Important details before you register.
-                </h3>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {passGuidelines.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="p-8 rounded-2xl bg-white border border-neutral-200 shadow-sm flex flex-col"
-                  >
-                    <span className="font-mono text-xs text-[#eb0028] font-bold block mb-4 bg-[#eb0028]/10 w-fit px-2.5 py-1 rounded-full">
-                      0{idx + 1}
-                    </span>
-                    <h4 className="text-lg font-bold text-neutral-900 mb-3">{item.title}</h4>
-                    <p className="text-sm font-light text-neutral-600 leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* 4. Delegation & School Bookings Callout Banner */}
-            <div className="mt-16 p-8 md:p-12 rounded-3xl border border-neutral-200 bg-white shadow-sm flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 relative overflow-hidden group">
+            {/* Delegation & School Bookings Callout Banner */}
+            <div className="mt-20 p-8 md:p-12 rounded-3xl border border-neutral-200 bg-white shadow-sm flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 relative overflow-hidden group">
               <div className="absolute right-0 top-0 w-64 h-full bg-gradient-to-l from-neutral-50 to-transparent pointer-events-none" />
               <div className="max-w-2xl relative z-10">
                 <div className="flex items-center gap-2 text-[#eb0028] mb-4">

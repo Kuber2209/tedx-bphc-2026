@@ -35,12 +35,8 @@ export default function PassComparisonTable({
       {showHeader && (
         <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 mb-3 px-3 py-1 rounded-full bg-red-50 border border-red-200/60 text-[#eb0028] text-xs font-mono font-bold uppercase tracking-wider">
-              <Sparkles className="h-3.5 w-3.5" />
-              <span>Tier Comparison · Standard vs. Premium</span>
-            </div>
             <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 mb-2">
-              {activeData.name}: Standard vs. Premium
+              {activeData.name}
             </h3>
             <p className="text-sm font-light text-neutral-600 max-w-2xl">
               Compare inclusions across both tiers to select the experience tailored to your conference participation.

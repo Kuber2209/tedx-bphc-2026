@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import TEDxWatermark from "@/components/layout/TEDxWatermark";
 
 // ============================================================================
 // Schedule Data: ONLY Speakers & Timings for Day 1 and Day 2
@@ -257,14 +258,7 @@ export default function SchedulePage() {
       className="min-h-screen bg-[#fafafa] text-neutral-900 selection:bg-[#eb0028] selection:text-white pb-32 font-sans relative"
     >
       {/* Very light, feeble TEDx background watermark */}
-      <div
-        className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden select-none"
-        aria-hidden="true"
-      >
-        <span className="font-sans font-black text-[32vw] md:text-[26vw] tracking-tighter text-black/[0.038] select-none leading-none">
-          TED<span className="text-[#eb0028]/[0.048]">x</span>
-        </span>
-      </div>
+      <TEDxWatermark />
 
       {/* Fixed Left-Side Scroll Indicator */}
       <LeftScrollIndicator
