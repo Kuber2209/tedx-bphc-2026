@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
-import TEDxWatermark from "@/components/layout/TEDxWatermark";
 
 const TRANSIT_TABS = [
   {
@@ -36,27 +35,6 @@ const TRANSIT_TABS = [
   },
 ];
 
-const PROTOCOLS = [
-  {
-    num: "01",
-    title: "IDENTIFICATION",
-    description:
-      "Campus security requires any government photo ID alongside your digital TEDx pass QR code.",
-  },
-  {
-    num: "02",
-    title: "SCHEDULE TIMING",
-    description:
-      "Campus gates open at 08:30 IST. Auditorium doors close promptly for opening remarks at 09:45 IST.",
-  },
-  {
-    num: "03",
-    title: "ACCESSIBILITY",
-    description:
-      "Step-free ramp access and dedicated seating available at all auditorium entrances.",
-  },
-];
-
 export default function VenueContent() {
   const [copied, setCopied] = useState(false);
 
@@ -69,24 +47,33 @@ export default function VenueContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafafa] text-[#494949] selection:bg-[#eb0028] selection:text-white relative">
-      <TEDxWatermark />
+    <div className="min-h-screen bg-[#fafafa] text-[#494949] selection:bg-[#eb0028] selection:text-white">
       {/* 
-        HERO SECTION (Matching TEDx MIT & Speakers Page Hero)
-        Dark background (#0a0a0c) with zero background animations
+        HERO SECTION (Matching TEDx MIT & Speakers Page Hero with Background Video)
       */}
-      <header className="relative z-10 w-full bg-[#0a0a0c] overflow-hidden">
-        {/* Subtle radial depth overlay for TEDx contrast */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(circle_at_top_right,rgba(235,0,40,0.25),transparent_60%)]"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 pointer-events-none opacity-70 bg-gradient-to-b from-black/80 via-black/60 to-[#0a0a0c]"
-          aria-hidden="true"
-        />
+      <header className="relative w-full bg-[#0a0a0c] overflow-hidden min-h-[460px] md:min-h-[520px] flex items-center">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover brightness-[0.75] contrast-[1.05]"
+          >
+            <source src="/venue/venue-video.mp4" type="video/mp4" />
+          </video>
+          {/* Gradients & radial overlay for high legibility & TEDx signature mood */}
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c] via-black/20 to-black/60" />
+          <div
+            className="absolute inset-0 pointer-events-none opacity-30 bg-[radial-gradient(circle_at_top_right,rgba(235,0,40,0.3),transparent_60%)]"
+            aria-hidden="true"
+          />
+        </div>
 
-        <div className="relative max-w-[80rem] mx-auto px-6 md:px-12 pt-36 pb-20 md:pt-44 md:pb-28">
+        <div className="relative z-10 w-full max-w-[80rem] mx-auto px-6 md:px-12 pt-36 pb-20 md:pt-44 md:pb-28">
           <div className="max-w-[42rem]">
             {/* Main Heading */}
             <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-bold text-white tracking-tight leading-[1.2]">
@@ -116,7 +103,7 @@ export default function VenueContent() {
               </Link>
               <a
                 href="#getting-here"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] border border-white hover:bg-white hover:text-black text-white font-semibold text-base transition-all duration-200"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] border border-white hover:bg-white hover:text-black text-white font-semibold text-base transition-all duration-200 backdrop-blur-xs"
               >
                 Campus Directions
               </a>
@@ -126,7 +113,7 @@ export default function VenueContent() {
       </header>
 
       {/* LOWER VENUE CONTENT */}
-      <main className="bg-transparent text-[#494949] py-16 md:py-24 relative z-10">
+      <main className="bg-[#fafafa] text-[#494949] py-16 md:py-24">
         {/* 2. VISUAL CENTERPIECE & INFO */}
         <section className="px-6 md:px-12 lg:px-16 max-w-7xl mx-auto mb-24 md:mb-32">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -143,8 +130,8 @@ export default function VenueContent() {
                 <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#eb0028] via-[#eb0028]/60 to-transparent z-20" />
                 
                 <Image
-                  src="/gallery/image1.jpg"
-                  alt="Auditorium Atrium & Stage, BITS Pilani Hyderabad"
+                  src="/venue/auditorium-main.jpg"
+                  alt="BITS Pilani Hyderabad Campus Auditorium"
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 66vw"
@@ -245,33 +232,6 @@ export default function VenueContent() {
               </motion.div>
             ))}
           </div>
-        </section>
-
-        {/* 4. PROTOCOLS */}
-        <section className="px-6 md:px-12 lg:px-16 max-w-4xl mx-auto mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="bg-white rounded-3xl p-8 md:p-12 border border-neutral-200/90 shadow-xs"
-          >
-            <div className="text-center mb-10">
-              <h2 className="text-2xl md:text-3xl font-bold text-[#494949]">Day-of Protocols</h2>
-            </div>
-            
-            <div className="space-y-8">
-              {PROTOCOLS.map((protocol) => (
-                <div key={protocol.num} className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start pb-8 border-b border-neutral-100 last:border-0 last:pb-0">
-                  <span className="font-mono text-[#eb0028] font-bold text-lg sm:text-xl mt-0.5">{protocol.num}</span>
-                  <div>
-                    <h3 className="font-mono text-xs sm:text-sm tracking-widest text-[#494949] font-bold mb-2 uppercase">{protocol.title}</h3>
-                    <p className="text-[#494949] font-normal leading-relaxed text-sm sm:text-base opacity-90">{protocol.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
         </section>
       </main>
     </div>

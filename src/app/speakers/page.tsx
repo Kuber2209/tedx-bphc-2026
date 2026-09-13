@@ -58,8 +58,8 @@ export default function SpeakersPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c] via-transparent to-black/40" />
         </div>
 
-        <div className="relative max-w-[80rem] mx-auto px-6 md:px-12 pt-36 pb-20 md:pt-44 md:pb-28">
-          <div className="max-w-[42rem]">
+        <div className="relative z-10 w-full px-6 md:px-12 pt-36 pb-20 md:pt-44 md:pb-28">
+          <div className="max-w-[42rem] text-left">
             {/* Main Heading */}
             <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-bold text-white tracking-tight leading-[1.2]">
               Inspiring Innovators Unleashed
