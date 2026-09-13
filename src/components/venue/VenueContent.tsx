@@ -69,16 +69,7 @@ export default function VenueContent() {
 
   return (
     <main className="bg-[#fcfcfc] text-neutral-900 min-h-screen font-sans selection:bg-[#eb0028] selection:text-white pt-32 pb-36 relative overflow-hidden">
-      {/* RADAR BACKGROUND */}
-      <div className="absolute inset-0 z-0 h-full w-full pointer-events-none opacity-20">
-        <Radar
-          backgroundColor="#ffffff"
-          color="#000000"
-          speed={0.5}
-          scale={1}
-          lightMode={false}
-        />
-      </div>
+
 
       <div className="relative z-10">
         {/* 1. HERO SECTION */}
@@ -106,7 +97,7 @@ export default function VenueContent() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Image Centerpiece */}
             <div className="lg:col-span-8 relative">
-              <motion.div 
+              <motion.div
                 className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-neutral-200/50 group bg-neutral-100"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -115,7 +106,7 @@ export default function VenueContent() {
               >
                 {/* Red subtle accent bar */}
                 <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#eb0028] via-[#eb0028]/60 to-transparent z-20" />
-                
+
                 <Image
                   src="/gallery/image1.jpg"
                   alt="Auditorium Atrium & Stage, BITS Pilani Hyderabad"
@@ -124,7 +115,7 @@ export default function VenueContent() {
                   sizes="(max-width: 1024px) 100vw, 66vw"
                   className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
                 />
-                
+
                 {/* Subtle overlay gradient for elegance */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none z-10" />
               </motion.div>
@@ -141,7 +132,7 @@ export default function VenueContent() {
                 <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-8">
                   Auditorium
                 </h2>
-                
+
                 <div className="space-y-6 mb-10 text-neutral-600 font-light">
                   <div>
                     <span className="block text-[10px] font-mono uppercase tracking-widest text-neutral-400 mb-1">Campus</span>
@@ -149,7 +140,7 @@ export default function VenueContent() {
                   </div>
                   <div>
                     <span className="block text-[10px] font-mono uppercase tracking-widest text-neutral-400 mb-1">Location</span>
-                    <p className="text-base">Jawahar Nagar, Shamirpet,<br/>Hyderabad, Telangana 500078</p>
+                    <p className="text-base">Jawahar Nagar, Shamirpet,<br />Hyderabad, Telangana 500078</p>
                   </div>
                   <div>
                     <span className="block text-[10px] font-mono uppercase tracking-widest text-neutral-400 mb-1">Edition</span>
@@ -199,7 +190,7 @@ export default function VenueContent() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {TRANSIT_TABS.map((tab, idx) => (
-              <motion.div 
+              <motion.div
                 key={tab.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -233,7 +224,7 @@ export default function VenueContent() {
             <div className="text-center mb-10">
               <h2 className="text-2xl md:text-3xl font-bold text-neutral-900">Day-of Protocols</h2>
             </div>
-            
+
             <div className="space-y-8">
               {PROTOCOLS.map((protocol) => (
                 <div key={protocol.num} className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start pb-8 border-b border-neutral-100 last:border-0 last:pb-0">

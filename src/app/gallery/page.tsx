@@ -94,22 +94,22 @@ export default function GalleryPage() {
 
   return (
     <main className="min-h-screen bg-white text-[#0F172A] pt-20 pb-32 overflow-hidden">
-      {/* 1. Dome Gallery Section with Softer Light-Dark Blending Background */}
-      <section className="relative w-full min-h-[640px] md:min-h-[760px] flex items-center overflow-hidden bg-[#242834]">
-        {/* 3D Dome Sphere with Smooth Blend */}
-        <div className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden pointer-events-auto [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_98%)] [-webkit-mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_98%)] opacity-90 hover:opacity-100 transition-opacity duration-700">
+      {/* 1. Dome Gallery Section with Pitch Black Background */}
+      <section className="relative w-full min-h-[640px] md:min-h-[760px] flex items-center overflow-hidden bg-black">
+        {/* 3D Dome Sphere with Smooth Blend - Shifted towards the right */}
+        <div className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden pointer-events-auto [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_98%)] [-webkit-mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_98%)] opacity-90 hover:opacity-100 transition-all duration-700 translate-x-0 sm:translate-x-6 md:translate-x-[15%] lg:translate-x-[20%]">
           <DomeGallery
             key={activeEdition.value}
             images={currentImages.slice(0, 20)}
             grayscale={false}
-            overlayBlurColor="#242834"
+            overlayBlurColor="#000000"
             openedImageWidth="280px"
             openedImageHeight="380px"
           />
         </div>
 
-        {/* Soft Ambient Blend Overlay */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[#242834]/90 via-[#242834]/60 to-transparent pointer-events-none" />
+        {/* Pitch Black Ambient Blend Overlay */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black/95 via-black/60 to-transparent pointer-events-none" />
 
         {/* Foreground Header Content - Shifted slightly to the left */}
         <header className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-20 pb-16 text-left pointer-events-none">
@@ -124,14 +124,12 @@ export default function GalleryPage() {
           {/* Headline - Two-tone White & TED Red like Image 2 */}
           <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[96px] font-bold tracking-tighter leading-[0.88] text-white mb-6 -ml-1 md:-ml-2">
             The Archive<br />
-            <span className="font-bold text-[#EB0028]">In Motion.</span>
+            <span className="font-bold text-[#EB0028]"></span>
           </h1>
 
           {/* Tagline / Concept Narrative - Font and color matching Image 2 */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-4 -ml-1 md:-ml-2">
             <p className="max-w-2xl text-zinc-300 text-lg md:text-xl font-light leading-relaxed">
-              Moments frozen in stillness, echoing across time. Explore the living
-              visual chronicle of unseen connections that continue to shape us.
             </p>
           </div>
         </header>
@@ -247,9 +245,8 @@ export default function GalleryPage() {
           >
             <span>{isAllViewed ? "Show Less" : "View All"}</span>
             <svg
-              className={`icon transition-transform duration-300 ${
-                isAllViewed ? "-rotate-90" : ""
-              }`}
+              className={`icon transition-transform duration-300 ${isAllViewed ? "-rotate-90" : ""
+                }`}
               width="18"
               height="18"
               viewBox="0 0 24 24"
