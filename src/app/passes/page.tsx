@@ -34,7 +34,10 @@ const getPassIcon = (id: string) => {
 
 export default function PassesPage() {
   return (
-    <div className="bg-[#fcfcfc] text-neutral-900 min-h-screen font-sans selection:bg-[#E62B1E] selection:text-white pb-32 relative">
+    <div
+      style={{ zoom: 0.8 }}
+      className="zoom-80 bg-[#fcfcfc] text-neutral-900 min-h-screen font-sans selection:bg-[#E62B1E] selection:text-white pb-32 relative"
+    >
       <div className="absolute inset-0 z-0 h-full w-full overflow-hidden pointer-events-none opacity-20">
          <FloatingLines color="#eb0028" />
       </div>
@@ -58,8 +61,8 @@ export default function PassesPage() {
               direction="top"
               className="text-6xl sm:text-7xl md:text-8xl lg:text-[96px] font-bold tracking-tight mb-8 text-neutral-900 leading-[0.95] text-center"
               highlightWords={{
-                room: "italic font-serif font-light text-zinc-400",
-                "room.": "italic font-serif font-light text-zinc-400",
+                room: "font-sans font-light text-zinc-400",
+                "room.": "font-sans font-light text-zinc-400",
               }}
             />
 
@@ -129,7 +132,7 @@ export default function PassesPage() {
                             {pass.name}
                           </Link>
                         </h3>
-                        <p className="font-serif italic text-base text-zinc-500">
+                        <p className="font-sans text-base text-zinc-600 font-medium">
                           {pass.targetAudience}
                         </p>
                       </div>
@@ -148,7 +151,7 @@ export default function PassesPage() {
                           <p className="text-zinc-500 font-mono text-[10px] tracking-[0.2em] uppercase mb-1">
                             Delegate Fee
                           </p>
-                          <p className="text-3xl font-serif italic text-black font-light">
+                          <p className="text-3xl font-sans font-bold text-black tracking-tight">
                             {pass.price}
                           </p>
                         </div>

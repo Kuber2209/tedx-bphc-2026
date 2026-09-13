@@ -33,6 +33,7 @@ export default function BorderGlow({
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const zoom =
+      (containerRef.current ? parseFloat(getComputedStyle(containerRef.current).zoom) : 0) ||
       parseFloat(getComputedStyle(document.documentElement).zoom) ||
       parseFloat(getComputedStyle(document.body).zoom) ||
       1;

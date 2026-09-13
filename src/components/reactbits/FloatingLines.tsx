@@ -20,8 +20,8 @@ export default function FloatingLines({ color = "#eb0028" }: FloatingLinesProps)
     let lines: Line[] = [];
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = canvas.parentElement?.offsetWidth || canvas.offsetWidth || window.innerWidth;
+      canvas.height = canvas.parentElement?.offsetHeight || canvas.offsetHeight || window.innerHeight;
       initLines();
     };
 

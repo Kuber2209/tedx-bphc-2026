@@ -50,11 +50,7 @@ export default function GlobalBackground() {
           </div>
         );
       case "/schedule":
-        return (
-          <div className="absolute inset-0 opacity-60 transition-opacity duration-1000">
-            <Grid color="#eb0028" size={50} />
-          </div>
-        );
+        return null;
       default:
         return null;
     }

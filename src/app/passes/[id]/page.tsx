@@ -68,7 +68,10 @@ export default async function PassDetailPage({ params }: PassDetailPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black font-sans pb-32">
+    <div
+      style={{ zoom: 0.8 }}
+      className="zoom-80 min-h-screen bg-white text-black font-sans pb-32"
+    >
       {/* Top Header / Breadcrumb Bar */}
       <div className="pt-32 pb-8 px-6 md:px-12 border-b border-neutral-100 max-w-[1400px] mx-auto">
         <Link
