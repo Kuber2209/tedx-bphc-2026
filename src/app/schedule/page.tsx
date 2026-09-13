@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   motion,
   useScroll,
@@ -11,8 +12,7 @@ import {
 } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import BlurText from "@/components/reactbits/BlurText";
-import FloatingLines from "@/components/reactbits/FloatingLines";
+import TEDxWatermark from "@/components/layout/TEDxWatermark";
 
 // ============================================================================
 // Schedule Data: ONLY Speakers & Timings for Day 1 and Day 2
@@ -259,10 +259,7 @@ export default function SchedulePage() {
       ref={containerRef}
       className="min-h-screen bg-[#fafafa] text-neutral-900 selection:bg-[#eb0028] selection:text-white pb-32 font-sans relative"
     >
-      {/* Floating lines background matching Passes template */}
-      <div className="absolute inset-0 z-0 h-full w-full overflow-hidden pointer-events-none opacity-20">
-        <FloatingLines color="#eb0028" />
-      </div>
+      <TEDxWatermark />
 
       {/* Fixed Left-Side Scroll Indicator */}
       <LeftScrollIndicator
@@ -273,77 +270,62 @@ export default function SchedulePage() {
 
       <div className="relative z-10">
         {/* =========================================================================
-            1. HEADER SECTION (MATCHING PASSES PAGE TEMPLATE)
+            1. HERO SECTION (MATCHING SPEAKERS & TEAM PAGE HERO DESIGN)
             ========================================================================= */}
-        <section className="relative pt-36 sm:pt-40 pb-12 px-6 md:px-12 overflow-hidden">
-          <div className="max-w-[1000px] mx-auto text-center relative z-10 flex flex-col items-center">
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-white border border-neutral-200 shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#E62B1E] animate-pulse" />
-              <p className="text-[#E62B1E] font-mono text-[10px] tracking-[0.2em] uppercase font-bold text-center">
-                Conference Schedule · 2026
-              </p>
-            </div>
-
-            <BlurText
-              text="The schedule."
-              as="h1"
-              delay={140}
-              animateBy="words"
-              direction="top"
-              className="text-6xl sm:text-7xl md:text-8xl lg:text-[96px] font-bold tracking-tight mb-6 text-neutral-900 leading-[0.95] text-center"
-              highlightWords={{
-                schedule: "font-sans font-light text-zinc-400",
-                "schedule.": "font-sans font-light text-zinc-400",
-              }}
-            />
-
-            <BlurText
-              text="Explore the curated sequence of keynote talks, sessions, and networking intervals across Day 1 and Day 2 at the BITS Pilani Hyderabad Campus Auditorium."
-              as="p"
-              delay={25}
-              animateBy="words"
-              direction="bottom"
-              className="text-lg md:text-xl font-light text-neutral-500 max-w-2xl mx-auto leading-relaxed text-center mb-6"
-            />
-          </div>
-        </section>
-
-        {/* =========================================================================
-            STAGE SHOWCASE CENTERPIECE
-            ========================================================================= */}
-        <section className="relative px-6 md:px-12 max-w-5xl mx-auto mb-14">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative aspect-[16/9] sm:aspect-[21/9] w-full rounded-2xl overflow-hidden shadow-md border border-neutral-200/90 group bg-black"
-          >
-            {/* Red accent bar */}
-            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#eb0028] via-[#eb0028]/60 to-transparent z-20" />
-            
+        <header className="relative z-10 w-full bg-[#0a0a0c] overflow-hidden min-h-[55vh] md:min-h-[65vh] flex items-center">
+          {/* Background banner image with authentic stage */}
+          <div className="absolute inset-0 z-0">
             <Image
               src="/schedule-stage.png"
               alt="TEDx BITS Hyderabad Auditorium Stage"
               fill
               priority
-              sizes="(max-width: 1024px) 100vw, 1024px"
-              className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
+              className="object-cover object-center"
             />
-            
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none z-10" />
+            {/* Gradients for text legibility and cinematic atmosphere */}
+            <div className="absolute inset-0 bg-black/50 md:bg-black/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/65 to-black/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c] via-transparent to-black/40" />
+          </div>
 
-            {/* Stage Info Badge */}
-            <div className="absolute bottom-4 left-5 sm:bottom-6 sm:left-8 z-20 flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white font-mono text-[11px] uppercase tracking-widest font-semibold shadow-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#eb0028] animate-pulse" />
-                Main Auditorium Stage
-              </span>
-              <span className="text-white/80 font-mono text-xs hidden sm:inline-block">
-                BITS Pilani Hyderabad Campus · 13–14 Nov 2026
-              </span>
+          <div className="relative z-10 w-full px-6 md:px-12 pt-36 pb-20 md:pt-44 md:pb-28">
+            <div className="max-w-[42rem] text-left">
+              {/* Main Heading */}
+              <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-bold text-white tracking-tight leading-[1.2]">
+                Schedule & Lineup
+              </h1>
+
+              {/* Spacing block 1 (1.5rem / 24px) */}
+              <div className="h-6 w-full" aria-hidden="true" />
+
+              {/* Subtitle */}
+              <p className="text-white/90 text-lg md:text-[1.125rem] font-normal leading-relaxed">
+                Explore the curated sequence of keynote talks, sessions, and networking intervals
+                across Day 1 and Day 2 at the BITS Pilani Hyderabad Campus Auditorium.
+              </p>
+
+              {/* Spacing block 2 (2rem / 32px) */}
+              <div className="h-8 w-full" aria-hidden="true" />
+
+              {/* CTA Button Group */}
+              <div className="flex flex-wrap items-center gap-4">
+                <Link
+                  href="/passes"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] bg-[#eb0028] hover:bg-[#960800] text-white font-semibold text-base transition-colors duration-200 shadow-sm"
+                >
+                  Register for 2026
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => scrollToDay(0)}
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] border border-white hover:bg-white hover:text-black text-white font-semibold text-base transition-all duration-200 cursor-pointer"
+                >
+                  View Timeline
+                </button>
+              </div>
             </div>
-          </motion.div>
-        </section>
+          </div>
+        </header>
 
         {/* =========================================================================
             2. STICKY DAY TABS
