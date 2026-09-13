@@ -53,6 +53,7 @@ export default async function PassDetailPage({ params }: PassDetailPageProps) {
   }
 
   const details = pass.details;
+  const isSchool = pass.id === "school-student";
 
   const getPassIcon = (passId: string) => {
     switch (passId) {
@@ -83,7 +84,7 @@ export default async function PassDetailPage({ params }: PassDetailPageProps) {
         </Link>
 
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-          <div className="max-w-3xl">
+          <div className={isSchool ? "max-w-4xl" : "max-w-3xl"}>
             <div className="flex items-center gap-3 mb-4">
               <span className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3.5 py-1.5 text-xs font-mono font-bold uppercase tracking-wider text-neutral-700">
                 {getPassIcon(pass.id)}
@@ -106,36 +107,38 @@ export default async function PassDetailPage({ params }: PassDetailPageProps) {
             </p>
           </div>
 
-          {/* Pricing Box & Registration Button */}
-          <div className="p-8 rounded-3xl bg-neutral-50 border border-neutral-200 shrink-0 w-full lg:w-80 shadow-xs">
-            <div className="flex items-baseline justify-between gap-4 mb-4">
-              <div>
-                <p className="text-neutral-400 font-mono text-[10px] tracking-[0.2em] uppercase mb-1">
-                  Delegate Fee
-                </p>
-                <p className="text-4xl font-bold tracking-tight text-neutral-900">{pass.price}</p>
+          {/* Pricing Box & Registration Button - Hidden for School Student Pass */}
+          {!isSchool && (
+            <div className="p-8 rounded-3xl bg-neutral-50 border border-neutral-200 shrink-0 w-full lg:w-80 shadow-xs">
+              <div className="flex items-baseline justify-between gap-4 mb-4">
+                <div>
+                  <p className="text-neutral-400 font-mono text-[10px] tracking-[0.2em] uppercase mb-1">
+                    Delegate Fee
+                  </p>
+                  <p className="text-4xl font-bold tracking-tight text-neutral-900">{pass.price}</p>
+                </div>
+                <span className="text-[10px] font-mono text-[#eb0028] uppercase tracking-wider font-bold bg-[#eb0028]/10 px-2.5 py-1 rounded">
+                  Phase 1
+                </span>
               </div>
-              <span className="text-[10px] font-mono text-[#eb0028] uppercase tracking-wider font-bold bg-[#eb0028]/10 px-2.5 py-1 rounded">
-                Phase 1
-              </span>
+
+              <p className="text-xs text-neutral-500 font-light mb-6">
+                Includes full-day auditorium pass, official delegate kit, lunch, and high-tea.
+              </p>
+
+              <Link
+                href={pass.available ? pass.registrationUrl || "#" : "#"}
+                className={`w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-bold tracking-[0.15em] uppercase rounded-full transition-all duration-300 ${
+                  pass.available
+                    ? "bg-[#eb0028] text-white hover:bg-[#c20021] hover:shadow-lg shadow-sm"
+                    : "bg-neutral-200 text-neutral-500 cursor-not-allowed"
+                }`}
+              >
+                <span>{pass.available ? "Complete Registration" : "Registrations Opening Soon"}</span>
+                {pass.available && <ArrowUpRight className="h-4 w-4" />}
+              </Link>
             </div>
-
-            <p className="text-xs text-neutral-500 font-light mb-6">
-              Includes full-day auditorium pass, official delegate kit, lunch, and high-tea.
-            </p>
-
-            <Link
-              href={pass.available ? pass.registrationUrl || "#" : "#"}
-              className={`w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-bold tracking-[0.15em] uppercase rounded-full transition-all duration-300 ${
-                pass.available
-                  ? "bg-[#eb0028] text-white hover:bg-[#c20021] hover:shadow-lg shadow-sm"
-                  : "bg-neutral-200 text-neutral-500 cursor-not-allowed"
-              }`}
-            >
-              <span>{pass.available ? "Complete Registration" : "Registrations Opening Soon"}</span>
-              {pass.available && <ArrowUpRight className="h-4 w-4" />}
-            </Link>
-          </div>
+          )}
         </div>
       </div>
 
@@ -206,39 +209,104 @@ export default async function PassDetailPage({ params }: PassDetailPageProps) {
               </section>
             )}
 
-            {/* 4. Event Day Itinerary Highlights */}
-            {details?.scheduleHighlights && (
-              <section>
-                <div className="flex items-center gap-3 mb-4">
-                  <Clock className="h-5 w-5 text-[#eb0028]" />
-                  <h2 className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#eb0028]">
-                    Event Day Schedule Highlights
-                  </h2>
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 mb-8">
-                  Your journey through the day.
-                </h3>
+            {/* 4. Event Day Schedule Highlights / Your Journey Through The Day */}
+            {isSchool ? (
+              <section className="relative overflow-hidden rounded-3xl border border-neutral-200 bg-gradient-to-br from-[#0c0d12] via-[#161922] to-[#0c0d12] p-8 sm:p-12 text-white shadow-xl group">
+                {/* Ambient glow effects */}
+                <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-[#eb0028]/20 blur-3xl pointer-events-none transition-opacity duration-500 group-hover:opacity-100 opacity-70" />
+                <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-[#eb0028]/10 blur-3xl pointer-events-none" />
 
-                <div className="space-y-6 relative border-l-2 border-neutral-200 ml-4 pl-8">
-                  {details.scheduleHighlights.map((item, idx) => (
-                    <div key={idx} className="relative">
-                      {/* Timeline Node Point */}
-                      <span className="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-2 border-white bg-[#eb0028] shadow-xs" />
-                      <span className="font-mono text-xs font-bold text-[#eb0028] mb-1 block">
-                        {item.time}
+                {/* Subtle grid pattern background */}
+                <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
+
+                <div className="relative z-10">
+                  <div className="flex items-center gap-2.5 mb-4 text-[#eb0028]">
+                    <Clock className="h-4 w-4" />
+                    <span className="font-mono text-xs font-bold tracking-[0.2em] uppercase">
+                      Curated 3-Day Itinerary
+                    </span>
+                  </div>
+
+                  <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-4 leading-tight">
+                    Your journey through <span className="text-[#eb0028]">the day.</span>
+                  </h3>
+
+                  <p className="text-base sm:text-lg text-neutral-300 font-light leading-relaxed max-w-2xl mb-8">
+                    From thought-provoking morning keynotes to youth breakout dialogues, live creative performances, and high-tea interactions — explore the full schedule with speaker sessions and exact timings.
+                  </p>
+
+                  {/* Feature Highlights Pills */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+                    <div className="p-3.5 rounded-2xl bg-white/[0.06] border border-white/[0.08] backdrop-blur-xs">
+                      <span className="block font-mono text-[10px] text-[#eb0028] uppercase tracking-wider font-bold mb-1">
+                        Morning
                       </span>
-                      <h4 className="text-lg font-bold text-neutral-900 mb-1">{item.title}</h4>
-                      <p className="text-sm font-light text-neutral-600 leading-relaxed">
-                        {item.description}
-                      </p>
+                      <p className="text-xs font-medium text-white">Act I: Ignition & Unseen Catalysts</p>
                     </div>
-                  ))}
+                    <div className="p-3.5 rounded-2xl bg-white/[0.06] border border-white/[0.08] backdrop-blur-xs">
+                      <span className="block font-mono text-[10px] text-[#eb0028] uppercase tracking-wider font-bold mb-1">
+                        Mid-Day
+                      </span>
+                      <p className="text-xs font-medium text-white">Youth Networking & Luncheon</p>
+                    </div>
+                    <div className="p-3.5 rounded-2xl bg-white/[0.06] border border-white/[0.08] backdrop-blur-xs">
+                      <span className="block font-mono text-[10px] text-[#eb0028] uppercase tracking-wider font-bold mb-1">
+                        Afternoon
+                      </span>
+                      <p className="text-xs font-medium text-white">Act II: Horizons & Performances</p>
+                    </div>
+                  </div>
+
+                  {/* CTA Redirect to Schedule */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-white/10">
+                    <span className="text-xs text-neutral-400 font-light">
+                      Complete speaker line-up, interactive breaks & stage schedule are live on our schedule page.
+                    </span>
+
+                    <Link
+                      href="/schedule"
+                      className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#eb0028] text-white font-bold text-xs tracking-[0.15em] uppercase hover:bg-[#c20021] hover:shadow-lg hover:shadow-[#eb0028]/30 transition-all duration-300 shrink-0 group/btn"
+                    >
+                      <span>Explore Event Schedule</span>
+                      <ArrowUpRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                    </Link>
+                  </div>
                 </div>
               </section>
+            ) : (
+              details?.scheduleHighlights && (
+                <section>
+                  <div className="flex items-center gap-3 mb-4">
+                    <Clock className="h-5 w-5 text-[#eb0028]" />
+                    <h2 className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#eb0028]">
+                      Event Day Schedule Highlights
+                    </h2>
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 mb-8">
+                    Your journey through the day.
+                  </h3>
+
+                  <div className="space-y-6 relative border-l-2 border-neutral-200 ml-4 pl-8">
+                    {details.scheduleHighlights.map((item, idx) => (
+                      <div key={idx} className="relative">
+                        {/* Timeline Node Point */}
+                        <span className="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-2 border-white bg-[#eb0028] shadow-xs" />
+                        <span className="font-mono text-xs font-bold text-[#eb0028] mb-1 block">
+                          {item.time}
+                        </span>
+                        <h4 className="text-lg font-bold text-neutral-900 mb-1">{item.title}</h4>
+                        <p className="text-sm font-light text-neutral-600 leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )
             )}
 
-            {/* 5. Delegate Kit Contents */}
-            {details?.kitContents && (
+            {/* 5. Delegate Kit Contents - Hidden for School Student Pass */}
+            {!isSchool && details?.kitContents && (
               <section className="p-8 sm:p-10 rounded-3xl bg-neutral-900 text-white">
                 <div className="flex items-center gap-3 mb-4">
                   <Package className="h-5 w-5 text-[#eb0028]" />
@@ -263,8 +331,8 @@ export default async function PassDetailPage({ params }: PassDetailPageProps) {
               </section>
             )}
 
-            {/* 6. Frequently Asked Questions */}
-            {details?.faqs && (
+            {/* 6. Frequently Asked Questions - Hidden for School Student Pass */}
+            {!isSchool && details?.faqs && (
               <section>
                 <div className="flex items-center gap-3 mb-4">
                   <HelpCircle className="h-5 w-5 text-[#eb0028]" />
@@ -295,74 +363,78 @@ export default async function PassDetailPage({ params }: PassDetailPageProps) {
 
           {/* Right Sidebar */}
           <div className="lg:col-span-4 space-y-8">
-            {/* Smooth Check-In Guide */}
-            <div className="p-8 rounded-3xl bg-neutral-50 border border-neutral-200 shadow-xs">
-              <div className="flex items-center gap-2 text-[#eb0028] mb-4">
-                <Sparkles className="h-5 w-5" />
-                <h3 className="font-mono text-xs font-bold uppercase tracking-[0.2em]">
-                  Smooth Check-In
-                </h3>
-              </div>
-              <p className="text-xs text-neutral-500 font-light mb-6 leading-relaxed">
-                Everything you need for an effortless, enjoyable arrival on event day:
-              </p>
+            {!isSchool && (
+              <>
+                {/* Smooth Check-In Guide */}
+                <div className="p-8 rounded-3xl bg-neutral-50 border border-neutral-200 shadow-xs">
+                  <div className="flex items-center gap-2 text-[#eb0028] mb-4">
+                    <Sparkles className="h-5 w-5" />
+                    <h3 className="font-mono text-xs font-bold uppercase tracking-[0.2em]">
+                      Smooth Check-In
+                    </h3>
+                  </div>
+                  <p className="text-xs text-neutral-500 font-light mb-6 leading-relaxed">
+                    Everything you need for an effortless, enjoyable arrival on event day:
+                  </p>
 
-              <div className="space-y-3">
-                {(details?.checkInGuide || [
-                  "Digital pass confirmation on your phone",
-                  "Auditorium registration desk opens at 08:30 AM",
-                  "Official delegate credentials and welcome pack issued at reception",
-                ]).map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="p-3.5 rounded-xl bg-white border border-neutral-200 flex items-start gap-3"
-                  >
-                    <span className="text-[#eb0028] font-bold text-xs mt-0.5 shrink-0">✓</span>
-                    <span className="text-xs font-medium text-neutral-800 leading-relaxed">
-                      {item}
+                  <div className="space-y-3">
+                    {(details?.checkInGuide || [
+                      "Digital pass confirmation on your phone",
+                      "Auditorium registration desk opens at 08:30 AM",
+                      "Official delegate credentials and welcome pack issued at reception",
+                    ]).map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="p-3.5 rounded-xl bg-white border border-neutral-200 flex items-start gap-3"
+                      >
+                        <span className="text-[#eb0028] font-bold text-xs mt-0.5 shrink-0">✓</span>
+                        <span className="text-xs font-medium text-neutral-800 leading-relaxed">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Seating Zone Card */}
+                <div className="p-8 rounded-3xl bg-white border border-neutral-200 shadow-xs">
+                  <div className="flex items-center gap-2 text-neutral-900 mb-4">
+                    <MapPin className="h-5 w-5 text-[#eb0028]" />
+                    <h3 className="font-mono text-xs font-bold uppercase tracking-[0.2em]">
+                      Auditorium Seating
+                    </h3>
+                  </div>
+                  <p className="text-lg font-bold text-neutral-900 mb-2">
+                    {details?.seatingZone || "General Auditorium Seating"}
+                  </p>
+                  <p className="text-xs text-neutral-500 font-light leading-relaxed">
+                    Seating is allocated on a first-come, first-seated basis within the designated zone.
+                    Auditorium doors open at 08:30 AM.
+                  </p>
+                </div>
+
+                {/* Delegation Inquiries */}
+                <div className="p-8 rounded-3xl bg-neutral-950 text-white shadow-xs">
+                  <div className="flex items-center gap-2 text-[#eb0028] mb-3">
+                    <Users className="h-4 w-4" />
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] font-bold">
+                      Group Bookings
                     </span>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Seating Zone Card */}
-            <div className="p-8 rounded-3xl bg-white border border-neutral-200 shadow-xs">
-              <div className="flex items-center gap-2 text-neutral-900 mb-4">
-                <MapPin className="h-5 w-5 text-[#eb0028]" />
-                <h3 className="font-mono text-xs font-bold uppercase tracking-[0.2em]">
-                  Auditorium Seating
-                </h3>
-              </div>
-              <p className="text-lg font-bold text-neutral-900 mb-2">
-                {details?.seatingZone || "General Auditorium Seating"}
-              </p>
-              <p className="text-xs text-neutral-500 font-light leading-relaxed">
-                Seating is allocated on a first-come, first-seated basis within the designated zone.
-                Auditorium doors open at 08:30 AM.
-              </p>
-            </div>
-
-            {/* Delegation Inquiries */}
-            <div className="p-8 rounded-3xl bg-neutral-950 text-white shadow-xs">
-              <div className="flex items-center gap-2 text-[#eb0028] mb-3">
-                <Users className="h-4 w-4" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] font-bold">
-                  Group Bookings
-                </span>
-              </div>
-              <h4 className="text-lg font-bold mb-3">Bringing a Delegation?</h4>
-              <p className="text-xs text-neutral-400 font-light leading-relaxed mb-6">
-                For groups of 10 or more delegates, our hospitality desk facilitates block
-                ticketing, unified billing, and campus bus entry.
-              </p>
-              <a
-                href="mailto:tedx@hyderabad.bits-pilani.ac.in?subject=Group%20Pass%20Inquiry"
-                className="w-full text-center inline-flex items-center justify-center gap-2 rounded-full border border-neutral-700 bg-neutral-900 px-5 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-neutral-800 hover:border-neutral-500 transition-colors"
-              >
-                <span>Contact Delegation Desk</span>
-              </a>
-            </div>
+                  <h4 className="text-lg font-bold mb-3">Bringing a Delegation?</h4>
+                  <p className="text-xs text-neutral-400 font-light leading-relaxed mb-6">
+                    For groups of 10 or more delegates, our hospitality desk facilitates block
+                    ticketing, unified billing, and campus bus entry.
+                  </p>
+                  <a
+                    href="mailto:tedx@hyderabad.bits-pilani.ac.in?subject=Group%20Pass%20Inquiry"
+                    className="w-full text-center inline-flex items-center justify-center gap-2 rounded-full border border-neutral-700 bg-neutral-900 px-5 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-neutral-800 hover:border-neutral-500 transition-colors"
+                  >
+                    <span>Contact Delegation Desk</span>
+                  </a>
+                </div>
+              </>
+            )}
 
             {/* Other Pass Tiers Quick Links */}
             <div className="p-6 rounded-3xl border border-neutral-200 bg-white">
