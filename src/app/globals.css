@@ -71,6 +71,25 @@ body {
   scrollbar-color: #e4e4e7 #ffffff;
 }
 
+/* Sleek unobtrusive scrollbar for modals & scrollable panels */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #d4d4d8 transparent;
+}
+
 /* Subtle tile pattern used on some pages */
 .bg-tiles {
   background-size: 32px 32px;

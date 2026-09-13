@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface GalleryModalProps {
@@ -18,6 +19,12 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({
   currentIndex,
   setCurrentIndex,
 }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isOpen) return;
@@ -44,7 +51,7 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({
     };
   }, [isOpen]);
 
-  if (!isOpen || !images[currentIndex]) return null;
+  if (!isOpen || images.length === 0 || !mounted) return null;
 
   const handlePrev = (e?: React.MouseEvent) => {
     e?.stopPropagation();
@@ -56,9 +63,9 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({
     setCurrentIndex((currentIndex + 1) % images.length);
   };
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 sm:p-8 animate-in fade-in duration-300 select-none"
+      className="fixed inset-0 z-[250] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 sm:p-8 animate-in fade-in duration-300 select-none"
       onClick={onClose}
     >
       {/* Close button */}
@@ -118,6 +125,7 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({
       >
         <ChevronRight className="w-6 h-6" />
       </button>
-    </div>
+    </div>,
+    document.body
   );
 };
