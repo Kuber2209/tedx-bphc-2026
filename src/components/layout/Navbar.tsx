@@ -47,21 +47,21 @@ export default function Navbar() {
   return (
     <>
       <nav className={navClasses}>
-        <TedxLogo href="/" className="h-6 md:h-7 w-auto relative z-20" priority light={false} />
+        <TedxLogo href="/" className="text-xl md:text-2xl relative z-20" priority light={false} />
         
         {/* Desktop Navigation & Actions: Aligned to the right */}
-        <div className="hidden md:flex items-center gap-8 lg:gap-10">
-          <ul className="flex items-center gap-6 lg:gap-7">
+        <div className="hidden md:flex items-center gap-7 lg:gap-9">
+          <ul className="flex items-center gap-5 lg:gap-7">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
               return (
                 <li key={link.href} className="relative group py-2">
                   <Link 
                     href={link.href}
-                    className={`text-[11px] font-bold tracking-[0.2em] uppercase transition-colors duration-300 outline-none focus:outline-none focus-visible:outline-none ring-0 select-none ${
+                    className={`text-[13px] lg:text-sm font-semibold tracking-[0.08em] uppercase transition-colors duration-300 outline-none focus:outline-none focus-visible:outline-none ring-0 select-none ${
                       isActive 
-                        ? "text-black" 
-                        : "text-zinc-500 hover:text-black"
+                        ? "text-black font-bold" 
+                        : "text-zinc-600 hover:text-black"
                     }`}
                   >
                     {link.label}
@@ -69,7 +69,7 @@ export default function Navbar() {
                   {isActive && (
                     <motion.div 
                       layoutId="navbar-indicator"
-                      className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#eb0028]"
+                      className="absolute bottom-0 left-0 w-full h-[2px] bg-[#eb0028]"
                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                     />
                   )}
@@ -84,7 +84,7 @@ export default function Navbar() {
           {/* Right CTA Button matching TEDx MIT (.rl_navbar1_button) */}
           <Link
             href="/passes"
-            className="inline-flex items-center justify-center px-4 py-2 rounded-[4px] bg-[#eb0028] hover:bg-[#c40022] text-white font-semibold text-xs tracking-wider uppercase transition-colors duration-200 shadow-xs"
+            className="inline-flex items-center justify-center px-5 py-2.5 rounded-[4px] bg-[#eb0028] hover:bg-[#c40022] text-white font-semibold text-xs md:text-sm tracking-wider uppercase transition-colors duration-200 shadow-xs"
           >
             Register
           </Link>

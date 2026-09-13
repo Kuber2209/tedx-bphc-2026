@@ -11,7 +11,7 @@ interface TedxLogoProps {
 }
 
 export default function TedxLogo({
-  className = "h-7 w-auto",
+  className = "",
   href,
   width = 220,
   height = 28,
@@ -21,12 +21,21 @@ export default function TedxLogo({
   void width;
   void height;
   void priority;
-  
-  const textColorClass = light ? "text-neutral-900" : "text-black";
-  
+
+  const campusColorClass = light ? "text-white" : "text-black";
+
   const logoImage = (
-    <span className={`tedx-wordmark ${className} ${textColorClass}`} aria-label="TEDx BITS Hyderabad" style={{ color: light ? 'white' : 'inherit' }}>
-      <strong>TEDx</strong><span>BITS Hyderabad</span>
+    <span
+      className={`inline-flex items-center select-none font-sans font-black tracking-tight leading-none ${className}`}
+      aria-label="TEDx BITS Hyderabad"
+    >
+      <span className="text-[#eb0028] tracking-[-0.04em]">TED</span>
+      <span className="text-[#eb0028] font-bold text-[0.72em] leading-none -translate-y-[0.24em] ml-[0.5px] mr-1.5">
+        x
+      </span>
+      <span className={`font-semibold tracking-normal ${campusColorClass}`}>
+        BITS Hyderabad
+      </span>
     </span>
   );
 

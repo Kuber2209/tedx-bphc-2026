@@ -5,6 +5,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { TEAM_SECTIONS, ALL_TEAM_MEMBERS } from "@/data/team";
 import TeamMemberCard from "@/components/team/TeamMemberCard";
+import SectionScrollNavigator from "@/components/ui/SectionScrollNavigator";
+
+const TEAM_NAV_SECTIONS = TEAM_SECTIONS.map((section, idx) => ({
+  id: section.id,
+  label: String(idx + 1).padStart(2, "0"),
+  title: section.title.replace("TEDx ", ""),
+}));
 
 export default function TeamPage() {
   const [activeTab, setActiveTab] = useState<string>("all");
@@ -15,27 +22,35 @@ export default function TeamPage() {
       : TEAM_SECTIONS.filter((section) => section.id === activeTab);
 
   return (
-    <div className="min-h-screen bg-white text-[#181830] selection:bg-[#eb0028] selection:text-white">
+    <div className="min-h-screen bg-white text-[#181830] selection:bg-[#eb0028] selection:text-white relative">
+      {/* Fixed Left-Side Vertical Scroll Navigator */}
+      {activeTab === "all" && (
+        <SectionScrollNavigator
+          sections={TEAM_NAV_SECTIONS}
+          targetContainerId="team-sections-container"
+        />
+      )}
+
       {/* 
         HERO SECTION (Matching TEDx MIT .rl_section_hero.team)
-        - Background banner with dark overlay
+        - Background banner with real team photo on stage
         - 70vh minimum height
         - Left-aligned content container (max-w-[35rem])
         - Rectangular buttons (rounded-[4px])
       */}
       <header className="relative w-full overflow-hidden bg-black min-h-[60vh] md:min-h-[70vh] flex items-center">
-        {/* Background banner image matching MIT Banner_Register.png */}
+        {/* Background banner image matching user's uploaded stage team photo */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/mit-team-banner.png"
+            src="/team-banner.jpg"
             alt="TEDx BPHC Team"
             fill
             priority
             className="object-cover object-center"
           />
           {/* Dark gradient overlay for contrast and legibility */}
-          <div className="absolute inset-0 bg-black/40 md:bg-black/30" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent" />
+          <div className="absolute inset-0 bg-black/45 md:bg-black/35" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent" />
         </div>
 
         <div className="relative z-10 w-full max-w-[80rem] mx-auto px-6 md:px-12 py-24 md:py-32">
@@ -82,7 +97,7 @@ export default function TeamPage() {
         - Responsive 3-column collection grid
         - Completely static without canvas/background animations
       */}
-      <section className="bg-white py-16 md:py-24">
+      <section id="team-sections-container" className="bg-white py-16 md:py-24">
         <div className="max-w-[80rem] mx-auto px-6 md:px-12">
           {/* Department Filter Navigation ("with filters as usual") */}
           <div className="mb-14 pb-4 border-b border-zinc-200 flex flex-wrap items-center gap-2 md:gap-3">

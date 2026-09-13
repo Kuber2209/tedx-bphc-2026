@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { currentSpeakers, pastSpeakers } from "@/data/speakers";
 import AcademicYearDropdown, { EditionOption } from "@/components/speakers/AcademicYearDropdown";
 import SpeakerCard from "@/components/speakers/SpeakerCard";
@@ -37,18 +38,23 @@ export default function SpeakersPage() {
         HERO SECTION (Matching TEDx MIT .rl_section_hero.speakers)
         Header: "Inspiring Innovators Unleashed"
         Subtitle & Action Buttons identical to https://tedx.mit.edu/allspeakers
-        Zero background animations.
+        Background: Stage speaker photo with TEDx BITSHyderabad backdrop
       */}
-      <header className="relative w-full bg-[#0a0a0c] overflow-hidden">
-        {/* Subtle radial depth overlay for TEDx contrast */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(circle_at_top_right,rgba(235,0,40,0.25),transparent_60%)]"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 pointer-events-none opacity-70 bg-gradient-to-b from-black/80 via-black/60 to-[#0a0a0c]"
-          aria-hidden="true"
-        />
+      <header className="relative w-full bg-[#0a0a0c] overflow-hidden min-h-[55vh] md:min-h-[65vh] flex items-center">
+        {/* Background banner image with authentic stage speaker */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/speakers-banner.jpg"
+            alt="TEDx BPHC Speakers Stage"
+            fill
+            priority
+            className="object-cover object-center"
+          />
+          {/* Gradients for text legibility and cinematic atmosphere */}
+          <div className="absolute inset-0 bg-black/50 md:bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/65 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c] via-transparent to-black/40" />
+        </div>
 
         <div className="relative max-w-[80rem] mx-auto px-6 md:px-12 pt-36 pb-20 md:pt-44 md:pb-28">
           <div className="max-w-[42rem]">

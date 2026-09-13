@@ -27,7 +27,7 @@ export default function Footer() {
           {/* Column 1: TEDx Branding & Social Networks (lg:col-span-4) */}
           <div className="flex flex-col space-y-5 lg:col-span-4">
             <div>
-              <TedxLogo href="/" className="h-8 w-auto" light={true} />
+              <TedxLogo href="/" className="text-2xl" light={true} />
               <p className="mt-2 text-xs font-mono tracking-wider text-zinc-400">
                 BITS Pilani Hyderabad Campus
               </p>

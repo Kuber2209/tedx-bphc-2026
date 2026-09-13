@@ -63,9 +63,10 @@ export default function HomeExperience() {
             loop
             muted
             playsInline
-            poster="/gallery/image1.jpg"
+            preload="auto"
           >
-            <source src="/DJI_0187.MP4" type="video/mp4" />
+            <source src="/mayank-raj.mp4" type="video/mp4" />
+            <source src="/mayank%20raj.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent"></div>
         </motion.div>
