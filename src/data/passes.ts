@@ -1,28 +1,93 @@
 import { PassTier } from "./types";
 
+export interface PassComparisonBenefit {
+  benefit: string;
+  standard: boolean;
+  premium: boolean;
+}
+
+export const studentPassComparison: PassComparisonBenefit[] = [
+  {
+    benefit: "Full Access to All Keynote Talks & Performances (Day 1 & Day 2)",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "Official Delegate Credential & Lanyard Badge",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "Catered Networking Lunch & High-Tea Refreshments",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "Official Certificate of Participation",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "Access to Student Research Exhibits & Interactive Installations",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "Premium Delegate Merchandise Pack (Canvas Tote, Journal & Decals)",
+    standard: false,
+    premium: true,
+  },
+  {
+    benefit: "Exclusive TEDx BPHC Commemorative Metallic Lapel Pin",
+    standard: false,
+    premium: true,
+  },
+  {
+    benefit: "Priority Front-Row Auditorium Seating Zone",
+    standard: false,
+    premium: true,
+  },
+  {
+    benefit: "Fast-Track Priority Registration Check-In Desk",
+    standard: false,
+    premium: true,
+  },
+  {
+    benefit: "Exclusive Post-Event Speaker Interaction & Q&A Access",
+    standard: false,
+    premium: true,
+  },
+  {
+    benefit: "Digital Presentation Archives & Resource Toolkit",
+    standard: false,
+    premium: true,
+  },
+];
+
 export const passTiers: PassTier[] = [
   {
     id: "school-student",
-    name: "School Student Pass",
-    badge: "Grades 9–12",
-    targetAudience: "School Students",
+    name: "Student Pass",
+    badge: "Standard & Premium",
+    targetAudience: "School & College Students",
     description:
-      "Curated for aspiring young thinkers, school innovators, and curious high schoolers exploring big ideas.",
+      "Curated for students and young thinkers exploring big ideas, available in Standard and Premium tiers.",
     price: "TBA",
-    eligibility: "Open to high school students (Grades 9–12) exploring big ideas and creative innovation.",
+    eligibility: "Open to enrolled school and college students exploring big ideas and creative innovation.",
     benefits: [
       "Access to all speaker talks & creative performances",
-      "Official TEDx BPHC youth delegate kit & lanyard badge",
-      "Interactive Q&A & youth discussion breakouts",
+      "Official TEDx BPHC delegate kit & lanyard badge",
+      "Interactive Q&A & student discussion breakouts",
       "Lunch & high-tea refreshments during session breaks",
       "Official Certificate of Participation",
+      "Premium tier includes exclusive merchandise, front-row seating & speaker Q&A",
     ],
     available: false,
     highlight: false,
     registrationUrl: "#",
     details: {
       overview:
-        "The School Student Pass is specifically tailored for students in grades 9 through 12. Designed to inspire the next generation of researchers, artists, and problem solvers, this tier provides complete access to all main-stage keynote talks, artistic performances, and youth networking sessions on campus.",
+        "The Student Pass is designed to inspire the next generation of researchers, artists, and problem solvers. Available in Standard and Premium tiers, delegates can choose between essential conference access or an elevated experience featuring front-row seating, exclusive merchandise, and speaker interactions.",
       whoShouldAttend: [
         "Students enrolled in Grades 9–12 across CBSE, ICSE, IB, Cambridge, and State Boards",
         "Aspiring young innovators, researchers, and creative thinkers seeking intellectual inspiration",

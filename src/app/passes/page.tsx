@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { passTiers, passGuidelines } from "@/data/passes";
+import StudentPassComparisonTable from "@/components/passes/StudentPassComparisonTable";
 import BlurText from "@/components/reactbits/BlurText";
 import BorderGlow from "@/components/reactbits/BorderGlow";
 import FloatingLines from "@/components/reactbits/FloatingLines";
@@ -175,6 +176,11 @@ export default function PassesPage() {
                   </div>
                 </BorderGlow>
               ))}
+            </div>
+
+            {/* Student Pass Comparison: Standard vs Premium */}
+            <div className="mt-20 p-8 sm:p-12 rounded-3xl bg-white border border-neutral-200/80 shadow-xs">
+              <StudentPassComparisonTable showHeader={true} />
             </div>
 
             {/* 3. Pass Policies & Important Guidelines */}
