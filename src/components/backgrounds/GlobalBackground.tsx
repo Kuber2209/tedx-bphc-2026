@@ -30,11 +30,7 @@ export default function GlobalBackground() {
       case "/team":
         return null;
       case "/sponsors":
-        return (
-          <div className="absolute inset-0 opacity-30 transition-opacity duration-1000">
-            <DotGrid color="#E62B1E" />
-          </div>
-        );
+        return null;
       case "/venue":
         return null;
       case "/faq":

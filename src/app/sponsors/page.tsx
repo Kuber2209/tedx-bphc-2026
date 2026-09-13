@@ -32,7 +32,7 @@ export default function SponsorsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-transparent text-neutral-900 selection:bg-[#E62B1E] selection:text-neutral-900 pb-32 relative overflow-hidden" ref={containerRef}>
+    <div className="min-h-screen bg-[#fafafa] text-neutral-900 selection:bg-[#E62B1E] selection:text-neutral-900 pb-32 relative overflow-hidden" ref={containerRef}>
       <TEDxWatermark />
       
       {/* Hero Section */}

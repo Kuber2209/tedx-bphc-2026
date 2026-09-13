@@ -80,14 +80,6 @@ export default function Navbar() {
               );
             })}
           </ul>
-
-          {/* Right CTA Button matching TEDx MIT (.rl_navbar1_button) */}
-          <Link
-            href="/passes"
-            className="inline-flex items-center justify-center px-5 py-2.5 rounded-[4px] bg-[#eb0028] hover:bg-[#c40022] text-white font-semibold text-xs md:text-sm tracking-wider uppercase transition-colors duration-200 shadow-xs"
-          >
-            Register
-          </Link>
         </div>
 
         {/* Mobile Menu Toggle */}
