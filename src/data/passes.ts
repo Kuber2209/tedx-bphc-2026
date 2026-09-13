@@ -64,6 +64,181 @@ export const studentPassComparison: PassComparisonBenefit[] = [
   },
 ];
 
+export const bitsianPassComparison: PassComparisonBenefit[] = [
+  {
+    benefit: "Full Access to All Keynote Talks & Performances (Day 1 & Day 2)",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "Official BPHC Attendee Credential & Commemorative Lanyard",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "Catered Networking Luncheon & High-Tea Refreshments",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "Academic Attendance Condonation Facilitation",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "Access to Student Research Exhibits & Interactive Installations",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "TEDx BPHC Matte Hardbound Conference Notebook & Metallic Pen",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "Premium Commemorative Merchandise Pack (Custom Canvas Tote & Decals)",
+    standard: false,
+    premium: true,
+  },
+  {
+    benefit: "Exclusive TEDx BPHC Metallic Lapel Pin & Metal Bookmark",
+    standard: false,
+    premium: true,
+  },
+  {
+    benefit: "Priority Stalls Tier Seating with Prime Stage Sightlines",
+    standard: false,
+    premium: true,
+  },
+  {
+    benefit: "Fast-Track Registration Desk Clearance",
+    standard: false,
+    premium: true,
+  },
+  {
+    benefit: "Exclusive Post-Conference Campus Community & Speaker Mixer",
+    standard: false,
+    premium: true,
+  },
+  {
+    benefit: "Digital Presentation Archives & Resource Toolkit",
+    standard: false,
+    premium: true,
+  },
+];
+
+export const guestPassComparison: PassComparisonBenefit[] = [
+  {
+    benefit: "Full-Day Access to All Keynote Talks, Panels & Stage Performances",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "Official Executive Delegate Credential & RFID Lanyard",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "Campus Visitor Vehicle Entry Permit & Reserved Parking Clearance",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "Curated Executive Networking Luncheon & Refreshments",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "Access to Research Exhibits & Experience Zones",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "Executive Conference Notebook & Stationery Pack",
+    standard: true,
+    premium: true,
+  },
+  {
+    benefit: "Premium Executive Pack (Insulated Tumbler, Canvas Tote & Sponsor Pack)",
+    standard: false,
+    premium: true,
+  },
+  {
+    benefit: "Laser-Cut Metallic Lapel Pin & Commemorative Collectibles",
+    standard: false,
+    premium: true,
+  },
+  {
+    benefit: "Prime Central Bowl Seating (Unobstructed Front-Tier Sightlines)",
+    standard: false,
+    premium: true,
+  },
+  {
+    benefit: "VIP Fast-Track Registration & Gate Clearance Desk",
+    standard: false,
+    premium: true,
+  },
+  {
+    benefit: "Exclusive Evening Networking Mixer with Speakers & Founders",
+    standard: false,
+    premium: true,
+  },
+  {
+    benefit: "Digital Presentation Archives & Speaker Presentation Transcripts",
+    standard: false,
+    premium: true,
+  },
+];
+
+export interface PassComparisonData {
+  id: string;
+  name: string;
+  badge: string;
+  standardPrice: string;
+  originalStandardPrice?: string;
+  standardTag?: string;
+  premiumPrice: string;
+  premiumTag?: string;
+  benefits: PassComparisonBenefit[];
+}
+
+export const passComparisons: Record<string, PassComparisonData> = {
+  "school-student": {
+    id: "school-student",
+    name: "Student Pass",
+    badge: "Student Delegation",
+    standardPrice: "₹429",
+    premiumPrice: "₹550",
+    benefits: studentPassComparison,
+  },
+  "student": {
+    id: "school-student",
+    name: "Student Pass",
+    badge: "Student Delegation",
+    standardPrice: "₹429",
+    premiumPrice: "₹550",
+    benefits: studentPassComparison,
+  },
+  "bits-internal": {
+    id: "bits-internal",
+    name: "BITSian Pass",
+    badge: "Campus Exclusive",
+    standardPrice: "₹650",
+    originalStandardPrice: "₹999",
+    standardTag: "Early Bird",
+    premiumPrice: "₹1,299",
+    benefits: bitsianPassComparison,
+  },
+  "external-guest": {
+    id: "external-guest",
+    name: "External Guest Pass",
+    badge: "General Delegate",
+    standardPrice: "₹650",
+    premiumPrice: "₹850",
+    benefits: guestPassComparison,
+  },
+};
+
 export const passTiers: PassTier[] = [
   {
     id: "school-student",
@@ -71,8 +246,18 @@ export const passTiers: PassTier[] = [
     badge: "Standard & Premium",
     targetAudience: "School & College Students",
     description:
-      "Curated for students and young thinkers exploring big ideas, available in Standard and Premium tiers.",
-    price: "TBA",
+      "Curated for students and young thinkers exploring big ideas, available in Standard (₹429) and Premium (₹550) tiers.",
+    price: "₹429 / ₹550",
+    pricing: {
+      standard: {
+        price: "₹429",
+        label: "Standard",
+      },
+      premium: {
+        price: "₹550",
+        label: "Premium",
+      },
+    },
     eligibility: "Open to enrolled school and college students exploring big ideas and creative innovation.",
     benefits: [
       "Access to all speaker talks & creative performances",
@@ -160,18 +345,29 @@ export const passTiers: PassTier[] = [
   {
     id: "bits-internal",
     name: "BITSian Pass",
-    badge: "In-House Campus Tier",
+    badge: "Standard & Premium",
     targetAudience: "BITS BPHC Students, Faculty & Staff",
     description:
-      "Exclusive access tier for the on-campus BITS Pilani Hyderabad community to experience the flagship edition.",
-    price: "TBA",
+      "Exclusive access tier for the on-campus BITS Pilani Hyderabad community, available in Standard (₹650 Early Bird, cut from ₹999) and Premium (₹1,299) tiers.",
+    price: "₹650 / ₹1,299",
+    pricing: {
+      standard: {
+        price: "₹650",
+        originalPrice: "₹999",
+        label: "Early Bird",
+      },
+      premium: {
+        price: "₹1,299",
+        label: "Premium",
+      },
+    },
     eligibility: "Welcoming all enrolled BPHC students, faculty, researchers, and campus staff.",
     benefits: [
       "Full access to the main auditorium for all keynote sessions",
       "Exclusive BPHC edition delegate kit & attendee credentials",
       "Catered networking luncheon & refreshments",
-      "Priority seating in the dedicated campus community section",
-      "Direct entry to the post-conference campus community mixer",
+      "Academic attendance condonation facilitation",
+      "Premium tier includes exclusive merchandise, lapel pin & speaker mixer",
     ],
     available: false,
     highlight: true,
@@ -250,19 +446,28 @@ export const passTiers: PassTier[] = [
   {
     id: "external-guest",
     name: "External Guest Pass",
-    badge: "General Delegate",
+    badge: "Standard & Premium",
     targetAudience: "Outside Guests & Professionals",
     description:
-      "Open to university students, working professionals, founders, and delegates joining us from outside BITS.",
-    price: "TBA",
+      "Open to university students, working professionals, and guests from outside BITS, available in Standard (₹650) and Premium (₹850) tiers.",
+    price: "₹650 / ₹850",
+    pricing: {
+      standard: {
+        price: "₹650",
+        label: "Standard",
+      },
+      premium: {
+        price: "₹850",
+        label: "Premium",
+      },
+    },
     eligibility: "Open to curious minds, researchers, industry professionals, alumni, and creative delegates.",
     benefits: [
       "Full-day pass to all keynote talks, panel discussions & performances",
-      "Premium TEDx conference gift bag, merchandise & official badge",
+      "Official executive delegate credential & RFID lanyard",
       "Campus visitor vehicle entry permit & reserved parking clearance",
       "Executive networking lunch & refreshments with speakers and partners",
-      "Dedicated seating in the general delegate bowl",
-      "Invitation to the evening networking mixer",
+      "Premium tier includes executive merchandise, front-row seating & founder mixer",
     ],
     available: false,
     highlight: false,

@@ -65,6 +65,19 @@ export interface PassDetail {
   seatingZone: string;
 }
 
+export interface PassTierPricing {
+  standard: {
+    price: string;
+    originalPrice?: string;
+    label?: string;
+  };
+  premium: {
+    price: string;
+    originalPrice?: string;
+    label?: string;
+  };
+}
+
 export interface PassTier {
   id: string;
   name: string;
@@ -72,6 +85,7 @@ export interface PassTier {
   targetAudience: string;
   description: string;
   price: string;
+  pricing?: PassTierPricing;
   eligibility: string;
   benefits: string[];
   available: boolean;

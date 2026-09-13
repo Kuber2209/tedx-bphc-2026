@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { passTiers, passGuidelines } from "@/data/passes";
-import StudentPassComparisonTable from "@/components/passes/StudentPassComparisonTable";
+import PassComparisonTable from "@/components/passes/PassComparisonTable";
 import BlurText from "@/components/reactbits/BlurText";
 import BorderGlow from "@/components/reactbits/BorderGlow";
 import FloatingLines from "@/components/reactbits/FloatingLines";
@@ -147,14 +147,44 @@ export default function PassesPage() {
 
                     {/* Bottom Price & CTA Area */}
                     <div className="pt-8 border-t border-neutral-100 mt-auto relative z-20">
-                      <div className="flex items-baseline justify-between gap-4 mb-6">
+                      <div className="flex items-start justify-between gap-4 mb-6">
                         <div>
-                          <p className="text-zinc-500 font-mono text-[10px] tracking-[0.2em] uppercase mb-1">
-                            Delegate Fee
+                          <p className="text-zinc-500 font-mono text-[10px] tracking-[0.2em] uppercase mb-1.5">
+                            Delegate Tiers
                           </p>
-                          <p className="text-3xl font-sans font-bold text-black tracking-tight">
-                            {pass.price}
-                          </p>
+                          <div className="space-y-1">
+                            {/* Standard Tier */}
+                            <div className="flex items-center gap-2">
+                              <span className="text-[11px] font-mono font-bold uppercase text-neutral-500 w-10">
+                                Std:
+                              </span>
+                              <span className="text-lg font-sans font-bold text-black tracking-tight">
+                                {pass.pricing?.standard.price || pass.price}
+                              </span>
+                              {pass.pricing?.standard.originalPrice && (
+                                <span className="text-xs text-neutral-400 line-through">
+                                  {pass.pricing.standard.originalPrice}
+                                </span>
+                              )}
+                              {pass.pricing?.standard.originalPrice && (
+                                <span className="text-[9px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200/60 font-bold px-1.5 py-0.5 rounded">
+                                  Early Bird
+                                </span>
+                              )}
+                            </div>
+                            {/* Premium Tier */}
+                            <div className="flex items-center gap-2">
+                              <span className="text-[11px] font-mono font-bold uppercase text-[#eb0028] w-10">
+                                Prem:
+                              </span>
+                              <span className="text-lg font-sans font-bold text-[#eb0028] tracking-tight">
+                                {pass.pricing?.premium.price || "TBA"}
+                              </span>
+                              <span className="text-[9px] font-mono text-[#eb0028] bg-[#eb0028]/10 font-bold px-1.5 py-0.5 rounded">
+                                All-In
+                              </span>
+                            </div>
+                          </div>
                         </div>
                         <span className="text-[10px] font-mono text-[#eb0028] uppercase tracking-wider font-bold bg-[#eb0028]/5 px-2 py-1 rounded">
                           Phase 1
@@ -178,9 +208,9 @@ export default function PassesPage() {
               ))}
             </div>
 
-            {/* Student Pass Comparison: Standard vs Premium */}
+            {/* Pass Tier Comparison: Standard vs Premium with interactive tabs */}
             <div className="mt-20 p-8 sm:p-12 rounded-3xl bg-white border border-neutral-200/80 shadow-xs">
-              <StudentPassComparisonTable showHeader={true} />
+              <PassComparisonTable showTabs={true} showHeader={true} />
             </div>
 
             {/* 3. Pass Policies & Important Guidelines */}

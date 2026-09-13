@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { passTiers } from "@/data/passes";
-import StudentPassComparisonTable from "@/components/passes/StudentPassComparisonTable";
+import PassComparisonTable from "@/components/passes/PassComparisonTable";
 import {
   ArrowLeft,
   ArrowUpRight,
@@ -16,6 +16,7 @@ import {
   School,
   GraduationCap,
   Briefcase,
+  Phone,
 } from "lucide-react";
 
 interface PassDetailPageProps {
@@ -55,6 +56,7 @@ export default async function PassDetailPage({ params }: PassDetailPageProps) {
   }
 
   const details = pass.details;
+  const isStudent = pass.id === "school-student" || id === "student";
 
   const getPassIcon = (passId: string) => {
     switch (passId) {
@@ -109,34 +111,85 @@ export default async function PassDetailPage({ params }: PassDetailPageProps) {
           </div>
 
           {/* Pricing Box & Registration Button */}
-          <div className="p-8 rounded-3xl bg-neutral-50 border border-neutral-200 shrink-0 w-full lg:w-80 shadow-xs">
-            <div className="flex items-baseline justify-between gap-4 mb-4">
-              <div>
-                <p className="text-neutral-400 font-mono text-[10px] tracking-[0.2em] uppercase mb-1">
-                  Delegate Fee
-                </p>
-                <p className="text-4xl font-bold tracking-tight text-neutral-900">{pass.price}</p>
-              </div>
+          <div className="p-8 rounded-3xl bg-neutral-50 border border-neutral-200 shrink-0 w-full lg:w-96 shadow-xs">
+            <div className="flex items-center justify-between gap-4 mb-4">
+              <span className="text-neutral-400 font-mono text-[10px] tracking-[0.2em] uppercase">
+                Delegate Tiers
+              </span>
               <span className="text-[10px] font-mono text-[#eb0028] uppercase tracking-wider font-bold bg-[#eb0028]/10 px-2.5 py-1 rounded">
-                Phase 1
+                Phase 1 Registration
               </span>
             </div>
 
+            {/* Two Tier Price Boxes */}
+            <div className="grid grid-cols-2 gap-3 mb-5">
+              {/* Standard Tier */}
+              <div className="p-3.5 rounded-2xl bg-white border border-neutral-200">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-neutral-600">
+                    Standard
+                  </span>
+                  {pass.pricing?.standard.originalPrice && (
+                    <span className="text-[8px] font-mono uppercase bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded font-bold">
+                      Early Bird
+                    </span>
+                  )}
+                </div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-2xl font-bold tracking-tight text-neutral-900">
+                    {pass.pricing?.standard.price || pass.price}
+                  </span>
+                  {pass.pricing?.standard.originalPrice && (
+                    <span className="text-xs text-neutral-400 line-through">
+                      {pass.pricing.standard.originalPrice}
+                    </span>
+                  )}
+                </div>
+                <p className="text-[10px] text-neutral-500 mt-1">Essential Access</p>
+              </div>
+
+              {/* Premium Tier */}
+              <div className="p-3.5 rounded-2xl bg-red-50/40 border border-red-200/60">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[#eb0028]">
+                    Premium
+                  </span>
+                  <span className="text-[8px] font-mono uppercase bg-[#eb0028]/10 text-[#eb0028] px-1.5 py-0.5 rounded font-bold">
+                    All-In
+                  </span>
+                </div>
+                <span className="text-2xl font-bold tracking-tight text-[#eb0028]">
+                  {pass.pricing?.premium.price || "TBA"}
+                </span>
+                <p className="text-[10px] text-[#eb0028]/70 mt-1">Full Experience Pack</p>
+              </div>
+            </div>
+
             <p className="text-xs text-neutral-500 font-light mb-6">
-              Includes full-day auditorium pass, official delegate kit, lunch, and high-tea.
+              Includes full conference auditorium access, delegate credentials, lunch, and high-tea.
             </p>
 
-            <Link
-              href={pass.available ? pass.registrationUrl || "#" : "#"}
-              className={`w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-bold tracking-[0.15em] uppercase rounded-full transition-all duration-300 ${
-                pass.available
-                  ? "bg-[#eb0028] text-white hover:bg-[#c20021] hover:shadow-lg shadow-sm"
-                  : "bg-neutral-200 text-neutral-500 cursor-not-allowed"
-              }`}
-            >
-              <span>{pass.available ? "Complete Registration" : "Registrations Opening Soon"}</span>
-              {pass.available && <ArrowUpRight className="h-4 w-4" />}
-            </Link>
+            {isStudent ? (
+              <a
+                href="tel:+919876543210"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-bold tracking-[0.12em] uppercase rounded-full bg-[#eb0028] text-white hover:bg-[#c20021] hover:shadow-lg shadow-sm transition-all duration-300 group text-center"
+              >
+                <Phone className="h-3.5 w-3.5 shrink-0 transition-transform group-hover:scale-110" />
+                <span>Contact +91 98765 43210 to Register</span>
+              </a>
+            ) : (
+              <Link
+                href={pass.available ? pass.registrationUrl || "#" : "#"}
+                className={`w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-bold tracking-[0.15em] uppercase rounded-full transition-all duration-300 ${
+                  pass.available
+                    ? "bg-[#eb0028] text-white hover:bg-[#c20021] hover:shadow-lg shadow-sm"
+                    : "bg-neutral-200 text-neutral-500 cursor-not-allowed"
+                }`}
+              >
+                <span>{pass.available ? "Complete Registration" : "Registrations Opening Soon"}</span>
+                {pass.available && <ArrowUpRight className="h-4 w-4" />}
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -158,38 +211,10 @@ export default async function PassDetailPage({ params }: PassDetailPageProps) {
               </section>
             )}
 
-            {/* 2. Inclusions & Privileges Section */}
-            {(pass.id === "school-student" || id === "student") ? (
-              <section className="p-8 sm:p-10 rounded-3xl bg-neutral-50 border border-neutral-200 shadow-xs">
-                <StudentPassComparisonTable showHeader={true} />
-              </section>
-            ) : (
-              <section className="p-8 sm:p-10 rounded-3xl bg-neutral-50 border border-neutral-200">
-                <div className="flex items-center gap-3 mb-6">
-                  <CheckCircle2 className="h-5 w-5 text-[#eb0028]" />
-                  <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900">
-                    Full Inclusions & Delegate Privileges
-                  </h2>
-                </div>
-                <p className="text-sm font-light text-neutral-600 mb-8 leading-relaxed">
-                  Every delegate registered under this tier is entitled to the following comprehensive privileges:
-                </p>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {pass.benefits.map((benefit, i) => (
-                    <div
-                      key={i}
-                      className="p-5 rounded-2xl bg-white border border-neutral-200/80 flex items-start gap-3.5 shadow-2xs"
-                    >
-                      <span className="text-[#eb0028] font-bold text-base mt-0.5 shrink-0">✓</span>
-                      <span className="text-sm font-light text-neutral-800 leading-relaxed">
-                        {benefit}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
+            {/* 2. Inclusions & Tier Comparison Table: Standard vs. Premium */}
+            <section className="p-8 sm:p-10 rounded-3xl bg-neutral-50 border border-neutral-200 shadow-xs">
+              <PassComparisonTable passId={pass.id} showHeader={true} />
+            </section>
 
             {/* 3. Who Should Attend */}
             {details?.whoShouldAttend && (
@@ -214,76 +239,7 @@ export default async function PassDetailPage({ params }: PassDetailPageProps) {
               </section>
             )}
 
-            {/* 4. Event Day Itinerary Highlights */}
-            {details?.scheduleHighlights && (
-              <section>
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-                  <div className="flex items-center gap-3">
-                    <Clock className="h-5 w-5 text-[#eb0028]" />
-                    <h2 className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#eb0028]">
-                      Event Day Schedule Highlights
-                    </h2>
-                  </div>
-                  <Link
-                    href="/schedule"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-neutral-600 hover:text-[#eb0028] transition-colors group w-fit"
-                  >
-                    <span>View Full Schedule</span>
-                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 mb-8">
-                  Your journey through the day.
-                </h3>
-
-                <div className="space-y-4 relative border-l-2 border-neutral-200 ml-4 pl-8">
-                  {details.scheduleHighlights.map((item, idx) => (
-                    <Link
-                      key={idx}
-                      href="/schedule"
-                      className="relative block group p-4 -ml-4 rounded-2xl hover:bg-neutral-50 transition-colors border border-transparent hover:border-neutral-200/80 cursor-pointer"
-                    >
-                      {/* Timeline Node Point */}
-                      <span className="absolute -left-[37px] top-5 h-4 w-4 rounded-full border-2 border-white bg-[#eb0028] shadow-xs group-hover:scale-125 transition-transform" />
-                      <div className="flex items-center justify-between gap-2 mb-1">
-                        <span className="font-mono text-xs font-bold text-[#eb0028] block">
-                          {item.time}
-                        </span>
-                        <span className="text-[11px] font-medium text-neutral-400 group-hover:text-[#eb0028] transition-colors flex items-center gap-1 opacity-0 group-hover:opacity-100">
-                          <span>See schedule</span>
-                          <ArrowUpRight className="h-3 w-3" />
-                        </span>
-                      </div>
-                      <h4 className="text-lg font-bold text-neutral-900 mb-1 group-hover:text-[#eb0028] transition-colors">
-                        {item.title}
-                      </h4>
-                      <p className="text-sm font-light text-neutral-600 leading-relaxed">
-                        {item.description}
-                      </p>
-                    </Link>
-                  ))}
-                </div>
-
-                {/* Direct Link Banner to Schedule */}
-                <div className="mt-8 p-6 rounded-2xl bg-neutral-50 border border-neutral-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                  <div>
-                    <h4 className="text-sm font-bold text-neutral-900">Looking for speaker lineups and slot timings?</h4>
-                    <p className="text-xs text-neutral-500 font-light mt-0.5">
-                      Explore the complete Day 01 & Day 02 sequence of talks, breaks, and sessions.
-                    </p>
-                  </div>
-                  <Link
-                    href="/schedule"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-neutral-900 text-white text-xs font-bold uppercase tracking-wider hover:bg-[#eb0028] transition-colors shrink-0"
-                  >
-                    <span>Go to Schedule</span>
-                    <ArrowUpRight className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </section>
-            )}
-
-            {/* 5. Delegate Kit Contents */}
+            {/* Delegate Kit Contents */}
             {details?.kitContents && (
               <section className="p-8 sm:p-10 rounded-3xl bg-neutral-900 text-white">
                 <div className="flex items-center gap-3 mb-4">
@@ -369,26 +325,28 @@ export default async function PassDetailPage({ params }: PassDetailPageProps) {
               </Link>
             </div>
 
-            {/* Delegation Inquiries */}
-            <div className="p-8 rounded-3xl bg-neutral-950 text-white shadow-xs">
-              <div className="flex items-center gap-2 text-[#eb0028] mb-3">
-                <Users className="h-4 w-4" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] font-bold">
-                  Group Bookings
-                </span>
+            {/* Delegation Inquiries - Not shown for BITSian Pass */}
+            {pass.id !== "bits-internal" && (
+              <div className="p-8 rounded-3xl bg-neutral-950 text-white shadow-xs">
+                <div className="flex items-center gap-2 text-[#eb0028] mb-3">
+                  <Users className="h-4 w-4" />
+                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] font-bold">
+                    Group Bookings
+                  </span>
+                </div>
+                <h4 className="text-lg font-bold mb-3">Bringing a Delegation?</h4>
+                <p className="text-xs text-neutral-400 font-light leading-relaxed mb-6">
+                  For groups of 10 or more delegates, our hospitality desk facilitates block
+                  ticketing, unified billing, and campus bus entry.
+                </p>
+                <a
+                  href="mailto:tedx@hyderabad.bits-pilani.ac.in?subject=Group%20Pass%20Inquiry"
+                  className="w-full text-center inline-flex items-center justify-center gap-2 rounded-full border border-neutral-700 bg-neutral-900 px-5 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-neutral-800 hover:border-neutral-500 transition-colors"
+                >
+                  <span>Contact Delegation Desk</span>
+                </a>
               </div>
-              <h4 className="text-lg font-bold mb-3">Bringing a Delegation?</h4>
-              <p className="text-xs text-neutral-400 font-light leading-relaxed mb-6">
-                For groups of 10 or more delegates, our hospitality desk facilitates block
-                ticketing, unified billing, and campus bus entry.
-              </p>
-              <a
-                href="mailto:tedx@hyderabad.bits-pilani.ac.in?subject=Group%20Pass%20Inquiry"
-                className="w-full text-center inline-flex items-center justify-center gap-2 rounded-full border border-neutral-700 bg-neutral-900 px-5 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-neutral-800 hover:border-neutral-500 transition-colors"
-              >
-                <span>Contact Delegation Desk</span>
-              </a>
-            </div>
+            )}
 
             {/* Other Pass Tiers Quick Links */}
             <div className="p-6 rounded-3xl border border-neutral-200 bg-white">
