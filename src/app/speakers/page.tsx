@@ -32,7 +32,7 @@ export default function SpeakersPage() {
   const allSpeakersCount = currentSpeakers.length + pastSpeakers.length;
 
   return (
-    <div className="min-h-screen bg-white text-[#181830] selection:bg-[#eb0028] selection:text-white">
+    <div className="min-h-screen bg-[#fafafa] text-[#494949] selection:bg-[#eb0028] selection:text-white">
       {/* 
         HERO SECTION (Matching TEDx MIT .rl_section_hero.speakers)
         Header: "Inspiring Innovators Unleashed"
@@ -96,20 +96,20 @@ export default function SpeakersPage() {
       </header>
 
       {/* 
-        SPEAKERS GRID SECTION (Matching TEDx MIT .rl_section_speakers & .collection-list-4)
-        Pure white background, clean 3-column collection grid, completely static without animations.
+        SPEAKERS GRID SECTION
+        Off-white background (#fafafa), clear crisp #494949 typography, clean 3-column collection grid.
       */}
-      <section className="bg-white py-16 md:py-24">
+      <section className="bg-[#fafafa] py-16 md:py-24">
         <div className="max-w-[80rem] mx-auto px-6 md:px-12">
           {/* Filter Navigation */}
-          <div className="mb-14 pb-4 border-b border-zinc-200 flex flex-wrap items-center justify-between gap-4">
+          <div className="mb-14 pb-4 border-b border-neutral-200 flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-2 md:gap-3">
               <button
                 onClick={() => setActiveTab("all")}
                 className={`px-4 py-2 text-sm md:text-base font-medium rounded-full transition-all duration-200 ${
                   activeTab === "all"
-                    ? "bg-[#181830] text-white"
-                    : "bg-zinc-100 text-[#494949] hover:bg-zinc-200 hover:text-black"
+                    ? "bg-[#494949] text-white shadow-sm font-semibold"
+                    : "bg-white text-[#494949] border border-neutral-200 hover:bg-neutral-100 hover:text-black shadow-2xs"
                 }`}
               >
                 All Speakers ({allSpeakersCount})
@@ -118,8 +118,8 @@ export default function SpeakersPage() {
                 onClick={() => setActiveTab("current")}
                 className={`px-4 py-2 text-sm md:text-base font-medium rounded-full transition-all duration-200 ${
                   activeTab === "current"
-                    ? "bg-[#181830] text-white"
-                    : "bg-zinc-100 text-[#494949] hover:bg-zinc-200 hover:text-black"
+                    ? "bg-[#494949] text-white shadow-sm font-semibold"
+                    : "bg-white text-[#494949] border border-neutral-200 hover:bg-neutral-100 hover:text-black shadow-2xs"
                 }`}
               >
                 2026 Lineup ({currentSpeakers.length})
@@ -129,8 +129,8 @@ export default function SpeakersPage() {
                   onClick={() => setActiveTab("archive")}
                   className={`px-4 py-2 text-sm md:text-base font-medium rounded-full transition-all duration-200 ${
                     activeTab === "archive"
-                      ? "bg-[#181830] text-white"
-                      : "bg-zinc-100 text-[#494949] hover:bg-zinc-200 hover:text-black"
+                      ? "bg-[#494949] text-white shadow-sm font-semibold"
+                      : "bg-white text-[#494949] border border-neutral-200 hover:bg-neutral-100 hover:text-black shadow-2xs"
                   }`}
                 >
                   Previous Editions ({pastSpeakers.length})
@@ -139,8 +139,8 @@ export default function SpeakersPage() {
             </div>
 
             {activeTab === "archive" && pastYears.length > 0 && (
-              <div className="flex items-center gap-3 border border-zinc-200 px-3 py-1.5 rounded-sm bg-white shadow-xs">
-                <span className="text-xs uppercase tracking-wider text-zinc-500 font-medium">
+              <div className="flex items-center gap-3 border border-neutral-200 px-3.5 py-1.5 rounded-full bg-white shadow-2xs">
+                <span className="text-xs uppercase tracking-wider text-[#494949] font-medium">
                   Year:
                 </span>
                 <AcademicYearDropdown
@@ -156,26 +156,24 @@ export default function SpeakersPage() {
             {/* CURRENT 2026 LINEUP */}
             {(activeTab === "all" || activeTab === "current") && (
               <div>
-                <div className="mb-10 flex flex-col md:flex-row md:items-baseline justify-between gap-3 border-b border-zinc-100 pb-4">
+                <div className="mb-10 flex flex-col md:flex-row md:items-baseline justify-between gap-3 border-b border-neutral-200/80 pb-4">
                   <div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-[#181830] tracking-tight">
+                    <h2 className="text-2xl md:text-3xl font-bold text-[#494949] tracking-tight">
                       2026 The Speakers
                     </h2>
-                    <p className="text-[#494949] text-base md:text-lg mt-1 font-normal">
+                    <p className="text-[#494949] text-base md:text-lg mt-1 font-normal leading-relaxed opacity-90">
                       Thought leaders and visionaries presenting on the TEDx stage this year.
                     </p>
                   </div>
-                  <span className="text-xs uppercase tracking-widest text-[#eb0028] font-semibold">
+                  <span className="text-xs uppercase tracking-widest text-[#eb0028] font-bold">
                     {currentSpeakers.length} Speakers
                   </span>
                 </div>
 
-                {/* 2-Column High-Impact Collection Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20 lg:gap-x-16 lg:gap-y-24">
+                {/* 3-Column Collection Grid (Matching Teams) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-12 lg:gap-x-10 lg:gap-y-14">
                   {currentSpeakers.map((speaker, idx) => (
-                    <div key={speaker.id}>
-                      <SpeakerCard speaker={speaker} index={idx} />
-                    </div>
+                    <SpeakerCard key={speaker.id} speaker={speaker} index={idx} />
                   ))}
                 </div>
               </div>
@@ -184,29 +182,27 @@ export default function SpeakersPage() {
             {/* PREVIOUS EDITIONS ARCHIVE */}
             {(activeTab === "all" || activeTab === "archive") && (
               <div id="archive" className="scroll-mt-32">
-                <div className="mb-10 flex flex-col md:flex-row md:items-baseline justify-between gap-3 border-b border-zinc-100 pb-4">
+                <div className="mb-10 flex flex-col md:flex-row md:items-baseline justify-between gap-3 border-b border-neutral-200/80 pb-4">
                   <div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-[#181830] tracking-tight">
+                    <h2 className="text-2xl md:text-3xl font-bold text-[#494949] tracking-tight">
                       {activeTab === "all" ? "Previous Editions" : `Archive ${selectedYear}`}
                     </h2>
-                    <p className="text-[#494949] text-base md:text-lg mt-1 font-normal">
+                    <p className="text-[#494949] text-base md:text-lg mt-1 font-normal leading-relaxed opacity-90">
                       {activeTab === "all"
                         ? "Inspiring talks from past TEDx conferences."
                         : `Speakers and transformative ideas from the ${selectedYear} edition.`}
                     </p>
                   </div>
-                  <span className="text-xs uppercase tracking-widest text-[#eb0028] font-semibold">
+                  <span className="text-xs uppercase tracking-widest text-[#eb0028] font-bold">
                     {activeTab === "all" ? pastSpeakers.length : selectedPastSpeakers.length} Speakers
                   </span>
                 </div>
 
-                {/* 2-Column High-Impact Collection Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20 lg:gap-x-16 lg:gap-y-24">
+                {/* 3-Column Collection Grid (Matching Teams) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-12 lg:gap-x-10 lg:gap-y-14">
                   {(activeTab === "all" ? pastSpeakers : selectedPastSpeakers).map(
                     (speaker, idx) => (
-                      <div key={speaker.id}>
-                        <SpeakerCard speaker={speaker} index={idx} />
-                      </div>
+                      <SpeakerCard key={speaker.id} speaker={speaker} index={idx} />
                     )
                   )}
                 </div>

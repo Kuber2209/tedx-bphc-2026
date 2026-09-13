@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { Speaker } from "@/data/speakers";
 import { AnimatePresence, motion } from "motion/react";
-import { X } from "lucide-react";
+import { X, ArrowUpRight } from "lucide-react";
 import { FaLinkedinIn, FaInstagram } from "react-icons/fa6";
 
 interface SpeakerCardProps {
@@ -51,60 +51,78 @@ export default function SpeakerCard({ speaker, index = 0 }: SpeakerCardProps) {
 
   return (
     <>
-      {/* CARD (Matching TEDx MIT rl_team8_item) */}
+      {/* CARD (Matching TEDx MIT rl_team8_item with animated flashcard effects) */}
       <motion.div 
         className="group relative flex flex-col cursor-pointer text-left"
         onClick={handleOpen}
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-10px" }}
-        transition={{ duration: 0.5, delay: (index % 6) * 0.05 }}
+        viewport={{ once: true, margin: "-30px" }}
+        transition={{
+          duration: 0.55,
+          delay: (index % 3) * 0.1,
+          ease: [0.21, 0.47, 0.32, 0.98],
+        }}
+        whileHover={{ y: -6 }}
+        whileTap={{ scale: 0.98 }}
       >
-        {/* Image wrapper: Enlarged portrait aspect-ratio */}
-        <div className="relative w-full aspect-[3/4] sm:aspect-[4/5] min-h-[360px] sm:min-h-[440px] md:min-h-[500px] overflow-hidden bg-zinc-100 rounded-lg shadow-xs">
+        {/* Image wrapper: Golden ratio portrait aspect-ratio */}
+        <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] overflow-hidden bg-white rounded-xl shadow-xs group-hover:shadow-xl transition-all duration-300 border border-neutral-200/90 group-hover:border-neutral-300">
           {speaker.imageUrl && !imageError ? (
             <Image
               src={speaker.imageUrl}
               alt={speaker.name}
               fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
-              className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
               onError={() => setImageError(true)}
             />
           ) : (
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-100 text-zinc-400 group-hover:bg-zinc-200/80 transition-colors duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-20 h-20 text-zinc-300 group-hover:text-zinc-400 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-16 h-16 text-zinc-300 group-hover:text-zinc-400 transition-colors">
                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
               </svg>
             </div>
           )}
+
+          {/* Gradient overlay on hover */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+          {/* Floating interactive hover pill */}
+          <div className="absolute bottom-3 right-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 text-[#494949] text-xs font-semibold shadow-md opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+            <span>View Profile</span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-[#eb0028]" />
+          </div>
         </div>
 
         {/* Spacing block */}
-        <div className="h-6 sm:h-8 w-full" aria-hidden="true" />
+        <div className="h-4 sm:h-5 w-full" aria-hidden="true" />
 
         {/* Category Pill */}
         <span className="inline-block text-xs uppercase tracking-[0.25em] font-bold text-[#eb0028] mb-1">
           {speaker.category || "Speaker"}
         </span>
 
-        {/* Name: Enlarged font-bold 3xl-4xl #181830 */}
-        <h3 className="text-3xl sm:text-4xl md:text-[2.5rem] font-bold text-[#181830] tracking-tight leading-[1.15] group-hover:text-[#eb0028] transition-colors duration-200">
+        {/* Name */}
+        <h3 className="text-xl sm:text-2xl font-bold text-[#494949] tracking-tight leading-snug group-hover:text-[#eb0028] transition-colors duration-200">
           {speaker.name}
         </h3>
 
-        {/* Role & Company: Enlarged font-normal lg-xl #494949 */}
-        <div className="text-lg sm:text-xl font-normal text-[#494949] leading-normal mt-2">
+        {/* Role & Company */}
+        <div className="text-sm sm:text-base font-normal text-[#494949] leading-snug mt-1 opacity-90">
           {speaker.role} {speaker.company ? `· ${speaker.company}` : ""}
         </div>
 
-        {/* Talk title: Enlarged text */}
+        {/* Talk title */}
         {speaker.talkTitle && (
-          <div className="text-base sm:text-lg text-zinc-600 font-normal mt-2.5 leading-relaxed">
+          <div className="text-xs sm:text-sm text-[#494949] font-normal italic mt-2 line-clamp-2 leading-relaxed opacity-85">
             &ldquo;{speaker.talkTitle}&rdquo;
           </div>
         )}
+
+        {/* Animated accent line */}
+        <div className="h-[2px] w-0 bg-[#eb0028] group-hover:w-8 transition-all duration-300 mt-2.5" />
       </motion.div>
 
       {/* MODAL */}
