@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import IntroGate from "@/components/layout/IntroGate";
@@ -34,6 +35,7 @@ export default function RootLayout({
         <GlobalBackground />
         <Navbar />
         <IntroGate><main className="pb-16 relative z-0">{children}</main><Footer /></IntroGate>
+        <Analytics />
       </body>
     </html>
   );
