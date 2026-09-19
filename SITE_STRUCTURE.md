@@ -20,7 +20,7 @@ building against — update it if scope changes so it stays accurate.
 - Past speakers / alumni section
 - "Nominate a speaker" call-to-action
 
-## `/team` — Team (Team #2)
+## `/team` — Team (Team #2) ok ok 
 
 - Organizing committee grouped by department (curation, design, marketing, ops,
   sponsorship, etc.)
