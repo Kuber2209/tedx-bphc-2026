@@ -12,7 +12,6 @@ const NAV_LINKS = [
   { href: "/schedule", label: "Schedule" },
   { href: "/gallery", label: "Gallery" },
   { href: "/venue", label: "Venue" },
-  { href: "/passes", label: "Passes" },
   { href: "/team", label: "Team" },
   { href: "/sponsors", label: "Sponsors" },
 ];
@@ -128,6 +127,20 @@ export default function Navbar() {
                 );
               })}
             </ul>
+
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: NAV_LINKS.length * 0.08, duration: 0.4 }}
+              className="mt-8 pt-4 border-t border-black/10"
+            >
+              <Link
+                href="/passes"
+                className="inline-flex items-center justify-center w-full py-3.5 rounded-[4px] bg-[#eb0028] hover:bg-[#c40022] text-white font-semibold text-sm tracking-wider uppercase transition-colors shadow-xs"
+              >
+                Register
+              </Link>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

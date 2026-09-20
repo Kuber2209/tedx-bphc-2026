@@ -95,7 +95,6 @@ export default function GalleryPage() {
 
   return (
     <main className="min-h-screen bg-[#fafafa] text-[#0F172A] pt-20 pb-32 overflow-hidden relative">
-      <TEDxWatermark />
       {/* 1. Dome Gallery Section with Pitch Black Background */}
       <section className="relative z-10 w-full min-h-[640px] md:min-h-[760px] flex items-center overflow-hidden bg-black">
         {/* 3D Dome Sphere with Smooth Blend - Shifted towards the right */}
@@ -138,8 +137,9 @@ export default function GalleryPage() {
       </section>
 
       {/* 2. Complete Photographic Chronicle / Event Archive Grid */}
-      <section className="relative z-10 w-full py-20 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto border-t border-black/[0.06]">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 text-left">
+      <section className="relative z-10 w-full py-20 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto border-t border-black/[0.06] overflow-hidden">
+        <TEDxWatermark className="top-8" />
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 text-left relative z-10">
           <div>
             {/* Eyebrow Badge (matching reference: • 01 / 12TH EDITION (2026-27)) */}
             <div className="flex items-center gap-2.5 mb-3 font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">
