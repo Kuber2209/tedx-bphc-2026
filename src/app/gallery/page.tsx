@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { GalleryModal } from "@/components/ui/gallery-modal";
 import Dropdown, { type DropdownItem } from "@/components/ui/dropdown";
@@ -67,18 +67,55 @@ const EDITIONS: DropdownItem[] = EDITIONS_DATA.map((ed) => ({
   hint: ed.year,
 }));
 
+const IMAGES_PER_PAGE = 20;
+
 const getEditionImages = (edition: EditionData) => {
-  return Array.from({ length: 32 }, (_, i) => ({
+  // Generate a large gallery (121 images) to simulate real-world volume
+  return Array.from({ length: 121 }, (_, i) => ({
     src: `/${edition.folder}/image${(i % 20) + 1}.jpg`,
-    title: `Moment ${String(i + 1).padStart(2, "0")}`,
+    title: `Moment ${String(i + 1).padStart(3, "0")}`,
     subtitle: `TEDx BITS Hyderabad · ${edition.theme} (${edition.editionNumber})`,
     alt: `TEDx BITS Hyderabad ${edition.editionNumber} - ${edition.theme} Moment ${i + 1}`,
   }));
 };
 
+/* ─── Pagination Helpers ─── */
+function getPaginationRange(current: number, total: number): (number | "ellipsis")[] {
+  // Always show first, last, current, and neighbors
+  const delta = 1;
+  const range: (number | "ellipsis")[] = [];
+  const left = Math.max(2, current - delta);
+  const right = Math.min(total - 1, current + delta);
+
+  // Always show page 1
+  range.push(1);
+
+  // Left ellipsis
+  if (left > 2) {
+    range.push("ellipsis");
+  }
+
+  // Middle pages
+  for (let i = left; i <= right; i++) {
+    range.push(i);
+  }
+
+  // Right ellipsis
+  if (right < total - 1) {
+    range.push("ellipsis");
+  }
+
+  // Always show last page (if more than 1 page)
+  if (total > 1) {
+    range.push(total);
+  }
+
+  return range;
+}
+
 export default function GalleryPage() {
   const [selectedEditionVal, setSelectedEditionVal] = useState("12");
-  const [isAllViewed, setIsAllViewed] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const [archiveModalIdx, setArchiveModalIdx] = useState<number | null>(null);
 
   const activeEdition = useMemo(
@@ -88,20 +125,44 @@ export default function GalleryPage() {
     [selectedEditionVal],
   );
 
-  const currentImages = useMemo(
+  const allImages = useMemo(
     () => getEditionImages(activeEdition),
     [activeEdition],
   );
 
+  const totalPages = Math.ceil(allImages.length / IMAGES_PER_PAGE);
+
+  const currentImages = useMemo(() => {
+    const start = (currentPage - 1) * IMAGES_PER_PAGE;
+    return allImages.slice(start, start + IMAGES_PER_PAGE);
+  }, [allImages, currentPage]);
+
+  const goToPage = useCallback(
+    (page: number) => {
+      if (page < 1 || page > totalPages) return;
+      setCurrentPage(page);
+      // Scroll to grid section
+      const gridEl = document.getElementById("gallery-grid-section");
+      if (gridEl) gridEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    },
+    [totalPages],
+  );
+
+  const paginationRange = useMemo(
+    () => getPaginationRange(currentPage, totalPages),
+    [currentPage, totalPages],
+  );
+
   return (
     <main className="min-h-screen bg-[#fafafa] text-[#0F172A] pt-20 pb-32 overflow-hidden relative">
+      <TEDxWatermark />
       {/* 1. Dome Gallery Section with Pitch Black Background */}
       <section className="relative z-10 w-full min-h-[640px] md:min-h-[760px] flex items-center overflow-hidden bg-black">
         {/* 3D Dome Sphere with Smooth Blend - Shifted towards the right */}
         <div className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden pointer-events-auto [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_98%)] [-webkit-mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_98%)] opacity-90 hover:opacity-100 transition-all duration-700 translate-x-0 sm:translate-x-6 md:translate-x-[15%] lg:translate-x-[20%]">
           <DomeGallery
             key={activeEdition.value}
-            images={currentImages.slice(0, 20)}
+            images={allImages.slice(0, 20)}
             grayscale={false}
             overlayBlurColor="#000000"
             openedImageWidth="280px"
@@ -137,9 +198,11 @@ export default function GalleryPage() {
       </section>
 
       {/* 2. Complete Photographic Chronicle / Event Archive Grid */}
-      <section className="relative z-10 w-full py-20 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto border-t border-black/[0.06] overflow-hidden">
-        <TEDxWatermark className="top-8" />
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 text-left relative z-10">
+      <section
+        id="gallery-grid-section"
+        className="relative z-10 w-full py-20 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto border-t border-black/[0.06] scroll-mt-24"
+      >
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 text-left">
           <div>
             {/* Eyebrow Badge (matching reference: • 01 / 12TH EDITION (2026-27)) */}
             <div className="flex items-center gap-2.5 mb-3 font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">
@@ -158,6 +221,8 @@ export default function GalleryPage() {
               <span className="font-semibold text-[#0F172A]">{activeEdition.theme}</span>
               <span className="text-zinc-400"> — </span>
               <span className="font-light text-zinc-600">{activeEdition.description}</span>
+              <span className="text-zinc-400 ml-2">·</span>
+              <span className="ml-2 font-medium text-[#0F172A]">{allImages.length} Photos</span>
             </p>
           </div>
 
@@ -173,103 +238,109 @@ export default function GalleryPage() {
               align="right"
               onChange={(val) => {
                 setSelectedEditionVal(val);
-                setIsAllViewed(false);
+                setCurrentPage(1);
                 setArchiveModalIdx(null);
               }}
             />
           </div>
         </div>
 
-        {/* Light theme Image Grid:
-            - Items 0-11: visible on all screens (12 on mobile)
-            - Items 12-19: hidden on mobile unless View All is clicked, visible on desktop (20 on desktop)
-            - Items 20+: hidden on all screens unless View All is clicked
-        */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5">
+        {/* Image Grid - 3 column layout with large cards & uniform gaps */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {currentImages.map((image, index) => {
-            const visibilityClass =
-              index < 12
-                ? "block"
-                : index < 20
-                  ? isAllViewed
-                    ? "block"
-                    : "hidden md:block"
-                  : isAllViewed
-                    ? "block"
-                    : "hidden";
+            const globalIndex = (currentPage - 1) * IMAGES_PER_PAGE + index;
 
             return (
               <div
-                key={`${activeEdition.value}-${image.src}-${index}`}
-                onClick={() => setArchiveModalIdx(index)}
-                className={`${visibilityClass} group relative aspect-[3/4] rounded-xl overflow-hidden cursor-pointer border border-black/[0.06] hover:border-zinc-400 transition-all duration-500 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.08)] bg-[#F8F9FA]`}
+                key={`${activeEdition.value}-${currentPage}-${index}`}
+                onClick={() => setArchiveModalIdx(globalIndex)}
+                className="group relative aspect-[4/3] overflow-hidden cursor-pointer bg-[#F8F9FA] transition-all duration-300 hover:brightness-90"
               >
-                {/* Image with fallback if folder files are pending upload */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={image.src}
                   alt={image.alt}
                   loading="lazy"
                   onError={(e) => {
-                    // Fallback to gallery demo images if user hasn't placed images in the edition folder yet
                     const target = e.currentTarget;
-                    const fallbackSrc = `/gallery/image${(index % 20) + 1}.jpg`;
+                    const fallbackSrc = `/gallery/image${(globalIndex % 20) + 1}.jpg`;
                     if (target.src !== fallbackSrc) {
                       target.src = fallbackSrc;
                     }
                   }}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="w-full h-full object-cover"
                 />
-
-                {/* Edge Gradient Mask */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-50 group-hover:opacity-85 transition-opacity duration-300" />
-
-                {/* Card Badge */}
-                <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[11px] font-mono text-zinc-200 group-hover:text-white transition-colors duration-300">
-                  <span className="text-zinc-300 group-hover:text-white font-medium transition-colors">
-                    {String(index + 1).padStart(2, "0")} / {currentImages.length}
-                  </span>
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity text-white font-semibold">
-                    EXPAND ↗
-                  </span>
-                </div>
               </div>
             );
           })}
         </div>
 
-        {/* View All Button with Animated .btn and .icon */}
-        <div className="flex justify-center mt-12">
-          <button
-            type="button"
-            onClick={() => setIsAllViewed((prev) => !prev)}
-            className="btn"
+        {/* ─── Pagination ─── */}
+        {totalPages > 1 && (
+          <nav
+            aria-label="Gallery pagination"
+            className="flex items-center justify-center gap-2 mt-14"
           >
-            <span>{isAllViewed ? "Show Less" : "View All"}</span>
-            <svg
-              className={`icon transition-transform duration-300 ${isAllViewed ? "-rotate-90" : ""
-                }`}
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+            {/* Previous Button */}
+            <button
+              onClick={() => goToPage(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="pagination-btn pagination-nav disabled:opacity-30 disabled:cursor-not-allowed"
+              aria-label="Previous page"
             >
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </svg>
-          </button>
-        </div>
+              ←Prev
+            </button>
+
+            {/* Page Numbers */}
+            {paginationRange.map((item, idx) =>
+              item === "ellipsis" ? (
+                <span
+                  key={`ellipsis-${idx}`}
+                  className="pagination-ellipsis"
+                >
+                  …
+                </span>
+              ) : (
+                <button
+                  key={item}
+                  onClick={() => goToPage(item)}
+                  className={`pagination-btn ${
+                    currentPage === item ? "pagination-active" : ""
+                  }`}
+                  aria-label={`Page ${item}`}
+                  aria-current={currentPage === item ? "page" : undefined}
+                >
+                  {item}
+                </button>
+              ),
+            )}
+
+            {/* Next Button */}
+            <button
+              onClick={() => goToPage(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="pagination-btn pagination-nav disabled:opacity-30 disabled:cursor-not-allowed"
+              aria-label="Next page"
+            >
+              Next→
+            </button>
+          </nav>
+        )}
+
+        {/* Page info text */}
+        {totalPages > 1 && (
+          <p className="text-center text-xs font-mono text-zinc-400 mt-4 uppercase tracking-wider">
+            Page {currentPage} of {totalPages} · Showing {(currentPage - 1) * IMAGES_PER_PAGE + 1}–
+            {Math.min(currentPage * IMAGES_PER_PAGE, allImages.length)} of {allImages.length}
+          </p>
+        )}
       </section>
 
       {/* Lightbox for Archive Grid */}
       <GalleryModal
         isOpen={archiveModalIdx !== null}
         onClose={() => setArchiveModalIdx(null)}
-        images={currentImages}
+        images={allImages}
         currentIndex={archiveModalIdx ?? 0}
         setCurrentIndex={(idx) => setArchiveModalIdx(idx)}
       />

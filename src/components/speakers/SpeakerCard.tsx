@@ -73,7 +73,7 @@ export default function SpeakerCard({ speaker, index = 0 }: SpeakerCardProps) {
         whileTap={{ scale: 0.98 }}
       >
         {/* Image wrapper: Golden ratio portrait aspect-ratio */}
-        <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] overflow-hidden bg-white rounded-xl shadow-xs group-hover:shadow-xl transition-all duration-300 border border-neutral-200/90 group-hover:border-neutral-300">
+        <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] overflow-hidden bg-white shadow-xs group-hover:shadow-xl transition-all duration-300 border border-neutral-200/90 group-hover:border-neutral-300">
           {speaker.imageUrl && !imageError ? (
             <Image
               src={speaker.imageUrl}

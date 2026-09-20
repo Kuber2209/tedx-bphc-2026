@@ -1,3 +1,4 @@
+/* ─── Gallery "View All" / CTA Button ─── */
 .btn {
   width: 140px;
   height: 40px;
@@ -61,4 +62,128 @@
   50% {
     transform: translateX(30%);
   }
+}
+
+/* ─── Pagination Controls ─── */
+.pagination-btn {
+  min-width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #94a3b8;
+  background: transparent;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  color: #0f172a;
+  border-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.03);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.pagination-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Active page */
+.pagination-active {
+  color: #ffffff !important;
+  background: #0f172a !important;
+  border-color: #0f172a !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
+  font-weight: 700;
+}
+
+.pagination-active:hover {
+  background: #1e293b !important;
+  border-color: #1e293b !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.3);
+}
+
+/* Prev / Next nav buttons */
+.pagination-nav {
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 11px;
+  padding: 0 16px;
+  color: #64748b;
+}
+
+.pagination-nav:hover:not(:disabled) {
+  color: #eb0028;
+  border-color: #eb0028;
+  background: rgba(235, 0, 40, 0.04);
+}
+
+/* Ellipsis */
+.pagination-ellipsis {
+  min-width: 36px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 16px;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 0.15em;
+  user-select: none;
+}
+
+/* ─── Gallery Modal ─── */
+
+/* Utility icon buttons (fullscreen, info, download) - left toolbar */
+.gallery-modal-icon-btn {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gallery-modal-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* Prev / Next navigation buttons - tall translucent rectangles */
+.gallery-modal-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.gallery-modal-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.gallery-modal-nav-btn:active {
+  background: rgba(255, 255, 255, 0.25);
 }
