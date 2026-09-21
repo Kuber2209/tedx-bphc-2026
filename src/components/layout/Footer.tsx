@@ -19,18 +19,18 @@ const TEDX_PHONE_TEL = "+919876543210";
 export default function Footer() {
   return (
     <footer className="relative border-t border-white/10 bg-black text-white overflow-hidden">
-      {/* Aurora Borealis Background Effect on Black */}
+      {/* Aurora Borealis Background Effect on Black - TED Signature Palette */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none" aria-hidden="true">
         {/* CSS Ambient Aurora Glow Mesh (fallback & rich glow enhancer) */}
-        <div className="absolute inset-0 opacity-45 bg-[radial-gradient(ellipse_80%_50%_at_25%_35%,rgba(0,229,153,0.22),transparent_65%),radial-gradient(ellipse_60%_50%_at_75%_40%,rgba(0,194,255,0.22),transparent_60%),radial-gradient(ellipse_75%_65%_at_50%_80%,rgba(121,40,202,0.25),transparent_70%)]" />
+        <div className="absolute inset-0 opacity-50 bg-[radial-gradient(ellipse_80%_50%_at_25%_35%,rgba(235,0,40,0.28),transparent_65%),radial-gradient(ellipse_60%_50%_at_75%_35%,rgba(255,255,255,0.09),transparent_60%),radial-gradient(ellipse_75%_65%_at_50%_80%,rgba(140,0,24,0.32),transparent_70%)]" />
 
-        {/* Live WebGL Aurora Shader */}
-        <div className="absolute inset-0 opacity-60 mix-blend-screen">
+        {/* Live WebGL Aurora Shader in TED Red, Pearlescent White, and Deep Crimson */}
+        <div className="absolute inset-0 opacity-65 mix-blend-screen">
           <Aurora
-            colorStops={["#00e599", "#00c2ff", "#7928ca"]}
+            colorStops={["#eb0028", "#f4f4f5", "#800010"]}
             amplitude={1.15}
             blend={0.65}
-            speed={0.6}
+            speed={0.55}
             lightMode={false}
           />
         </div>
