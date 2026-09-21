@@ -59,17 +59,9 @@ export default function Footer() {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-2.5 font-mono text-xs text-zinc-400">
-              <div className="inline-flex items-center gap-2 text-[#eb0028] tracking-widest uppercase font-semibold">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#eb0028]" />
-                12th Annual Assembly • 2026
-              </div>
-              <p className="text-zinc-400">
-                BITS Pilani, Hyderabad Campus
-              </p>
-              <p className="text-[11px] text-zinc-500">
-                17.5449° N, 78.5718° E
-              </p>
+            <div className="text-left lg:text-right text-xs text-zinc-400">
+              <p className="text-zinc-300 font-medium">BITS Pilani Hyderabad Campus</p>
+              <p className="mt-1 text-zinc-500">Jawahar Nagar, Shamirpet, Hyderabad</p>
             </div>
           </div>
         </div>
