@@ -68,10 +68,14 @@ export default function HomeExperience() {
             <source src="/mayank-raj.mp4" type="video/mp4" />
             <source src="/mayank%20raj.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent"></div>
+          {/* Dual cinematic contrast gradients ensuring high-definition legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/25 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent pointer-events-none" />
+          {/* Seamless bottom fade into white theme section below */}
+          <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-b from-transparent to-white pointer-events-none" />
         </motion.div>
 
-        <div className="relative z-10 w-full h-full flex flex-col justify-end pb-20 md:pb-28 px-6 md:px-12 max-w-[1600px] mx-auto text-neutral-900">
+        <div className="relative z-10 w-full h-full flex flex-col justify-end pb-20 md:pb-28 px-6 md:px-12 max-w-[1600px] mx-auto text-white">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -80,18 +84,18 @@ export default function HomeExperience() {
           >
             <div className="flex items-center gap-4 mb-5">
               <div className="h-[2px] w-10 bg-[#eb0028]"></div>
-              <p className="font-sans text-xs tracking-[0.25em] uppercase font-bold text-zinc-600">
+              <p className="font-sans text-xs tracking-[0.25em] uppercase font-bold text-white/90">
                 BITS Pilani Hyderabad Campus • Great ideas to the world
               </p>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-[100px] font-bold tracking-tighter leading-[0.95] mb-6">
+            <h1 className="text-5xl md:text-7xl lg:text-[100px] font-bold tracking-tighter leading-[0.95] mb-6 text-white drop-shadow-sm">
               Ideas that <br />
               <span className="font-bold text-[#eb0028]">challenge</span> the <br />
-              ordinary.
+              ordinary<span className="text-[#eb0028]">.</span>
             </h1>
 
-            <p className="text-lg md:text-2xl font-normal text-zinc-700 leading-relaxed max-w-2xl mb-8">
+            <p className="text-lg md:text-2xl font-normal text-white/90 leading-relaxed max-w-2xl mb-8 drop-shadow-xs">
               TEDx BPHC returns in 2026. Join visionary scientists, designers, and innovators exploring connections that quietly shape our world.
             </p>
 
@@ -99,13 +103,13 @@ export default function HomeExperience() {
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 href="/passes"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] bg-[#eb0028] hover:bg-[#c40022] text-white font-semibold text-base transition-colors duration-200 shadow-sm"
+                className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] bg-[#eb0028] hover:bg-[#c40022] text-white font-semibold text-base transition-colors duration-200 shadow-lg shadow-[#eb0028]/25"
               >
                 Register for 2026
               </Link>
               <Link
                 href="/speakers"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] border border-neutral-900/30 hover:border-neutral-900 bg-white/80 hover:bg-white text-neutral-900 font-semibold text-base transition-all duration-200 shadow-xs"
+                className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] border border-white/80 hover:border-white bg-black/40 hover:bg-white text-white hover:text-black font-semibold text-base transition-all duration-200 backdrop-blur-xs shadow-xs"
               >
                 Speaker Lineup
               </Link>
