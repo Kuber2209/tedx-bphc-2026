@@ -50,31 +50,45 @@ export default function SpeakersPage() {
             priority
             className="object-cover object-center"
           />
-          {/* Gradients for text legibility and cinematic atmosphere */}
-          <div className="absolute inset-0 bg-black/50 md:bg-black/40" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/65 to-black/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c] via-transparent to-black/40" />
+          {/* Left-side cinematic shadow: protects text contrast on the left while keeping center & right speaker photo crystal clear */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.62) 28%, rgba(0,0,0,0.2) 55%, rgba(0,0,0,0) 75%)",
+            }}
+          />
+          {/* Subtle mobile bottom gradient for compact screens */}
+          <div
+            className="absolute inset-0 pointer-events-none md:hidden"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 70%)",
+            }}
+          />
+          {/* Soft grounding bottom fade */}
+          <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-[#0a0a0c] to-transparent pointer-events-none" />
         </div>
 
-        <div className="relative z-10 w-full px-6 md:px-12 pt-36 pb-20 md:pt-44 md:pb-28">
-          <div className="max-w-[42rem] text-left">
+        <div className="relative z-10 w-full px-6 md:px-12 pt-32 pb-16 md:pt-40 md:pb-24">
+          <div className="max-w-[34rem] text-left">
             {/* Main Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-bold text-white tracking-tight leading-[1.2]">
+            <h1 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-bold text-white tracking-tight leading-[1.15] drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
               Inspiring Innovators Unleashed
             </h1>
 
-            {/* Spacing block 1 (1.5rem / 24px) */}
-            <div className="h-6 w-full" aria-hidden="true" />
+            {/* Spacing block 1 */}
+            <div className="h-4 w-full" aria-hidden="true" />
 
             {/* Subtitle */}
-            <p className="text-white/90 text-lg md:text-[1.125rem] font-normal leading-relaxed">
+            <p className="text-white/90 text-base md:text-lg font-normal leading-relaxed drop-shadow-[0_1px_5px_rgba(0,0,0,0.6)]">
               Discover the thought leaders and innovators who have shared their transformative
               ideas on our stage. Explore their inspiring talks and learn more about their
               groundbreaking work.
             </p>
 
-            {/* Spacing block 2 (2rem / 32px) */}
-            <div className="h-8 w-full" aria-hidden="true" />
+            {/* Spacing block 2 */}
+            <div className="h-6 w-full" aria-hidden="true" />
 
             {/* CTA Button Group */}
             <div className="flex flex-wrap items-center gap-4">
@@ -86,7 +100,7 @@ export default function SpeakersPage() {
                   const el = document.getElementById("archive");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] border border-white hover:bg-white hover:text-black text-white font-semibold text-base transition-all duration-200"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] border border-white hover:bg-white hover:text-black text-white font-semibold text-sm sm:text-base transition-all duration-200"
               >
                 Previous Talks
               </a>

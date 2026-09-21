@@ -60,50 +60,62 @@ export default function VenueContent() {
             muted
             playsInline
             preload="auto"
-            className="w-full h-full object-cover brightness-[0.75] contrast-[1.05]"
+            poster="/venue/bits-auditorium.jpg"
+            className="w-full h-full object-cover brightness-[0.95] contrast-[1.05]"
           >
             <source src="/venue/venue-video.mp4" type="video/mp4" />
           </video>
-          {/* Gradients & radial overlay for high legibility & TEDx signature mood */}
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c] via-black/20 to-black/60" />
+          {/* Left-side cinematic shadow: protects text contrast on the left while keeping center & right video crystal clear */}
           <div
-            className="absolute inset-0 pointer-events-none opacity-30 bg-[radial-gradient(circle_at_top_right,rgba(235,0,40,0.3),transparent_60%)]"
-            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.62) 28%, rgba(0,0,0,0.2) 55%, rgba(0,0,0,0) 75%)",
+            }}
           />
+          {/* Subtle mobile bottom gradient for compact screens */}
+          <div
+            className="absolute inset-0 pointer-events-none md:hidden"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 70%)",
+            }}
+          />
+          {/* Soft grounding bottom fade */}
+          <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-[#0a0a0c] to-transparent pointer-events-none" />
         </div>
 
-        <div className="relative z-10 w-full max-w-[80rem] mx-auto px-6 md:px-12 pt-36 pb-20 md:pt-44 md:pb-28">
-          <div className="max-w-[42rem]">
+        <div className="relative z-10 w-full max-w-[80rem] mx-auto px-6 md:px-12 pt-32 pb-16 md:pt-40 md:pb-24">
+          <div className="max-w-[34rem]">
             {/* Main Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-bold text-white tracking-tight leading-[1.2]">
+            <h1 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-bold text-white tracking-tight leading-[1.15] drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
               Where Ideas Meet
             </h1>
 
-            {/* Spacing block 1 (1.5rem / 24px) */}
-            <div className="h-6 w-full" aria-hidden="true" />
+            {/* Spacing block 1 */}
+            <div className="h-4 w-full" aria-hidden="true" />
 
             {/* Subtitle */}
-            <p className="text-white/90 text-lg md:text-[1.125rem] font-normal leading-relaxed">
+            <p className="text-white/90 text-base md:text-lg font-normal leading-relaxed drop-shadow-[0_1px_5px_rgba(0,0,0,0.6)]">
               Every great idea needs a place to land. Join us at the BITS Pilani Hyderabad
               Campus Auditorium, an iconic space designed for focus, connection, and
               paradigm-shifting conversations.
             </p>
 
-            {/* Spacing block 2 (2rem / 32px) */}
-            <div className="h-8 w-full" aria-hidden="true" />
+            {/* Spacing block 2 */}
+            <div className="h-6 w-full" aria-hidden="true" />
 
             {/* CTA Button Group */}
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 href="/passes"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] bg-[#eb0028] hover:bg-[#960800] text-white font-semibold text-base transition-colors duration-200 shadow-sm"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] bg-[#eb0028] hover:bg-[#960800] text-white font-semibold text-sm sm:text-base transition-colors duration-200 shadow-sm"
               >
                 Register for 2026
               </Link>
               <a
                 href="#getting-here"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] border border-white hover:bg-white hover:text-black text-white font-semibold text-base transition-all duration-200 backdrop-blur-xs"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] border border-white hover:bg-white hover:text-black text-white font-semibold text-sm sm:text-base transition-all duration-200 backdrop-blur-xs"
               >
                 Campus Directions
               </a>

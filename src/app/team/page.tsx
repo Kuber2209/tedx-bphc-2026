@@ -48,40 +48,55 @@ export default function TeamPage() {
             priority
             className="object-cover object-center"
           />
-          {/* Dark gradient overlay for contrast and legibility */}
-          <div className="absolute inset-0 bg-black/45 md:bg-black/35" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent" />
+          {/* Left-side cinematic shadow: protects text contrast on the left while keeping center & right team stage photo crystal clear */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.62) 28%, rgba(0,0,0,0.2) 55%, rgba(0,0,0,0) 75%)",
+            }}
+          />
+          {/* Subtle mobile bottom gradient for compact screens */}
+          <div
+            className="absolute inset-0 pointer-events-none md:hidden"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 70%)",
+            }}
+          />
+          {/* Soft grounding bottom fade */}
+          <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-black to-transparent pointer-events-none" />
         </div>
 
-        <div className="relative z-10 w-full max-w-[80rem] mx-auto px-6 md:px-12 py-24 md:py-32">
-          <div className="max-w-[35rem] text-white">
-            {/* Main Heading (.rl-heading-style-h1 is-white: 3.25rem, 700, Inter) */}
-            <h1 className="text-4xl sm:text-5xl md:text-[3.25rem] font-bold text-white tracking-tight leading-[1.2]">
+        <div className="relative z-10 w-full max-w-[80rem] mx-auto px-6 md:px-12 py-20 md:py-28">
+          <div className="max-w-[34rem] text-white">
+            {/* Main Heading */}
+            <h1 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-bold text-white tracking-tight leading-[1.15] drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
               Meet the TEDx BPHC Team
             </h1>
 
-            {/* Spacing block 1 (1.5rem / 24px) */}
-            <div className="h-5 sm:h-6 w-full" aria-hidden="true" />
+            {/* Spacing block 1 */}
+            <div className="h-4 w-full" aria-hidden="true" />
 
-            {/* Subtitle (.rl-text-style-medium is-white: 1.125rem, 400, Inter) */}
-            <p className="text-base sm:text-lg md:text-[1.125rem] font-normal text-white leading-relaxed">
+            {/* Subtitle */}
+            <p className="text-white/90 text-base md:text-lg font-normal leading-relaxed drop-shadow-[0_1px_5px_rgba(0,0,0,0.6)]">
               Discover the organizers who bring inspiring ideas to the stage and create unforgettable TEDx BPHC experiences.
             </p>
 
-            {/* Spacing block 2 (2rem / 32px) */}
-            <div className="h-6 sm:h-8 w-full" aria-hidden="true" />
+            {/* Spacing block 2 */}
+            <div className="h-6 w-full" aria-hidden="true" />
 
             {/* MIT CTA Button Group: rectangular rounded-[4px] buttons */}
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 href="/passes"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] bg-[#eb0028] hover:bg-[#c40022] text-white font-semibold text-base transition-colors duration-200 shadow-sm"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] bg-[#eb0028] hover:bg-[#c40022] text-white font-semibold text-sm sm:text-base transition-colors duration-200 shadow-sm"
               >
                 Register for 2026
               </Link>
               <Link
                 href="/speakers"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] border border-white hover:bg-white hover:text-black text-white font-semibold text-base transition-all duration-200"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] border border-white hover:bg-white hover:text-black text-white font-semibold text-sm sm:text-base transition-all duration-200"
               >
                 Speaker Lineup
               </Link>
