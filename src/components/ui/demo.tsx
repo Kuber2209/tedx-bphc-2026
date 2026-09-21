@@ -33,3 +33,4 @@ export const ButtonDemo = () => {
 };
 
 export default ButtonDemo;
+export { AuroraBackgroundDemo } from "@/components/ui/aurora-demo";
