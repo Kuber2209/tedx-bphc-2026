@@ -3,9 +3,12 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import ViewOnMap from "@/components/venue/ViewOnMap";
 import { FaLinkedinIn, FaInstagram, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { Mail, Phone, MapPin } from "lucide-react";
+
+const Aurora = dynamic(() => import("@/components/backgrounds/Aurora"), { ssr: false });
 
 const TEDX_LINKEDIN = "https://www.linkedin.com/company/tedxbitshyderabad/";
 const TEDX_INSTAGRAM = "https://www.instagram.com/tedxbitshyderabad/";
@@ -15,14 +18,28 @@ const TEDX_PHONE_TEL = "+919876543210";
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/10 bg-[#08080a] text-white overflow-hidden">
-      {/* Subtle ambient red spotlight from bottom left */}
-      <div 
-        className="pointer-events-none absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-[#eb0028]/8 blur-[120px]" 
-        aria-hidden="true" 
-      />
+    <footer className="relative border-t border-white/10 bg-black text-white overflow-hidden">
+      {/* Aurora Borealis Background Effect on Black */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none" aria-hidden="true">
+        {/* CSS Ambient Aurora Glow Mesh (fallback & rich glow enhancer) */}
+        <div className="absolute inset-0 opacity-45 bg-[radial-gradient(ellipse_80%_50%_at_25%_35%,rgba(0,229,153,0.22),transparent_65%),radial-gradient(ellipse_60%_50%_at_75%_40%,rgba(0,194,255,0.22),transparent_60%),radial-gradient(ellipse_75%_65%_at_50%_80%,rgba(121,40,202,0.25),transparent_70%)]" />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+        {/* Live WebGL Aurora Shader */}
+        <div className="absolute inset-0 opacity-60 mix-blend-screen">
+          <Aurora
+            colorStops={["#00e599", "#00c2ff", "#7928ca"]}
+            amplitude={1.15}
+            blend={0.65}
+            speed={0.6}
+            lightMode={false}
+          />
+        </div>
+
+        {/* Cinematic dark top and bottom gradient vignette */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/75 pointer-events-none" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
         {/* 1. TOP BRAND SHOWCASE - Generous, prestigious architectural header */}
         <div className="pb-10 md:pb-12 border-b border-white/[0.08]">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
