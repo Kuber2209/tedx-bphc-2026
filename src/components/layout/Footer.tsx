@@ -25,16 +25,47 @@ export default function Footer() {
       <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-16 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           {/* Column 1: TEDx Branding & Social Networks (lg:col-span-4) */}
-          <div className="flex flex-col space-y-5 lg:col-span-4">
-            <div>
-              <TedxLogo href="/" className="text-2xl" light={true} />
-              <p className="mt-2 text-xs font-mono tracking-wider text-zinc-400">
-                BITS Pilani Hyderabad Campus
-              </p>
+          <div className="flex flex-col space-y-6 lg:col-span-4">
+            <div className="space-y-3">
+              {/* Event Badge & Campus Indicator */}
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold tracking-wider bg-[#eb0028]/10 text-[#eb0028] border border-[#eb0028]/25">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#eb0028] animate-pulse" />
+                  2026 ASSEMBLY
+                </span>
+                <span className="text-[11px] font-mono tracking-wider text-zinc-500 uppercase">
+                  Hyderabad, IN
+                </span>
+              </div>
+
+              {/* Bespoke Brand Header */}
+              <Link href="/" className="group inline-block focus:outline-none">
+                <div className="flex items-baseline gap-1 select-none font-sans font-black tracking-tight leading-none text-3xl sm:text-[34px]">
+                  <span className="text-[#eb0028] tracking-[-0.04em] transition-transform duration-300 group-hover:scale-105">
+                    TED
+                  </span>
+                  <span className="text-[#eb0028] font-bold text-[0.7em] leading-none -translate-y-[0.28em] ml-[0.05em] mr-[0.22em]">
+                    x
+                  </span>
+                  <span className="font-bold tracking-tight text-white transition-colors duration-200 group-hover:text-white/90">
+                    BITS Hyderabad
+                  </span>
+                </div>
+              </Link>
+
+              {/* Sub-brand Campus & Official TED Tagline */}
+              <div className="flex flex-col gap-1 border-l-2 border-[#eb0028]/80 pl-3 py-0.5">
+                <p className="text-xs font-mono font-medium tracking-wide text-zinc-300">
+                  BITS Pilani Hyderabad Campus
+                </p>
+                <p className="text-[11px] tracking-wide text-zinc-400 font-normal">
+                  <span className="text-[#eb0028] font-bold">x</span> = independently organized TED event
+                </p>
+              </div>
             </div>
 
             <p className="max-w-sm text-xs leading-relaxed text-zinc-400">
-              Ideas worth spreading - coming 2026. Fostering multidisciplinary dialogue, innovation, and impactful storytelling.
+              Ideas worth spreading. Fostering multidisciplinary dialogue, scientific innovation, and impactful storytelling across India and beyond.
             </p>
 
             <div>
@@ -105,6 +136,14 @@ export default function Footer() {
                   className="transition-colors hover:text-white"
                 >
                   Speakers
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/passes"
+                  className="transition-colors text-zinc-300 hover:text-white font-medium"
+                >
+                  Register & Passes
                 </Link>
               </li>
               <li>
@@ -225,12 +264,24 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Architectural Statement Watermark */}
+        <div className="relative mt-16 pt-8 pb-3 overflow-hidden select-none pointer-events-none border-t border-white/[0.06]">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3">
+            <span className="font-black text-[clamp(2.25rem,7vw,5.5rem)] tracking-tighter leading-none text-white/[0.06] uppercase">
+              TED<span className="text-[#eb0028]/[0.22]">x</span>BITS<span className="text-white/[0.035]">Hyderabad</span>
+            </span>
+            <span className="font-mono text-[11px] text-zinc-600 tracking-[0.25em] uppercase">
+              Ideas That Challenge The Ordinary • 2026
+            </span>
+          </div>
+        </div>
+
         {/* Bottom Bar: Copyright & License */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-zinc-800/80 pt-8 text-center text-xs text-zinc-400 sm:flex-row sm:text-left">
+        <div className="mt-4 flex flex-col items-center justify-between gap-3 border-t border-white/5 pt-6 text-center text-xs text-zinc-500 sm:flex-row sm:text-left">
           <p>
-            © 2026 Copyright: <strong className="text-white">TEDx BITS Hyderabad</strong>
+            © 2026 <strong className="text-zinc-300 font-semibold">TEDx BITS Hyderabad</strong>. All rights reserved.
           </p>
-          <p className="text-[11px] text-zinc-400">
+          <p className="text-[11px] text-zinc-500">
             This independent TEDx event is operated under license from TED.
           </p>
         </div>
