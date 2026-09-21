@@ -36,7 +36,7 @@ export default function IntroGate({ children }: { children: React.ReactNode }) {
             }}
             onClick={() => setVisible(false)}
             className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black text-white select-none cursor-pointer px-4"
-            aria-label="TEDx BITS Hyderabad — Click anywhere to enter"
+            aria-label="TEDx BITS Hyderabad - Click anywhere to enter"
           >
             <div className="relative z-10 flex flex-col items-center max-w-5xl text-center">
               {/* Top Subtitle / Disclaimer */}

@@ -11,6 +11,6 @@ npm run dev
 
 ## Structure
 
-- `src/app/` — routes: `/` (home), `/speakers`, `/team`, `/sponsors`, `/gallery`, `/schedule`, `/venue`, `/faq`
-- `src/components/layout/` — Navbar, Footer
-- `src/data/` — content types and (eventually) content data
+- `src/app/` - routes: `/` (home), `/speakers`, `/team`, `/sponsors`, `/gallery`, `/schedule`, `/venue`, `/faq`
+- `src/components/layout/` - Navbar, Footer
+- `src/data/` - content types and (eventually) content data

@@ -210,16 +210,16 @@ export default function GalleryPage() {
               <span>01 / {activeEdition.editionTag} ({activeEdition.year})</span>
             </div>
 
-            {/* Headline matching reference: Event Archive — Invisible Threads with TED Red accent */}
+            {/* Headline matching reference: Event Archive - Invisible Threads with TED Red accent */}
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tighter text-[#0F172A] leading-[1.05]">
-              Event Archive — <span className="font-bold text-[#EB0028]">{activeEdition.theme}</span>
+              Event Archive - <span className="font-bold text-[#EB0028]">{activeEdition.theme}</span>
             </h2>
 
-            {/* Tagline matching reference: 12th Edition · Theme: Invisible Threads — Echoes of connection... */}
+            {/* Tagline matching reference: 12th Edition · Theme: Invisible Threads - Echoes of connection... */}
             <p className="max-w-3xl text-zinc-500 text-sm sm:text-base md:text-lg font-normal leading-relaxed mt-4">
               <span>{activeEdition.editionNumber} · Theme: </span>
               <span className="font-semibold text-[#0F172A]">{activeEdition.theme}</span>
-              <span className="text-zinc-400"> — </span>
+              <span className="text-zinc-400"> - </span>
               <span className="font-light text-zinc-600">{activeEdition.description}</span>
               <span className="text-zinc-400 ml-2">·</span>
               <span className="ml-2 font-medium text-[#0F172A]">{allImages.length} Photos</span>
@@ -304,9 +304,8 @@ export default function GalleryPage() {
                 <button
                   key={item}
                   onClick={() => goToPage(item)}
-                  className={`pagination-btn ${
-                    currentPage === item ? "pagination-active" : ""
-                  }`}
+                  className={`pagination-btn ${currentPage === item ? "pagination-active" : ""
+                    }`}
                   aria-label={`Page ${item}`}
                   aria-current={currentPage === item ? "page" : undefined}
                 >

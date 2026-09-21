@@ -119,7 +119,7 @@ export default function VenueContent() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Image Centerpiece */}
             <div className="lg:col-span-8 relative">
-              <motion.div 
+              <motion.div
                 className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-xs border border-neutral-200/90 group bg-white"
                 initial={{ opacity: 0, scale: 0.98 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -128,7 +128,7 @@ export default function VenueContent() {
               >
                 {/* Red subtle accent bar */}
                 <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#eb0028] via-[#eb0028]/60 to-transparent z-20" />
-                
+
                 <Image
                   src="/venue/auditorium-main.jpg"
                   alt="BITS Pilani Hyderabad Campus Auditorium"
@@ -137,7 +137,7 @@ export default function VenueContent() {
                   sizes="(max-width: 1024px) 100vw, 66vw"
                   className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
                 />
-                
+
                 {/* Subtle overlay gradient for elegance */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none z-10" />
               </motion.div>
@@ -154,7 +154,7 @@ export default function VenueContent() {
                 <h2 className="text-3xl md:text-4xl font-bold text-[#494949] mb-8">
                   Auditorium
                 </h2>
-                
+
                 <div className="space-y-6 mb-10 text-[#494949] font-normal">
                   <div>
                     <span className="block text-[10px] font-mono uppercase tracking-widest text-neutral-400 mb-1">Campus</span>
@@ -162,11 +162,11 @@ export default function VenueContent() {
                   </div>
                   <div>
                     <span className="block text-[10px] font-mono uppercase tracking-widest text-neutral-400 mb-1">Location</span>
-                    <p className="text-base text-[#494949]">Jawahar Nagar, Shamirpet,<br/>Hyderabad, Telangana 500078</p>
+                    <p className="text-base text-[#494949]">Jawahar Nagar, Shamirpet,<br />Hyderabad, Telangana 500078</p>
                   </div>
                   <div>
                     <span className="block text-[10px] font-mono uppercase tracking-widest text-neutral-400 mb-1">Edition</span>
-                    <p className="text-base text-[#494949]">12th Annual Assembly — 2,500 Seats</p>
+                    <p className="text-base text-[#494949]">12th Annual Assembly - 2,500 Seats</p>
                   </div>
                 </div>
 
@@ -212,7 +212,7 @@ export default function VenueContent() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {TRANSIT_TABS.map((tab, idx) => (
-              <motion.div 
+              <motion.div
                 key={tab.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

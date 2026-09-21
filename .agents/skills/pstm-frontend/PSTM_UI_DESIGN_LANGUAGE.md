@@ -1,4 +1,4 @@
-# PSTM CRM — UI Design Language Guide
+# PSTM CRM - UI Design Language Guide
 > **Source files verified:** `tailwind.config.ts`, `src/app/globals.css`, `src/app/quotations/[id]/page.tsx`
 > Use this as the source of truth when building any new detail, list, or form page.
 
@@ -43,18 +43,18 @@ All tokens are CSS HSL variables resolved at runtime.
 | Token | CSS Variable | HSL Value | Computed Hex (approx) | Description |
 |---|---|---|---|---|
 | `background` | `--background: 130 20% 95%` | hsl(130, 20%, 95%) | `#f0f5f1` | Subtle sage green page background |
-| `foreground` | `--foreground: 215 25% 27%` | hsl(215, 25%, 27%) | `#33404f` | Near-dark slate — main text |
-| `card` | `--card: 45 15% 97%` | hsl(45, 15%, 97%) | `#f9f8f6` | Slightly warm white — card backgrounds |
+| `foreground` | `--foreground: 215 25% 27%` | hsl(215, 25%, 27%) | `#33404f` | Near-dark slate - main text |
+| `card` | `--card: 45 15% 97%` | hsl(45, 15%, 97%) | `#f9f8f6` | Slightly warm white - card backgrounds |
 | `card-foreground` | `--card-foreground: 215 25% 27%` | same as foreground | `#33404f` | |
-| **`primary`** | `--primary: 152 55% 23%` | hsl(152, 55%, 23%) | **`#1a5c3e`** | **Dark Forest Green — brand colour** |
+| **`primary`** | `--primary: 152 55% 23%` | hsl(152, 55%, 23%) | **`#1a5c3e`** | **Dark Forest Green - brand colour** |
 | `primary-foreground` | `--primary-foreground: 0 0% 100%` | white | `#ffffff` | Text on primary green bg |
 | `muted` | `--muted: 210 20% 96%` | hsl(210, 20%, 96%) | `#f1f4f7` | Very light gray backgrounds |
-| `muted-foreground` | `--muted-foreground: 215 16% 47%` | hsl(215, 16%, 47%) | `#6b7a8d` | Secondary/label text — slate gray |
+| `muted-foreground` | `--muted-foreground: 215 16% 47%` | hsl(215, 16%, 47%) | `#6b7a8d` | Secondary/label text - slate gray |
 | `border` | `--border: 220 13% 91%` | hsl(220, 13%, 91%) | `#e2e5ea` | Card borders, dividers |
 | `input` | `--input: 220 13% 91%` | same as border | `#e2e5ea` | Input borders |
 | `ring` | `--ring: 152 55% 23%` | same as primary | `#1a5c3e` | Focus ring colour |
 | `destructive` | `--destructive: 0 84% 60%` | hsl(0, 84%, 60%) | `#f04040` | Delete/danger actions |
-| `radius` | `--radius: 0.5rem` | — | 8px | Base border radius |
+| `radius` | `--radius: 0.5rem` | - | 8px | Base border radius |
 
 ### Custom Extended Colours (direct hex, in tailwind.config.ts)
 ```
@@ -85,7 +85,7 @@ green-950: #152411
 | **Secondary card heading** | `text-lg font-semibold` | 18px | 600 | `text-foreground` |
 | **Sub-section heading** (Contact Persons) | `text-lg font-semibold` | 18px | 600 | `text-foreground` |
 | Field label | `text-sm text-muted-foreground` | 14px | 400 | `text-muted-foreground` |
-| Field value (normal) | *(no extra class — inherits body)* | 16px | 400 | `text-foreground` |
+| Field value (normal) | *(no extra class - inherits body)* | 16px | 400 | `text-foreground` |
 | **Amount / money** | `font-mono font-bold text-lg` | 18px | 700 | `text-foreground` |
 | **Company name (sidebar)** | `font-bold text-xl` | 20px | 700 | `text-foreground` |
 | Company type | `text-sm font-medium text-muted-foreground` | 14px | 500 | `text-muted-foreground` |
@@ -97,16 +97,16 @@ green-950: #152411
 | Phone number | `text-sm font-medium hover:text-primary transition-colors` | 14px | 500 | `text-foreground` → primary on hover |
 | Phone tag pill | `text-xs px-2 py-0.5 bg-muted rounded-full text-muted-foreground` | 12px | 400 | `text-muted-foreground` |
 | Empty state | `text-muted-foreground` | 16px (inherits body) | 400 | `text-muted-foreground` |
-| Icon (heading level) | `h-6 w-6 text-primary` | 24px | — | `text-primary` |
-| Icon (sub-heading level) | `h-5 w-5 text-primary` | 20px | — | `text-primary` |
-| Icon (field level) | `h-4 w-4 text-muted-foreground` | 16px | — | `text-muted-foreground` |
+| Icon (heading level) | `h-6 w-6 text-primary` | 24px | - | `text-primary` |
+| Icon (sub-heading level) | `h-5 w-5 text-primary` | 20px | - | `text-primary` |
+| Icon (field level) | `h-4 w-4 text-muted-foreground` | 16px | - | `text-muted-foreground` |
 
 ---
 
 ## 4. Border Radius
 
 ```
---radius: 0.5rem (8px) — base radius
+--radius: 0.5rem (8px) - base radius
 
 rounded-sm  = calc(0.5rem - 4px) = 4px
 rounded-md  = calc(0.5rem - 2px) = 6px   ← buttons
@@ -290,18 +290,18 @@ box-shadow: 0 0 0 3px hsl(94 36% 48% / 0.1)
 
 ---
 
-## 12. Data Hierarchy — Visual Weight Rules
+## 12. Data Hierarchy - Visual Weight Rules
 
 | Data type | Class(es) | Why |
 |---|---|---|
-| Monetary amount | `font-mono font-bold text-lg` | Most important number — stands out via mono + bold + 18px |
-| Company/entity name | `font-bold text-xl` | Second most important — 20px bold |
+| Monetary amount | `font-mono font-bold text-lg` | Most important number - stands out via mono + bold + 18px |
+| Company/entity name | `font-bold text-xl` | Second most important - 20px bold |
 | Page/section title | `text-2xl font-bold` or `text-lg font-semibold` | Clear structural landmark |
-| Person name | `font-semibold text-base` | Medium emphasis — 16px semibold |
+| Person name | `font-semibold text-base` | Medium emphasis - 16px semibold |
 | Field value (date, text) | *(inherits 16px 400)* | Just readable, no decoration |
-| Field label | `text-sm text-muted-foreground` | Suppressed — 14px gray so value stands out |
-| Sub-label (Head Office, Mobile) | `text-xs text-muted-foreground` | Most suppressed — 12px gray |
-| Empty state | `text-muted-foreground` | Same as label — de-emphasised |
+| Field label | `text-sm text-muted-foreground` | Suppressed - 14px gray so value stands out |
+| Sub-label (Head Office, Mobile) | `text-xs text-muted-foreground` | Most suppressed - 12px gray |
+| Empty state | `text-muted-foreground` | Same as label - de-emphasised |
 
 **Core principle:** Labels are intentionally small and gray so that the actual values feel prominent without needing to be oversized. Only amounts and company names get an explicit size boost.
 
@@ -312,7 +312,7 @@ box-shadow: 0 0 0 3px hsl(94 36% 48% / 0.1)
 ```
 --background: hsl(130 20% 95%) = #f0f5f1
 ```
-This is a subtle **sage green tint** — not pure white and not gray. It creates warmth and ties back to the green brand without being heavy.
+This is a subtle **sage green tint** - not pure white and not gray. It creates warmth and ties back to the green brand without being heavy.
 
 ---
 
@@ -335,7 +335,7 @@ Icon heading (small): h-5 w-5 text-primary
 Icon field-level:     h-4 w-4 text-muted-foreground
 
 Field label:          text-sm text-muted-foreground block mb-2
-Field value:          (body default — no class)
+Field value:          (body default - no class)
 Money value:          font-mono font-bold text-lg
 Company name:         font-bold text-xl text-foreground
 

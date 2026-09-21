@@ -146,9 +146,8 @@ export default function StackedScheduleSections({
                     {/* Left: Time Column */}
                     <div className="sm:w-32 shrink-0 sm:text-right pt-1">
                       <span
-                        className={`tedx-time-badge ${
-                          isKeynote ? "" : "tedx-time-badge-subtle"
-                        }`}
+                        className={`tedx-time-badge ${isKeynote ? "" : "tedx-time-badge-subtle"
+                          }`}
                       >
                         {item.time}
                       </span>
@@ -166,18 +165,17 @@ export default function StackedScheduleSections({
 
                     {/* Right: Event Card */}
                     <div
-                      className={`tedx-event-card flex-1 w-full ${
-                        isKeynote
+                      className={`tedx-event-card flex-1 w-full ${isKeynote
                           ? "tedx-event-card-speaker"
                           : item.type === "lunch" || item.type === "break"
-                          ? "tedx-event-card-break"
-                          : ""
-                      }`}
+                            ? "tedx-event-card-break"
+                            : ""
+                        }`}
                     >
                       {/* Mobile Time Sub-Row */}
                       <div className="sm:hidden mb-2 flex flex-wrap items-center justify-between gap-2">
                         <span className="font-mono text-xs font-bold text-[#eb0028]">
-                          {item.time} {item.endTime ? `— ${item.endTime}` : ""}
+                          {item.time} {item.endTime ? `- ${item.endTime}` : ""}
                         </span>
                         {item.duration && (
                           <span className="font-mono text-[11px] text-zinc-500">

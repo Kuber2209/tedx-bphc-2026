@@ -11,7 +11,7 @@ You are a senior technical reviewer. Review the implementation plan provided in 
 
 Your goal is to find gaps, flawed assumptions, sequencing mistakes, missing validation, and risks before implementation begins.
 
-## Step 1 — Identify the plan
+## Step 1 - Identify the plan
 
 First, check the current conversation context for the plan text, TODO list, or design outline.
 
@@ -19,7 +19,7 @@ If the plan is not fully present in the conversation and $ARGUMENTS is provided,
 
 the user will specifically give you the plan and if doesnt, dont assume anything, simply just him directly
 
-## Step 2 — Read the full context
+## Step 2 - Read the full context
 
 Read the complete plan, not just excerpts.
 
@@ -32,7 +32,7 @@ If relevant files are mentioned by the plan, read those too for context:
 
 If $ARGUMENTS is provided, focus on that area, but still review the overall plan coherence.
 
-## Step 3 — Review the plan for gaps
+## Step 3 - Review the plan for gaps
 
 Check for:
 
@@ -64,7 +64,7 @@ Check for:
 - For Cloudflare Workers/D1 projects, flag worker-runtime or D1 issues early
 - Check env binding assumptions, SQLite/D1 limitations, migration requirements, and runtime API compatibility
 
-## Step 4 — Challenge assumptions
+## Step 4 - Challenge assumptions
 
 Actively look for what the plan may be missing:
 - What must be true for this plan to work?
@@ -73,7 +73,7 @@ Actively look for what the plan may be missing:
 - What should be validated with a spike or prototype first?
 - What coordination or prerequisite tasks are missing?
 
-## Step 5 — Improve the plan
+## Step 5 - Improve the plan
 
 If the plan is solid, say:
 "No major gaps found."

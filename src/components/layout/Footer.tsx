@@ -34,7 +34,7 @@ export default function Footer() {
             </div>
 
             <p className="max-w-sm text-xs leading-relaxed text-zinc-400">
-              Ideas worth spreading — coming 2026. Fostering multidisciplinary dialogue, innovation, and impactful storytelling.
+              Ideas worth spreading - coming 2026. Fostering multidisciplinary dialogue, innovation, and impactful storytelling.
             </p>
 
             <div>
@@ -207,7 +207,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 4: Find Us — View On Map (lg:col-span-3) */}
+          {/* Column 4: Find Us - View On Map (lg:col-span-3) */}
           <div className="flex flex-col space-y-4 lg:col-span-3">
             <h3 className="text-xs font-mono font-semibold uppercase tracking-widest text-[#E62B1E]">
               FIND US

@@ -32,7 +32,7 @@ export default function HomeExperience() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          video.play().catch(() => {});
+          video.play().catch(() => { });
         } else {
           video.pause();
         }
@@ -50,7 +50,7 @@ export default function HomeExperience() {
   return (
     <div className="bg-transparent font-sans">
 
-      {/* 1. HERO — Cinematic, minimal matching TEDx MIT .videobanner */}
+      {/* 1. HERO - Cinematic, minimal matching TEDx MIT .videobanner */}
       <section ref={heroSectionRef} className="relative h-screen w-full overflow-hidden text-neutral-900 bg-white">
         <motion.div
           className="absolute inset-0 z-0 origin-top transform-gpu"
@@ -144,13 +144,13 @@ export default function HomeExperience() {
                 Invisible <br /> Threads.
               </h2>
               <p className="text-xl md:text-3xl font-light text-zinc-700 leading-relaxed tracking-wide">
-                Exploring the unseen connections that quietly shape our lives—from personal experiences to the systems, ideas, and circumstances that connect us in ways we rarely notice.
+                Exploring the unseen connections that quietly shape our lives-from personal experiences to the systems, ideas, and circumstances that connect us in ways we rarely notice.
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* 4. THE VOICES — 2x4 Animated Speaker Wall */}
+        {/* 4. THE VOICES - 2x4 Animated Speaker Wall */}
         <ScrollPortraitWall />
 
         {/* LOGO LOOP INTERMISSION */}
@@ -158,7 +158,7 @@ export default function HomeExperience() {
           <LogoLoop />
         </div>
 
-        {/* 5. CALL TO ACTION — Clean TEDx MIT style */}
+        {/* 5. CALL TO ACTION - Clean TEDx MIT style */}
         <section className="relative z-20 bg-white py-28 md:py-36 px-6 md:px-12 text-center text-[#181830] border-t border-zinc-100">
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}

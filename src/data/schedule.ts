@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * TEDx BPHC 2026 — SINGLE-DAY SCHEDULE CONFIGURATION
+ * TEDx BPHC 2026 - SINGLE-DAY SCHEDULE CONFIGURATION
  * Theme: "Invisible Threads"
  * ============================================================================
  */
@@ -179,7 +179,7 @@ export const scheduleTimeline: ScheduleItem[] = [
     sessionBlock: "morning",
     sessionLabel: "Inauguration",
     title: "Curatorial Prologue: Weaving Invisible Threads",
-    description: "Lighting of the lamp, ceremonial opening remarks, and an evocative prologue introducing the 2026 theme — exploring how unseen relationships hold our world together.",
+    description: "Lighting of the lamp, ceremonial opening remarks, and an evocative prologue introducing the 2026 theme - exploring how unseen relationships hold our world together.",
     location: "Main Auditorium Stage",
     type: "ceremony",
     duration: "20 min",
@@ -219,7 +219,7 @@ export const scheduleTimeline: ScheduleItem[] = [
     speakerName: "Speaker 2",
     speakerRole: "Ecological Biologist & Climate Strategist",
     talkTitle: "Nature's Original Web: The Mycelial Lesson",
-    description: "How ancient fungal networks beneath forest floors mirror human sociological networks — and why understanding symbiotic resource-sharing can resolve modern climate paralysis.",
+    description: "How ancient fungal networks beneath forest floors mirror human sociological networks - and why understanding symbiotic resource-sharing can resolve modern climate paralysis.",
     location: "Main Auditorium Stage",
     type: "talk",
     duration: "18 min",
@@ -350,7 +350,7 @@ export const scheduleTimeline: ScheduleItem[] = [
     speakerName: "Speaker 6",
     speakerRole: "Universal Designer & Accessibility Pioneer",
     talkTitle: "Designing at the Margins to Weave the Center",
-    description: "Why designing for extreme human constraints always leads to breakthroughs that benefit the entire human species — from the curb-cut effect to modern voice interfaces.",
+    description: "Why designing for extreme human constraints always leads to breakthroughs that benefit the entire human species - from the curb-cut effect to modern voice interfaces.",
     location: "Main Auditorium Stage",
     type: "talk",
     duration: "18 min",
