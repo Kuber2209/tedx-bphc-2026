@@ -68,34 +68,47 @@ export default function HomeExperience() {
             <source src="/mayank-raj.mp4" type="video/mp4" />
             <source src="/mayank%20raj.mp4" type="video/mp4" />
           </video>
-          {/* Dual cinematic contrast gradients ensuring high-definition legibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/25 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent pointer-events-none" />
+          {/* Left-side cinematic shadow: protects text contrast on the left while keeping center & right video crystal clear */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.6) 28%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 70%)",
+            }}
+          />
+          {/* Subtle mobile bottom gradient for compact screens */}
+          <div
+            className="absolute inset-0 pointer-events-none md:hidden"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 70%)",
+            }}
+          />
           {/* Seamless bottom fade into white theme section below */}
-          <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-b from-transparent to-white pointer-events-none" />
+          <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-b from-transparent to-white pointer-events-none" />
         </motion.div>
 
-        <div className="relative z-10 w-full h-full flex flex-col justify-end pb-20 md:pb-28 px-6 md:px-12 max-w-[1600px] mx-auto text-white">
+        <div className="relative z-10 w-full h-full flex flex-col justify-end pb-16 md:pb-24 px-6 md:px-12 max-w-[1600px] mx-auto text-white">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-            className="max-w-4xl"
+            className="max-w-3xl"
           >
-            <div className="flex items-center gap-4 mb-5">
-              <div className="h-[2px] w-10 bg-[#eb0028]"></div>
-              <p className="font-sans text-xs tracking-[0.25em] uppercase font-bold text-white/90">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="h-[2px] w-8 md:w-10 bg-[#eb0028]"></div>
+              <p className="font-sans text-xs tracking-[0.25em] uppercase font-bold text-white/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
                 BITS Pilani Hyderabad Campus • Great ideas to the world
               </p>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-[100px] font-bold tracking-tighter leading-[0.95] mb-6 text-white drop-shadow-sm">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[76px] font-bold tracking-tighter leading-[1.0] mb-5 text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
               Ideas that <br />
               <span className="font-bold text-[#eb0028]">challenge</span> the <br />
               ordinary<span className="text-[#eb0028]">.</span>
             </h1>
 
-            <p className="text-lg md:text-2xl font-normal text-white/90 leading-relaxed max-w-2xl mb-8 drop-shadow-xs">
+            <p className="text-base sm:text-lg md:text-xl font-normal text-white/90 leading-relaxed max-w-xl mb-7 drop-shadow-[0_1px_6px_rgba(0,0,0,0.6)]">
               TEDx BPHC returns in 2026. Join visionary scientists, designers, and innovators exploring connections that quietly shape our world.
             </p>
 
@@ -103,13 +116,13 @@ export default function HomeExperience() {
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 href="/passes"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] bg-[#eb0028] hover:bg-[#c40022] text-white font-semibold text-base transition-colors duration-200 shadow-lg shadow-[#eb0028]/25"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] bg-[#eb0028] hover:bg-[#c40022] text-white font-semibold text-sm sm:text-base transition-colors duration-200 shadow-lg shadow-[#eb0028]/25"
               >
                 Register for 2026
               </Link>
               <Link
                 href="/speakers"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-[4px] border border-white/80 hover:border-white bg-black/40 hover:bg-white text-white hover:text-black font-semibold text-base transition-all duration-200 backdrop-blur-xs shadow-xs"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] border border-white/80 hover:border-white bg-black/40 hover:bg-white text-white hover:text-black font-semibold text-sm sm:text-base transition-all duration-200 backdrop-blur-xs shadow-xs"
               >
                 Speaker Lineup
               </Link>
