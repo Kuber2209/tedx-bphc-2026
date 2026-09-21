@@ -2,8 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import ViewOnMap from "@/components/venue/ViewOnMap";
-import TedxLogo from "@/components/layout/TedxLogo";
 import { FaLinkedinIn, FaInstagram, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { Mail, Phone, MapPin } from "lucide-react";
 
@@ -15,70 +15,66 @@ const TEDX_PHONE_TEL = "+919876543210";
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/5 bg-black text-white">
-      {/* Background Grid Accent */}
-      <div
-        className="pointer-events-none absolute inset-0 bg-tiles opacity-20"
-        aria-hidden="true"
+    <footer className="relative border-t border-white/10 bg-[#08080a] text-white overflow-hidden">
+      {/* Subtle ambient red spotlight from bottom left */}
+      <div 
+        className="pointer-events-none absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-[#eb0028]/8 blur-[120px]" 
+        aria-hidden="true" 
       />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
-          {/* Column 1: TEDx Branding & Social Networks (lg:col-span-4) */}
-          <div className="flex flex-col space-y-6 lg:col-span-4">
-            <div className="space-y-3">
-              {/* Event Badge & Campus Indicator */}
-              <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold tracking-wider bg-[#eb0028]/10 text-[#eb0028] border border-[#eb0028]/25">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#eb0028] animate-pulse" />
-                  2026 ASSEMBLY
-                </span>
-                <span className="text-[11px] font-mono tracking-wider text-zinc-500 uppercase">
-                  Hyderabad, IN
-                </span>
-              </div>
-
-              {/* Bespoke Brand Header */}
-              <Link href="/" className="group inline-block focus:outline-none">
-                <div className="flex items-baseline gap-1 select-none font-sans font-black tracking-tight leading-none text-3xl sm:text-[34px]">
-                  <span className="text-[#eb0028] tracking-[-0.04em] transition-transform duration-300 group-hover:scale-105">
-                    TED
-                  </span>
-                  <span className="text-[#eb0028] font-bold text-[0.7em] leading-none -translate-y-[0.28em] ml-[0.05em] mr-[0.22em]">
-                    x
-                  </span>
-                  <span className="font-bold tracking-tight text-white transition-colors duration-200 group-hover:text-white/90">
-                    BITS Hyderabad
-                  </span>
-                </div>
+      <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+        {/* 1. TOP BRAND SHOWCASE - Generous, prestigious architectural header */}
+        <div className="pb-10 md:pb-12 border-b border-white/[0.08]">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+            <div className="space-y-4 max-w-2xl">
+              <Link href="/" className="inline-block transition-transform duration-300 hover:scale-[1.01]">
+                <Image
+                  src="/tedx-logo-transparent.png"
+                  alt="TEDx BITS Hyderabad"
+                  width={377}
+                  height={46}
+                  className="h-10 sm:h-12 w-auto object-contain"
+                  priority
+                />
               </Link>
-
-              {/* Sub-brand Campus & Official TED Tagline */}
-              <div className="flex flex-col gap-1 border-l-2 border-[#eb0028]/80 pl-3 py-0.5">
-                <p className="text-xs font-mono font-medium tracking-wide text-zinc-300">
-                  BITS Pilani Hyderabad Campus
-                </p>
-                <p className="text-[11px] tracking-wide text-zinc-400 font-normal">
-                  <span className="text-[#eb0028] font-bold">x</span> = independently organized TED event
-                </p>
-              </div>
+              <p className="text-zinc-400 text-sm leading-relaxed max-w-xl">
+                An independently organized TED event dedicated to ideas that challenge the ordinary. Fostering multidisciplinary dialogues across science, technology, and culture at BITS Pilani Hyderabad Campus.
+              </p>
             </div>
 
-            <p className="max-w-sm text-xs leading-relaxed text-zinc-400">
-              Ideas worth spreading. Fostering multidisciplinary dialogue, scientific innovation, and impactful storytelling across India and beyond.
-            </p>
-
-            <div>
-              <p className="text-xs font-medium text-zinc-400">
-                Get connected with us on social networks:
+            <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-2.5 font-mono text-xs text-zinc-400">
+              <div className="inline-flex items-center gap-2 text-[#eb0028] tracking-widest uppercase font-semibold">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#eb0028]" />
+                12th Annual Assembly • 2026
+              </div>
+              <p className="text-zinc-400">
+                BITS Pilani, Hyderabad Campus
               </p>
-              <div className="mt-3 flex items-center gap-3">
+              <p className="text-[11px] text-zinc-500">
+                17.5449° N, 78.5718° E
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* 2. LOWER COLUMNS */}
+        <div className="pt-10 md:pt-12 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+          {/* Column 1: Social Networks & Licensing (lg:col-span-4) */}
+          <div className="flex flex-col justify-between space-y-6 lg:col-span-4">
+            <div>
+              <h3 className="text-xs font-mono font-semibold uppercase tracking-widest text-[#E62B1E] mb-3">
+                CONNECT & COMMUNITY
+              </h3>
+              <p className="text-xs text-zinc-400 leading-relaxed mb-4">
+                Stay updated on speaker announcements, registrations, and behind-the-scenes insights.
+              </p>
+              <div className="flex items-center gap-3">
                 <a
                   href={TEDX_LINKEDIN}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="TEDx BITS Hyderabad LinkedIn"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-700 bg-zinc-900/90 text-zinc-400 shadow-sm transition-all hover:border-zinc-500 hover:bg-zinc-800 hover:text-[#0A66C2] hover:scale-105"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/90 text-zinc-400 shadow-sm transition-all hover:border-[#eb0028]/50 hover:bg-zinc-800 hover:text-white hover:scale-105"
                 >
                   <FaLinkedinIn className="h-4 w-4" />
                 </a>
@@ -88,7 +84,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="TEDx BITS Hyderabad Instagram"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-700 bg-zinc-900/90 text-zinc-400 shadow-sm transition-all hover:border-zinc-500 hover:bg-zinc-800 hover:text-[#E4405F] hover:scale-105"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/90 text-zinc-400 shadow-sm transition-all hover:border-[#eb0028]/50 hover:bg-zinc-800 hover:text-[#E4405F] hover:scale-105"
                 >
                   <FaInstagram className="h-4 w-4" />
                 </a>
@@ -98,7 +94,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="TEDx Twitter / X"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-700 bg-zinc-900/90 text-zinc-400 shadow-sm transition-all hover:border-zinc-500 hover:bg-zinc-800 hover:text-white hover:scale-105"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/90 text-zinc-400 shadow-sm transition-all hover:border-[#eb0028]/50 hover:bg-zinc-800 hover:text-white hover:scale-105"
                 >
                   <FaXTwitter className="h-4 w-4" />
                 </a>
@@ -108,11 +104,17 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="TEDx YouTube"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-700 bg-zinc-900/90 text-zinc-400 shadow-sm transition-all hover:border-zinc-500 hover:bg-zinc-800 hover:text-[#FF0000] hover:scale-105"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/90 text-zinc-400 shadow-sm transition-all hover:border-[#eb0028]/50 hover:bg-zinc-800 hover:text-[#FF0000] hover:scale-105"
                 >
                   <FaYoutube className="h-4 w-4" />
                 </a>
               </div>
+            </div>
+
+            <div className="pt-4 border-t border-zinc-800/60">
+              <p className="text-[11px] text-zinc-500 leading-normal">
+                <span className="text-[#eb0028] font-bold">TEDx</span> is a program of local, self-organized events that bring people together to share a TED-like experience.
+              </p>
             </div>
           </div>
 
@@ -264,20 +266,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Architectural Statement Watermark */}
-        <div className="relative mt-16 pt-8 pb-3 overflow-hidden select-none pointer-events-none border-t border-white/[0.06]">
-          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3">
-            <span className="font-black text-[clamp(2.25rem,7vw,5.5rem)] tracking-tighter leading-none text-white/[0.06] uppercase">
-              TED<span className="text-[#eb0028]/[0.22]">x</span>BITS<span className="text-white/[0.035]">Hyderabad</span>
-            </span>
-            <span className="font-mono text-[11px] text-zinc-600 tracking-[0.25em] uppercase">
-              Ideas That Challenge The Ordinary • 2026
-            </span>
-          </div>
-        </div>
-
         {/* Bottom Bar: Copyright & License */}
-        <div className="mt-4 flex flex-col items-center justify-between gap-3 border-t border-white/5 pt-6 text-center text-xs text-zinc-500 sm:flex-row sm:text-left">
+        <div className="mt-14 pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
           <p>
             © 2026 <strong className="text-zinc-300 font-semibold">TEDx BITS Hyderabad</strong>. All rights reserved.
           </p>
