@@ -22,12 +22,12 @@ export default function Footer() {
       {/* Aurora Borealis Background Effect on Black - TED Signature Palette */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none" aria-hidden="true">
         {/* CSS Ambient Aurora Glow Mesh (fallback & rich glow enhancer) */}
-        <div className="absolute inset-0 opacity-50 bg-[radial-gradient(ellipse_80%_50%_at_25%_35%,rgba(235,0,40,0.28),transparent_65%),radial-gradient(ellipse_60%_50%_at_75%_35%,rgba(255,255,255,0.09),transparent_60%),radial-gradient(ellipse_75%_65%_at_50%_80%,rgba(140,0,24,0.32),transparent_70%)]" />
+        <div className="absolute inset-0 opacity-55 bg-[radial-gradient(ellipse_80%_50%_at_25%_35%,rgba(255,38,68,0.30),transparent_65%),radial-gradient(ellipse_60%_50%_at_75%_35%,rgba(255,255,255,0.12),transparent_60%),radial-gradient(ellipse_75%_65%_at_50%_80%,rgba(180,25,48,0.32),transparent_70%)]" />
 
-        {/* Live WebGL Aurora Shader in TED Red, Pearlescent White, and Deep Crimson */}
-        <div className="absolute inset-0 opacity-65 mix-blend-screen">
+        {/* Live WebGL Aurora Shader in Lighter TED Red, Pure White, and Ruby Crimson */}
+        <div className="absolute inset-0 opacity-72 mix-blend-screen">
           <Aurora
-            colorStops={["#eb0028", "#f4f4f5", "#800010"]}
+            colorStops={["#ff2644", "#ffffff", "#a6192e"]}
             amplitude={1.15}
             blend={0.65}
             speed={0.55}
