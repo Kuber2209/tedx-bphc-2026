@@ -12,7 +12,7 @@ building against - update it if scope changes so it stays accurate.
 - **Teasers into inner sections** - small preview cards linking to `/speakers` and
   `/sponsors` (pulls from the same data Team #2 defines in `src/data/`)
 - **Community / newsletter signup**
-- Also owns: global theme tokens in `globals.css`, `Navbar`/`Footer` styling ok ok 
+- Also owns: global theme tokens in `globals.css`, `Navbar`/`Footer` styling 
 
 ## `/speakers` - Speakers (Team #2) ok ok 
 
