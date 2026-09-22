@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Check, X, Sparkles, ShieldCheck, GraduationCap, Building2, Globe } from "lucide-react";
+import { Check, X, GraduationCap, Building2, Globe } from "lucide-react";
 import { passComparisons, PassComparisonData } from "@/data/passes";
 
 interface PassComparisonTableProps {
@@ -24,9 +24,9 @@ export default function PassComparisonTable({
     passComparisons[currentId] || passComparisons["school-student"];
 
   const tabs = [
-    { id: "school-student", label: "Student Pass", price: "₹429 / ₹550", icon: GraduationCap },
-    { id: "bits-internal", label: "BITSian Pass", price: "₹650 / ₹1,299", icon: Building2 },
-    { id: "external-guest", label: "Guest Pass", price: "₹650 / ₹850", icon: Globe },
+    { id: "school-student", label: "Student Pass", icon: GraduationCap },
+    { id: "bits-internal", label: "BITSian Pass", icon: Building2 },
+    { id: "external-guest", label: "Guest Pass", icon: Globe },
   ];
 
   return (
@@ -39,7 +39,7 @@ export default function PassComparisonTable({
               {activeData.name}
             </h3>
             <p className="text-sm font-light text-neutral-600 max-w-2xl">
-              Compare inclusions across both tiers to select the experience tailored to your conference participation.
+              Compare inclusions across conference tiers to select the experience tailored to your participation.
             </p>
           </div>
 
@@ -74,51 +74,20 @@ export default function PassComparisonTable({
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="border-b border-neutral-200 bg-neutral-50/80">
-              <th className="py-6 px-6 font-mono text-xs font-bold uppercase tracking-wider text-neutral-600 w-1/2 sm:w-7/12">
+              <th className="py-5 px-6 font-mono text-xs font-bold uppercase tracking-wider text-neutral-700 w-1/2 sm:w-7/12">
                 Benefits & Privileges
               </th>
-
-              {/* Standard Column Header */}
-              <th className="py-6 px-4 text-center font-mono text-xs font-bold uppercase tracking-wider text-neutral-900 w-1/4 sm:w-2.5/12 border-l border-neutral-200 bg-neutral-50/50">
-                <div className="flex flex-col items-center gap-1.5">
-                  <div className="flex items-center gap-1.5">
-                    <span>Standard</span>
-                    {activeData.standardTag && (
-                      <span className="text-[9px] font-mono normal-case tracking-normal px-1.5 py-0.5 rounded bg-emerald-100/70 text-emerald-800 font-bold">
-                        {activeData.standardTag}
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex items-baseline gap-1.5">
-                    <span className="text-xl sm:text-2xl font-sans font-bold text-neutral-900">
-                      {activeData.standardPrice}
-                    </span>
-                    {activeData.originalStandardPrice && (
-                      <span className="text-xs text-neutral-400 line-through font-sans">
-                        {activeData.originalStandardPrice}
-                      </span>
-                    )}
-                  </div>
-                  <span className="text-[10px] font-normal text-neutral-500 font-sans normal-case">
-                    Essential Access
-                  </span>
-                </div>
+              <th className="py-5 px-4 text-center font-mono text-xs font-bold uppercase tracking-wider text-neutral-900 w-1/4 sm:w-2.5/12 border-l border-neutral-200 bg-neutral-50/50">
+                <span className="block font-bold">Standard</span>
+                <span className="block text-[10px] font-normal text-neutral-500 font-sans normal-case mt-0.5">
+                  Essential Access
+                </span>
               </th>
-
-              {/* Premium Column Header */}
-              <th className="py-6 px-4 text-center font-mono text-xs font-bold uppercase tracking-wider text-[#eb0028] w-1/4 sm:w-2.5/12 border-l border-neutral-200 bg-red-50/40">
-                <div className="flex flex-col items-center gap-1.5">
-                  <span className="flex items-center gap-1">
-                    <span>Premium</span>
-                    <ShieldCheck className="h-4 w-4 text-[#eb0028]" />
-                  </span>
-                  <span className="text-xl sm:text-2xl font-sans font-bold text-[#eb0028]">
-                    {activeData.premiumPrice}
-                  </span>
-                  <span className="text-[10px] font-normal text-[#eb0028]/80 font-sans normal-case">
-                    All-Inclusive Experience
-                  </span>
-                </div>
+              <th className="py-5 px-4 text-center font-mono text-xs font-bold uppercase tracking-wider text-neutral-900 w-1/4 sm:w-2.5/12 border-l border-neutral-200 bg-neutral-50/50">
+                <span className="block font-bold">Full Access</span>
+                <span className="block text-[10px] font-normal text-neutral-500 font-sans normal-case mt-0.5">
+                  Complete Experience
+                </span>
               </th>
             </tr>
           </thead>
@@ -152,19 +121,19 @@ export default function PassComparisonTable({
                   )}
                 </td>
 
-                {/* Premium Tier */}
-                <td className="py-4 px-4 text-center border-l border-neutral-100 bg-red-50/10">
-                  {item.premium ? (
+                {/* Full Access Tier */}
+                <td className="py-4 px-4 text-center border-l border-neutral-100">
+                  {item.fullAccess ? (
                     <div
-                      className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#eb0028]/10 text-[#eb0028] border border-[#eb0028]/30 font-bold"
-                      title="Included in Premium"
+                      className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200/80"
+                      title="Included in Full Access"
                     >
-                      <Check className="h-3.5 w-3.5 stroke-[3]" />
+                      <Check className="h-3.5 w-3.5 stroke-[2.5]" />
                     </div>
                   ) : (
                     <div
                       className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-neutral-100 text-neutral-400"
-                      title="Not included in Premium"
+                      title="Not included in Full Access"
                     >
                       <X className="h-3.5 w-3.5 stroke-[2]" />
                     </div>

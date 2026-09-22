@@ -21,19 +21,22 @@ export default function Footer() {
     <footer className="relative border-t border-white/10 bg-black text-white overflow-hidden">
       {/* Aurora Borealis Background Effect on Black - TED Signature Palette */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none" aria-hidden="true">
-        {/* CSS Ambient Aurora Glow Mesh (fallback & rich glow enhancer) */}
-        <div className="absolute inset-0 opacity-55 bg-[radial-gradient(ellipse_80%_50%_at_25%_35%,rgba(255,38,68,0.30),transparent_65%),radial-gradient(ellipse_60%_50%_at_75%_35%,rgba(255,255,255,0.12),transparent_60%),radial-gradient(ellipse_75%_65%_at_50%_80%,rgba(180,25,48,0.32),transparent_70%)]" />
+        {/* CSS Ambient Aurora Glow Mesh: darker crimson on left, soft white on right */}
+        <div className="absolute inset-0 opacity-50 bg-[radial-gradient(ellipse_80%_50%_at_15%_35%,rgba(90,0,12,0.45),transparent_65%),radial-gradient(ellipse_60%_50%_at_75%_35%,rgba(255,255,255,0.08),transparent_60%),radial-gradient(ellipse_75%_65%_at_50%_80%,rgba(180,20,45,0.28),transparent_70%)]" />
 
-        {/* Live WebGL Aurora Shader in Lighter TED Red, Pure White, and Ruby Crimson */}
-        <div className="absolute inset-0 opacity-72 mix-blend-screen">
+        {/* Live WebGL Aurora Shader: deep dark crimson on left, vibrant TED Red in center, moving pearl white on right */}
+        <div className="absolute inset-0 opacity-70 mix-blend-screen">
           <Aurora
-            colorStops={["#ff2644", "#ffffff", "#a6192e"]}
+            colorStops={["#4a0008", "#eb0028", "#f0f0f5"]}
             amplitude={1.15}
             blend={0.65}
             speed={0.55}
             lightMode={false}
           />
         </div>
+
+        {/* Left-side dark vignette guaranteeing crystal-clear text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent pointer-events-none" />
 
         {/* Cinematic dark top and bottom gradient vignette */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/75 pointer-events-none" />

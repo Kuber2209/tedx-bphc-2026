@@ -106,8 +106,13 @@ void main() {
   colors[1] = ColorStop(uColorStops[1], 0.5);
   colors[2] = ColorStop(uColorStops[2], 1.0);
   
+  // Dynamically drift color bands horizontally so highlights never stay frozen in one place
+  float drift = sin(uTime * 0.15) * 0.25;
+  float waveOffset = sin(uv.x * 2.0 + uTime * 0.2) * 0.12 + cos(uv.y * 1.5 + uTime * 0.15) * 0.08;
+  float colorFactor = clamp(uv.x + drift + waveOffset, 0.0, 1.0);
+  
   vec3 rampColor;
-  COLOR_RAMP(colors, uv.x, rampColor);
+  COLOR_RAMP(colors, colorFactor, rampColor);
   
   float height = snoise(vec2(uv.x * 2.0 + uTime * 0.1, uTime * 0.25)) * 0.5 * uAmplitude;
   height = exp(height);

@@ -93,39 +93,21 @@ export default function PassesPage() {
                   borderRadius="1rem"
                   showOuterGlow={true}
                   intensity={0.5}
-                  highlight={pass.highlight}
+                  highlight={false}
                   className="h-full w-full"
                 >
-                  <div
-                    className={`group relative flex flex-col justify-between p-8 sm:p-10 rounded-2xl w-full h-full ${
-                      pass.highlight
-                        ? "bg-white border-none shadow-[0_20px_40px_-15px_rgba(235,0,40,0.15)] ring-1 ring-neutral-200/60"
-                        : "bg-white border border-neutral-200 shadow-sm"
-                    }`}
-                  >
+                  <div className="group relative flex flex-col justify-between p-8 sm:p-10 rounded-2xl w-full h-full bg-white border border-neutral-200 shadow-sm">
                     {/* Accent top line */}
-                    <div
-                      className={`absolute top-0 left-0 right-0 h-1.5 rounded-t-2xl transition-opacity duration-500 ${
-                        pass.highlight
-                          ? "bg-gradient-to-r from-[#eb0028] via-[#eb0028]/80 to-transparent opacity-100"
-                          : "bg-gradient-to-r from-neutral-200 to-transparent opacity-0 group-hover:opacity-100"
-                      }`}
-                    />
+                    <div className="absolute top-0 left-0 right-0 h-1.5 rounded-t-2xl transition-opacity duration-500 bg-gradient-to-r from-neutral-200 to-transparent opacity-0 group-hover:opacity-100" />
 
                     {/* Top Section */}
                     <div>
-                      {/* Category Pill & Highlight Indicator */}
+                      {/* Category Pill */}
                       <div className="flex items-center justify-between gap-2 mb-8">
                         <span className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-600">
                           {getPassIcon(pass.id)}
                           <span>{pass.badge}</span>
                         </span>
-
-                        {pass.highlight && (
-                          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#eb0028]/10 px-3 py-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-[#eb0028]">
-                            Campus Exclusive
-                          </span>
-                        )}
                       </div>
 
                       {/* Pass Name & Target Audience */}
@@ -144,48 +126,13 @@ export default function PassesPage() {
                       <p className="text-sm font-light text-neutral-600 leading-relaxed mb-8">
                         {pass.description}
                       </p>
-
                     </div>
 
-                    {/* Bottom Price & CTA Area */}
-                    <div className="pt-8 border-t border-neutral-100 mt-auto relative z-20">
-                      <div className="flex items-baseline justify-between gap-4 mb-6">
-                        <div>
-                          <p className="text-zinc-500 font-mono text-[10px] tracking-[0.2em] uppercase mb-1">
-                            Delegate Fee
-                          </p>
-                          <div className="flex items-baseline gap-2">
-                            <span className="text-3xl font-sans font-bold text-black tracking-tight">
-                              {pass.pricing?.standard.price || pass.price}
-                            </span>
-                            <span className="text-neutral-300 font-light text-2xl">/</span>
-                            <span className="text-3xl font-sans font-bold text-[#eb0028] tracking-tight">
-                              {pass.pricing?.premium.price}
-                            </span>
-                            {pass.pricing?.standard.originalPrice && (
-                              <span className="text-xs text-neutral-400 line-through ml-1">
-                                {pass.pricing.standard.originalPrice}
-                              </span>
-                            )}
-                            {pass.pricing?.standard.originalPrice && (
-                              <span className="text-[9px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200/60 font-bold px-1.5 py-0.5 rounded ml-1">
-                                Early Bird
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                        <span className="text-[10px] font-mono text-[#eb0028] uppercase tracking-wider font-bold bg-[#eb0028]/5 px-2 py-1 rounded">
-                          Phase 1
-                        </span>
-                      </div>
-
+                    {/* Bottom CTA Area */}
+                    <div className="pt-6 border-t border-neutral-100 mt-auto relative z-20">
                       <Link
                         href={`/passes/${pass.id}`}
-                        className={`w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-bold tracking-[0.2em] uppercase rounded-full transition-all duration-300 ${
-                          pass.highlight 
-                            ? "bg-[#eb0028] text-white hover:bg-[#c20021] hover:shadow-lg shadow-sm"
-                            : "bg-black text-white hover:bg-neutral-800 hover:shadow-lg shadow-sm"
-                        }`}
+                        className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-bold tracking-[0.2em] uppercase rounded-full bg-black text-white hover:bg-neutral-800 hover:shadow-lg shadow-sm transition-all duration-300"
                       >
                         <span>View Pass Details</span>
                         <ArrowUpRight className="h-4 w-4" />
@@ -196,7 +143,7 @@ export default function PassesPage() {
               ))}
             </div>
 
-            {/* Pass Tier Comparison: Standard vs Premium with interactive tabs */}
+            {/* Pass Inclusions & Privileges with interactive tabs */}
             <div className="mt-20 p-8 sm:p-12 rounded-3xl bg-white border border-neutral-200/80 shadow-xs">
               <PassComparisonTable showTabs={true} showHeader={true} />
             </div>

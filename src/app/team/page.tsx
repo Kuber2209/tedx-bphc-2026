@@ -92,7 +92,7 @@ export default function TeamPage() {
                 href="/passes"
                 className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] bg-[#eb0028] hover:bg-[#c40022] text-white font-semibold text-sm sm:text-base transition-colors duration-200 shadow-sm"
               >
-                Register for 2026
+                Register for 15th Nov
               </Link>
               <Link
                 href="/speakers"

@@ -327,7 +327,7 @@ export default function SchedulePage() {
                   href="/passes"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-[4px] bg-[#eb0028] hover:bg-[#960800] text-white font-semibold text-sm sm:text-base transition-colors duration-200 shadow-sm"
                 >
-                  Register for 2026
+                  Register for 15th Nov
                 </Link>
                 <button
                   type="button"

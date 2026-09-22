@@ -3,64 +3,64 @@ import { PassTier } from "./types";
 export interface PassComparisonBenefit {
   benefit: string;
   standard: boolean;
-  premium: boolean;
+  fullAccess: boolean;
 }
 
 export const studentPassComparison: PassComparisonBenefit[] = [
   {
     benefit: "Full Access to All Keynote Talks & Performances (Day 1 & Day 2)",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Official Delegate Credential & Lanyard Badge",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Catered Networking Lunch & High-Tea Refreshments",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Official Certificate of Participation",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Access to Student Research Exhibits & Interactive Installations",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
-    benefit: "Premium Delegate Merchandise Pack (Canvas Tote, Journal & Decals)",
+    benefit: "Official Conference Delegate Pack (Canvas Tote, Journal & Decals)",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
   {
-    benefit: "Exclusive TEDx BPHC Commemorative Metallic Lapel Pin",
+    benefit: "Commemorative TEDx BPHC Metallic Lapel Pin",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
   {
-    benefit: "Priority Front-Row Auditorium Seating Zone",
+    benefit: "Reserved Front-Row Auditorium Seating Zone",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Fast-Track Priority Registration Check-In Desk",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
   {
-    benefit: "Exclusive Post-Event Speaker Interaction & Q&A Access",
+    benefit: "Post-Event Speaker Interaction & Q&A Breakouts",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Digital Presentation Archives & Resource Toolkit",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
 ];
 
@@ -68,62 +68,62 @@ export const bitsianPassComparison: PassComparisonBenefit[] = [
   {
     benefit: "Full Access to All Keynote Talks & Performances (Day 1 & Day 2)",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Official BPHC Attendee Credential & Commemorative Lanyard",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Catered Networking Luncheon & High-Tea Refreshments",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Academic Attendance Condonation Facilitation",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Access to Student Research Exhibits & Interactive Installations",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "TEDx BPHC Matte Hardbound Conference Notebook & Metallic Pen",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
-    benefit: "Premium Commemorative Merchandise Pack (Custom Canvas Tote & Decals)",
+    benefit: "Commemorative Merchandise Pack (Custom Canvas Tote & Decals)",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Exclusive TEDx BPHC Metallic Lapel Pin & Metal Bookmark",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
   {
-    benefit: "Priority Stalls Tier Seating with Prime Stage Sightlines",
+    benefit: "Reserved Stalls Tier Seating with Prime Stage Sightlines",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Fast-Track Registration Desk Clearance",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
   {
-    benefit: "Exclusive Post-Conference Campus Community & Speaker Mixer",
+    benefit: "Post-Conference Campus Community & Speaker Mixer",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Digital Presentation Archives & Resource Toolkit",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
 ];
 
@@ -131,62 +131,62 @@ export const guestPassComparison: PassComparisonBenefit[] = [
   {
     benefit: "Full-Day Access to All Keynote Talks, Panels & Stage Performances",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Official Executive Delegate Credential & RFID Lanyard",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Campus Visitor Vehicle Entry Permit & Reserved Parking Clearance",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Curated Executive Networking Luncheon & Refreshments",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Access to Research Exhibits & Experience Zones",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Executive Conference Notebook & Stationery Pack",
     standard: true,
-    premium: true,
+    fullAccess: true,
   },
   {
-    benefit: "Premium Executive Pack (Insulated Tumbler, Canvas Tote & Sponsor Pack)",
+    benefit: "Executive Delegate Pack (Insulated Tumbler, Canvas Tote & Sponsor Pack)",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Laser-Cut Metallic Lapel Pin & Commemorative Collectibles",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
   {
-    benefit: "Prime Central Bowl Seating (Unobstructed Front-Tier Sightlines)",
+    benefit: "Reserved Central Bowl Seating (Prime Sightlines)",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "VIP Fast-Track Registration & Gate Clearance Desk",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
   {
-    benefit: "Exclusive Evening Networking Mixer with Speakers & Founders",
+    benefit: "Evening Networking Mixer with Speakers & Founders",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
   {
     benefit: "Digital Presentation Archives & Speaker Presentation Transcripts",
     standard: false,
-    premium: true,
+    fullAccess: true,
   },
 ];
 
@@ -194,11 +194,6 @@ export interface PassComparisonData {
   id: string;
   name: string;
   badge: string;
-  standardPrice: string;
-  originalStandardPrice?: string;
-  standardTag?: string;
-  premiumPrice: string;
-  premiumTag?: string;
   benefits: PassComparisonBenefit[];
 }
 
@@ -207,34 +202,24 @@ export const passComparisons: Record<string, PassComparisonData> = {
     id: "school-student",
     name: "Student Pass",
     badge: "Student Delegation",
-    standardPrice: "₹429",
-    premiumPrice: "₹550",
     benefits: studentPassComparison,
   },
   "student": {
     id: "school-student",
     name: "Student Pass",
     badge: "Student Delegation",
-    standardPrice: "₹429",
-    premiumPrice: "₹550",
     benefits: studentPassComparison,
   },
   "bits-internal": {
     id: "bits-internal",
     name: "BITSian Pass",
     badge: "Campus Exclusive",
-    standardPrice: "₹650",
-    originalStandardPrice: "₹999",
-    standardTag: "Early Bird",
-    premiumPrice: "₹1,299",
     benefits: bitsianPassComparison,
   },
   "external-guest": {
     id: "external-guest",
     name: "External Guest Pass",
     badge: "General Delegate",
-    standardPrice: "₹650",
-    premiumPrice: "₹850",
     benefits: guestPassComparison,
   },
 };
@@ -265,14 +250,13 @@ export const passTiers: PassTier[] = [
       "Interactive Q&A & student discussion breakouts",
       "Lunch & high-tea refreshments during session breaks",
       "Official Certificate of Participation",
-      "Premium tier includes exclusive merchandise, front-row seating & speaker Q&A",
     ],
     available: false,
     highlight: false,
     registrationUrl: "#",
     details: {
       overview:
-        "The Student Pass is designed to inspire the next generation of researchers, artists, and problem solvers. Available in Standard and Premium tiers, delegates can choose between essential conference access or an elevated experience featuring front-row seating, exclusive merchandise, and speaker interactions.",
+        "The Student Pass is designed to inspire the next generation of researchers, artists, and problem solvers with full conference access, interactive exhibits, and peer discussions.",
       whoShouldAttend: [
         "Students enrolled in Grades 9–12 across CBSE, ICSE, IB, Cambridge, and State Boards",
         "Aspiring young innovators, researchers, and creative thinkers seeking intellectual inspiration",
@@ -367,10 +351,9 @@ export const passTiers: PassTier[] = [
       "Exclusive BPHC edition delegate kit & attendee credentials",
       "Catered networking luncheon & refreshments",
       "Academic attendance condonation facilitation",
-      "Premium tier includes exclusive merchandise, lapel pin & speaker mixer",
     ],
     available: false,
-    highlight: true,
+    highlight: false,
     registrationUrl: "#",
     details: {
       overview:
@@ -467,7 +450,6 @@ export const passTiers: PassTier[] = [
       "Official executive delegate credential & RFID lanyard",
       "Campus visitor vehicle entry permit & reserved parking clearance",
       "Executive networking lunch & refreshments with speakers and partners",
-      "Premium tier includes executive merchandise, front-row seating & founder mixer",
     ],
     available: false,
     highlight: false,
