@@ -49,12 +49,12 @@ export default function MiniBar() {
           <span>BITS Hyd</span>
         </div>
         <div className="flex items-center gap-6">
-          <Link 
+          {/* <Link 
             href="/schedule" 
             className="hidden sm:flex text-xs font-mono tracking-wider text-neutral-600 hover:text-black transition-colors duration-200"
           >
             Schedule
-          </Link>
+          </Link> */}
           <Link 
             href="/passes" 
             className="text-neutral-900 font-mono text-xs tracking-wider uppercase font-semibold hover:text-[#eb0028] transition-colors duration-200 flex items-center gap-2.5 group relative"
