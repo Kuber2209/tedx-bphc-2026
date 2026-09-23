@@ -13,8 +13,8 @@ const Aurora = dynamic(() => import("@/components/backgrounds/Aurora"), { ssr: f
 const TEDX_LINKEDIN = "https://www.linkedin.com/company/tedxbitshyderabad/";
 const TEDX_INSTAGRAM = "https://www.instagram.com/tedxbitshyderabad/";
 const TEDX_EMAIL = "tedx@hyderabad.bits-pilani.ac.in";
-const TEDX_PHONE = "+91 98765 43210";
-const TEDX_PHONE_TEL = "+919876543210";
+const TEDX_PHONE = "+91 63886 68213";
+const TEDX_PHONE_TEL = "+916388668213";
 
 export default function Footer() {
   return (
@@ -230,7 +230,7 @@ export default function Footer() {
                 <Phone className="h-4 w-4 shrink-0 text-[#E62B1E]" />
                 <div className="flex flex-col">
                   <span className="text-[11px] font-mono uppercase text-zinc-400">
-                    Tedx Executive
+                    Delegations &amp; Registrations
                   </span>
                   <a
                     href={`tel:${TEDX_PHONE_TEL}`}

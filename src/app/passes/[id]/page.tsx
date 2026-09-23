@@ -123,11 +123,11 @@ export default async function PassDetailPage({ params }: PassDetailPageProps) {
 
             {isStudent ? (
               <a
-                href="tel:+919876543210"
+                href="tel:+916388668213"
                 className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-xs font-bold tracking-[0.12em] uppercase rounded-full bg-black text-white hover:bg-neutral-800 hover:shadow-lg shadow-sm transition-all duration-300 group text-center"
               >
                 <Phone className="h-3.5 w-3.5 shrink-0 transition-transform group-hover:scale-110" />
-                <span>Contact +91 98765 43210 to Register</span>
+                <span>Contact +91 63886 68213 to Register</span>
               </a>
             ) : (
               <Link
@@ -263,12 +263,21 @@ export default async function PassDetailPage({ params }: PassDetailPageProps) {
                   For groups of 10 or more delegates, our hospitality desk facilitates block
                   ticketing, unified billing, and campus bus entry.
                 </p>
-                <a
-                  href="mailto:tedx@hyderabad.bits-pilani.ac.in?subject=Group%20Pass%20Inquiry"
-                  className="w-full text-center inline-flex items-center justify-center gap-2 rounded-full border border-neutral-700 bg-neutral-900 px-5 py-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-neutral-800 hover:border-neutral-500 transition-colors"
-                >
-                  <span>Contact Delegation Desk</span>
-                </a>
+                <div className="flex flex-col gap-2.5">
+                  <a
+                    href="tel:+916388668213"
+                    className="w-full text-center inline-flex items-center justify-center gap-2 rounded-full border border-[#eb0028] bg-[#eb0028] hover:bg-[#c40022] px-5 py-3 text-xs font-bold uppercase tracking-wider text-white transition-colors shadow-sm"
+                  >
+                    <Phone className="h-3.5 w-3.5" />
+                    <span>Call +91 63886 68213</span>
+                  </a>
+                  <a
+                    href="mailto:tedx@hyderabad.bits-pilani.ac.in?subject=Group%20Pass%20Inquiry"
+                    className="w-full text-center inline-flex items-center justify-center gap-2 rounded-full border border-neutral-700 bg-neutral-900 px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors"
+                  >
+                    <span>Email Delegation Desk</span>
+                  </a>
+                </div>
               </div>
             )}
 

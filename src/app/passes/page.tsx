@@ -15,6 +15,7 @@ import {
   ArrowUpRight,
   HelpCircle,
   Users,
+  Phone,
 } from "lucide-react";
 import { FlowButton } from "@/components/ui/flow-button";
 import TEDxWatermark from "@/components/layout/TEDxWatermark";
@@ -123,9 +124,22 @@ export default function PassesPage() {
                       </div>
 
                       {/* Description */}
-                      <p className="text-sm font-light text-neutral-600 leading-relaxed mb-8">
+                      <p className="text-sm font-light text-neutral-600 leading-relaxed mb-4">
                         {pass.description}
                       </p>
+
+                      {pass.id === "school-student" && (
+                        <p className="text-xs text-neutral-600 font-medium mb-4">
+                          Delegations &amp; Registrations:{" "}
+                          <a
+                            href="tel:+916388668213"
+                            className="text-[#eb0028] font-bold hover:underline inline-flex items-center gap-1"
+                          >
+                            <Phone className="w-3 h-3 inline" />
+                            <span>+91 63886 68213</span>
+                          </a>
+                        </p>
+                      )}
                     </div>
 
                     {/* Bottom CTA Area */}
@@ -168,7 +182,7 @@ export default function PassesPage() {
                 </p>
               </div>
 
-              <div className="relative z-10 shrink-0 w-full lg:w-auto">
+              <div className="relative z-10 shrink-0 w-full lg:w-auto flex flex-col sm:flex-row lg:flex-col gap-3">
                 <FlowButton
                   href="mailto:tedx@hyderabad.bits-pilani.ac.in?subject=School%20or%20Group%20Delegation%20Inquiry%20-%20TEDx%20BITS%20Hyderabad%202026"
                   text="Request Delegation Access"
@@ -176,6 +190,13 @@ export default function PassesPage() {
                   icon={ArrowUpRight}
                   className="w-full lg:w-auto text-xs font-bold uppercase tracking-[0.15em] py-4 px-8"
                 />
+                <a
+                  href="tel:+916388668213"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-neutral-300 bg-white hover:bg-neutral-50 text-neutral-900 font-semibold text-xs uppercase tracking-wider transition-colors text-center shadow-xs"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#eb0028]" />
+                  <span>Call +91 63886 68213</span>
+                </a>
               </div>
             </div>
 
@@ -191,13 +212,23 @@ export default function PassesPage() {
                 Reach out to our delegate relations team for assistance with pass access, group reservations,
                 accessibility, and event schedule logistics.
               </p>
-              <a
-                href="mailto:tedx@hyderabad.bits-pilani.ac.in"
-                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] border-b-2 border-neutral-300 pb-1.5 hover:text-[#eb0028] hover:border-[#eb0028] transition-colors"
-              >
-                <span>Contact Delegate Relations</span>
-                <span>→</span>
-              </a>
+              <div className="flex flex-wrap items-center justify-center gap-6">
+                <a
+                  href="mailto:tedx@hyderabad.bits-pilani.ac.in"
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] border-b-2 border-neutral-300 pb-1.5 hover:text-[#eb0028] hover:border-[#eb0028] transition-colors"
+                >
+                  <span>Email Delegate Relations</span>
+                  <span>→</span>
+                </a>
+                <a
+                  href="tel:+916388668213"
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] border-b-2 border-neutral-300 pb-1.5 hover:text-[#eb0028] hover:border-[#eb0028] transition-colors"
+                >
+                  <Phone className="h-3 w-3 text-[#eb0028]" />
+                  <span>Call +91 63886 68213</span>
+                  <span>→</span>
+                </a>
+              </div>
             </div>
           </div>
         </section>

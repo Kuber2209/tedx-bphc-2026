@@ -126,11 +126,11 @@ export default function PassDetailView({ config }: PassDetailViewProps) {
                       <span>Email Delegation Desk</span>
                     </a>
                     <a
-                      href="tel:+919876543210"
+                      href="tel:+916388668213"
                       className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-[4px] bg-neutral-900/90 hover:bg-neutral-800 text-white border border-neutral-700 font-semibold text-base transition-colors duration-200"
                     >
                       <Phone className="w-4 h-4 text-[#eb0028]" />
-                      <span>Call: +91 98765 43210</span>
+                      <span>Call: +91 63886 68213</span>
                     </a>
                   </div>
                   <p className="text-xs text-neutral-400 mt-3 font-normal">
@@ -229,11 +229,11 @@ export default function PassDetailView({ config }: PassDetailViewProps) {
                     <span>Email Delegation Desk</span>
                   </a>
                   <a
-                    href="tel:+919876543210"
+                    href="tel:+916388668213"
                     className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-[4px] bg-neutral-100 hover:bg-neutral-200 text-neutral-900 border border-neutral-200 font-semibold text-xs uppercase tracking-wider transition-colors text-center"
                   >
                     <Phone className="w-3.5 h-3.5 text-[#eb0028]" />
-                    <span>Call +91 98765 43210</span>
+                    <span>Call +91 63886 68213</span>
                   </a>
                 </div>
               </div>
@@ -320,6 +320,13 @@ export default function PassDetailView({ config }: PassDetailViewProps) {
             >
               Contact us for group bookings
             </a>
+            {" "}or call{" "}
+            <a
+              href="tel:+916388668213"
+              className="text-neutral-900 underline underline-offset-4 hover:text-[#eb0028] transition-colors font-semibold"
+            >
+              +91 63886 68213
+            </a>
             .
           </p>
           <p className="text-sm text-neutral-600">
@@ -329,6 +336,13 @@ export default function PassDetailView({ config }: PassDetailViewProps) {
               className="text-neutral-900 underline underline-offset-4 hover:text-[#eb0028] transition-colors font-medium"
             >
               tedx@hyderabad.bits-pilani.ac.in
+            </a>
+            {" "}·{" "}
+            <a
+              href="tel:+916388668213"
+              className="text-neutral-900 underline underline-offset-4 hover:text-[#eb0028] transition-colors font-semibold"
+            >
+              +91 63886 68213
             </a>
           </p>
         </div>

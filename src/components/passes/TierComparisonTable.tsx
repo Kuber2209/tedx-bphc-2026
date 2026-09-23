@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 
 // Flowbase Echo Table 02 iconic check cutout SVG
 function EchoCheckIcon() {
@@ -335,10 +335,10 @@ export default function TierComparisonTable({
   const categories = getTierData(passId);
   const isStudent = passId === "school-student" || passId === "student";
   const standardActionHref = isStudent
-    ? "mailto:tedx@hyderabad.bits-pilani.ac.in?subject=School%20or%20Student%20Group%20Delegation%20Inquiry%20(Standard%20Tier)%20-%20TEDx%20BITS%20Hyderabad%202026"
+    ? "tel:+916388668213"
     : registrationUrl;
   const premiumActionHref = isStudent
-    ? "mailto:tedx@hyderabad.bits-pilani.ac.in?subject=School%20or%20Student%20Group%20Delegation%20Inquiry%20(Premium%20VIP%20Tier)%20-%20TEDx%20BITS%20Hyderabad%202026"
+    ? "tel:+916388668213"
     : registrationUrl;
 
   const renderValue = (val: boolean | string) => {
@@ -412,11 +412,11 @@ export default function TierComparisonTable({
                   </div>
                   {isStudent ? (
                     <a
-                      href="mailto:tedx@hyderabad.bits-pilani.ac.in?subject=School%20or%20Student%20Group%20Delegation%20Inquiry%20-%20TEDx%20BITS%20Hyderabad%202026"
-                      className="mt-3 inline-flex items-center gap-1 px-4 py-1.5 rounded-[4px] bg-[#0a0a0c] hover:bg-neutral-800 text-white text-xs font-semibold uppercase tracking-wider transition-colors"
+                      href="tel:+916388668213"
+                      className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-[#0a0a0c] hover:bg-neutral-800 text-white text-[11px] font-semibold uppercase tracking-wider transition-colors"
                     >
-                      <span>CONTACT DELEGATION</span>
-                      <ArrowRight className="w-3 h-3" />
+                      <Phone className="w-3 h-3 text-[#eb0028]" />
+                      <span>+91 63886 68213</span>
                     </a>
                   ) : (
                     <a
@@ -444,11 +444,11 @@ export default function TierComparisonTable({
                   </div>
                   {isStudent ? (
                     <a
-                      href="mailto:tedx@hyderabad.bits-pilani.ac.in?subject=School%20or%20Student%20Group%20Delegation%20Inquiry%20-%20TEDx%20BITS%20Hyderabad%202026"
-                      className="mt-3 inline-flex items-center gap-1 px-4 py-1.5 rounded-[4px] bg-[#eb0028] hover:bg-[#c40022] text-white text-xs font-semibold uppercase tracking-wider transition-colors shadow-sm"
+                      href="tel:+916388668213"
+                      className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-[#eb0028] hover:bg-[#c40022] text-white text-[11px] font-semibold uppercase tracking-wider transition-colors shadow-sm"
                     >
-                      <span>CONTACT DELEGATION</span>
-                      <ArrowRight className="w-3 h-3" />
+                      <Phone className="w-3 h-3" />
+                      <span>+91 63886 68213</span>
                     </a>
                   ) : (
                     <a
