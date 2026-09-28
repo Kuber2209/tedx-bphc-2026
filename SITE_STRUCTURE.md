@@ -45,7 +45,7 @@ building against - update it if scope changes so it stays accurate.
 
 - Location, embedded map, directions/parking info
 
-## `/faq` - FAQ (Team #2)
+## `/faq` - FAQ (Team #2) ok ko 
 
 - Accordion of common questions (tickets, registration, code of conduct, accessibility)
 
